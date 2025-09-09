@@ -11,9 +11,9 @@ Sprint initial de 2 semaines puis 4 sprints de 3 semaines
 Soutenance : 12/01/2026
 
 Attendues principaux
-• Une applica2on Web fonctionnelle
+• Une application Web fonctionnelle
 • Un développement agile en équipe
-• Une applica2on avec un niveau de qualité́ (Documentation, Code, ...)
+• Une application avec un niveau de qualité́ (Documentation, Code, ...)
 • Utilisation des outils de développement : versioning, gestion des taches
 
 Livrables
