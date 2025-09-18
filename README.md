@@ -32,6 +32,7 @@ traiter en anglais)
 • Code sur GIT
 
 Organisation : 
+
 Kilian STIEVENARD
 Miquel SANZ
 Nathan LEFRANCOIS
