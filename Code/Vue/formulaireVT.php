@@ -7,7 +7,7 @@
 
 <form action="../Presentation/upload.php" method="post" enctype="multipart/form-data">>
     <label for="VT">
-        FichierVT <input type="file" name="fileToUpload" id="fileToUpload"> required>
-    </label>
+        FichierVT <input type="file" name="fileToUpload" id="fileToUpload" required>
+    </label> <br>
     <input type="submit" value="Upload Image" name="submit" >
 </form>
