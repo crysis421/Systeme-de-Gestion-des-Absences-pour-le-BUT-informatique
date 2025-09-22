@@ -1,12 +1,16 @@
 ul{
-    text-align: center;
-    font-size: 150%;
+    text-align: right;
+    font-size:  1vw;
+    padding-bottom: 3px;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-color: #c6a04d;
 }
 
 li {
     display: inline-block;
     position: static;
-    padding: 15px;
+    padding: 12px;
     outline-style: groove;
     outline-color: black;
     border-start-start-radius: 15px;
