@@ -1,0 +1,7 @@
+.onglets {
+    display: flex;
+    position: relative;
+    background: white;
+    border-radius: 2px;
+}
+
