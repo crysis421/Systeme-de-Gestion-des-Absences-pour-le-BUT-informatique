@@ -1,3 +1,4 @@
+<?php require 'menuHorizontal.html'; ?>
 <head>
     <title>Ajout d'un FichierVT</title>
 </head>
