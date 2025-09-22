@@ -16,8 +16,16 @@ li {
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
 }
+
 li:hover{
     background-color: #efefef;
+    animation-name: myAnimation;
+    animation-duration: 1s;
+}
+
+@keyframes myAnimation {
+    from {background-color: #ffffff;}
+    to {background-color: #efefef;}
 }
 
 a:visited{
