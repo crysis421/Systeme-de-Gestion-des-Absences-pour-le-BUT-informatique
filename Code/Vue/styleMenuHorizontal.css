@@ -9,7 +9,6 @@ ul{
 
 li {
     display: inline-block;
-    position: static;
     padding: 12px;
     outline-style: groove;
     outline-color: black;
