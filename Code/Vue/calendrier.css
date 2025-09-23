@@ -1,0 +1,21 @@
+table{
+    border-style: solid;
+    border-collapse : collapse;
+    border-width: 2px;
+    text-align: center;
+}
+th{
+    width: 8vw;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+}
+td{
+    width: 8vw;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+}
+td:hover{
+    background-color: blue;
+}
