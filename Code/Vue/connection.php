@@ -8,10 +8,12 @@ require_once("menuHorizontal.html");
     <label for="Email">
         Email : <input type="email" name="email" placeholder="EMAIL" required>
     </label> <br>
+    <br>
     <label for="Mot de passe">
         Mot de passe : <input type="password" name="motDePasse" placeholder="MDP" required>
     </label> <br>
-    <input type="submit" value="Connection">
+    <br>
+    <input type="submit" value="Connexion">
 
 </form>
 
