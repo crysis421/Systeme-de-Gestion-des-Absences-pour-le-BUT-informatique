@@ -1,3 +1,7 @@
+<?php
+require 'menuHorizontal.html'
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,14 +102,14 @@
     <input type="texte" id="lieuSignature" name="lieuSignature"><br>
     <br>
     <br>
-    <p><b>Je signe : </b></p>
-    <label for="oui"><b>oui :</b></label>
+    <p><b>Je signe :</b></p>
+    <label for="oui"><b>oui:</b></label>
     <input type="radio" id="oui" name="signer">
-    <label for="non"><b>non :</b></label>
+    <label for="non"><b>non:</b></label>
     <input type="radio" id="non" name="signer">
     <br>
     <br>
-    <input type="reset" value="valider">
+    <input type="submit" value="valider">
     <br>
     <br>
 
