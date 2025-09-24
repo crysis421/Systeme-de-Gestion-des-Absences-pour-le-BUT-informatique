@@ -94,6 +94,7 @@ class AbsenceModel
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
+
     }
 
 
