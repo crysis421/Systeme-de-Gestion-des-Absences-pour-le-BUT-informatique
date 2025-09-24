@@ -67,10 +67,7 @@ class AbsenceModel
             SELECT 
                 a.idAbsence,
             FROM Absence a
-            JOIN Seance s ON a.idSeance = s.idSeance
-            JOIN Cours c ON s.idCours = c.idCours
             WHERE a.idUtilisateur = :idUtilisateur
-            ORDER BY s.date, s.heureDebut
         ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
