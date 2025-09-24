@@ -58,7 +58,11 @@ class AbsenceModel
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($res)) {
+            echo "aucun absence";
+        }
+        return $res;
     }
 
     public function GetIdAbsence($idUtilisateur)
@@ -67,15 +71,12 @@ class AbsenceModel
             SELECT 
                 a.idAbsence,
             FROM Absence a
-            JOIN Seance s ON a.idSeance = s.idSeance
-            JOIN Cours c ON s.idCours = c.idCours
             WHERE a.idUtilisateur = :idUtilisateur
-            ORDER BY s.date, s.heureDebut
         ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function delete($idAbsence)
