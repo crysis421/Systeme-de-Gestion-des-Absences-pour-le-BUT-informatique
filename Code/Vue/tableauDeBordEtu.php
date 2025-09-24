@@ -1,4 +1,4 @@
-<?php require "menuHorizontal.html";
+<?php require "menuHorizontalEtu.html";
 session_start();
 echo '<link rel="stylesheet" href="calendrier.css" />';
 $Y =date("Y");

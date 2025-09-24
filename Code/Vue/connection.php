@@ -1,5 +1,5 @@
 <?php
-require_once("menuHorizontal.html");
+require_once("menuHorizontalEtu.html");
 ?>
 <h1>Connection à un compte</h1>
 

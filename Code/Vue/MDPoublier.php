@@ -1,5 +1,5 @@
 <?php
-require 'menuHorizontal.html'
+require 'menuHorizontalEtu.html'
 ?>
 <!DOCTYPE html>
 <html lang="en">
