@@ -1,27 +1,33 @@
-.onglets {
-    position: relative;
-    display: flex;
-}
-
-.onglets {
-    flex: 1;
-    width: 100vw;
-}
-
 .justificatif-texte {
     position: relative;
     left: 10px;
 }
 .oeil {
     position: relative;
+    transition: transform 0.25s ease;
     width: 30px;
     top: 9px;
     left: 15px;
 }
 
+.oeil:hover {
+    transform: rotate(10deg) scale(1.2) translateX(2px);
+    transition: transform 0.25s ease;
+}
+
 .justificatif-image {
     position: relative;
     width: 300px;
+}
+
+@keyframes wobble {
+    100% {
+        border-radius: 25px;
+    }
+}
+
+.justificatif-image:hover {
+    animation: wobble 0.5s ease-in-out forwards;
 }
 
 .justificatif-image-big {
@@ -36,7 +42,6 @@
     transform: translate(-50%, -50%);
     z-index: 2;
 }
-
 
 summary {
     list-style: none;
@@ -60,9 +65,6 @@ summary::-webkit-details-marker {
 si fondu noir hover alors croix visible sinon non
  */
 
-.fondu-noir:hover + .justificatif-close {
-    width: 0px;
-}
 
 .justificatif-close {
     position: fixed;

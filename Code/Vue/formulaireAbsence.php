@@ -62,22 +62,19 @@ require 'menuHorizontal.html'
 
     <label for="heurefin1"> à :</label>
     <input type="time" id="heurefin1" name="heurefin1"><br>
+    <br>
 
-    <p>Pour des raison de:</p>
-    <input type="radio" id="sante" name="motif">
-    <label for="sante"> santé</label><br>
+    <label for="motif">pour des raisons de : </label>
+    <select id="motif" name="motif">
+        <option value="sante" >santé</option>
+        <option value="transport">transport</option>
+        <option value="inscription">problèmes d'inscription</option>
+        <option value="conduiteObligatoire" >cours de conduite obligatoire</option>
+        <option value="medecin">Rendez vous chez le medicin</option>
+        <option value="aucune raison valable">aucune raison valable</option>
+        <option value="autres">Autres</option>
 
-    <input type="radio" id="inscriptions" name="motif">
-    <label for="inscriptions">Inscription</label><br>
-
-    <input type="radio" id="personnel" name="motif">
-    <label for="personnel">raisons personnelles</label><br>
-
-    <input type="radio" id="transport" name="motif">
-    <label for="transport">transport</label><br>
-
-    <input type="radio" id="autres" name="motif">
-    <label for="autres">autres</label><br>
+    </select><br>
     <br>
     <label for="preciserAutre">Commentaires :</label><br>
     <textarea id="preciserAutre" style="width: 700px; height: 100px;"></textarea>
@@ -99,7 +96,7 @@ require 'menuHorizontal.html'
     <input type="date" id="dateSignature" name="dateSignature"><br>
     <br>
     <label for="lieuSignature"><b>A : </b> </label>
-    <input type="texte" id="lieuSignature" name="lieuSignature"><br>
+    <input type="text" id="lieuSignature" name="lieuSignature"><br>
     <br>
     <br>
     <p><b>Je signe :</b></p>

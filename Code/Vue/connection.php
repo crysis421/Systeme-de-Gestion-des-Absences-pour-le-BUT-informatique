@@ -12,7 +12,7 @@ require_once("menuHorizontal.html");
     <label for="Mot de passe">
         Mot de passe : <input type="password" name="motDePasse" placeholder="MDP" required>
     </label> <br>
-    <a style="font-family: Arial; color: blue; font-size: 11px;" href="https://portail.uphf.fr/uPortal/f/Accueil/normal/render.uP">Mot de passe oublié ?</a><br>
+    <a style="font-family: Arial; color: blue; font-size: 11px;" href="MDPoublier.php">Mot de passe oublié ?</a><br>
     <br>
     <input type="submit" value="Connexion">
 
