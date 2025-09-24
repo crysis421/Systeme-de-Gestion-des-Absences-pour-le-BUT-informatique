@@ -1,13 +1,30 @@
 <?php require "menuHorizontal.html";
+session_start();
 echo '<link rel="stylesheet" href="calendrier.css" />';
+$Y =date("Y");
 
-$Y = 2025;//Choix de l'année
-$M = 9;//Choix du mois
-$date = date_create(date($Y."-".$M ."-01"));
-$mois = date_format($date,"m");
+if (!isset($_POST['mois'])) { //On ne peut voir que notre année scolaire
+    $M = date("m");
+} else {
+    $M = $_POST['mois'];
+    if($_POST['mois'] < 8 and date('m') >= 8){
+        $Y = date("Y") + 1;
+    }elseif($_POST['mois'] >= 8 and date('m') < 8){
+        $Y = $Y - 1;
+    }
+}
+$date = date_create(date($Y . "-" . $M . "-01"));
+$mois = date_format($date, "m");
 
 ?>
-<h1> <?php echo  $date->format("F - Y") ?> </h1>
+<form action="tableauDeBordEtu.php" method="post">
+    <label>
+        Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
+    </label>
+    <input type="submit" value="Ok">
+</form>
+
+<h1> <?php echo $date->format("F - Y") ?> </h1>
 <table>
     <tr>
         <th>Lundi</th>
@@ -19,31 +36,33 @@ $mois = date_format($date,"m");
         <th>Dimanche</th>
     </tr>
     <tr>
-<?php
+        <?php
 
-$j = $date->format('w');
-if ($j == 0) {//Implementation plus simple quand dimanche = 7
-    $j = 7;
-}
-for ($i = 0; $i < $j; $i++){//Mettre le premier jour au bon endroit
-    if ($i == $j-1){
-        echo '<td> 01 </td>';
-    }else{
-        echo '<td>  </td>';
-    }
-}
+        $j = $date->format('w');
+        if ($j == 0) {//Implementation plus simple quand dimanche = 7
+            $j = 7;
+        }
+        for ($i = 0; $i < $j; $i++) {//Mettre le premier jour au bon endroit
+            if ($i == $j - 1) {
+                echo '<td id="vide"> 01 </td>';
+            } else {
+                echo '<td>  </td>';
+            }
+        }
 
 
-while($mois==$M){
-    if ($date->format('D')=='Sun'){//Passer a la ligne suivante car changement de semaine
-        echo "</tr><tr>";
-    }
-    date_add($date, date_interval_create_from_date_string("1 days")); //Incrementation de la date
-    if ($date->format('j')!=1){ //Supprimer le 01 a la fin
-        echo "<td>". date_format($date, "d")."</td>";
-    }
-    $mois = $date->format('m'); //Voir le mois pour ne pas faire le mois d'apres
-}
-?>
+        while ($mois == $M) {
+            if ($date->format('D') == 'Sun') {//Passer a la ligne suivante car changement de semaine
+                echo "</tr><tr>";
+            }
+            date_add($date, date_interval_create_from_date_string("1 days")); //Incrementation de la date
+            if ($date->format('j') != 1) { //Supprimer le 01 a la fin
+                echo "<td>" . date_format($date, "d") . "</td>";
+            }
+            $mois = $date->format('m'); //Voir le mois pour ne pas faire le mois d'apres
+        }
+        ?>
 </table>
+
+<?php
 
