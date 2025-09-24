@@ -1,0 +1,108 @@
+label {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    padding: 20px;
+    margin: 10px;
+    color: white;
+
+}
+
+#label_accepter {
+    background: url('../Image/AccepterSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+#label_refuser {
+    background: url('../Image/RefuserSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+#label_demander {
+    background: url('../Image/DemanderSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+#texte1 {
+    display: none;
+
+}
+
+#toggle1:checked ~ #texte1 {
+    display: block;
+
+}
+
+#texte1 {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+
+#texte2 {
+    display: none;
+}
+
+#toggle2:checked ~ #texte2 {
+    display: block;
+}
+
+#texte2 {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+#texte3 {
+    display: none;
+}
+
+#toggle3:checked ~ #texte3 {
+    display: block;
+}
+
+#texte3 {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+
+
+
+h2{
+    text-align : center;
+    font-size : 40px;
+}
+
+
+.onglets {
+    display: flex;
+    position: relative;
+    background: white;
+    border-radius: 2px;
+}
+
+.justificatif-viewer {
+    font-size: 50px;
+}
+
+.infos {
+    position: relative;
+    left: 5px;
+    top: 2px;
+}
+
+.nom {
+    position: relative;
+    left: 5px;
+    top: 2px;
+}
+
+
+
+
