@@ -3,6 +3,8 @@
 namespace Model;
 
 use mysql_xdevapi\Exception;
+use PDO;
+use PDOException;
 
 class insertDataVT
 {
@@ -73,6 +75,40 @@ class insertDataVT
                 $req2 = null;
             }
         } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function addUtilisateur($identifiant, $nom, $prenom, $prenom2, $email, $groupe, $dateDeNaissance, $composante, $diplome)
+    {
+        try {
+            $host = "iutinfo-sgbd.uphf.fr";
+            $user = "iutinfo474";
+            $password = "uwkXBERC";
+            $dbname = "iutinfo474";
+
+            $mdp = password_hash("unMDP", PASSWORD_DEFAULT);
+            $role = 'eleve';
+
+
+            $conn1 = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+            $conn1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $req2 = $conn1->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, composante, diplome) values(:id,:nom,:prenom,:prenom2,:email,:mdp,:role,:groupe,:dateDeNaissance,:composante,:diplome) on conflict do nothing ;");
+            $req2->bindParam(':id', $identifiant);
+            $req2->bindParam(':nom', $nom);
+            $req2->bindParam(':prenom', $prenom);
+            $req2->bindParam(':prenom2', $prenom2);
+            $req2->bindParam(':email', $email);
+            $req2->bindParam(':mdp', $mdp);
+            $req2->bindParam(':role', $role);
+            $req2->bindParam(':groupe', $groupe);
+            $req2->bindParam(':dateDeNaissance', $dateDeNaissance);
+            $req2->bindParam(':composante', $composante);
+            $req2->bindParam(':diplome', $diplome);
+            $req2->execute();
+            $req2 = null;
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
