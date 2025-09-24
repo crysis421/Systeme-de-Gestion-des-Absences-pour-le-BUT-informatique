@@ -3,8 +3,8 @@
 class Database
 {
     private $host = "iutinfo-sgbd.uphf.fr";
-    private $username = "iutinfo452";
-    private $password = "oXU/hhZq";
+    private $username = "iutinfo425";
+    private $password = "Ny6Xqg5Z";
     private $conn;
 
 
@@ -24,5 +24,6 @@ class Database
         }
         return $this->conn;
     }
+
 }
 
