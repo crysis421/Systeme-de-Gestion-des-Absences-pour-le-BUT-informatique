@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trouver un étudiant dans la base de donées</title>
+    <title>Trouver une absence dans la base de donées</title>
 </head>
-<div id="titre"> <h1> Trouver un étudiant absent</h1></div>
+<div id="titre"> <h1> Trouver une absence</h1></div>
 
 <div id="infos">
     <form method="post" action="">
         <label for="identifiant">
-            enter l'identifiant de l'étudiants rechercher :
+            enter l'identifiant de l'absence rechercher :
             <input id="identifiant" name="identifiant" type="number" required>
         </label><br>
         <br>
