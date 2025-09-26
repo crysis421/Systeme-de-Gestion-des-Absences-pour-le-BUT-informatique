@@ -1,5 +1,14 @@
 <?php
 
+use Model\testDBB;
+
+//require_once "../../../Model/testDBB.php";
+//$testBDD = new TestDBB();
+//$absence = $testBDD->getAbsence();
+//
+//for($x = 0; $x < count($absence); $x++){
+//    echo $x;
+//}
 
 $titre = "";
 $description = "";
@@ -82,8 +91,9 @@ EOL;
 
 
     <div class="element">
+
         <details>
-            <summary>
+            <summary class="top-layer">
                 <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24"> <a class="nom">NOM Prénom </a><br>
             </summary>
             <div class="details">
@@ -135,6 +145,8 @@ EOL;
                         </select>
                         <br>
                         <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
+
+                        <br><br>
                     </div>
 
                     <div id="texte2">
@@ -143,6 +155,7 @@ EOL;
                         <br>
                         <br>
                         <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
+                        <br><br>
                     </div>
 
                     <div id="texte3">
@@ -151,6 +164,7 @@ EOL;
                         <br>
                         <br>
                         <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
+                        <br><br>
                     </div>
 
 
