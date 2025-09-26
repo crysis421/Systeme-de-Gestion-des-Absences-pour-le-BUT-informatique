@@ -64,11 +64,10 @@
 
                     </details>
                 </div>
-                <a class="decision-finale">
-                    Décision finale :
-                </a>
                 <form method="post">
-
+                    <a class="decision-finale">
+                        Décision finale
+                    </a>
 
                     <input type="radio" id="toggle1" name="toggle" style="display: none;">
                     <label for="toggle1" id="label_accepter"></label>
@@ -83,7 +82,12 @@
                     <br><br>
 
                     <div id="texte1">
-                        Raison : (liste déroulante ici)
+                        <select name="pets" id="pet-select">
+                            <option value="">--Choisissez une option--</option>
+                            <option value="dog">Transport</option>
+                            <option value="cat">Malade</option>
+                            <option value="hamster">...</option>
+                        </select>
                     </div>
 
                     <div id="texte2">

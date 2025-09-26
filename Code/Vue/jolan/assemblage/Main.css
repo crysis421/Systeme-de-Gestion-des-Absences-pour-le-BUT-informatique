@@ -156,8 +156,11 @@ si fondu noir hover alors croix visible sinon non
 
 #label_accepter, #label_refuser, #label_demander {
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    position: relative;
+    top: 10px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
     filter: grayscale(100%) brightness(1);
@@ -264,12 +267,6 @@ si fondu noir hover alors croix visible sinon non
     background-size: contain;
 }
 
-#label_accepter, #label_refuser, #label_demander {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
 
 #texte1 {
     display: none;
