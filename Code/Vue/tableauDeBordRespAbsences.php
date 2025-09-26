@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+include "../Model/Database.php";
+$connect = new Database();
+$conn = $connect->getConnection();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,14 +57,25 @@
                 <br><br>
 
                 <div id="texte1">
-                    <label for="raison">Raison :</label>
+                    <label for="raison"></label>
+                    Raison :
                     <select name="raison" id="raison" required>
-                        <option value="volvo">Volvo</option>
+                        <option value="volvo">Choisir parmi les options suivantes</option>
+                        <?php
+                        $sql1 = "SELECT cause FROM traitementjustificatif";
+                        $result1 = $this->conn->query($sql1);
+
+                        if ($result1->num_rows > 0) {
+                            while($row = $result1->fetch_assoc()) {
+                                echo '<option value="$row">'.$row.'</option>';
+                            }
+                        }
+                        ?>
+
                         <option value="saab">Saab</option>
                         <option value="opel">Opel</option>
                         <option value="audi">Audi</option>
                     </select>
-                    Raison : (liste déroulante ici)
                 </div>
 
                 <div id="texte2">
@@ -77,7 +93,7 @@
                 </div>
 
                 <br><br>
-                <input type="submit" name="bouton4">Envoyer
+                <input type="submit" name="bouton4" value="Envoyer">
             </form>
         </details>
     </div>
