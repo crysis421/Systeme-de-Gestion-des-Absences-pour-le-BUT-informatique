@@ -153,6 +153,31 @@ si fondu noir hover alors croix visible sinon non
     display: none;
 }
 
+#label_accepter, #label_refuser, #label_demander {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: grayscale(100%) brightness(1);
+}
+
+#toggle1:checked + #label_accepter,
+#toggle2:checked + #label_refuser,
+#toggle3:checked + #label_demander {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#label_accepter:hover,
+#label_refuser:hover,
+#label_demander:hover {
+    filter: grayscale(50%) brightness(0.9);
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
 #zoom:checked ~ .justificatif-image-big {
     display: block;
     margin: 0 auto;

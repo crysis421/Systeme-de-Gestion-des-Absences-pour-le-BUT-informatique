@@ -37,76 +37,73 @@
 
 
     <div class="element">
+        <details>
+            <summary>
+                <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24"> <a class="nom">NOM Prénom </a><br>
+            </summary>
+            <div class="justificatif-viewer">
 
+                <details>
+                    <summary>
+                        <a class="justificatif-texte">Justificatif</a>
+                        <img class="oeil" src="oeil.png" alt="Voir le justificatif">
+                    </summary>
+                    <input type="checkbox" id="zoom" name="zoom" style="display: none;">
+                    <label for="zoom" id="zoom-button"></label>
+    <!--                <img class="justificatif-image" src="justificatif.jpg" alt="Justicatif">-->
+
+
+                    <label for="zoom" class="justificatif-close">
+                        <img src="close.png" alt="Fermer le justificatif">
+                    </label>
+
+
+                    <div class="fondu-noir"></div>
+                    <img class="justificatif-image-big" src="justificatif.jpg" alt="Justicatif">
+
+                </details>
+            </div>
+            <a class="decision-finale">
+                Décision finale :
+            </a>
+            <form method="post">
+
+
+                <input type="radio" id="toggle1" name="toggle" style="display: none;">
+                <label for="toggle1" id="label_accepter"></label>
+
+
+                <input type="radio" id="toggle2" name="toggle" style="display: none;">
+                <label for="toggle2" id="label_refuser"></label>
+
+                <input type="radio" id="toggle3" name="toggle" style="display: none;">
+                <label for="toggle3" id="label_demander"></label>
+
+                <br><br>
+
+                <div id="texte1">
+                    Raison : (liste déroulante ici)
+                </div>
+
+                <div id="texte2">
+                    Motif du refus : <br><br>
+                    <textarea rows="4" cols="50"></textarea>
+                </div>
+
+                <div id="texte3">
+                    Motif de la demande : <br><br>
+                    <textarea rows="4" cols="50"></textarea>
+                </div>
+
+
+            </form>
+
+            <input type="submit" name="bouton4">Envoyer</input>
+
+
+            <!-- check quel element afficher en php-->
+        </details>
     </div>
-
-
-    <details open>
-        <summary>
-            <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24"> <a class="nom">NOM Prénom </a><br>
-        </summary>
-        <div class="justificatif-viewer">
-
-            <details>
-                <summary>
-                    <a class="justificatif-texte">Justificatif</a>
-                    <img class="oeil" src="oeil.png" alt="Voir le justificatif">
-                </summary>
-                <input type="checkbox" id="zoom" name="zoom" style="display: none;">
-                <label for="zoom" id="zoom-button"></label>
-<!--                <img class="justificatif-image" src="justificatif.jpg" alt="Justicatif">-->
-
-
-                <label for="zoom" class="justificatif-close">
-                    <img src="close.png" alt="Fermer le justificatif">
-                </label>
-
-
-                <div class="fondu-noir"></div>
-                <img class="justificatif-image-big" src="justificatif.jpg" alt="Justicatif">
-
-            </details>
-        </div>
-        <a class="decision-finale">
-            Décision finale :
-        </a> <br><br><br>
-        <form method="post">
-
-
-            <input type="radio" id="toggle1" name="toggle" style="display: none;">
-            <label for="toggle1" id="label_accepter"></label>
-
-
-            <input type="radio" id="toggle2" name="toggle" style="display: none;">
-            <label for="toggle2" id="label_refuser"></label>
-
-            <input type="radio" id="toggle3" name="toggle" style="display: none;">
-            <label for="toggle3" id="label_demander"></label>
-
-            <br><br>
-
-            <div id="texte1">
-                Raison : (liste déroulante ici)
-            </div>
-
-            <div id="texte2">
-                Motif du refus : <br><br>
-                <textarea rows="4" cols="50"></textarea>
-            </div>
-
-            <div id="texte3">
-                Motif de la demande : <br><br>
-                <textarea rows="4" cols="50"></textarea>
-            </div>
-
-
-        </form>
-
-
-        <!-- check quel element afficher en php-->
-    </details>
-    <br><br>
-    <input type="submit" name="bouton4">Envoyer</input>
 
 </div>
 
