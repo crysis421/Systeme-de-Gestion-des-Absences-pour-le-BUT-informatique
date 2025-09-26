@@ -3,7 +3,7 @@ require 'menuHorizontalEtu.html'
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>FormulaireRetard</title>
@@ -12,19 +12,19 @@ require 'menuHorizontalEtu.html'
 <h1>Justificatif de retard </h1>
 
 <p><b>Important : </b> Ce formulaire doit être entièrement complété.</p>
-<form action="" method="post">
+<form action="recaptitultifJustificatifRetard.php" method="post">
     <div id="infos">
         <h2>1) Informations de l'étudiant </h2>
         <label for="nom">Nom *: </label>
-        <input type="text" id="nom" name="nom" placeholder="entrer votre nom"><br>
+        <input type="text" id="nom" name="nom" placeholder="entrer votre nom" required><br>
         <br>
 
         <label for="prenom">Prénom *: </label>
-        <input type="text" id="prenom" name="prenom" placeholder="entrer votre prénom"><br>
+        <input type="text" id="prenom" name="prenom" placeholder="entrer votre prénom" required><br>
         <br>
 
         <label for="filiere">Filière/Formation *: </label>
-        <select id="filiere" name="filiere">
+        <select id="filiere" name="filiere" required>
             <option value="BUT1INFOA" >BUT INFO 1 A</option>
             <option value="BUT1INFOB">BUT INFO 1 B</option>
             <option value="BUT1INFOC">BUT INFO 1 C</option>
@@ -47,30 +47,29 @@ require 'menuHorizontalEtu.html'
 
 
         <label for="dateretard"> Date du jour :</label>
-        <input type="date" id="dateretard" name="dateretard">
+        <input type="date" id="dateretard" name="dateretard" required>
 
-        <label for="heurearrive"> de :</label>
-        <input type="time" id="heurearrive" name="heurearrive"><br>
+        <label for="heurearrive"> heure d'arrivée :</label>
+        <input type="time" id="heurearrive" name="heurearrive" required><br>
+        <br>
+        <label for="cours"> Matière :</label>
+        <input type="text" id="cours" name="cours" required>
+
+        <label for="motif">est arrivée en retard pour des raisons de : </label>
+        <select id="motif" name="motif" required>
+            <option value="Problème de santé" >Problème de santé</option>
+            <option value="transport">Problème de transport</option>
+            <option value="Problème de transport">problèmes d'inscription</option>
+            <option value="cours de conduite obligatoire" >cours de conduite obligatoire</option>
+            <option value="Rendez vous chez le medicin">Rendez vous chez le medicin</option>
+            <option value="aucune raison valable">aucune raison valable</option>
+            <option value="autres">Autres</option>
+
+        </select><br>
         <br>
 
-        <p>Pour des raison de:</p>
-        <input type="radio" id="sante" name="motif">
-        <label for="sante"> santé</label><br>
-
-        <input type="radio" id="inscriptions" name="motif">
-        <label for="inscriptions">Inscription</label><br>
-
-        <input type="radio" id="personnel" name="motif">
-        <label for="personnel">raisons personnelles</label><br>
-
-        <input type="radio" id="transport" name="motif">
-        <label for="transport">transport</label><br>
-
-        <input type="radio" id="autres" name="motif">
-        <label for="autres">autres</label><br>
-        <br>
         <label for="preciserAutre">Commentaires :</label><br>
-        <textarea id="preciserAutre" style="width: 700px; height: 100px;"></textarea>
+        <textarea id="preciserAutre" name="preciserAutre" style="width: 700px; height: 100px;"></textarea>
         <br>
         <br>
 
@@ -83,27 +82,26 @@ require 'menuHorizontalEtu.html'
     </div>
     <div id="signature">
         <label for="nom3">Je soussigné(e) (Nom, Prénom) :</label>
-        <input type="text" id="nom3" name="nom3" placeholder="nom et prenom ">
-        <p> Déclare sur l'honneur que les faits décrits ci‑dessus sont exacts et que les pièces justificatives fournies sont authentiques.</p>
-
+        <input type="text" id="nom3" name="nom3" placeholder="nom et prenom " required>
+        <p> Déclarez vous sur l'honneur que les faits décrits ci‑dessus sont exacts et que les pièces justificatives fournies sont authentiques ?<br>
+            <label for="oui"><b>oui:</b></label>
+            <input type="radio" id="oui" name="signer" required>
+        </p>
+        <br>
+        <br>
         <label for="dateSignature"><b>Fait le : </b> </label>
-        <input type="date" id="dateSignature" name="dateSignature"><br>
+        <input type="date" id="dateSignature" name="dateSignature" required>
+        <label from="heuresignature"> <b>à quelle heure ? :</b></label>
+        <input id="heuresignature" type="time" name="heuresignature"><br>
         <br>
         <label for="lieuSignature"><b>A : </b> </label>
-        <input type="texte" id="lieuSignature" name="lieuSignature"><br>
+        <input type="text" id="lieuSignature" name="lieuSignature" required><br>
         <br>
-        <br>
-        <p><b>Je signe :</b></p>
-        <label for="oui"><b>oui:</b></label>
-        <input type="radio" id="oui" name="signer">
-        <label for="non"><b>non:</b></label>
-        <input type="radio" id="non" name="signer">
         <br>
         <br>
         <input type="submit" value="valider">
         <br>
         <br>
-
     </div>
 </form>
 </body>

@@ -13,6 +13,17 @@ create table test
     insert into test values (5,'moi');
 --rollback delete from test where id=5;
 
+
+--changeset moi:7
+insert into test values (58,'jolan');
+--rollback delete from test where id=5;
+
 --changeset moi:8
 select *
 from test
+
+--changeset nnom:1
+insert into test
+values (1,'test');
+
+--rollback delete from test where (id = 1);

@@ -3,7 +3,7 @@ require 'menuHorizontalEtu.html'
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>formulaireAbsent</title>
@@ -64,13 +64,13 @@ require 'menuHorizontalEtu.html'
     <input type="time" id="heurefin1" name="heurefin1" required><br>
     <br>
 
-    <label for="motif">pour des raisons de : </label>
+    <label for="motif">a été absent pour des raisons de : </label>
     <select id="motif" name="motif" required>
-        <option value="sante" >santé</option>
-        <option value="transport">transport</option>
-        <option value="inscription">problèmes d'inscription</option>
-        <option value="conduiteObligatoire" >cours de conduite obligatoire</option>
-        <option value="medecin">Rendez vous chez le medicin</option>
+        <option value="Problème de santé" >Problème de santé</option>
+        <option value="transport">Problème de transport</option>
+        <option value="Problème de transport">problèmes d'inscription</option>
+        <option value="cours de conduite obligatoire" >cours de conduite obligatoire</option>
+        <option value="Rendez vous chez le medicin">Rendez vous chez le medicin</option>
         <option value="aucune raison valable">aucune raison valable</option>
         <option value="autres">Autres</option>
 
@@ -90,20 +90,21 @@ require 'menuHorizontalEtu.html'
 <div id="signature">
     <label for="nom3">Je soussigné(e) (Nom, Prénom) :</label>
     <input type="text" id="nom3" name="nom3" placeholder="nom et prenom " required>
-    <p> Déclare sur l'honneur que les faits décrits ci‑dessus sont exacts et que les pièces justificatives fournies sont authentiques.</p>
+    <p> Déclarez vous sur l'honneur que les faits décrits ci‑dessus sont exacts et que les pièces justificatives fournies sont authentiques ?<br>
+        <label for="oui"><b>oui:</b></label>
+        <input type="radio" id="oui" name="signer" required>
+    </p>
 
+    <br>
+    <br>
     <label for="dateSignature"><b>Fait le : </b> </label>
-    <input type="date" id="dateSignature" name="dateSignature" required><br>
+    <input type="date" id="dateSignature" name="dateSignature" required>
+    <label from="heuresignature"> <b>à quelle heure ? :</b></label>
+    <input id="heuresignature" type="time" name="heuresignature"><br>
     <br>
     <label for="lieuSignature"><b>A : </b> </label>
     <input type="text" id="lieuSignature" name="lieuSignature" required><br>
     <br>
-    <br>
-    <p><b>Je signe :</b></p>
-    <label for="oui" ><b>oui:</b></label>
-    <input type="radio" id="oui" name="signer" required>
-    <label for="non"><b>non:</b></label>
-    <input type="radio" id="non" name="signer">
     <br>
     <br>
     <input type="submit" value="valider">
