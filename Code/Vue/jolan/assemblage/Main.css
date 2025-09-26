@@ -95,9 +95,22 @@ a:hover{
     border-radius: 5px;
 }
 
+.top-layer {
+    background-color: #ececec;
+    position: relative;
+    left: -10px;
+
+    border-radius: 5px 5px 0px 0px;
+    padding-top: 10px;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    margin-bottom: -10px;
+
+}
 .details {
     position: relative;
     left: 15px;
+    top: 15px;
 }
 
 summary {
@@ -159,6 +172,30 @@ si fondu noir hover alors croix visible sinon non
     display: none;
 }
 
+select {
+    width: 300px;
+    padding: 10px 40px 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+textarea {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    transition: 0.3s;
+}
+
 #label_accepter, #label_refuser, #label_demander {
     display: inline-block;
     position: relative;
@@ -217,10 +254,13 @@ si fondu noir hover alors croix visible sinon non
 
 .nom {
     position: relative;
-    top: -5px;
-    left: 5px;
+    top: -4px;
+    left: 14px;
 }
-
+.image-utilisateur {
+    position: relative;
+    left: 10px;
+}
 .notification {
     position: fixed;
     width: 250px;
