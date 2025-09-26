@@ -50,17 +50,24 @@
                 <br><br>
 
                 <div id="texte1">
-                    Raison : (liste déroulante ici)
+                    <label for="raison"></label>
+                    Raison :
+                    <select name="raison" id="raison" required>
+                        <option value="volvo">Choisir parmi les options suivantes</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
                 </div>
 
                 <div id="texte2">
                     Motif du refus : <br><br>
-                    <textarea rows="4" cols="50"></textarea>
+                    <textarea rows="4" cols="50" required></textarea>
                 </div>
 
                 <div id="texte3">
                     Motif de la demande : <br><br>
-                    <textarea rows="4" cols="50"></textarea>
+                    <textarea rows="4" cols="50" required></textarea>
                 </div>
 
 
