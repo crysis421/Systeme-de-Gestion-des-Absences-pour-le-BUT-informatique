@@ -21,12 +21,12 @@ class insertDataVT
     public function __destruct() {
         $this->conn = null;
     }
-    public function addUtilisateur($identifiant, $nom, $prenom, $prenom2, $email, $groupe, $dateDeNaissance, $composante, $diplome)
+    public function addUtilisateur($identifiant, $nom, $prenom, $prenom2, $email, $groupe, $dateDeNaissance, $diplome): void
     {
         try {
             $mdp = password_hash("unMDP", PASSWORD_DEFAULT);
 
-            $req2 = $this->conn->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, composante, diplome) values(:id,:nom,:prenom,:prenom2,:email,:mdp,'eleve',:groupe,:dateDeNaissance,:composante,:diplome) on conflict do nothing returning idUtilisateur;");
+            $req2 = $this->conn->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, diplome) values(:id,:nom,:prenom,:prenom2,:email,:mdp,'eleve',:groupe,:dateDeNaissance,:diplome) on conflict do nothing returning idUtilisateur;");
             $req2->bindParam(':id', $identifiant);
             $req2->bindParam(':nom', $nom);
             $req2->bindParam(':prenom', $prenom);
@@ -35,7 +35,6 @@ class insertDataVT
             $req2->bindParam(':mdp', $mdp);
             $req2->bindParam(':groupe', $groupe);
             $req2->bindParam(':dateDeNaissance', $dateDeNaissance);
-            $req2->bindParam(':composante', $composante);
             $req2->bindParam(':diplome', $diplome);
             $req2->execute();
         } catch (PDOException $e) {
@@ -43,9 +42,10 @@ class insertDataVT
         }
     }
 
-    public function addCour($idCour,$idResponsable,$matiere){
+    public function addCour($idCour,$idResponsable,$matiere): void
+    {
         try{
-            $req2 = $this->conn->prepare("INSERT INTO Cours (idCours, matiere, idResponsable) values (:idC,:matiere,:idR) on conflict do nothing;");
+            $req2 = $this->conn->prepare("INSERT INTO Cours (idCours, matiere, idProf) values (:idC,:matiere,:idR) on conflict do nothing;");
             $req2->bindParam(':idC', $idCour);
             $req2->bindParam(':matiere', $matiere);
             $req2->bindParam(':idR', $idResponsable);
@@ -57,7 +57,7 @@ class insertDataVT
         }
 
     }
-    public function addDataVT($identifiant, $date, $heure, $duree, $type, $idMatiere, $enseignement, $justification, $motif, $commentaire, $salle, $prof, $controle): void
+    public function addDataVT($identifiant, $date, $heure, $duree, $type, $idMatiere, $enseignement, $justification, $motif, $salle, $prof, $controle,$retard): void
     {
         try {
             //Regler les problemes de synchronisation des termes , exemple 01/01/2025 -> 2025/01/01, ou encore 8H10 -> 8:10:00
@@ -81,6 +81,12 @@ class insertDataVT
                 $justification = "valide";
             }
 
+            if($retard=="Retard"){
+                $retard=1;
+            }else{
+                $retard=0;
+            }
+
             $req2 = $this->conn->prepare("INSERT INTO Seance(idSeance, idCours, heureDebut, typeSeance, enseignement, salle, prof, controle, duree, date) values(default,:idMatiere,:heure,:type,:enseignement,:salle,:prof,:controle,:duree,:date) returning idSeance;");
             $req2->bindParam(':idMatiere', $idMatiere);
             $req2->bindParam(":heure", $heure);
@@ -94,23 +100,33 @@ class insertDataVT
             $idSeance = $req2->execute();
             $req2 = null;
 
-
-
-            $req2 = $this->conn->prepare("INSERT INTO Absence(idAbsence, idSeance, idEtudiant, statut) values(default,:seance,:idEtu,:status) returning idAbsence;");
+            $req2 = $this->conn->prepare("INSERT INTO Absence(idAbsence, idSeance, idEtudiant, statut,estRetard) values(default,:seance,:idEtu,:status,:retard) returning idAbsence;");
             $req2->bindParam(":seance", $idSeance);
             $req2->bindParam(":status", $justification);
             $req2->bindParam(":idEtu", $identifiant);
-            $idAbsence = $req2->execute();
+            $req2->bindParam(":retard",$retard);
+            $req2->execute();
+            $idAbsence = $req2->fetchAll(PDO::FETCH_ASSOC);
+            $idAbsence = $idAbsence[0];
+            $idAbsence = $idAbsence["idabsence"];
             $req2 = null;
+            echo 'Salut';
 
             if ($motif != "?") {
-                $req2 = $this->conn->prepare("INSERT INTO Justificatif(idJustificatif, idAbsence, cause, dateSoumission, commentaire, verrouille, pathJustificatif) values(default,:idAbsence,:motif,CURRENT_DATE,:commentaire,false,null);");
-                $req2->bindParam(":motif", $motif);
-                $req2->bindParam(":idAbsence", $idAbsence);
-                $req2->bindParam(":commentaire", $commentaire);
+                $req2 = $this->conn->prepare("INSERT INTO Justificatif(idJustificatif, dateSoumission, verrouille ) values(default,CURRENT_DATE,false) returning idJustificatif;");
                 $req2->execute();
+                $idjust = $req2->fetchAll(PDO::FETCH_ASSOC);
+                $idjust = $idjust[0];
+                $idjust = $idjust["idjustificatif"];
                 $req2 = null;
+                echo $idjust." LL ".$idAbsence;
+
+                $req2 = $this->conn->prepare("insert into AbsenceEtJustificatif(idJustificatif,idAbsence) VALUES (:idJustificatif,:idAbsence)");
+                $req2->bindParam(':idJustificatif', $idjust);
+                $req2->bindParam(':idAbsence', $idAbsence);
+                $req2->execute();
             }
+            echo 'Salut';
         } catch (Exception $e) {
             echo $e->getMessage();
         }
