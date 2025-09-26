@@ -37,6 +37,14 @@
 
 
     <div class="element">
+
+    </div>
+
+
+    <details open>
+        <summary>
+            <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24"> <a class="nom">NOM Prénom </a><br>
+        </summary>
         <div class="justificatif-viewer">
 
             <details>
@@ -44,36 +52,26 @@
                     <a class="justificatif-texte">Justificatif</a>
                     <img class="oeil" src="oeil.png" alt="Voir le justificatif">
                 </summary>
-                <details>
-                    <summary>
-                        <img class="justificatif-image" src="justificatif.jpg" alt="Justicatif">
-                        <img class="justificatif-close" src="close.png" alt="Fermer le justificatif">
-                    </summary>
-                    <div class="fondu-noir"></div>
-                    <img class="justificatif-image-big" src="justificatif.jpg" alt="Justicatif">
-                </details>
+                <input type="checkbox" id="zoom" name="zoom" style="display: none;">
+                <label for="zoom" id="zoom-button"></label>
+<!--                <img class="justificatif-image" src="justificatif.jpg" alt="Justicatif">-->
+
+
+                <label for="zoom" class="justificatif-close">
+                    <img src="close.png" alt="Fermer le justificatif">
+                </label>
+
+
+                <div class="fondu-noir"></div>
+                <img class="justificatif-image-big" src="justificatif.jpg" alt="Justicatif">
 
             </details>
         </div>
-    </div>
-
-
-    <details open>
-        <summary>
-            <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24"> <a class="nom">NOM Prénom </a><br>
-            <a class="infos">
-
-                Formation <br>
-                Jour de l'absence <br>
-                Créneau Horaire</a>
-        </summary>
-        <a class="justificatif-viewer">
-            salut (justificatif ici)
-        </a> <br>
         <a class="decision-finale">
             Décision finale :
         </a> <br><br><br>
         <form method="post">
+
 
             <input type="radio" id="toggle1" name="toggle" style="display: none;">
             <label for="toggle1" id="label_accepter"></label>
