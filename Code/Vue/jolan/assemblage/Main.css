@@ -54,14 +54,13 @@ a:hover{
 
 .justificatif-texte {
     position: relative;
-    left: 10px;
 }
 .oeil {
     position: relative;
     transition: transform 0.25s ease;
     width: 30px;
     top: 9px;
-    left: 15px;
+    left: 5px;
 }
 
 .oeil:hover {
@@ -74,10 +73,10 @@ a:hover{
     width: 300px;
 }
 
-@keyframes rectHovered {
-    100% {
-        border-radius: 25px;
-    }
+.element {
+    position: relative;
+    left: 10px;
+    top: 10px;
 }
 
 .liste-absence {
@@ -87,15 +86,17 @@ a:hover{
     outline-width: 5px;
     border-color: black;
     border-width: 10px;
+    width: 400px;
+    padding-bottom: 20px;
+    height: auto;
     left: 50px;
-    border-radius: 5%;
+    border-radius: 25px;
 }
 
-.justificatif-image:hover {
-    animation: rectHovered 0.5s ease-in-out forwards;
+.details {
+    position: relative;
+    left: 15px;
 }
-
-
 
 summary {
     list-style: none;
@@ -204,6 +205,12 @@ si fondu noir hover alors croix visible sinon non
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.49);
     z-index: 1;
+}
+
+.nom {
+    position: relative;
+    top: -5px;
+    left: 5px;
 }
 
 .notification {
