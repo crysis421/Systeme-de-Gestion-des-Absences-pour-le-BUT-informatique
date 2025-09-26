@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 <a href="https://ent.uphf.fr/uPortal/f/Accueil/normal/render.uP"><img src="https://ent.uphf.fr/uphf/images/ent-logo.svg" alt="Logo de l'IUT"></a>
 
 <ul>
-    <a class="pages" href="tableauDeBordRespAbsences.html"><li>Tableau de bord des absences</li></a>
+    <a class="pages" href="tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
     <a class="pages" href="tableauDeBordRespRetards.html"><li>Tableau de bord des retards</li></a>
     <a class="pages" href="HistoriqueResp.html"><li>Historique</li></a>
     <a class="pages" href="CompteResp.html"><li>Compte</li></a>
@@ -36,7 +37,7 @@
             <a class="decision-finale">
                 Décision finale :
             </a> <br><br><br>
-            <form method="post" action="tableauDeBordRespAbsences.html">
+            <form method="post" action="tableauDeBordRespAbsences.php">
 
                 <input type="radio" id="toggle1" name="toggle" style="display: none;">
                 <label for="toggle1" id="label_accepter"></label>
@@ -51,21 +52,32 @@
                 <br><br>
 
                 <div id="texte1">
+                    <label for="raison">Raison :</label>
+                    <select name="raison" id="raison" required>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
                     Raison : (liste déroulante ici)
                 </div>
 
                 <div id="texte2">
                     Motif du refus : <br><br>
-                    <textarea rows="4" cols="50" required></textarea>
+                    <label>
+                        <textarea rows="4" cols="50" required></textarea>
+                    </label>
                 </div>
 
                 <div id="texte3">
                     Motif de la demande : <br><br>
-                    <textarea rows="4" cols="50" required></textarea>
+                    <label>
+                        <textarea rows="4" cols="50" required></textarea>
+                    </label>
                 </div>
 
                 <br><br>
-                <input type="submit" name="bouton4">Envoyer</input>
+                <input type="submit" name="bouton4">Envoyer
             </form>
         </details>
     </div>
