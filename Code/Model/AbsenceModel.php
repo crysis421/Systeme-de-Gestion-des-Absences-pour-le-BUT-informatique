@@ -71,7 +71,7 @@ class AbsenceModel
             j.idJustificatif,
             j.dateSoumission,
             j.idMotif,
-            j.commentaire AS commentaire_justificatif,
+            j.commentaire_absence AS commentaire_justificatif,
             j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
@@ -85,7 +85,7 @@ class AbsenceModel
             t.idTraitement,
             t.attente,
             t.reponse,
-            t.commentaire AS commentaire_traitement
+            t.commentaire_validation AS commentaire_traitement
         FROM Justificatif j
         JOIN Absence a ON j.idAbsence = a.idAbsence
         JOIN Utilisateur u ON a.idUtilisateur = u.idUtilisateur
