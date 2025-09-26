@@ -44,7 +44,11 @@ $mois = date_format($date, "m");
         }
         for ($i = 0; $i < $j; $i++) {//Mettre le premier jour au bon endroit
             if ($i == $j - 1) {
-                echo '<td id="vide"> 01 </td>';
+                if (date('m-d')==date_format($date,'m-01')){
+                    echo '<td id="adj"> 01 <td>';
+                }else{
+                    echo '<td> 01 </td>';
+                }
             } else {
                 echo '<td>  </td>';
             }
@@ -57,7 +61,11 @@ $mois = date_format($date, "m");
             }
             date_add($date, date_interval_create_from_date_string("1 days")); //Incrementation de la date
             if ($date->format('j') != 1) { //Supprimer le 01 a la fin
-                echo "<td>" . date_format($date, "d") . "</td>";
+                if (date('m-d')==date_format($date,'m-d')){
+                    echo "<td id='adj'>" . date_format($date, "d") . "</td>";
+                }else{
+                    echo "<td>" . date_format($date, "d") . "</td>";
+                }
             }
             $mois = $date->format('m'); //Voir le mois pour ne pas faire le mois d'apres
         }
