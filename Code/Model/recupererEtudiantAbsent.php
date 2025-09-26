@@ -29,12 +29,13 @@
     $resultat = $a->getByUser($identifiant);
 
     $labels = ["<b>identifiant :</b>", "<b>statut :</b>", "<b>date :</b>", "<b>heure Debut :</b>", "<b>type Seance :</b>", "<b>matiere :</b>"];
-    $i = 0;
     foreach($resultat as $row){
+        $i = 0;
         foreach ($row as $e){
             echo "$labels[$i]  $e </br>";
             $i = $i + 1;
         }
+        echo "</br>";
     }
 
     ?>
