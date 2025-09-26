@@ -1,6 +1,6 @@
 <?php require "menuHorizontalEtu.html";
 session_start();
-echo '<link rel="stylesheet" href="calendrier.css" />';
+echo '<link rel="stylesheet" href="../CSS/calendrier.css" />';
 $Y =date("Y");
 
 if (!isset($_POST['mois'])) { //On ne peut voir que notre année scolaire
