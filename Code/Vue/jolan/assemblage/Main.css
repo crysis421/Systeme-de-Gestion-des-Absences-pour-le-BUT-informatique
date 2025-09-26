@@ -81,21 +81,36 @@ a:hover{
 
 .liste-absence {
     position: absolute;
-    background-color: grey;
-    outline-color: black;
-    outline-width: 5px;
+    background-color: white;
+    box-shadow:
+            rgba(45, 35, 66, 0.2) 0 2px 4px,
+            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
     border-color: black;
     border-width: 10px;
-    width: 400px;
+    width: 600px;
     padding-bottom: 20px;
     height: auto;
     left: 50px;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 
+.top-layer {
+    background-color: #ececec;
+    position: relative;
+    left: -10px;
+
+    border-radius: 5px 5px 0px 0px;
+    padding-top: 10px;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    margin-bottom: -10px;
+
+}
 .details {
     position: relative;
     left: 15px;
+    top: 15px;
 }
 
 summary {
@@ -123,9 +138,12 @@ si fondu noir hover alors croix visible sinon non
 }
 
 #zoom:checked + #zoom-button {
-    transform: scale(1.1);
+    transform: scale(1.05) translateY(20px);
+    margin-bottom: 20px;
     border: 2px solid #007BFF;
 }
+
+
 
 .justificatif-close {
     display: none;
@@ -152,6 +170,30 @@ si fondu noir hover alors croix visible sinon non
 
 .justificatif-image-big {
     display: none;
+}
+
+select {
+    width: 300px;
+    padding: 10px 40px 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+textarea {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    transition: 0.3s;
 }
 
 #label_accepter, #label_refuser, #label_demander {
@@ -212,10 +254,13 @@ si fondu noir hover alors croix visible sinon non
 
 .nom {
     position: relative;
-    top: -5px;
-    left: 5px;
+    top: -4px;
+    left: 14px;
 }
-
+.image-utilisateur {
+    position: relative;
+    left: 10px;
+}
 .notification {
     position: fixed;
     width: 250px;
@@ -225,7 +270,7 @@ si fondu noir hover alors croix visible sinon non
     background-color: white;
     border-radius: 10px;
     filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.2));
-    animation: notification-animation 2s infinite;
+    animation: notification-animation 2s forwards;
 }
 
 .titre-notification {
@@ -289,5 +334,60 @@ si fondu noir hover alors croix visible sinon non
 
 #toggle1:checked ~ #texte1 {
     display: block;
+}
 
+.bouton-envoye {
+    align-items: center;
+    appearance: none;
+    background-color: #fcfcfd;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow:
+            rgba(45, 35, 66, 0.2) 0 2px 4px,
+            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395a;
+    cursor: pointer;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition:
+            box-shadow 0.15s,
+            transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.bouton-envoye:focus {
+    box-shadow:
+            #d6d6e7 0 0 0 1.5px inset,
+            rgba(45, 35, 66, 0.4) 0 2px 4px,
+            rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
+}
+
+.bouton-envoye:hover {
+    box-shadow:
+            rgba(45, 35, 66, 0.3) 0 4px 8px,
+            rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.bouton-envoye:active {
+    box-shadow: #d6d6e7 0 3px 7px inset;
+    transform: translateY(2px);
 }
