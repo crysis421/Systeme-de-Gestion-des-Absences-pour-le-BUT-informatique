@@ -81,16 +81,18 @@ a:hover{
 
 .liste-absence {
     position: absolute;
-    background-color: grey;
-    outline-color: black;
-    outline-width: 5px;
+    background-color: white;
+    box-shadow:
+            rgba(45, 35, 66, 0.2) 0 2px 4px,
+            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
     border-color: black;
     border-width: 10px;
-    width: 400px;
+    width: 600px;
     padding-bottom: 20px;
     height: auto;
     left: 50px;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 
 .details {
@@ -123,9 +125,12 @@ si fondu noir hover alors croix visible sinon non
 }
 
 #zoom:checked + #zoom-button {
-    transform: scale(1.1);
+    transform: scale(1.05) translateY(20px);
+    margin-bottom: 20px;
     border: 2px solid #007BFF;
 }
+
+
 
 .justificatif-close {
     display: none;
@@ -225,7 +230,7 @@ si fondu noir hover alors croix visible sinon non
     background-color: white;
     border-radius: 10px;
     filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.2));
-    animation: notification-animation 2s infinite;
+    animation: notification-animation 2s forwards;
 }
 
 .titre-notification {
@@ -289,5 +294,60 @@ si fondu noir hover alors croix visible sinon non
 
 #toggle1:checked ~ #texte1 {
     display: block;
+}
 
+.bouton-envoye {
+    align-items: center;
+    appearance: none;
+    background-color: #fcfcfd;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow:
+            rgba(45, 35, 66, 0.2) 0 2px 4px,
+            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395a;
+    cursor: pointer;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition:
+            box-shadow 0.15s,
+            transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.bouton-envoye:focus {
+    box-shadow:
+            #d6d6e7 0 0 0 1.5px inset,
+            rgba(45, 35, 66, 0.4) 0 2px 4px,
+            rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
+}
+
+.bouton-envoye:hover {
+    box-shadow:
+            rgba(45, 35, 66, 0.3) 0 4px 8px,
+            rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
+            #d6d6e7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.bouton-envoye:active {
+    box-shadow: #d6d6e7 0 3px 7px inset;
+    transform: translateY(2px);
 }
