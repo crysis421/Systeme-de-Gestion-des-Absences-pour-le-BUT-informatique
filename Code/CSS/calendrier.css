@@ -16,9 +16,9 @@ td{
     border-style: solid;
     border-width: 2px;
 }
-#vide{
+#adj{
     border-width: 4px;
-    border-color: blue;
+    border-color: #006983;
 }
 td:hover{
     background-color: #0280af;

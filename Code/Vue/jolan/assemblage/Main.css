@@ -54,14 +54,13 @@ a:hover{
 
 .justificatif-texte {
     position: relative;
-    left: 10px;
 }
 .oeil {
     position: relative;
     transition: transform 0.25s ease;
     width: 30px;
     top: 9px;
-    left: 15px;
+    left: 5px;
 }
 
 .oeil:hover {
@@ -74,24 +73,116 @@ a:hover{
     width: 300px;
 }
 
-@keyframes rectHovered {
-    100% {
-        border-radius: 25px;
-    }
+.element {
+    position: relative;
+    left: 10px;
+    top: 10px;
 }
 
 .liste-absence {
     position: absolute;
-    background-color: #c6a04d;
+    background-color: grey;
+    outline-color: black;
+    outline-width: 5px;
+    border-color: black;
+    border-width: 10px;
+    width: 400px;
+    padding-bottom: 20px;
+    height: auto;
     left: 50px;
-    border-radius: 5%;
+    border-radius: 25px;
 }
 
-.justificatif-image:hover {
-    animation: rectHovered 0.5s ease-in-out forwards;
+.details {
+    position: relative;
+    left: 15px;
+}
+
+summary {
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/*
+si fondu noir hover alors croix visible sinon non
+ */
+
+#zoom-button {
+    display: inline-block;
+    width: 350px;
+    height: 400px;
+    background-image: url("justificatif.jpg");
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+#zoom:checked + #zoom-button {
+    transform: scale(1.1);
+    border: 2px solid #007BFF;
+}
+
+.justificatif-close {
+    display: none;
+}
+
+.justificatif-close img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+#zoom:checked ~ .justificatif-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    height: 25px;
+    width: 25px;
+    list-style: none;
+    cursor: pointer;
+    z-index: 3;
+    display: block;
 }
 
 .justificatif-image-big {
+    display: none;
+}
+
+#label_accepter, #label_refuser, #label_demander {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: grayscale(100%) brightness(1);
+}
+
+#toggle1:checked + #label_accepter,
+#toggle2:checked + #label_refuser,
+#toggle3:checked + #label_demander {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#label_accepter:hover,
+#label_refuser:hover,
+#label_demander:hover {
+    filter: grayscale(50%) brightness(0.9);
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+#zoom:checked ~ .justificatif-image-big {
     display: block;
     margin: 0 auto;
     max-width: 80vw;
@@ -104,15 +195,12 @@ a:hover{
     z-index: 2;
 }
 
-summary {
-    list-style: none;
-}
-
-summary::-webkit-details-marker {
+.fondu-noir {
     display: none;
 }
 
-.fondu-noir {
+#zoom:checked ~ .fondu-noir {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -122,22 +210,11 @@ summary::-webkit-details-marker {
     z-index: 1;
 }
 
-/*
-si fondu noir hover alors croix visible sinon non
- */
-
-
-.justificatif-close {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 25px;
-    list-style: none;
-    cursor: pointer;
-    z-index: 3;
+.nom {
+    position: relative;
+    top: -5px;
+    left: 5px;
 }
-
-
 
 .notification {
     position: fixed;
@@ -176,16 +253,41 @@ si fondu noir hover alors croix visible sinon non
 
 
 #label_accepter {
-    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background: url('AccepterSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 #label_refuser {
-    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background: url('RefuserSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 #label_demander {
-    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background: url('DemanderSymbole.png') no-repeat center center;
     background-size: contain;
+}
+
+
+#texte1 {
+    display: none;
+}
+
+#texte2 {
+    display: none;
+}
+
+#texte3 {
+    display: none;
+}
+#toggle3:checked ~ #texte3 {
+    display: block;
+}
+
+#toggle2:checked ~ #texte2 {
+    display: block;
+}
+
+#toggle1:checked ~ #texte1 {
+    display: block;
+
 }

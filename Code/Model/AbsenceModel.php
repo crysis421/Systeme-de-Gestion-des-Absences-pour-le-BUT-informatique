@@ -58,7 +58,11 @@ class AbsenceModel
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $result = $stmt->fetchAll();
+        if(empty($result)){
+            echo "aucune absence trouvé pour cette identifiant";
+        }
+        return $result;
     }
 
     public function getJustificatifsAttente() {

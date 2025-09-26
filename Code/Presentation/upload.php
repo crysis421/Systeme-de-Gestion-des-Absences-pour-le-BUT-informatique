@@ -1,26 +1,28 @@
-
 <?php
-if(isset($_POST["submit"])) {
-    $row = 1;
+
+require_once '../Model/insertDataVT.php';
+use Model\insertDataVT;
+
+if (isset($_POST["submit"])) {
+    $row = 0;
     if (($handle = fopen($_FILES["fileToUpload"]["tmp_name"], "r")) !== FALSE) {
+        $addData = new insertDataVT();
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            $num = count($data);
-            echo "<p> $num champs à la ligne $row: <br /></p>\n";
             $row++;
-            $ligne = explode(";",$data[0]);
-            foreach ($ligne as $value) {
-                echo " $value ;";
+            $ligne = explode(";", $data[0]);
+            if ($ligne[1] != "Prénom") {
+                $addData->addUtilisateur($ligne[4], $ligne[0], $ligne[1], $ligne[2], $ligne[4], $ligne[20], null, $ligne[6], $ligne[5]);
+                $addData->addCour($ligne[13], 2, $ligne[12]);
+                $addData->addDataVT($ligne[4], $ligne[8], $ligne[9], $ligne[10], $ligne[11], $ligne[13], $ligne[14], $ligne[17], $ligne[18], $ligne[19], $ligne[21], $ligne[22], $ligne[23]);
             }
-            echo "<br />";
-
-
-
         }
         fclose($handle);
     }
-}else{
-    echo "Aucun fichier n'a ete uploader.";
+    echo $row." Absence on été uploader";
+} else {
+    echo "Aucun fichier n'a été uploadé.";
 }
-?>
+
+
 
 
