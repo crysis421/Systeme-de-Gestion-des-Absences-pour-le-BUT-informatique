@@ -21,3 +21,9 @@ insert into test values (58,'jolan');
 --changeset moi:8
 select *
 from test
+
+--changeset nnom:1
+insert into test
+values (1,'test');
+
+--rollback delete from test where (id = 1);

@@ -16,24 +16,32 @@ $heurefin1 = $_POST['heurefin1'];
 $motif = $_POST['motif'];
 $commentaire = $_POST['commentaire'];
 
+$justificatif = $_POST['justificatif'];
+$dateSignature = $_POST['dateSignature'];
+$lieuSignature = $_POST['lieuSignature'];
+
+$heuresignature = $_POST['heuresignature'];
+
 
 ?>
 
 
-<h1 style="text-align: center"> Recapitulatif justificatif d'absence </h1>
+<h1 style="text-align: center"> Recapitulatif du justificatif d'absence de <?php echo "$nom"?></h1>
 
-<p><b>Nom de l'étudiant : </b><?php echo "$nom"?></p>
-<p><b>Prenom de l'étudiant : </b><?php echo "$prenom"?></p>
-<p><b>Numéro d'etudiant de l'étudiant : </b><?php echo "$num"?></p>
-<p><b>Formation de l'étudiant : </b><?php echo "$formation"?></p>
-<p><b>Année d'étude de l'étudiant : </b><?php echo "$annee"?></p>
-<p><b>Adresse mail de l'étudiant : </b><?php echo "$mail"?></p>
-<p><b>Numéro de l'étudiant : </b><?php echo "$tel"?></p>
+<p>Nom de l'étudiant : <b><?php echo "$nom"?></b></p>
+<p>Prenom de l'étudiant : <b><?php echo "$prenom"?></b></p>
+<p>Numéro d'etudiant de l'étudiant : <b><?php echo "$num"?></b></p>
+<p>Formation de l'étudiant : <b><?php echo "$formation"?></b></p>
+<p>Année d'étude de l'étudiant : <b><?php echo "$annee"?></b></p>
+<p>Adresse mail de l'étudiant : <<b><?php echo "$mail"?></b></p>
+<p>Numéro de l'étudiant : <b><?php echo "$tel"?></b></p>
 <br>
-<p>Cette étudiant a été absent du : <?php echo "$datedebut" ?> à: <?php echo "$heuredebut"?> au : <?php echo "$fin"?> à : <?php echo "$heurefin1" ?> .</p>
-<p> le motif de cette absence est : <?php echo"$motif" ?> (<?php echo"$commentaire" ?>).</p>
+<p>Cette étudiant a été absent du : <b><?php echo "$datedebut" ?></b> à: <b><?php echo "$heuredebut"?></b> au : <b><?php echo "$fin"?></b> à : <b><?php echo "$heurefin1" ?></b> .</p>
+<p> le motif de cette absence est : <b><?php echo"$motif" ?> </b>.<br><em>commentaire :"<b><?php echo "$commentaire"?></b>"</em>.</p>
 <br>
+<p>justificatif : <b><?php echo "$justificatif"?></b></p>
 <br>
+<p>Cette justification a été faite le: <b><?php echo "$dateSignature"?></b> à : <b><?php echo "$heuresignature"?></b> à: <b><?php echo "$lieuSignature"?></b></p>
 <div>
     <a href="formulaireAbsence.php"><button>retour</button></a>
     <button style="margin-left: 50px;">envoyer</button>
