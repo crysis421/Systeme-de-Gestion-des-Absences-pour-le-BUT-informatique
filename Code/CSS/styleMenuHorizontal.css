@@ -1,32 +1,32 @@
-
 ul{
     text-align: right;
     font-size:  1vw;
     padding-bottom: 3px;
     border-bottom-style: solid;
     border-bottom-width: 4px;
-    border-color: #c6a04d;
+    border-color: #e3c738;
+    margin-bottom: 0;
 }
 
 li {
     display: inline-block;
-    position: static;
     padding: 12px;
     outline-style: groove;
     outline-color: black;
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
+
 }
 
 li:hover{
-    background-color: #efefef;
+    background-color: #e3c738;
     animation-name: myAnimation;
     animation-duration: 1s;
 }
 
 @keyframes myAnimation {
-    from {background-color: #ffffff;}
-    to {background-color: #efefef;}
+    from {background-color: #bdb659;}
+    to {background-color: #e3c738;}
 }
 
 a:visited{
@@ -37,7 +37,8 @@ a:link {
     color: #000000;
     text-decoration-line: none;
 }
-
-.pages:hover{
+a:hover{
     color: #0280af;
 }
+
+
