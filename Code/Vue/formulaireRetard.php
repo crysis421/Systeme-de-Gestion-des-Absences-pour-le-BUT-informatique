@@ -6,13 +6,13 @@ require 'menuHorizontalEtu.html'
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/formuaireAbsence.css" />
+    <link rel="stylesheet" href="../CSS/formulaire.css" />
     <title>FormulaireRetard</title>
 </head>
 <body>
 <h1>Justificatif de retard </h1>
 
-<p><b>Important : </b> Ce formulaire doit être entièrement complété.</p>
+<p id="important"><b>Important : </b> Ce formulaire doit être entièrement complété.</p>
 <form action="recaptitultifJustificatifRetard.php" method="post">
     <div id="infos">
         <h2>1) Informations de l'étudiant </h2>
@@ -105,5 +105,8 @@ require 'menuHorizontalEtu.html'
         <br>
     </div>
 </form>
+<footer id="footer">
+    <p>&copy; 2025 Formulaire de justification de retard.</p>
+</footer>
 </body>
 </html>
