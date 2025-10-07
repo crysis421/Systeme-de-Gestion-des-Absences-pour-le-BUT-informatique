@@ -9,7 +9,7 @@ use mysql_xdevapi\Exception;
 use PDO;
 use PDOException;
 
-
+// Cette class est pour ajouter des données depuis un fichier VT vers notre base
 class insertDataVT
 {
 
@@ -110,7 +110,6 @@ class insertDataVT
             $idAbsence = $idAbsence[0];
             $idAbsence = $idAbsence["idabsence"];
             $req2 = null;
-            echo 'Salut';
 
             if ($motif != "?") {
                 $req2 = $this->conn->prepare("INSERT INTO Justificatif(idJustificatif, dateSoumission, verrouille ) values(default,CURRENT_DATE,false) returning idJustificatif;");
@@ -119,14 +118,12 @@ class insertDataVT
                 $idjust = $idjust[0];
                 $idjust = $idjust["idjustificatif"];
                 $req2 = null;
-                echo $idjust." LL ".$idAbsence;
 
                 $req2 = $this->conn->prepare("insert into AbsenceEtJustificatif(idJustificatif,idAbsence) VALUES (:idJustificatif,:idAbsence)");
                 $req2->bindParam(':idJustificatif', $idjust);
                 $req2->bindParam(':idAbsence', $idAbsence);
                 $req2->execute();
             }
-            echo 'Salut';
         } catch (Exception $e) {
             echo $e->getMessage();
         }
