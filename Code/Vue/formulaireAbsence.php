@@ -1,17 +1,15 @@
-<?php
-require 'menuHorizontalEtu.html'
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/formuaireAbsence.css" />
     <title>formulaireAbsent</title>
 </head>
 <body>
+<?php require 'menuHorizontalEtu.html'?>
 <h1>Justificatif d'absence </h1>
 
-<p><b>Important : </b> Ce formulaire doit être complété et accompagné des pièces justificatives (certificat médical, convocation, attestation, etc.) selon le motif choisi. Remettez-le au secrétariat de votre composante ou envoyez-le par courriel à l'adresse indiquée par votre université.</p>
+<p id="important"><b>Important : </b> Ce formulaire doit être complété et accompagné des pièces justificatives (certificat médical, convocation, attestation, etc.) selon le motif choisi. Remettez-le au secrétariat de votre composante ou envoyez-le par courriel à l'adresse indiquée par votre université.</p>
 <form action="recapitulatifJustificatifAbsence.php" method="post">
 <div id="infos">
     <h2>1) Informations de l'étudiant </h2>
@@ -24,7 +22,7 @@ require 'menuHorizontalEtu.html'
     <br>
 
     <label for="numeroE">Votre numéro d'étudiant *: </label>
-    <input style="width: 250px" type="text" id="numeroE" name="numeroE" placeholder="entrer votre numéro d'étudiant" required><br>
+    <input  type="number" id="numeroE" name="numeroE" placeholder="entrer votre numéro d'étudiant" required><br>
     <br>
 
     <label for="filiere">Filière/Formation *: </label>
@@ -49,7 +47,7 @@ require 'menuHorizontalEtu.html'
     <h2>2) Informations à propos de l'absence</h2>
 
     <label for="nom2">L'étudiant
-    <input type="text" id="nom2" name="nom2" required> a été absent :</label><br>
+    <input type="text" id="nom2" name="nom2" placeholder="entrer votre nom complet" required> a été absent :</label><br>
     <br>
     <label for="datedebut"> Du :</label>
     <input type="date" id="datedebut" name="datedebut" required>
@@ -113,5 +111,8 @@ require 'menuHorizontalEtu.html'
 
 </div>
 </form>
+<footer id="footer">
+    <p>&copy; 2025 Formulaire d'absence.</p>
+</footer>
 </body>
 </html>
