@@ -1,14 +1,14 @@
 <?php
 
-use Model\testDBB;
+use Model\;
 
-//require_once "../../../Model/testDBB.php";
-//$testBDD = new TestDBB();
-//$absence = $testBDD->getAbsence();
-//
-//for($x = 0; $x < count($absence); $x++){
-//    echo $x;
-//}
+require_once "../Model/.php";
+$testBDD2 = new TestDBB();
+$retard = $testBDD2->getRetard();
+
+for($x = 0; $x < count($retard); $x++){
+    echo $x;
+}
 
 $titre = "";
 $description = "";
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <ul>
     <a class="pages" href="tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
     <a class="pages" href="tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
-    <a class="pages" href="HistoriqueResp.html"><li>Historique</li></a>
+    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="CompteResp.html"><li>Compte</li></a>
 </ul>
 

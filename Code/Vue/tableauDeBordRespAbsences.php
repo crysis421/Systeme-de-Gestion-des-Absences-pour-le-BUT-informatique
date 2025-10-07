@@ -1,11 +1,12 @@
 <?php
 
-use Model\testDBB;
+use Model\;
 
-//require_once "../../../Model/testDBB.php";
+//require_once "../Model/.php";
 //$testBDD = new TestDBB();
+//$stmt = $pdo -> prepare("SELECT * FROM `absence`");
 //$absence = $testBDD->getAbsence();
-//
+
 //for($x = 0; $x < count($absence); $x++){
 //    echo $x;
 //}
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <ul>
     <a class="pages" href="tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
     <a class="pages" href="tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
-    <a class="pages" href="HistoriqueResp.html"><li>Historique</li></a>
+    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="CompteResp.html"><li>Compte</li></a>
 </ul>
 
