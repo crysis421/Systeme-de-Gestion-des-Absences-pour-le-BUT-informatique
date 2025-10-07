@@ -70,7 +70,6 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.dateSoumission,
-            j.idMotif,
             j.commentaire_absence AS commentaire_justificatif,
             j.verrouille,
             u.idUtilisateur,
@@ -80,25 +79,28 @@ class AbsenceModel
             a.statut AS statut_absence,
             s.date AS date_seance,
             s.heureDebut,
-            s.typeSeance,
+            s.typeseance AS typeSeance,
             c.matiere,
             t.idTraitement,
             t.attente,
             t.reponse,
             t.commentaire_validation AS commentaire_traitement
-        FROM Justificatif j
-        JOIN Absence a ON j.idAbsence = a.idAbsence
-        JOIN Utilisateur u ON a.idUtilisateur = u.idUtilisateur
-        JOIN Seance s ON a.idSeance = s.idSeance
-        JOIN Cours c ON s.idCours = c.idCours
-        LEFT JOIN TraitementJustificatif t ON j.idJustificatif = t.idJustificatif
-        WHERE t.attente = TRUE OR t.reponse = 'enAttente'
+        FROM justificatif j
+        JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+            LEFT JOIN justificatifettraitementjustificatif jt ON j.idJustificatif = jt.idJustificatif
+            LEFT JOIN traitementjustificatif t ON jt.idTraitement = t.idTraitement
+            WHERE t.attente = TRUE 
+           OR t.reponse = 'enAttente' 
+           OR t.idTraitement IS NULL
         ORDER BY j.dateSoumission DESC
     ";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
-
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getJustificatifsHistorique() {
