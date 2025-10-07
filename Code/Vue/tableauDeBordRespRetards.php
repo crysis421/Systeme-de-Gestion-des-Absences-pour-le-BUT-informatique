@@ -85,7 +85,7 @@ EOL;
 
 
 <!-- Liste des absences ici ! -->
-<h1><u>Absences : </u></h1>
+<h1><u>Retards : </u></h1>
 
 <div class="liste-absence">
 
