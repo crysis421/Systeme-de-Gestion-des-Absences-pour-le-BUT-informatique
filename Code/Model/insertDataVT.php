@@ -87,7 +87,7 @@ class insertDataVT
                 $retard=0;
             }
 
-            $req2 = $this->conn->prepare("INSERT INTO Seance(idSeance, idCours, heureDebut, typeSeance, enseignement, salle, prof, controle, duree, date) values(default,:idMatiere,:heure,:type,:enseignement,:salle,:prof,:controle,:duree,:date) returning idSeance;");
+            $req2 = $this->conn->prepare("INSERT INTO Seance(idSeance, idCours, heureDebut, typeSeance, enseignement, salle, prof, controle, duree, date) values(default,:idMatiere,:heure,:type,:enseignement,:salle,:prof,:controle,:duree,:date) on conflict do nothing;");
             $req2->bindParam(':idMatiere', $idMatiere);
             $req2->bindParam(":heure", $heure);
             $req2->bindParam(":type", $type);
@@ -97,14 +97,32 @@ class insertDataVT
             $req2->bindParam(':controle', $controle);
             $req2->bindParam(':duree', $duree);
             $req2->bindParam(':date', $date);
-            $idSeance = $req2->execute();
+            $req2->execute();
             $req2 = null;
 
-            $req2 = $this->conn->prepare("INSERT INTO Absence(idAbsence, idSeance, idEtudiant, statut,estRetard) values(default,:seance,:idEtu,:status,:retard) returning idAbsence;");
+            $req2 = $this->conn->prepare("Select idSeance from Seance where heureDebut = :heure and enseignement = :enseignement and salle = :salle and Seance.date = :date;");
+            $req2->bindParam(":heure", $heure);
+            $req2->bindParam(":enseignement", $enseignement);
+            $req2->bindParam(":salle", $salle);
+            $req2->bindParam(':date', $date);
+            $req2->execute();
+            $idSeance = $req2->fetchAll(PDO::FETCH_ASSOC);
+            $idSeance = $idSeance[0];
+            $idSeance = $idSeance["idseance"];
+            $req2 = null;
+
+            $req2 = $this->conn->prepare("INSERT INTO Absence(idAbsence, idSeance, idEtudiant, statut,estRetard) values(default,:seance,:idEtu,:status,:retard) on conflict do nothing;");
             $req2->bindParam(":seance", $idSeance);
             $req2->bindParam(":status", $justification);
             $req2->bindParam(":idEtu", $identifiant);
             $req2->bindParam(":retard",$retard);
+            $req2->execute();
+            $req2 = null;
+
+
+            $req2 = $this->conn->prepare("Select idAbsence from Absence where idSeance = :idseance and idEtudiant = :idEtu;");
+            $req2->bindParam(":idseance", $idSeance);
+            $req2->bindParam(':idEtu', $identifiant);
             $req2->execute();
             $idAbsence = $req2->fetchAll(PDO::FETCH_ASSOC);
             $idAbsence = $idAbsence[0];
@@ -123,6 +141,7 @@ class insertDataVT
                 $req2->bindParam(':idJustificatif', $idjust);
                 $req2->bindParam(':idAbsence', $idAbsence);
                 $req2->execute();
+                $req2 = null;
             }
         } catch (Exception $e) {
             echo $e->getMessage();

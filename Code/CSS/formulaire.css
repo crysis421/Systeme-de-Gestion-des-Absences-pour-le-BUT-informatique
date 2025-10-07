@@ -27,8 +27,7 @@ body {
 
 #important {
     color: red;
-    margin-left: 100px;
-    margin-right: 100px;
+    text-align: center;
 }
 
 input[type="submit"]{
@@ -44,7 +43,7 @@ input[type="submit"]{
 }
 
 form {
-    background-color: #2781a8;
+    background-color: #4ba9da;
     padding: 1px;
     border-radius: 10px;
     max-width: 800px;

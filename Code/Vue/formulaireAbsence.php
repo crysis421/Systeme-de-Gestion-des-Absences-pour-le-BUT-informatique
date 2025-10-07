@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/formuaireAbsence.css" />
+    <link rel="stylesheet" href="../CSS/formulaire.css" />
     <title>formulaireAbsent</title>
 </head>
 <body>
