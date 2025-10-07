@@ -1,7 +1,3 @@
-<?php
-require 'menuHorizontalEtu.html'
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,9 +6,15 @@ require 'menuHorizontalEtu.html'
     <title>FormulaireRetard</title>
 </head>
 <body>
-<h1>Justificatif de retard </h1>
+<header>
+    <?php require 'menuHorizontalEtu.html' ?>
+</header>
+<main>
+    <div id="titre">
+        <h1>Justificatif de retard </h1>
 
-<p id="important"><b>Important : </b> Ce formulaire doit être entièrement complété.</p>
+        <p id="important"><b>Important : </b> Ce formulaire doit être entièrement complété.</p>
+    </div>
 <form action="recaptitultifJustificatifRetard.php" method="post">
     <div id="infos">
         <h2>1) Informations de l'étudiant </h2>
@@ -105,8 +107,9 @@ require 'menuHorizontalEtu.html'
         <br>
     </div>
 </form>
+</main>
 <footer id="footer">
-    <p>&copy; 2025 Formulaire de justification de retard.</p>
+    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
 </footer>
 </body>
 </html>

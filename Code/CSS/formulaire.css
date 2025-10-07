@@ -1,21 +1,3 @@
-#footer {
-    background-color: #2781a8;
-    text-align: center;
-    padding: 15px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 35px;
-    color: #333;
-}
-
-h1{
-    color: #2781a8;
-    text-align: center;
-}
-
-h2 {
-    color: #ede9e9;
-}
 body {
     margin: 0;
     min-height: 100vh;
@@ -24,6 +6,46 @@ body {
     font-family: Arial, sans-serif;
 }
 
+header, main, footer {
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #ffffff;
+    padding: 0px;
+}
+
+
+main {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+#footer {
+    background-color: #2781a8;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0px;
+}
+
+#titre{
+    background-color: #e9ed45;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 1500px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+h1{
+    color: black;
+    text-align: center;
+}
+
+h2 {
+    color: #ede9e9;
+}
 
 #important {
     color: red;
@@ -43,13 +65,15 @@ input[type="submit"]{
 }
 
 form {
-    background-color: #4ba9da;
+    background-color: #2781a8;
     padding: 1px;
     border-radius: 10px;
     max-width: 800px;
     margin: 0 auto;
     padding-left: 100px;
     padding-right: 100px;
+    margin-bottom: 50px;
+    margin-top: 30px;
 }
 
 
@@ -73,3 +97,4 @@ select {
     border: 1px solid #ede9e9;
     box-sizing: border-box;
 }
+
