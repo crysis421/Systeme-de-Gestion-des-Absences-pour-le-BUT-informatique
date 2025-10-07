@@ -1,3 +1,9 @@
+<?php
+require_once "../Model/AbsenceModel.php";
+$model = new AbsenceModel();
+$justificatifs = $model->getJustificatifsAttente();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
