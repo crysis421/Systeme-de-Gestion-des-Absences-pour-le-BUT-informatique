@@ -98,10 +98,11 @@ EOL;
             </summary>
             <div class="details">
                 <div class="justificatif-viewer">
+                    <a class="justificatif-texte">Justificatif</a>
 
                     <details>
+
                         <summary>
-                            <a class="justificatif-texte">Justificatif</a>
                             <img class="oeil" src="oeil.png" alt="Voir le justificatif">
                         </summary>
                         <input type="checkbox" id="zoom" name="zoom" style="display: none;">
@@ -137,7 +138,7 @@ EOL;
                     <br><br>
 
                     <div id="texte1">
-                        <select name="motifs" id="motif-absence">
+                        <select name="motifs" id="motif-absence" required>
                             <option value="">--Choisissez une option--</option>
                             <option value="transport">Transport</option>
                             <option value="malade">Malade</option>
@@ -151,7 +152,7 @@ EOL;
 
                     <div id="texte2">
                         Motif du refus : <br><br>
-                        <textarea name="motif_refus" rows="4" cols="50"></textarea>
+                        <textarea name="motif_refus" rows="4" cols="50" required></textarea>
                         <br>
                         <br>
                         <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
@@ -160,7 +161,7 @@ EOL;
 
                     <div id="texte3">
                         Motif de la demande : <br><br>
-                        <textarea name="motif_demande" rows="4" cols="50"></textarea>
+                        <textarea name="motif_demande" rows="4" cols="50" required></textarea>
                         <br>
                         <br>
                         <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
