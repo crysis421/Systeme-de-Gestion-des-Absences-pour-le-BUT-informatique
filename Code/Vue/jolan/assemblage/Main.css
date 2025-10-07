@@ -36,7 +36,7 @@ a:link {
     color: #000000;
     text-decoration-line: none;
 }
-a:hover{
+.pages:hover{
     color: #0280af;
 }
 
