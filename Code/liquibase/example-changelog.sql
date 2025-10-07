@@ -127,3 +127,11 @@ CREATE TABLE if not exists CoursEtUtilisateur
     primary key (idUtilisateur, idCours)
     );
 --rollback drop table CoursEtUtilisateur Cascade
+
+--changeset Kilian:13
+Alter table Seance add constraint difference UNIQUE(enseignement,heureDebut,salle,date);
+--rollback Alter table Seance drop constraint difference;
+
+--changeset Kilian:14
+Alter table Absence add constraint diff UNIQUE(idSeance,idEtudiant);
+--rollback Alter table Absence drop constraint diff;
