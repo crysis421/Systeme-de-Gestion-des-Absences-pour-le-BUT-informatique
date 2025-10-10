@@ -69,7 +69,7 @@ class AbsenceModel
         $sql = "
         SELECT 
             j.idJustificatif,
-            j.dateSoumission,
+            j.datesoumission,
             j.commentaire_absence AS commentaire_justificatif,
             j.verrouille,
             u.idUtilisateur,
@@ -78,7 +78,7 @@ class AbsenceModel
             a.idAbsence,
             a.statut AS statut_absence,
             s.date AS date_seance,
-            s.heureDebut,
+            s.heuredebut,
             s.typeseance AS typeSeance,
             c.matiere,
             t.idTraitement,

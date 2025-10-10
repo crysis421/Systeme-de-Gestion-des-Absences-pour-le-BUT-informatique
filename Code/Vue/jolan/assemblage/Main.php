@@ -91,7 +91,7 @@ EOL;
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
                     <a class="nom"><?= ($justif['nom_etudiant']) ?> <?= ($justif['prenom_etudiant']) ?></a><br>
-                    <small><?= ($justif['matiere']) ?> — <?= ($justif['date_seance']) ?> à <?= ($justif['heureDebut']) ?></small>
+                    <small><?= ($justif['matiere']) ?> — <?= ($justif['date_seance']) ?> à <?= ($justif['heuredebut']) ?></small>
                 </summary>
 
                 <div class="details">
