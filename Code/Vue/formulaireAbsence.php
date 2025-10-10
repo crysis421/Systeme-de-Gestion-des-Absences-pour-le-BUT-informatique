@@ -11,9 +11,9 @@
 </header>
 <main>
     <div id="titre">
-        <h1>Justificatif de retard </h1>
+        <h1>Justificatif d'absence </h1>
 
-        <p id="important"><b>Important : </b>  Ce formulaire doit être complété et accompagné des pièces justificatives (certificat médical, convocation, attestation, etc.) selon le motif choisi. Remettez-le au secrétariat de votre composante ou envoyez-le par courriel à l'adresse indiquée par votre université.</p>
+        <p id="important"><b>Important : </b>Ce formulaire doit être complété et accompagné des pièces justificatives (certificat médical, convocation, attestation, etc.) selon le motif choisi. Remettez-le au secrétariat de votre composante ou envoyez-le par courriel à l'adresse indiquée par votre université.</p>
     </div>
     <form action="recapitulatifJustificatifAbsence.php" method="post">
         <div id="infos">
