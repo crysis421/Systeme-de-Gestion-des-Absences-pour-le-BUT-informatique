@@ -1,6 +1,6 @@
 <?php
 
-use Model\;
+//use Model\;
 
 //require_once "../Model/.php";
 //$testBDD = new TestDBB();
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/Code/CSS/TraitementJustificatifs.css">
-    <title>Tableau de bord absence</title>
+    <title>Tableau de bord retard</title>
 </head>
 <body>
 
