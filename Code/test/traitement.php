@@ -22,19 +22,19 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Serveur SMTP Mailjet
     $mail->SMTPAuth = true;
-    $mail->Username = 'stievenardkilian@gmail.com';  // Remplace par ta clé publique Mailjet
-    $mail->Password = 'ValoranT421## ';  // Remplace par ta clé secrète Mailjet
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port = 465;
+    $mail->Username = 'christekanimanga@gmail.com';  // Remplace par ta clé publique Mailjet
+    $mail->Password = 'lkkrvhmqecifvxvc';  // Remplace par ta clé secrète Mailjet
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
 
     //Recipients
-    $mail->setFrom('stievenardkilian@gmail.com', 'test'); // L'email doit être vérifié dans Mailjet
-    $mail->addAddress('stievenardkilian@gmail.com');
+    $mail->setFrom('christekanimanga@gmail.com', 'test'); // L'email doit être vérifié dans Mailjet
+    $mail->addAddress('christekanimanga@gmail.com');
 
     //Content
     $mail->isHTML(true);
     $mail->Subject = 'Justification absence';
-    $mail->Body    = $message;
+    $mail->Body    = "Nom : $nom<br>Email : $email<br>Message : $message";
 
     $mail->send();
     echo 'Message envoyé avec succès !';
