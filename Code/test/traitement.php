@@ -20,29 +20,25 @@ $mail = new PHPMailer(true);
 try {
     //Server settings
     $mail->isSMTP();
-    $mail->Host       = 'smtp.uphf.fr';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = ''; // souvent ton email complet
-    $mail->Password   = '';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
-
+    $mail->Host = 'smtp.gmail.com'; // Serveur SMTP Mailjet
+    $mail->SMTPAuth = true;
+    $mail->Username = 'christekanimanga@gmail.com';  // Remplace par ta clé publique Mailjet
+    $mail->Password = 'tmrfbootphpcesy ';  // Remplace par ta clé secrète Mailjet
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
 
     //Recipients
-    $mail->setFrom('', 'ekani'); // L'email doit être vérifié dans Mailjet
-    $mail->addAddress('');
+    $mail->setFrom('Christian.EkaniManga@uphf.fr', 'test'); // L'email doit être vérifié dans Mailjet
+    $mail->addAddress('christekanimanga@gmail.com');
 
     //Content
     $mail->isHTML(true);
     $mail->Subject = 'Justification absence';
-    $mail->Body    = "
-        <strong>Nom :</strong> $nom <br>
-        <strong>Email :</strong> $email <br>
-        <strong>Message :</strong> <p>$message</p>
-    ";
+    $mail->Body    = $message;
 
     $mail->send();
     echo 'Message envoyé avec succès !';
 } catch (Exception $e) {
     echo "Erreur lors de l'envoi : {$mail->ErrorInfo}";
 }
+
