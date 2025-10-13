@@ -79,6 +79,7 @@ EOL;
 <div class="liste-absence">
     <?php foreach ($justificatifs as $justif):
         $id = $justif['idjustificatif'];
+        $commentaire = $justif['commentaire_justificatif'];
         ?>
         <div class="element">
             <details>
@@ -108,6 +109,8 @@ EOL;
                             <label for="zoom<?= $id ?>" class="justificatif-close">
                                 <img src="close.png" alt="Fermer le justificatif">
                             </label>
+
+                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
 
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="justificatif.jpg" alt="Justificatif">
