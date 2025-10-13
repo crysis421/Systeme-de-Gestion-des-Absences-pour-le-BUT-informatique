@@ -128,21 +128,42 @@ class AbsenceModel
         JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
-            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = TRUE 
-           OR t.reponse = 'enAttente' 
-           OR t.idTraitement IS NULL
-        ORDER BY j.dateSoumission DESC
-        HAVING 
-        u.nom LIKE '$nom%'
-        AND u.prenom LIKE '$prenom%'
-        AND date_seance BETWEEN '$dateDebut' AND '$dateFin'
-        AND c.matiere LIKE '%$matiere%'
-    ";
+        LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+        WHERE (t.attente = TRUE OR t.reponse = 'enAttente' OR t.idTraitement IS NULL)
+        ";
+
+        $params = [];
+
+        //le .= c +=
+        if (!empty($dateDebut) && !empty($dateFin)) {
+            $sql .= " AND s.date BETWEEN :dateDebut AND :dateFin";
+            $params[':dateDebut'] = $dateDebut;
+            $params[':dateFin'] = $dateFin;
+        }
+
+        // % et % comme ça juste un bout de la matière ça marche genre R2.03
+        if (!empty($matiere)) {
+            $sql .= " AND c.matiere LIKE :matiere";
+            $params[':matiere'] = "%$matiere%";
+        }
+
+        if (!empty($nom)) {
+            $sql .= " AND u.nom LIKE :nom";
+            $params[':nom'] = "$nom";
+        }
+
+        if (!empty($prenom)) {
+            $sql .= " AND u.prenom LIKE :prenom";
+            $params[':prenom'] = "$prenom";
+        }
+
+        $sql .= " ORDER BY j.dateSoumission DESC";
+
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
 
 

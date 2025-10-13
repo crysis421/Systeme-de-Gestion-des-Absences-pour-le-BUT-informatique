@@ -4,10 +4,22 @@ require_once "../../../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
 
+$dateDebut = $_POST['dateDebut'] ?? null;
+$dateFin = $_POST['dateFin'] ?? null;
+$matiere = $_POST['Matière'] ?? null;
+$prenom = $_POST['Prenom_Input'] ?? null;
+$nom = $_POST['Nom_Input'] ?? null;
 
-//$justificatifs = $model->getJustificatifsAttenteFiltre("2024-02-01", "2025-02-01", "INFFIS2-EXPLOITATION","Delahaye", "Éléonore");
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
+    if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom))
 
-$justificatifs = $model->getJustificatifsAttente();
+    $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom);
+    else $justificatifs = $model->getJustificatifsAttente();
+
+} else {
+    $justificatifs = $model->getJustificatifsAttente();
+}
+
 $justificatifs = array_slice($justificatifs, 0, 10);
 
 $titre = "";
@@ -85,11 +97,14 @@ EOL;
         <details>
             <summary>
                 <h2>Filtrer par date</h2>
+
                 <?php
                 $dateDebut = date("Y") . '-01-01';
                 $dateFin = date("Y-m-d");
                 ?>
+
             </summary>
+
             <h3>Date de début</h3>
             <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
             <h3>Date de fin</h3>
@@ -101,6 +116,7 @@ EOL;
             <summary>
                 <h2>Filtrer par matière</h2>
             </summary>
+
             <h3>Nom de la matière</h3>
             <input type="text" id="inputMatiere" name="Matière" value="">
         </details>
@@ -110,6 +126,7 @@ EOL;
             <summary>
                 <h2>Filtrer par élève</h2>
             </summary>
+
             <h3>Prénom</h3>
             <input type="text" id="inputPrenom" name="Prenom Input" value="">
             <h3>Nom</h3>
