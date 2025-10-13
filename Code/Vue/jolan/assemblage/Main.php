@@ -10,11 +10,11 @@ $titre = "";
 $description = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $IDElement = $_POST['IDElement'] ?? null;
-    $choix = $_POST['toggle'] ?? null;
-    $motif = $_POST['motifs'] ?? null;
-    $refus = $_POST['motif_refus'] ?? null;
-    $demande = $_POST['motif_demande'] ?? null;
+    $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
+    $choix = isset($_POST['toggle']) ? $_POST['toggle'] : null;
+    $motif = isset($_POST['motifs']) ? $_POST['motifs'] : null;
+    $refus = isset($_POST['motif_refus']) ? $_POST['motif_refus'] : null;
+    $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
 
 
     if($choix == "accepte"){
@@ -80,13 +80,6 @@ EOL;
     <?php foreach ($justificatifs as $justif):
         $id = $justif['idjustificatif'];
         $commentaire = $justif['commentaire_justificatif'];
-
-        $model->decisionFinale($id);
-        $enAttente = $model->getDecisionFinale($id);
-
-        echo $enAttente;
-
-
         ?>
         <div class="element">
             <details>
