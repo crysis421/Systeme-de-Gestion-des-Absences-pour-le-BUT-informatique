@@ -102,6 +102,71 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom) {
+        $sql = "
+        SELECT 
+            j.idJustificatif,
+            j.datesoumission,
+            j.commentaire_absence AS commentaire_justificatif,
+            j.verrouille,
+            u.idUtilisateur,
+            u.nom AS nom_etudiant,
+            u.prenom AS prenom_etudiant,
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS typeSeance,
+            c.matiere,
+            t.idTraitement,
+            t.attente,
+            t.reponse,
+            t.commentaire_validation AS commentaire_traitement
+        FROM justificatif j
+        JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+        LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+        WHERE (t.attente = TRUE OR t.reponse = 'enAttente' OR t.idTraitement IS NULL)
+        ";
+
+        $params = [];
+
+        //le .= c +=
+        if (!empty($dateDebut) && !empty($dateFin)) {
+            $sql .= " AND s.date BETWEEN :dateDebut AND :dateFin";
+            $params[':dateDebut'] = $dateDebut;
+            $params[':dateFin'] = $dateFin;
+        }
+
+        // % et % comme ça juste un bout de la matière ça marche genre R2.03
+        if (!empty($matiere)) {
+            $sql .= " AND c.matiere LIKE :matiere";
+            $params[':matiere'] = "%$matiere%";
+        }
+
+        if (!empty($nom)) {
+            $sql .= " AND u.nom LIKE :nom";
+            $params[':nom'] = "$nom";
+        }
+
+        if (!empty($prenom)) {
+            $sql .= " AND u.prenom LIKE :prenom";
+            $params[':prenom'] = "$prenom";
+        }
+
+        $sql .= " ORDER BY j.dateSoumission DESC";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+
     public function decisionFinale($idJustificatif) {
         $sql = "
         UPDATE traitementjustificatif t SET attente = FALSE WHERE idJustificatif = :idJustificatif 

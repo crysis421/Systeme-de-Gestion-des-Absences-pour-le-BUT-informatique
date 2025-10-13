@@ -3,13 +3,30 @@
 require_once "../../../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
-$justificatifs = $model->getJustificatifsAttente();
+
+$dateDebut = $_POST['dateDebut'] ?? null;
+$dateFin = $_POST['dateFin'] ?? null;
+$matiere = $_POST['Matière'] ?? null;
+$prenom = $_POST['Prenom_Input'] ?? null;
+$nom = $_POST['Nom_Input'] ?? null;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
+    if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom))
+
+    $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom);
+    else $justificatifs = $model->getJustificatifsAttente();
+
+} else {
+    $justificatifs = $model->getJustificatifsAttente();
+}
+
 $justificatifs = array_slice($justificatifs, 0, 10);
 
 $titre = "";
 $description = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
     $choix = isset($_POST['toggle']) ? $_POST['toggle'] : null;
     $motif = isset($_POST['motifs']) ? $_POST['motifs'] : null;
@@ -72,6 +89,55 @@ if ($titre != "" && $description != "") {
 EOL;
 }
 ?>
+
+<!-- Filtrage ici ! -->
+<div class="filtrage">
+    <form method="post">
+
+        <details>
+            <summary>
+                <h2>Filtrer par date</h2>
+
+                <?php
+                $dateDebut = date("Y") . '-01-01';
+                $dateFin = date("Y-m-d");
+                ?>
+
+            </summary>
+
+            <h3>Date de début</h3>
+            <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
+            <h3>Date de fin</h3>
+            <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
+        </details>
+
+
+        <details>
+            <summary>
+                <h2>Filtrer par matière</h2>
+            </summary>
+
+            <h3>Nom de la matière</h3>
+            <input type="text" id="inputMatiere" name="Matière" value="">
+        </details>
+
+
+        <details>
+            <summary>
+                <h2>Filtrer par élève</h2>
+            </summary>
+
+            <h3>Prénom</h3>
+            <input type="text" id="inputPrenom" name="Prenom Input" value="">
+            <h3>Nom</h3>
+            <input type="text" id="inputNom" name="Nom Input" value="">
+        </details>
+
+
+        <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
+
+    </form>
+</div>
 
 <!-- Liste des absences ici ! -->
 <h1><u>Absences : </u></h1>
