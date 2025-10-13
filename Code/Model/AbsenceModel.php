@@ -102,6 +102,26 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function decisionFinale($idJustificatif) {
+        $sql = "
+        UPDATE traitementjustificatif t SET attente = FALSE WHERE idJustificatif = :idJustificatif 
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([':idJustificatif' => $idJustificatif]);
+    }
+
+
+    public function getDecisionFinale($idJustificatif) {
+        $sql = "
+        SELECT attente FROM traitementjustificatif WHERE idJustificatif = :idJustificatif 
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':idJustificatif' => $idJustificatif]);
+        return $stmt->fetchColumn();
+    }
+
 
     public function getJustificatifsHistorique() {
         $sql = "

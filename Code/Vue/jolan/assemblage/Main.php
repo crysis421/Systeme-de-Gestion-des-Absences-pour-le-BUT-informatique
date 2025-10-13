@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $refus = $_POST['motif_refus'] ?? null;
     $demande = $_POST['motif_demande'] ?? null;
 
-    $ELEMENT = $model->getByUser($IDElement);
 
     if($choix == "accepte"){
         $titre = "Accepté !";
@@ -38,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $description = substr($demande,0,10) . "...";
         }
     }
+
 }
 
 ?>
@@ -80,6 +80,13 @@ EOL;
     <?php foreach ($justificatifs as $justif):
         $id = $justif['idjustificatif'];
         $commentaire = $justif['commentaire_justificatif'];
+
+        $model->decisionFinale($id);
+        $enAttente = $model->getDecisionFinale($id);
+
+        echo $enAttente;
+
+
         ?>
         <div class="element">
             <details>
