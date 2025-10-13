@@ -1,22 +1,22 @@
 <?php
 
-
 require_once "../../../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
 $justificatifs = $model->getJustificatifsAttente();
+$justificatifs = array_slice($justificatifs, 0, 10);
 
 $titre = "";
 $description = "";
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $IDElement = $_POST['IDElement'] ?? null;
     $choix = $_POST['toggle'] ?? null;
-
     $motif = $_POST['motifs'] ?? null;
-
     $refus = $_POST['motif_refus'] ?? null;
     $demande = $_POST['motif_demande'] ?? null;
+
+    $ELEMENT = $model->getByUser($IDElement);
 
     if($choix == "accepte"){
         $titre = "Accepté !";
@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($choix == "refuse"){
         $titre = "Refusé !";
         $description = $refus;
-        if(strlen($demande) > 10) {
-            $description = substr($description,0,10) . "...";
+        if(strlen($refus) > 10) {
+            $description = substr($refus,0,10) . "...";
         }
     }
 
@@ -35,16 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $titre = "Demandé !";
         $description = $demande;
         if(strlen($demande) > 10) {
-            $description = substr($description,0,10) . "...";
+            $description = substr($demande,0,10) . "...";
         }
     }
 }
 
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -68,30 +64,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!-- Notification ici ! -->
 <?php
 if ($titre != "" && $description != "") {
-
     echo <<<EOL
 <div class="notification">
     <h4 class="titre-notification">$titre</h4>
     <a class="description-notification">Avec le motif "$description"</a>
 </div>
 EOL;
-
 }
 ?>
-
-
 
 <!-- Liste des absences ici ! -->
 <h1><u>Absences : </u></h1>
 
 <div class="liste-absence">
-    <?php foreach ($justificatifs as $justif): ?>
+    <?php foreach ($justificatifs as $justif):
+        $id = $justif['idjustificatif'];
+        $commentaire = $justif['commentaire_justificatif'];
+        ?>
         <div class="element">
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><?= ($justif['nom_etudiant']) ?> <?= ($justif['prenom_etudiant']) ?></a><br>
-                    <small><?= ($justif['matiere']) ?> — <?= ($justif['date_seance']) ?> à <?= ($justif['heureDebut']) ?></small>
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a></b><br>
+
+                    <div class="description-element">
+                        <small><?= htmlspecialchars($justif['matiere']) ?></small>
+                        <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                    </div>
+
+                    <div class="ligne"></div>
                 </summary>
 
                 <div class="details">
@@ -101,35 +102,39 @@ EOL;
                                 <a class="justificatif-texte">Justificatif</a>
                                 <img class="oeil" src="oeil.png" alt="Voir le justificatif">
                             </summary>
-                            <input type="checkbox" id="zoom<?= $justif['idJustificatif'] ?>" name="zoom" style="display: none;">
-                            <label for="zoom<?= $justif['idJustificatif'] ?>" id="zoom-button"></label>
 
-                            <label for="zoom<?= $justif['idJustificatif'] ?>" class="justificatif-close">
+                            <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
+                            <label for="zoom<?= $id ?>" class="zoom-button"></label>
+
+                            <label for="zoom<?= $id ?>" class="justificatif-close">
                                 <img src="close.png" alt="Fermer le justificatif">
                             </label>
 
+                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
+
                             <div class="fondu-noir"></div>
-                            <!-- mettre chemin vers le fichier img ou autre du justificatif -->
-                            <img class="justificatif-image-big" src="justificatif.jpg" alt="Justicatif">
+                            <img class="justificatif-image-big" src="justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
 
                     <form method="post">
                         <a class="decision-finale">Décision finale</a>
 
-                        <input type="radio" id="toggle1_<?= $justif['idJustificatif'] ?>" name="toggle" value="accepte" style="display: none;">
-                        <label for="toggle1_<?= $justif['idJustificatif'] ?>" id="label_accepter"></label>
+                        <input type="radio" id="toggle1_<?= $id ?>" name="toggle" value="accepte" style="display: none;">
+                        <label for="toggle1_<?= $id ?>" class="label-accepter"></label>
 
-                        <input type="radio" id="toggle2_<?= $justif['idJustificatif'] ?>" name="toggle" value="refuse" style="display: none;">
-                        <label for="toggle2_<?= $justif['idJustificatif'] ?>" id="label_refuser"></label>
+                        <input type="radio" id="toggle2_<?= $id ?>" name="toggle" value="refuse" style="display: none;">
+                        <label for="toggle2_<?= $id ?>" class="label-refuser"></label>
 
-                        <input type="radio" id="toggle3_<?= $justif['idJustificatif'] ?>" name="toggle" value="demande" style="display: none;">
-                        <label for="toggle3_<?= $justif['idJustificatif'] ?>" id="label_demander"></label>
+                        <input type="radio" id="toggle3_<?= $id ?>" name="toggle" value="demande" style="display: none;">
+                        <label for="toggle3_<?= $id ?>" class="label-demander"></label>
+
+                        <input type="hidden" id="IDElement_<?= $id ?>" value="<?= $id ?>" name="IDElement">
 
                         <br><br>
 
-                        <div id="texte1">
-                            <select name="motifs" id="motif-absence">
+                        <div class="texte-accepter">
+                            <select name="motifs" id="motif-absence-<?= $id ?>">
                                 <option value="">--Choisissez une option--</option>
                                 <option value="transport">Transport</option>
                                 <option value="malade">Malade</option>
@@ -140,7 +145,7 @@ EOL;
                             <br><br>
                         </div>
 
-                        <div id="texte2">
+                        <div class="texte-refuser">
                             Motif du refus : <br><br>
                             <textarea name="motif_refus" rows="4" cols="50"></textarea>
                             <br><br>
@@ -148,7 +153,7 @@ EOL;
                             <br><br>
                         </div>
 
-                        <div id="texte3">
+                        <div class="texte-demander">
                             Motif de la demande : <br><br>
                             <textarea name="motif_demande" rows="4" cols="50"></textarea>
                             <br><br>
@@ -161,10 +166,6 @@ EOL;
         </div>
     <?php endforeach; ?>
 </div>
-
-
-
-
 
 </body>
 </html>

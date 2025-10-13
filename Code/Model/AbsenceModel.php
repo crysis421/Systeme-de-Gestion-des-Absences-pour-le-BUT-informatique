@@ -69,7 +69,7 @@ class AbsenceModel
         $sql = "
         SELECT 
             j.idJustificatif,
-            j.dateSoumission,
+            j.datesoumission,
             j.commentaire_absence AS commentaire_justificatif,
             j.verrouille,
             u.idUtilisateur,
@@ -78,7 +78,7 @@ class AbsenceModel
             a.idAbsence,
             a.statut AS statut_absence,
             s.date AS date_seance,
-            s.heureDebut,
+            s.heuredebut,
             s.typeseance AS typeSeance,
             c.matiere,
             t.idTraitement,
@@ -91,8 +91,7 @@ class AbsenceModel
         JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
-            LEFT JOIN justificatifettraitementjustificatif jt ON j.idJustificatif = jt.idJustificatif
-            LEFT JOIN traitementjustificatif t ON jt.idTraitement = t.idTraitement
+            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
             WHERE t.attente = TRUE 
            OR t.reponse = 'enAttente' 
            OR t.idTraitement IS NULL
@@ -102,6 +101,7 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function getJustificatifsHistorique() {
         $sql = "
