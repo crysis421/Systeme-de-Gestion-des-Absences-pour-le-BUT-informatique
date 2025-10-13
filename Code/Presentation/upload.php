@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
             if ($ligne[1] != "Prénom") {
                 $addData->addUtilisateur($ligne[4], $ligne[0], $ligne[1], $ligne[2], $ligne[4], $ligne[20], null, $ligne[5]);
                 $addData->addCour($ligne[13], 2, $ligne[12]);
-                $addData->addDataVT($ligne[4], $ligne[8], $ligne[9], $ligne[10], $ligne[11], $ligne[13], $ligne[14], $ligne[17], $ligne[18], $ligne[21], $ligne[22], $ligne[23], $ligne[16]);
+                $addData->addDataVT($ligne[4], $ligne[8], $ligne[9], $ligne[10], $ligne[11], $ligne[13], $ligne[14], $ligne[17], $ligne[18], $ligne[21], $ligne[22], $ligne[23], $ligne[16],$ligne[19]);
             }
         }
         fclose($handle);
