@@ -20,10 +20,10 @@ $mail = new PHPMailer(true);
 try {
     //Server settings
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com'; // Serveur SMTP Mailjet
+    $mail->Host = 'smtp.mailjet.com'; // Serveur SMTP Mailjet
     $mail->SMTPAuth = true;
-    $mail->Username = 'stievenardkilian@gmail.com';  // Remplace par ta clé publique Mailjet
-    $mail->Password = 'ValoranT421## ';  // Remplace par ta clé secrète Mailjet
+    $mail->Username = '2a850caaaa2a49c9073dd6344da067cd';  // Remplace par ta clé publique Mailjet
+    $mail->Password = '3d770ab2035aa5708ad6c077beb4be2e';  // Remplace par ta clé secrète Mailjet
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 

@@ -160,6 +160,8 @@ class insertDataVT
 
             //Si c'est valide et qu'il n'y a pas de justification en cour
             if ($justification == "valide" && $nombreJustificatif == 0) {
+
+                //On créé un nouveau justificatif
                 $req2 = $this->conn->prepare("INSERT INTO Justificatif(idJustificatif, dateSoumission, verrouille,commentaire_absence) values(default,CURRENT_DATE,true,:commentaire) returning idJustificatif;");
                 $req2->bindParam(":commentaire", $commentaire);
                 $req2->execute();
@@ -168,7 +170,7 @@ class insertDataVT
                 $idjust = $idjust["idjustificatif"];
                 $req2 = null;
 
-
+                //On créé un nouveau traitement de justificatif
                 $req2 = $this->conn->prepare("INSERT INTO TraitementJustificatif(idTraitement ,attente, reponse,idUtilisateur,date,commentaire_validation,cause,idJustificatif) values(default,false,'accepte',:idUtilisateur,CURRENT_DATE,:commentaire,:motif,:idJustificatif) on conflict do nothing;");
                 $req2->bindParam(":motif", $motif);
                 $req2->bindParam(":commentaire", $commentaire);
@@ -177,6 +179,7 @@ class insertDataVT
                 $req2->execute();
                 $req2 = null;
 
+                //On fait le lien entre l'absence et le justificatif
                 $req2 = $this->conn->prepare("insert into AbsenceEtJustificatif(idJustificatif,idAbsence) VALUES (:idJustificatif,:idAbsence)");
                 $req2->bindParam(':idJustificatif', $idjust);
                 $req2->bindParam(':idAbsence', $idAbsence);
@@ -184,6 +187,7 @@ class insertDataVT
                 $req2 = null;
 
             }else if ($nombreJustificatif == 0) {
+                //De même , avec d'autre constante , ici l'élève a encore le temps de justifier son absence
 
                 $req2 = $this->conn->prepare("INSERT INTO Justificatif(idJustificatif, dateSoumission, verrouille,commentaire_absence) values(default,CURRENT_TIMESTAMP,false,:commentaire) returning idJustificatif;");
                 $req2->bindParam(":commentaire", $commentaire);
