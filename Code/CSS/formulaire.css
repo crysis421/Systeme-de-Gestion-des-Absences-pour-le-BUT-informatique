@@ -89,11 +89,11 @@ input[type="time"],
 input[type="number"],
 textarea,
 select {
-    width: 100%;
-    padding: 15px;
+    width: auto;
+    padding: 5px;
     margin-top: 10px;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 3px;
     border: 1px solid #ede9e9;
     box-sizing: border-box;
 }
