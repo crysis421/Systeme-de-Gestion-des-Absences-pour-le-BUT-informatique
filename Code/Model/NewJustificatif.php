@@ -32,6 +32,13 @@ class NewJustificatif
             $req = $this->conn->prepare("INSERT INTO absenceetjustificatif(idJustificatif,idAbsence) values($idJustificatif,$idAbsence)");
             $req->execute();
             $req = null;
+
+            $req = $this->conn->prepare("INSERT INTO fichierJustificatif($path)");
+            $req->execute();
+            $req = null;
+
+
+
         }
 
         catch(PDOException $e){
