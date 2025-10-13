@@ -5,8 +5,9 @@ namespace Model;
 use PDOException;
 
 require_once "Database.php";
-
-
+use Database;
+use mysql_xdevapi\Exception;
+use PDO;
 
 class NewJustificatif
 {
@@ -20,31 +21,59 @@ class NewJustificatif
 
 
     ///insert dans justificatif les donnees saisis par l'etudiant et creer un nv traitementJustificatif pour la cause mais en valeur par defaut pour le reste
-    public function createNewJustificatif($idAbsence, $commentaire,$datesoumission,$cause,$path,$heureDebutCours,$idJustificatif)
+
+    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null, ?string $cheminFichier = null): int|false
     {
+
+
         try {
+            ///Insérer dans la table `justificatif`
+            $sqlJustificatif = "INSERT INTO justificatif (datesoumission, commentaire_absence, verrouille) VALUES (NOW(), :commentaire, 0)";
+            $stmtJustificatif = $this->conn->prepare($sqlJustificatif);
+            $stmtJustificatif->bindValue(':commentaire', $commentaire, PDO::PARAM_STR);
+            $stmtJustificatif->execute();
 
-            $req = $this->conn->prepare("INSERT INTO Justificatif(datesoumission, commentaire_absence,verrouille) values($datesoumission,$commentaire,false)");
-            $req->execute();
+            // Récupérer l'ID du justificatif qui vient d'être créé
+            $idJustificatif = (int)$this->conn->lastInsertId();
 
-            $req = null;
+            if (!$idJustificatif) {
+                throw new Exception("Impossible de créer l'entrée dans la table justificatif.");
+            }
 
-            $req = $this->conn->prepare("INSERT INTO absenceetjustificatif(idJustificatif,idAbsence) values($idJustificatif,$idAbsence)");
-            $req->execute();
-            $req = null;
+            //nsérer le fichier justificatif
+            if ($cheminFichier !== null) {
+                $sqlFichier = "INSERT INTO fichierjustificatif (pathjustificatif, idjustificatif) VALUES (:path, :idjustificatif)";
+                $stmtFichier = $this->conn->prepare($sqlFichier);
+                $stmtFichier->bindValue(':path', $cheminFichier, PDO::PARAM_STR);
+                $stmtFichier->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
+                $stmtFichier->execute();
+            }
 
-            $req = $this->conn->prepare("INSERT INTO fichierJustificatif($path)");
-            $req->execute();
-            $req = null;
+            //  Lier l'absence et le justificatif
+            $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
+            $stmtAbsenceEtJustificatif = $this->conn->prepare($sqlAbsenceEtJustificatif);
+            $stmtAbsenceEtJustificatif->bindValue(':idabsence', $idAbsence, PDO::PARAM_INT);
+            $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
+            $stmtAbsenceEtJustificatif->execute();
 
+            // Créer l'entrée initiale dans `traitementjustificatif` -----
+            // On initialise le traitement avec la cause, en attente, et la date actuelle.
+            $sqlTraitement = "INSERT INTO traitementjustificatif (attente, date, cause, idjustificatif, idutilisateur) VALUES (1, NOW(), :cause, :idjustificatif, :idutilisateur)";
+            $stmtTraitement = $this->conn->prepare($sqlTraitement);
+            $stmtTraitement->bindValue(':cause', $cause, PDO::PARAM_STR);
+            $stmtTraitement->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
+            $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
+            $stmtTraitement->execute();
 
+            return $idJustificatif;
 
-        }
+        } catch (Exception $e) {
+            $this->db->rollBack();
 
-        catch(PDOException $e){
-            echo $e->getMessage();
+            return false;
         }
     }
+
 
 
 }
