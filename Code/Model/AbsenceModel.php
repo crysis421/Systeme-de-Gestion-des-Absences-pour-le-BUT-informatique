@@ -102,6 +102,50 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom) {
+        $sql = "
+        SELECT 
+            j.idJustificatif,
+            j.datesoumission,
+            j.commentaire_absence AS commentaire_justificatif,
+            j.verrouille,
+            u.idUtilisateur,
+            u.nom AS nom_etudiant,
+            u.prenom AS prenom_etudiant,
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS typeSeance,
+            c.matiere,
+            t.idTraitement,
+            t.attente,
+            t.reponse,
+            t.commentaire_validation AS commentaire_traitement
+        FROM justificatif j
+        JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+            WHERE t.attente = TRUE 
+           OR t.reponse = 'enAttente' 
+           OR t.idTraitement IS NULL
+        ORDER BY j.dateSoumission DESC
+        HAVING 
+        u.nom LIKE '$nom%'
+        AND u.prenom LIKE '$prenom%'
+        AND date_seance BETWEEN '$dateDebut' AND '$dateFin'
+        AND c.matiere LIKE '%$matiere%'
+    ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     public function decisionFinale($idJustificatif) {
         $sql = "
         UPDATE traitementjustificatif t SET attente = FALSE WHERE idJustificatif = :idJustificatif 
