@@ -101,10 +101,10 @@ EOL;
                                 <a class="justificatif-texte">Justificatif</a>
                                 <img class="oeil" src="oeil.png" alt="Voir le justificatif">
                             </summary>
-                            <input type="checkbox" id="zoom<?= $justif['idJustificatif'] ?>" name="zoom" style="display: none;">
-                            <label for="zoom<?= $justif['idJustificatif'] ?>" id="zoom-button"></label>
+                            <input type="checkbox" id="zoom<?= $justif['idjustificatif'] ?>" name="zoom" style="display: none;">
+                            <label for="zoom<?= $justif['idjustificatif'] ?>" id="zoom-button"></label>
 
-                            <label for="zoom<?= $justif['idJustificatif'] ?>" class="justificatif-close">
+                            <label for="zoom<?= $justif['idjustificatif'] ?>" class="justificatif-close">
                                 <img src="close.png" alt="Fermer le justificatif">
                             </label>
 
@@ -117,14 +117,14 @@ EOL;
                     <form method="post">
                         <a class="decision-finale">Décision finale</a>
 
-                        <input type="radio" id="toggle1_<?= $justif['idJustificatif'] ?>" name="toggle" value="accepte" style="display: none;">
-                        <label for="toggle1_<?= $justif['idJustificatif'] ?>" id="label_accepter"></label>
+                        <input type="radio" id="toggle1_<?= $justif['idjustificatif'] ?>" name="toggle" value="accepte" style="display: none;">
+                        <label for="toggle1_<?= $justif['idjustificatif'] ?>" id="label_accepter"></label>
 
-                        <input type="radio" id="toggle2_<?= $justif['idJustificatif'] ?>" name="toggle" value="refuse" style="display: none;">
-                        <label for="toggle2_<?= $justif['idJustificatif'] ?>" id="label_refuser"></label>
+                        <input type="radio" id="toggle2_<?= $justif['idjustificatif'] ?>" name="toggle" value="refuse" style="display: none;">
+                        <label for="toggle2_<?= $justif['idjustificatif'] ?>" id="label_refuser"></label>
 
-                        <input type="radio" id="toggle3_<?= $justif['idJustificatif'] ?>" name="toggle" value="demande" style="display: none;">
-                        <label for="toggle3_<?= $justif['idJustificatif'] ?>" id="label_demander"></label>
+                        <input type="radio" id="toggle3_<?= $justif['idjustificatif'] ?>" name="toggle" value="demande" style="display: none;">
+                        <label for="toggle3_<?= $justif['idjustificatif'] ?>" id="label_demander"></label>
 
                         <br><br>
 
