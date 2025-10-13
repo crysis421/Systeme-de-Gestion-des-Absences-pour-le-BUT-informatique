@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $refus = $_POST['motif_refus'] ?? null;
     $demande = $_POST['motif_demande'] ?? null;
 
+    $ELEMENT = $model->getByUser($IDElement);
+
     if($choix == "accepte"){
         $titre = "Accepté !";
         $description = $motif;
@@ -82,8 +84,14 @@ EOL;
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a><br>
-                    <small><?= htmlspecialchars($justif['matiere']) ?> — <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a></b><br>
+
+                    <div class="description-element">
+                        <small><?= htmlspecialchars($justif['matiere']) ?></small>
+                        <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                    </div>
+
+                    <div class="ligne"></div>
                 </summary>
 
                 <div class="details">
