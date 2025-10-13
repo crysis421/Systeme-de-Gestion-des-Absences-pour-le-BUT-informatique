@@ -16,6 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $refus = $_POST['motif_refus'] ?? null;
     $demande = $_POST['motif_demande'] ?? null;
 
+    $ELEMENT = $model->getByUser($IDElement);
+
     if($choix == "accepte"){
         $titre = "Accepté !";
         $description = $motif;
@@ -77,13 +79,20 @@ EOL;
 <div class="liste-absence">
     <?php foreach ($justificatifs as $justif):
         $id = $justif['idjustificatif'];
+        $commentaire = $justif['commentaire_justificatif'];
         ?>
         <div class="element">
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a><br>
-                    <small><?= htmlspecialchars($justif['matiere']) ?> — <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a></b><br>
+
+                    <div class="description-element">
+                        <small><?= htmlspecialchars($justif['matiere']) ?></small>
+                        <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                    </div>
+
+                    <div class="ligne"></div>
                 </summary>
 
                 <div class="details">
@@ -100,6 +109,8 @@ EOL;
                             <label for="zoom<?= $id ?>" class="justificatif-close">
                                 <img src="close.png" alt="Fermer le justificatif">
                             </label>
+
+                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
 
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="justificatif.jpg" alt="Justificatif">

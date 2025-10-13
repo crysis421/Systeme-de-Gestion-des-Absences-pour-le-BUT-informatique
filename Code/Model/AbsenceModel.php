@@ -102,6 +102,7 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function getJustificatifsHistorique() {
         $sql = "
         SELECT 
