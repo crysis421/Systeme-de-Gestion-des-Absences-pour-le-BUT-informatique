@@ -7,13 +7,13 @@ $model = new AbsenceModel();
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;
 $matiere = $_POST['Matière'] ?? null;
-$prenom = $_POST['Prenom_Input'] ?? null;
-$nom = $_POST['Nom_Input'] ?? null;
+$prenom = $_POST['PrenomInput'] ?? null;
+$nom = $_POST['NomInput'] ?? null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom))
 
-    $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom);
+    $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut,$dateFin, $matiere, $nom, $prenom);
     else $justificatifs = $model->getJustificatifsAttente();
 
 } else {
@@ -37,6 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if($choix == "accepte"){
         $titre = "Accepté !";
         $description = $motif;
+
+
+        /*
+         * Change dans la base de données :
+         *   - EnAttente : False
+         *   - Reponse : Accepté
+         */
     }
 
     if ($choix == "refuse"){
@@ -45,6 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strlen($refus) > 10) {
             $description = substr($refus,0,10) . "...";
         }
+
+        /*
+         * Change dans la base de données :
+         *   - EnAttente : False
+         *   - Reponse : Refusée
+         */
     }
 
     if ($choix == "demande"){
@@ -53,6 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strlen($demande) > 10) {
             $description = substr($demande,0,10) . "...";
         }
+
+
+        /*
+         * Changements:
+         *  - EnAttente : False
+         *  - Reponse : enAttente
+         */
     }
 
 }
@@ -89,6 +109,9 @@ if ($titre != "" && $description != "") {
 EOL;
 }
 ?>
+
+<!-- Titre -->
+<h1><u>Liste des absences à traiter : </u></h1>
 
 <!-- Filtrage ici ! -->
 <div class="filtrage">
@@ -128,9 +151,9 @@ EOL;
             </summary>
 
             <h3>Prénom</h3>
-            <input type="text" id="inputPrenom" name="Prenom Input" value="">
+            <input type="text" id="inputPrenom" name="PrenomInput" value="">
             <h3>Nom</h3>
-            <input type="text" id="inputNom" name="Nom Input" value="">
+            <input type="text" id="inputNom" name="NomInput" value="">
         </details>
 
 
@@ -140,8 +163,6 @@ EOL;
 </div>
 
 <!-- Liste des absences ici ! -->
-<h1><u>Absences : </u></h1>
-
 <div class="liste-absence">
     <?php foreach ($justificatifs as $justif):
         $id = $justif['idjustificatif'];
