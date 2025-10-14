@@ -1,3 +1,52 @@
+<?php
+session_start(); // Toujours en premier
+
+// Initialisation des variables
+$nom = $prenom = $dateretard = $heurearrive = $cours = $motif = $preciserAutre = "";
+$error = "";
+$justificatifFile = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $dateretard = $_POST['dateretard'];
+    $heurearrive = $_POST['heurearrive'];
+    $cours = $_POST['cours'];
+    $motif = $_POST['motif'];
+    $preciserAutre = $_POST['preciserAutre'];
+
+    if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] == 0) {
+        $allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/gif'];
+        $fileType = $_FILES['justificatif']['type'];
+        if (!in_array($fileType, $allowedTypes)) {
+            $error = "Type de fichier non autorisé. Seuls PDF et images sont acceptés.";
+        } else {
+            $uploadDir = 'uploads/';
+            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+            $justificatifFile = $uploadDir . uniqid() . '_' . basename($_FILES['justificatif']['name']);
+            if (!move_uploaded_file($_FILES['justificatif']['tmp_name'], $justificatifFile)) {
+                $error = "Erreur lors de l'upload du justificatif.";
+            }
+        }
+    }
+
+    if ($error == "") {
+        $_SESSION['formDataRetard'] = [
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'dateretard' => $dateretard,
+                'heurearrive' => $heurearrive,
+                'cours' => $cours,
+                'motif' => $motif,
+                'preciserAutre' => $preciserAutre,
+                'justificatif' => $justificatifFile
+        ];
+        header("Location: recapitulatifJustificatifRetard.php");
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,15 +64,19 @@
 
         <p id="important"><b>Important : </b>Ce formulaire doit être entièrement complété.</p>
     </div>
-<form action="recaptitultifJustificatifRetard.php" method="post">
+    <?php if ($error !=""): ?>
+        <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
+    <?php endif; ?>
+
+    <form action="" method="post" enctype="multipart/form-data">
     <div id="infos">
         <br>
         <label for="nom">Nom *: </label>
-        <input type="text" id="nom" name="nom" placeholder="entrer votre nom" required><br>
+        <input type="text" id="nom" name="nom" placeholder="entrer votre nom" value="<?php echo htmlspecialchars($nom) ?>" required><br>
         <br>
 
         <label for="prenom">Prénom *: </label>
-        <input type="text" id="prenom" name="prenom" placeholder="entrer votre prénom" required><br>
+        <input type="text" id="prenom" name="prenom" placeholder="entrer votre prénom" value="<?php echo htmlspecialchars($prenom) ?>" required><br>
         <br>
 
     </div>
@@ -31,33 +84,31 @@
     <div id="inforetard">
 
         <label for="dateretard"> Date du jour :</label>
-        <input type="date" id="dateretard" name="dateretard" required>
+        <input type="date" id="dateretard" name="dateretard" value="<?php echo htmlspecialchars($dateretard) ?>" required>
 
         <label for="heurearrive"> heure d'arrivée :</label>
-        <input type="time" id="heurearrive" name="heurearrive" required><br>
+        <input type="time" id="heurearrive" name="heurearrive" value="<?php echo htmlspecialchars($heurearrive) ?>" required><br>
         <br>
         <label for="cours"> Matière :</label>
-        <input type="text" id="cours" name="cours" required>
+        <input type="text" id="cours" name="cours" value="<?php echo htmlspecialchars($cours) ?>" required>
 
         <label for="motif">Motif du retard : </label>
         <select id="motif" name="motif" required>
-            <option value="Problème de santé" >Problème de santé</option>
-            <option value="transport">Problème de transport</option>
-            <option value="Problème de transport">problèmes d'inscription</option>
-            <option value="cours de conduite obligatoire" >cours de conduite obligatoire</option>
-            <option value="Rendez vous chez le medicin">Rendez vous chez le medicin</option>
-            <option value="aucune raison valable">aucune raison valable</option>
-            <option value="autres">Autres</option>
+            <option value="Problème de santé" <?php if($motif=="Problème de santé") echo "selected"; ?> >Problème de santé</option>
+            <option value="transport" <?php if($motif=="transport") echo "selected"; ?>>transport</option>
+            <option value="problème de transport" <?php if($motif=="problème de transport") echo "selected"; ?>>problème de transport</option>
+            <option value="cours de conduite obligatoire" <?php if($motif=="cours de conduite obligatoire") echo "selected"; ?>>cours de conduite obligatoire</option>
+            <option value="Rendez vous chez le medicin" <?php if($motif=="Rendez vous chez le medicin") echo "selected"; ?>>Rendez vous chez le medicin</option>
+            <option value="aucune raison valable" <?php if($motif=="aucune raison valable") echo "selected"; ?>>aucune raison valable</option>
+            <option value="autres" <?php if($motif=="autres") echo "selected"; ?>>Autres</option>
 
         </select><br>
         <br>
 
         <label for="preciserAutre">Commentaires :</label><br>
-        <textarea id="preciserAutre" name="preciserAutre" style="width: 700px; height: 100px;"></textarea>
+        <textarea id="preciserAutre" name="preciserAutre"  style="width: 700px; height: 100px;"><?php echo htmlspecialchars($preciserAutre) ?></textarea>
         <br>
         <br>
-
-        <h2> Justificatif </h2>
         <label for="justificatif">Inserer un justificatif :</label><br>
         <input type="file" id="justificatif" name="justificatif" accept=".pdf,image/*" />
         <br>
@@ -65,10 +116,6 @@
         <br>
     </div>
     <div id="signature">
-        <p> Déclarez-vous sur l'honneur que les faits décrits ci‑dessus sont exacts et que les pièces justificatives fournies sont authentiques ?<br>
-            <label for="oui"><b>Oui:</b></label>
-            <input type="radio" id="oui" name="signer" required>
-        </p>
         <br>
         <input type="submit" value="valider">
         <br>

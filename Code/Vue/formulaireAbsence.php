@@ -74,20 +74,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="titre">
         <h1>Justificatif de retard </h1>
         <p id="important"><b>Important : </b>Ce formulaire doit être entièrement complété.</p>
-        <?php if ($error != ""): ?>
-            <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
-        <?php endif; ?>
-    </div>
 
+    </div>
+    <?php if ($error != ""): ?>
+        <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
+    <?php endif; ?>
 
     <form action="" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
-            <label>L'étudiant :
-                <input type="text" name="nom2" value="<?php echo htmlspecialchars($nom2); ?>" required>
+            <label for="nom2">L'étudiant :
+                <input type="text" name="nom2" id="nom2" value="<?php echo htmlspecialchars($nom2); ?>" required>
             </label><br><br>
 
-            <label>Du :
+            <label for="">Du :
                 <input type="date" name="datedebut" value="<?php echo htmlspecialchars($datedebut); ?>" required>
                 de <input type="time" name="heuredebut" value="<?php echo htmlspecialchars($heuredebut); ?>" required>
             </label><br><br>
@@ -109,8 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </label><br><br>
 
+
             <label>Commentaires :</label><br>
-            <textarea name="commentaire" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
+            <textarea name="commentaire" style="width: 700px; height: 100px;" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
             <label>Inserer un justificatif :</label>
             <input type="file" name="justificatif" accept=".pdf,image/*"><br><br>
@@ -119,10 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
         </div>
         <div id="signature">
-            <label>Déclarez-vous sur l'honneur :
-                <input type="radio" name="signer" value="oui" <?php if($signer=="oui") echo "checked"; ?> required> Oui
-            </label><br><br>
-
             <input type="submit" value="Valider">
             <br>
             <br>
