@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="infoAbsence">
             <br>
             <label for="nom2">L'étudiant :
-                <input type="text" name="nom2" id="nom2" value="<?php echo htmlspecialchars($nom2); ?>" required>
+                <input type="text" name="nom2" id="nom2" placeholder="Entrer votre nom complet" value="<?php echo htmlspecialchars($nom2); ?>" required>
             </label><br><br>
 
             <label for="">Du :
