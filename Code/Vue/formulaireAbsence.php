@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $debut = strtotime("$datedebut $heuredebut");
     $finAbsence = strtotime("$fin $heurefin1");
     if ($finAbsence < $debut) {
-        $error = "Erreur : la date et l'heure de fin doivent être supérieures ou égales à la date et l'heure de début.";
+        $error = "Erreur : verifier votre periode d'absence... 😎";
     }
 
     // Vérifier upload
