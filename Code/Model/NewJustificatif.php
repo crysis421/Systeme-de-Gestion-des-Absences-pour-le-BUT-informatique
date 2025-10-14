@@ -27,7 +27,7 @@ class NewJustificatif
 
 
         try {
-            ///Insérer dans la table `justificatif`
+            ///Insérer dans la table Justificatif
             $sqlJustificatif = "INSERT INTO justificatif (datesoumission, commentaire_absence, verrouille) VALUES (NOW(), :commentaire, 0)";
             $stmtJustificatif = $this->conn->prepare($sqlJustificatif);
             $stmtJustificatif->bindValue(':commentaire', $commentaire, PDO::PARAM_STR);
@@ -56,8 +56,8 @@ class NewJustificatif
             $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
             $stmtAbsenceEtJustificatif->execute();
 
-            // Créer l'entrée initiale dans `traitementjustificatif` -----
-            // On initialise le traitement avec la cause, en attente, et la date actuelle.
+            // Créer l'entrée initiale dans traitementjustificatif
+            // On initialise le traitement avec la cause en attente et la date actuelle pour pouvoir mettre la cause rentrée par l'étudiant etc, le reste est null/default value
             $sqlTraitement = "INSERT INTO traitementjustificatif (attente, date, cause, idjustificatif, idutilisateur) VALUES (1, NOW(), :cause, :idjustificatif, :idutilisateur)";
             $stmtTraitement = $this->conn->prepare($sqlTraitement);
             $stmtTraitement->bindValue(':cause', $cause, PDO::PARAM_STR);
@@ -68,8 +68,6 @@ class NewJustificatif
             return $idJustificatif;
 
         } catch (Exception $e) {
-            $this->db->rollBack();
-
             return false;
         }
     }
