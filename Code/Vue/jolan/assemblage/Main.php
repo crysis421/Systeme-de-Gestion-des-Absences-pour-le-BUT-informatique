@@ -3,24 +3,47 @@
 require_once "../../../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
-$justificatifs = $model->getJustificatifsAttente();
+
+$dateDebut = $_POST['dateDebut'] ?? null;
+$dateFin = $_POST['dateFin'] ?? null;
+$matiere = $_POST['Matière'] ?? null;
+$prenom = $_POST['PrenomInput'] ?? null;
+$nom = $_POST['NomInput'] ?? null;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
+    if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom))
+
+    $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut,$dateFin, $matiere, $nom, $prenom);
+    else $justificatifs = $model->getJustificatifsAttente();
+
+} else {
+    $justificatifs = $model->getJustificatifsAttente();
+}
+
 $justificatifs = array_slice($justificatifs, 0, 10);
 
 $titre = "";
 $description = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $IDElement = $_POST['IDElement'] ?? null;
-    $choix = $_POST['toggle'] ?? null;
-    $motif = $_POST['motifs'] ?? null;
-    $refus = $_POST['motif_refus'] ?? null;
-    $demande = $_POST['motif_demande'] ?? null;
 
-    $ELEMENT = $model->getByUser($IDElement);
+    $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
+    $choix = isset($_POST['toggle']) ? $_POST['toggle'] : null;
+    $motif = isset($_POST['motifs']) ? $_POST['motifs'] : null;
+    $refus = isset($_POST['motif_refus']) ? $_POST['motif_refus'] : null;
+    $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
+
 
     if($choix == "accepte"){
         $titre = "Accepté !";
         $description = $motif;
+
+
+        /*
+         * Change dans la base de données :
+         *   - EnAttente : False
+         *   - Reponse : Accepté
+         */
     }
 
     if ($choix == "refuse"){
@@ -29,6 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strlen($refus) > 10) {
             $description = substr($refus,0,10) . "...";
         }
+
+        /*
+         * Change dans la base de données :
+         *   - EnAttente : False
+         *   - Reponse : Refusée
+         */
     }
 
     if ($choix == "demande"){
@@ -37,7 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strlen($demande) > 10) {
             $description = substr($demande,0,10) . "...";
         }
+
+
+        /*
+         * Changements:
+         *  - EnAttente : False
+         *  - Reponse : enAttente
+         */
     }
+
 }
 
 ?>
@@ -73,9 +110,59 @@ EOL;
 }
 ?>
 
-<!-- Liste des absences ici ! -->
-<h1><u>Absences : </u></h1>
+<!-- Titre -->
+<h1><u>Liste des absences à traiter : </u></h1>
 
+<!-- Filtrage ici ! -->
+<div class="filtrage">
+    <form method="post">
+
+        <details>
+            <summary>
+                <h2>Filtrer par date</h2>
+
+                <?php
+                $dateDebut = date("Y") . '-01-01';
+                $dateFin = date("Y-m-d");
+                ?>
+
+            </summary>
+
+            <h3>Date de début</h3>
+            <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
+            <h3>Date de fin</h3>
+            <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
+        </details>
+
+
+        <details>
+            <summary>
+                <h2>Filtrer par matière</h2>
+            </summary>
+
+            <h3>Nom de la matière</h3>
+            <input type="text" id="inputMatiere" name="Matière" value="">
+        </details>
+
+
+        <details>
+            <summary>
+                <h2>Filtrer par élève</h2>
+            </summary>
+
+            <h3>Prénom</h3>
+            <input type="text" id="inputPrenom" name="PrenomInput" value="">
+            <h3>Nom</h3>
+            <input type="text" id="inputNom" name="NomInput" value="">
+        </details>
+
+
+        <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
+
+    </form>
+</div>
+
+<!-- Liste des absences ici ! -->
 <div class="liste-absence">
     <?php foreach ($justificatifs as $justif):
         $id = $justif['idjustificatif'];
