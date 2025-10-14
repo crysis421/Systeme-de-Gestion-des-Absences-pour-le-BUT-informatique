@@ -1,43 +1,47 @@
 <?php
-$nom = $_POST['nom2'];
-
-$datedebut = $_POST['datedebut'];
-$heuredebut = $_POST['heuredebut'];
-$fin = $_POST['fin'];
-$heurefin1 = $_POST['heurefin1'];
-$motif = $_POST['motif'];
-$commentaire = $_POST['commentaire'];
-
-$justificatif = $_POST['justificatif'];
-
-$date_debut_ts = strtotime($datedebut . ' ' . $heuredebut);
-$date_fin_ts = strtotime($fin . ' ' . $heurefin1);
-
-if ($date_fin_ts < $date_debut_ts) {
-    echo "<h1>ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!
-ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!
-ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!
-ERROR!!!!!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!!!!</h1>";
-    echo "<p1>veillez entrer une date correcte...</p1>";
-}else {
-    echo ('<h1 style="text-align: center"> Recapitulatif du justificatif d absence de ' . htmlspecialchars($nom) . ' </h1>');
-    echo '
-<div id="autre">
-    <p>L\'étudiant <b>' . htmlspecialchars($nom) . '</b> a été absent du : <b>' . htmlspecialchars($datedebut) . '</b> à : <b>' . htmlspecialchars($heuredebut) . '</b> au : <b>' . htmlspecialchars($fin) . '</b> à : <b>' . htmlspecialchars($heurefin1) . '</b>.</p><br>
-    
-    <p>Le motif de cette absence est : <b>' . htmlspecialchars($motif) . '</b>.<br><br><em>Commentaires : "<b>' . htmlspecialchars($commentaire) . '</b>"</em>.</p>
-    <br>
-    <p>Justificatif : <b>' . htmlspecialchars($justificatif) . '</b></p>
-    <br>
-</div>';
-
-
-    echo ('<div id="bouton">
-    <a href="formulaireAbsence.php"><button>retour</button></a>
-    <button style="margin-left: 50px;">envoyer</button>
-</div>');
+session_start();
+if (!isset($_SESSION['formData'])) {
+    header("Location: formulaireAbsent.php");
+    exit();
 }
+
+$data = $_SESSION['formData'];
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/formulaire.css" />
+    <title>Récapitulatif des absences</title>
+</head>
+<body>
+<h1 style="text-align: center">
+    Récapitulatif du justificatif d'absence de <?php echo htmlspecialchars($data['nom2']); ?>
+</h1>
+
+<div style="margin: 20px;">
+    <p><b>Période d'absence :</b> du <?php echo htmlspecialchars($data['datedebut']); ?> à <?php echo htmlspecialchars($data['heuredebut']); ?>
+        au <?php echo htmlspecialchars($data['fin']); ?> à <?php echo htmlspecialchars($data['heurefin1']); ?></p>
+
+    <p><b>Motif :</b> <?php echo htmlspecialchars($data['motif']); ?></p>
+    <p><b>Commentaires :</b> <?php echo nl2br(htmlspecialchars($data['commentaire'])); ?></p>
+    <p><b>Justificatif :</b>
+        <?php if ($data['justificatif'] != ""): ?>
+            <a href="<?php echo htmlspecialchars($data['justificatif']); ?>" target="_blank">Voir le fichier...</a>
+        <?php else: ?>
+            Aucun fichier
+        <?php endif; ?>
+    </p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
 
 
 

@@ -1,72 +1,132 @@
+<?php
+// Initialisation des variables
+$nom2 = $datedebut = $heuredebut = $fin = $heurefin1 = $motif = $commentaire = $signer = "";
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $nom2 = $_POST['nom2'];
+    $datedebut = $_POST['datedebut'];
+    $heuredebut = $_POST['heuredebut'];
+    $fin = $_POST['fin'];
+    $heurefin1 = $_POST['heurefin1'];
+    $motif = $_POST['motif'];
+    $commentaire = $_POST['commentaire'];
+    $signer = isset($_POST['signer']) ? $_POST['signer'] : "";
+
+    // Vérifier date + heure
+    $debut = strtotime("$datedebut $heuredebut");
+    $finAbsence = strtotime("$fin $heurefin1");
+    if ($finAbsence < $debut) {
+        $error = "Erreur : la date et l'heure de fin doivent être supérieures ou égales à la date et l'heure de début.";
+    }
+
+    // Vérifier upload
+    if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] == 0) {
+        $allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/gif'];
+        $fileType = $_FILES['justificatif']['type'];
+        if (!in_array($fileType, $allowedTypes)) {
+            $error = "Type de fichier non autorisé. Seuls PDF et images sont acceptés.";
+        } else {
+            $uploadDir = 'uploads/';
+            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+            $justificatifFile = $uploadDir . basename($_FILES['justificatif']['name']);
+            if (!move_uploaded_file($_FILES['justificatif']['tmp_name'], $justificatifFile)) {
+                $error = "Erreur lors de l'upload du justificatif.";
+            }
+        }
+    } else {
+        $justificatifFile = '';
+    }
+
+    // Si pas d'erreur, redirection vers récap
+    if ($error == "") {
+        // Passer les données via session
+        session_start();
+        $_SESSION['formData'] = [
+                'nom2' => $nom2,
+                'datedebut' => $datedebut,
+                'heuredebut' => $heuredebut,
+                'fin' => $fin,
+                'heurefin1' => $heurefin1,
+                'motif' => $motif,
+                'commentaire' => $commentaire,
+                'justificatif' => $justificatifFile
+        ];
+        header("Location: recapitulatifJustificatifAbsence.php");
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../CSS/formulaire.css" />
-    <title>formulaireAbsent</title>
+    <title>Formulaire d'absence</title>
 </head>
 <body>
 <header>
-    <?php require 'menuHorizontalEtu.html'?>
+    <?php require 'menuHorizontalEtu.html'; ?>
 </header>
 <main>
     <div id="titre">
-        <h1>Justificatif d'absence </h1>
-
+        <h1>Justificatif de retard </h1>
         <p id="important"><b>Important : </b>Ce formulaire doit être entièrement complété.</p>
+        <?php if ($error != ""): ?>
+            <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
+        <?php endif; ?>
     </div>
 
-    <form action="recapitulatifJustificatifAbsence.php" method="post">
+
+    <form action="" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
-            <label for="nom2">L'étudiant :
-                <input type="text" id="nom2" name="nom2" placeholder="entrer votre nom complet" required> a été absent :</label><br>
-            <br>
-            <label for="datedebut"> Du :</label>
-            <input type="date" id="datedebut" name="datedebut" required>
+            <label>L'étudiant :
+                <input type="text" name="nom2" value="<?php echo htmlspecialchars($nom2); ?>" required>
+            </label><br><br>
 
-            <label for="heuredebut"> de :</label>
-            <input type="time" id="heuredebut" name="heuredebut" required><br>
-            <br>
-            <label for="fin">Au :</label>
-            <input type="date" id="fin" name="fin" required>
+            <label>Du :
+                <input type="date" name="datedebut" value="<?php echo htmlspecialchars($datedebut); ?>" required>
+                de <input type="time" name="heuredebut" value="<?php echo htmlspecialchars($heuredebut); ?>" required>
+            </label><br><br>
 
-            <label for="heurefin1"> à :</label>
-            <input type="time" id="heurefin1" name="heurefin1" required><br>
-            <br>
+            <label>Au :
+                <input type="date" name="fin" value="<?php echo htmlspecialchars($fin); ?>" required>
+                à <input type="time" name="heurefin1" value="<?php echo htmlspecialchars($heurefin1); ?>" required>
+            </label><br><br>
 
-            <label for="motif">a été absent pour des raisons de : </label>
-            <select id="motif" name="motif" required>
-                <option value="Problème de santé" >Problème de santé</option>
-                <option value="transport">Problème de transport</option>
-                <option value="Problème de transport">problèmes d'inscription</option>
-                <option value="cours de conduite obligatoire" >cours de conduite obligatoire</option>
-                <option value="Rendez vous chez le medicin">Rendez vous chez le medicin</option>
-                <option value="aucune raison valable">aucune raison valable</option>
-                <option value="autres">Autres</option>
+            <label>Motif :
+                <select name="motif" required>
+                    <option value="Problème de santé" <?php if($motif=="Problème de santé") echo "selected"; ?>>Problème de santé</option>
+                    <option value="transport" <?php if($motif=="transport") echo "selected"; ?>>Problème de transport</option>
+                    <option value="problèmes d'inscription" <?php if($motif=="problèmes d'inscription") echo "selected"; ?>>Problèmes d'inscription</option>
+                    <option value="cours de conduite obligatoire" <?php if($motif=="cours de conduite obligatoire") echo "selected"; ?>>Cours de conduite obligatoire</option>
+                    <option value="Rendez vous chez le medicin" <?php if($motif=="Rendez vous chez le medicin") echo "selected"; ?>>Rendez vous chez le médecin</option>
+                    <option value="aucune raison valable" <?php if($motif=="aucune raison valable") echo "selected"; ?>>Aucune raison valable</option>
+                    <option value="autres" <?php if($motif=="autres") echo "selected"; ?>>Autres</option>
+                </select>
+            </label><br><br>
 
-            </select><br>
+            <label>Commentaires :</label><br>
+            <textarea name="commentaire" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
+
+            <label>Inserer un justificatif :</label>
+            <input type="file" name="justificatif" accept=".pdf,image/*"><br><br>
             <br>
-            <label for="preciserAutre">Commentaires :</label><br>
-            <textarea id="preciserAutre" name="commentaire" style="width: 700px; height: 100px;" required></textarea>
-            <br>
-            <br>
-            <h2> Justificatif </h2>
-            <label for="justificatif">Inserer un justificatif :</label><br>
-            <input type="file" id="justificatif" name="justificatif" accept=".pdf,image/*" />
             <br>
             <br>
         </div>
         <div id="signature">
-            <p> Déclarez-vous sur l'honneur que les faits décrits ci‑dessus sont exacts et que les pièces justificatives fournies sont authentiques ?<br>
-                <label for="oui"><b>Oui:</b></label>
-                <input type="radio" id="oui" name="signer" required>
-            </p>
-            <br>
-            <input type="submit" value="valider">
-            <br>
-            <br>
+            <label>Déclarez-vous sur l'honneur :
+                <input type="radio" name="signer" value="oui" <?php if($signer=="oui") echo "checked"; ?> required> Oui
+            </label><br><br>
 
+            <input type="submit" value="Valider">
+            <br>
+            <br>
+            <br>
         </div>
     </form>
 </main>
@@ -76,3 +136,4 @@
 </footer>
 </body>
 </html>
+

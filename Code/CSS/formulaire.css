@@ -47,7 +47,7 @@ h2 {
     color: #ede9e9;
 }
 
-#important {
+#important,#erreur {
     color: red;
     text-align: center;
 }
