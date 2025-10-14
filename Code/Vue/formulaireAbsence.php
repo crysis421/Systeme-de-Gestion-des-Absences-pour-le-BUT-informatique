@@ -16,7 +16,7 @@
         <p id="important"><b>Important : </b>Ce formulaire doit être entièrement complété.</p>
     </div>
 
-    <form action="soumettre.php" method="post">
+    <form action="recapitulatifJustificatifAbsence.php" method="post">
         <div id="infoAbsence">
             <br>
             <label for="nom2">L'étudiant :
