@@ -119,6 +119,7 @@ class AbsenceModel
             t.idTraitement,
             t.attente,
             t.reponse,
+            t.cause,
             t.commentaire_validation AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif

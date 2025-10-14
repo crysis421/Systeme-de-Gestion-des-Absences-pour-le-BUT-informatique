@@ -377,3 +377,34 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     box-shadow: #d6d6e7 0 3px 7px inset;
     transform: translateY(2px);
 }
+
+
+
+
+
+
+.histo-accepter {
+    background: url('AccepterSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-refuser {
+    background: url('RefuserSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-demander {
+    background: url('DemanderSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-accepter, .histo-refuser, .histo-demander {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}

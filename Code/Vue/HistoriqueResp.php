@@ -19,7 +19,7 @@ $justificatifs = $model->getJustificatifsHistorique();
 
 <!-- TabBar ici ! -->
 <ul>
-    <a class="pages" href="tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
+    <a class="pages" href="jolan/assemblage/tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
     <a class="pages" href="tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
     <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="CompteResp.html"><li>Compte</li></a>
@@ -45,30 +45,24 @@ $justificatifs = $model->getJustificatifsHistorique();
                         <details>
                             <summary>
                                 <br/>
-                                <?php
-                                if ($justif['reponse']=='accepte') {
-                                    $imageClass="label-accepter";
+                                <?php if ($justif['reponse']=='accepte') {
+                                    $imageClass="histo-accepter";
                                     $imageSource="jolan/assemblage/AccepterSymbole.png";
-                                    $imageAlt="Voir le justificatif";
-                                    echo "Justificatif Accepté <img class=$imageClass src=$imageSource alt=$imageAlt>";
-                                }
-                                else if ($justif['reponse']=='refuse') {
-                                    $imageClass="label-refuser";
+                                    echo "Justificatif Accepté  <img class=$imageClass src=$imageSource> <br/><br/>";
+                                    echo "Motif de l'absence : ",$justif['cause'];
+                                } else if ($justif['reponse']=='refuse') {
+                                    $imageClass="histo-refuser";
                                     $imageSource="jolan/assemblage/RefuserSymbole.png";
-                                    $imageAlt="Voir le justificatif";
-                                    echo "Justificatif Refusé <img class=$imageClass src=$imageSource alt=$imageAlt>";
+                                    echo "Justificatif Refusé <img class=$imageClass src=$imageSource>";
                                 } else {
-                                    $imageClass="label-demander";
+                                    $imageClass="histo-demander";
                                     $imageSource="jolan/assemblage/DemanderSymbole.png";
-                                    $imageAlt="Voir le justificatif";
-                                    echo "Justificatif nécessitant plus de précissions <img class=$imageClass src=$imageSource alt=$imageAlt>";
-                                }
-                                ?>
+                                    echo "Justificatif nécessitant plus de précisions <img class=$imageClass src=$imageSource>";
+                                } ?>
                                 <br/>
                                 <a class="justificatif-texte">Détails</a>
                                 <img class="oeil" src="jolan/assemblage/oeil.png" alt="Voir le justificatif">
                                 <br/><br/>
-
                             </summary>
 
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
@@ -81,7 +75,6 @@ $justificatifs = $model->getJustificatifsHistorique();
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="jolan/assemblage/justificatif.jpg" alt="Justificatif">
                             <br/><br/>
-
                         </details>
                     </div>
 
