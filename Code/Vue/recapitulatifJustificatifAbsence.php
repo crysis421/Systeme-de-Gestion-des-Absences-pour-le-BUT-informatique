@@ -30,7 +30,7 @@ $data = $_SESSION['formData'];
         <?php if ($data['justificatif'] != ""): ?>
             <a href="<?php echo htmlspecialchars($data['justificatif']); ?>" target="_blank">Voir le justificatif...</a>
         <?php else: ?>
-            Aucun justificatif
+            Aucun justificatif fourni
         <?php endif; ?>
     </p>
 </div>

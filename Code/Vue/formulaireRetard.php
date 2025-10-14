@@ -1,5 +1,4 @@
 <?php
-session_start(); // Toujours en premier
 
 // Initialisation des variables
 $nom = $prenom = $dateretard = $heurearrive = $cours = $motif = $preciserAutre = "";
@@ -29,8 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+    else{
+        $justificatifFile = "";
+    }
+
 
     if ($error == "") {
+        session_start(); // Toujours en premier
         $_SESSION['formDataRetard'] = [
                 'nom' => $nom,
                 'prenom' => $prenom,

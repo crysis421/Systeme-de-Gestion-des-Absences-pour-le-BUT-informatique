@@ -29,7 +29,7 @@ $data = $_SESSION['formDataRetard'];
     <p><b>Commentaires :</b> <?php echo nl2br(htmlspecialchars($data['preciserAutre'])); ?></p>
     <p><b>Justificatif :</b>
         <?php if ($data['justificatif'] != ""): ?>
-            <a href="<?php echo htmlspecialchars($data['justificatif']); ?>" target="_blank">Voir le fichier...</a>
+            <a href="<?php echo htmlspecialchars($data['justificatif']); ?>" target="_blank">Voir le justificatif...</a>
         <?php else: ?>
             Aucun justificatif fourni
         <?php endif; ?>

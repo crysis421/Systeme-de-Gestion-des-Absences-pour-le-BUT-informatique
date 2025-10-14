@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $heurefin1 = $_POST['heurefin1'];
     $motif = $_POST['motif'];
     $commentaire = $_POST['commentaire'];
-    $signer = isset($_POST['signer']) ? $_POST['signer'] : "";
 
     // Vérifier date + heure
     $debut = strtotime("$datedebut $heuredebut");
