@@ -1,21 +1,29 @@
-<?php require "menuHorizontalEtu.html";
+<?php
+session_start();
+require "menuHorizontalEtu.html";
 
 echo '<link rel="stylesheet" href="../CSS/calendrier.css" />';
 
-$Y = date("Y");
+$_SESSION['user'] = 42049956;
 
-if (!isset($_POST['mois'])) { //On ne peut voir que notre année scolaire
+$Y = date("Y");//On ne peut voir que notre année scolaire
+
+if (!isset($_POST['mois']) ) {
     $M = date("m");
-} else {
+}else {
     $M = $_POST['mois'];
+    $_SESSION['mois'] = $M;
     if ($_POST['mois'] < 8 and date('m') >= 8) {
         $Y = date("Y") + 1;
     } elseif ($_POST['mois'] >= 8 and date('m') < 8) {
         $Y = $Y - 1;
     }
 }
-$date = date_create(date($Y . "-" . $M . "-01"));
-$mois = date_format($date, "m");
+if(isset($_SESSION['mois'])){
+    $M = $_SESSION['mois'];
+}
+$_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
+$mois = date_format($_SESSION['date'], "m");
 
 ?>
     <form action="tableauDeBordEtu.php" method="post">
@@ -25,7 +33,7 @@ $mois = date_format($date, "m");
         <input type="submit" value="OK" name="jour">
     </form>
 
-    <h1> <?php echo $date->format("F - Y") ?> </h1>
+    <h1> <?php echo '<p>'.$_SESSION['date']->format("F - Y").'</p>' ?> </h1>
     <table>
         <tr>
             <th>Lundi</th>
@@ -38,7 +46,7 @@ $mois = date_format($date, "m");
         </tr>
         <tr>
             <?php
-
+            $date = clone($_SESSION['date']);
             $j = $date->format('w');
             if ($j == 0) {//Implementation plus simple quand dimanche = 7
                 $j = 7;
@@ -98,4 +106,4 @@ $mois = date_format($date, "m");
     </table>
 
 <?php
-
+require '../Presentation/getAbsenceDunJour.php';

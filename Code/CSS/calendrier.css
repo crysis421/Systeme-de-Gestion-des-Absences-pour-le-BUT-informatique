@@ -1,8 +1,15 @@
+p{
+    text-align: center;
+    font-size: 35px;
+}
+
 table{
     border-style: solid;
     border-collapse : collapse;
     border-width: 2px;
     text-align: center;
+    margin: 0 auto;
+    font-size: 30px
 }
 th{
     width: 8vw;
@@ -24,6 +31,7 @@ td{
     height: 100%;
     width: 100%;
     background-color: white;
+    font-size: 30px
 }
 #jour:hover{
     background-color: #0280af;
