@@ -120,53 +120,42 @@ EOL;
         <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
         <label for="dateFiltreur">Filtrer par date</label>
 
-        <details class="dateFiltre">
-            <summary>
-                <h2>Filtrer par date</h2>
-
-                <?php
-                $dateDebut = date("Y") . '-01-01';
-                $dateFin = date("Y-m-d");
-                ?>
-
-            </summary>
+        <div class="dateFiltre">
+            <?php
+            $dateDebut = date("Y") . '-01-01';
+            $dateFin = date("Y-m-d");
+            ?>
 
             <h3>Date de début</h3>
             <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
             <h3>Date de fin</h3>
             <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
-        </details>
+        </div>
 
 
         <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
         <label for="matiereFilteur">Filtrer par matière</label>
-        <details class="matiereFiltre">
-            <summary>
-                <h2>Filtrer par date</h2>
-            </summary>
-
+        <div class="matiereFiltre">
             <h3>Nom de la matière</h3>
             <input type="text" id="inputMatiere" name="Matière" value="">
-        </details>
+        </div>
 
 
         <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
         <label for="eleveFiltreur">Filtrer par élève</label>
-        <details class="eleveFiltre">
-            <summary>
-                <h2>Filtrer par date</h2>
-            </summary>
-
+        <div class="eleveFiltre">
             <h3>Prénom</h3>
             <input type="text" id="inputPrenom" name="PrenomInput" value="">
             <h3>Nom</h3>
             <input type="text" id="inputNom" name="NomInput" value="">
-        </details>
+        </div>
 
 
         <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
 
     </form>
+
+    <br>
 </div>
 
 <!-- Liste des absences ici ! -->
