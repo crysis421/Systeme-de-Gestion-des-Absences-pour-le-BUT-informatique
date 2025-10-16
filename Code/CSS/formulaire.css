@@ -70,7 +70,10 @@ input[type="submit"]{
 }
 
 form {
-    background-color: #acbbc1;
+    border-color: #333333;
+    border: 3px;
+    border-style: solid;
+    background-color: #efefef;
     padding: 1px;
     border-radius: 10px;
     max-width: 800px;
@@ -99,7 +102,8 @@ select {
     margin-top: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
-    border: 1px solid #ede9e9;
+    border: 2px solid #ede9e9;
+    border-color: #333333;
     box-sizing: border-box;
 }
 
