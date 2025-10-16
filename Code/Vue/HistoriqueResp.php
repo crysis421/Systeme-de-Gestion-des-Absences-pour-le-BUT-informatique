@@ -73,7 +73,7 @@ $justificatifs = $model->getJustificatifsHistorique();
                             </label>
 
                             <div class="fondu-noir"></div>
-                            <img class="justificatif-image-big" src="jolan/assemblage/justificatif.jpg" alt="Justificatif">
+                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                             <br/><br/>
                         </details>
                     </div>
