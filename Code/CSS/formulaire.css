@@ -31,12 +31,12 @@ main {
 }
 
 #titre{
-    background-color: #e9ed45;
+    background-color: #2781a8;
     padding-top: 10px;
     padding-bottom: 10px;
     max-width: 1500px;
     margin: 0 auto;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 h1{
     color: black;
@@ -47,7 +47,12 @@ h2 {
     color: #ede9e9;
 }
 
-#important {
+#important{
+    color: #ffffff;
+    text-align: center;
+}
+
+#erreur {
     color: red;
     text-align: center;
 }
@@ -65,7 +70,7 @@ input[type="submit"]{
 }
 
 form {
-    background-color: #2781a8;
+    background-color: #acbbc1;
     padding: 1px;
     border-radius: 10px;
     max-width: 800px;
@@ -90,10 +95,10 @@ input[type="number"],
 textarea,
 select {
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     margin-top: 10px;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #ede9e9;
     box-sizing: border-box;
 }

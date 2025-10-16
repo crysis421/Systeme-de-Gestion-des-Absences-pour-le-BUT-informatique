@@ -1,0 +1,41 @@
+ul{
+    text-align: right;
+    font-size:  1vw;
+    padding-bottom: 3px;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-color: #c6a04d;
+}
+
+.pages:hover{
+    color: #0280af;
+}
+
+.text-container {
+    text-align: center;
+    padding: 40px;
+    background-color: black;
+    border-radius: 25px;
+}
+
+.gradient-rotate {
+    font-size: 5em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.gradient-rotate span {
+    display: inline-block;
+    background: linear-gradient(180deg, #ffffff, #8c8c8c, #ffffff, #ffffff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.4s ease;
+    transform-origin: center;
+}
+
+.gradient-rotate span:hover {
+    background-position: 100% 50%;
+    transform: rotate(5deg) scale(1.1);
+}

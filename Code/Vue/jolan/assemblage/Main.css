@@ -1,4 +1,7 @@
-
+div{
+    font-size:20px;
+    padding: 1px;
+}
 ul{
     text-align: right;
     font-size:  1vw;
@@ -87,18 +90,29 @@ a:link {
             #d6d6e7 0 -3px 0 inset;
     border-color: black;
     border-width: 10px;
-    width: 600px;
-    padding-bottom: 20px;
+    width: 650px;
+    padding-bottom: 0px;
     height: auto;
     left: 50px;
     border-radius: 5px;
+}
+
+.description-element {
+    padding-left: 45px;
+}
+
+.ligne {
+    width: 650px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    position: absolute;
 }
 
 .top-layer {
     background-color: #ececec;
     position: relative;
     left: -10px;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0 0;
     padding-top: 10px;
     margin-top: -10px;
     padding-bottom: 10px;
