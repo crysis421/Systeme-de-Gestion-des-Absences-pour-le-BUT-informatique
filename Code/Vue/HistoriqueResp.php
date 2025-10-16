@@ -10,7 +10,7 @@ $justificatifs = $model->getJustificatifsHistorique();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="jolan/assemblage/Main.css">
+    <link rel="stylesheet" href="/CSS/historiqueResp.css">
     <title>Tableau de bord historique</title>
 </head>
 <body>

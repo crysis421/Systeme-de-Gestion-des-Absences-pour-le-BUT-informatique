@@ -19,7 +19,7 @@ if (isset($_POST["submit"])) {
         }
         fclose($handle);
     }
-    echo $row . " Absence on été uploader avec succes dans la base";
+    echo $row . " Absences ont été téléchargées avec succès dans la base de données.";
     ?>
     <form action="../Vue/formulaireVT.php" method="post" enctype="multipart/form-data">>
         <input type="submit" value="OK" name="OK">

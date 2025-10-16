@@ -61,8 +61,8 @@ a:link {
     position: relative;
     transition: transform 0.25s ease;
     width: 30px;
-    top: 9px;
-    left: 5px;
+    top: -25px;
+    left: 65px;
 }
 
 .oeil:hover {
@@ -138,7 +138,7 @@ summary::-webkit-details-marker {
     display: inline-block;
     width: 350px;
     height: 400px;
-    background-image: url("justificatif.jpg");
+    background-image: url("/Image/justificatif.jpg");
     background-size: cover;
     background-position: center;
     cursor: pointer;
@@ -259,17 +259,17 @@ input[id^="toggle3_"]:checked + .label-demander {
 }
 
 .label-accepter {
-    background: url('AccepterSymbole.png') no-repeat center center;
+    background: url('/Image/AccepterSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 .label-refuser {
-    background: url('RefuserSymbole.png') no-repeat center center;
+    background: url('/Image/RefuserSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 .label-demander {
-    background: url('DemanderSymbole.png') no-repeat center center;
+    background: url('/Image/DemanderSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
@@ -371,48 +371,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     font-size: 18px;
 }
 
-.dateFiltreur:checked ~ .dateFiltre {
-    display: block;
-}
-
-.eleveFiltreur:checked ~ .eleveFiltre {
-    display: block;
-}
-
-.matiereFilteur:checked ~ .matiereFiltre {
-    display: block;
-}
-
-
-.dateFiltre {
-    display: none;
-}
-
-.matiereFiltre {
-    display: none;
-}
-
-.eleveFiltre {
-    display: none;
-}
-
-.bouton-filtrage {
-    display: none;
-}
-
-.dateFiltreur:checked ~ .bouton-filtrage {
-    display: block;
-}
-
-.eleveFiltreur:checked ~ .bouton-filtrage {
-    display: block;
-}
-
-.matiereFilteur:checked ~ .bouton-filtrage {
-    display: block;
-}
-
-
 .bouton-envoye:focus {
     box-shadow:
             #d6d6e7 0 0 0 1.5px inset,
@@ -432,4 +390,35 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 .bouton-envoye:active {
     box-shadow: #d6d6e7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+
+
+
+
+
+.histo-accepter {
+    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-refuser {
+    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-demander {
+    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-accepter, .histo-refuser, .histo-demander {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }

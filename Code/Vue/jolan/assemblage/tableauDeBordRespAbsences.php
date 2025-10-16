@@ -13,7 +13,7 @@ $nom = $_POST['NomInput'] ?? null;
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom))
 
-    $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut,$dateFin, $matiere, $nom, $prenom);
+        $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut,$dateFin, $matiere, $nom, $prenom);
     else $justificatifs = $model->getJustificatifsAttente();
 
 } else {
@@ -92,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- TabBar ici ! -->
 <ul>
-    <a class="pages" href="tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
-    <a class="pages" href="../../tableauDeBordRespRetards.php"><li>Tableau de bord des absences</li></a>
+    <a class="pages" href="../../tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
+    <a class="pages" href="../../tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
     <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
 </ul>
@@ -117,49 +117,45 @@ EOL;
 <div class="filtrage">
     <form method="post">
 
-        <details>
-            <summary>
-                <h2>Filtrer par date</h2>
+        <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
+        <label for="dateFiltreur">Filtrer par date</label>
 
-                <?php
-                $dateDebut = date("Y") . '-01-01';
-                $dateFin = date("Y-m-d");
-                ?>
-
-            </summary>
+        <div class="dateFiltre">
+            <?php
+            $dateDebut = date("Y") . '-01-01';
+            $dateFin = date("Y-m-d");
+            ?>
 
             <h3>Date de début</h3>
             <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
             <h3>Date de fin</h3>
             <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
-        </details>
+        </div>
 
 
-        <details>
-            <summary>
-                <h2>Filtrer par matière</h2>
-            </summary>
-
+        <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
+        <label for="matiereFilteur">Filtrer par matière</label>
+        <div class="matiereFiltre">
             <h3>Nom de la matière</h3>
             <input type="text" id="inputMatiere" name="Matière" value="">
-        </details>
+        </div>
 
 
-        <details>
-            <summary>
-                <h2>Filtrer par élève</h2>
-            </summary>
-
+        <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
+        <label for="eleveFiltreur">Filtrer par élève</label>
+        <div class="eleveFiltre">
             <h3>Prénom</h3>
             <input type="text" id="inputPrenom" name="PrenomInput" value="">
             <h3>Nom</h3>
             <input type="text" id="inputNom" name="NomInput" value="">
-        </details>
+        </div>
 
 
         <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
 
     </form>
+
+    <br>
 </div>
 
 <!-- Liste des absences ici ! -->
@@ -234,7 +230,7 @@ EOL;
 
                         <div class="texte-refuser">
                             Motif du refus : <br><br>
-                            <textarea name="motif_refus" rows="4" cols="50" required></textarea>
+                            <textarea name="motif_refus" rows="4" cols="50"></textarea>
                             <br><br>
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                             <br><br>
@@ -242,7 +238,7 @@ EOL;
 
                         <div class="texte-demander">
                             Motif de la demande : <br><br>
-                            <textarea name="motif_demande" rows="4" cols="50" required></textarea>
+                            <textarea name="motif_demande" rows="4" cols="50"></textarea>
                             <br><br>
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                             <br><br>
