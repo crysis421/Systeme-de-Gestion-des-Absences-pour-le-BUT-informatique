@@ -137,13 +137,13 @@ Alter table Absence add constraint diff UNIQUE(idSeance,idEtudiant);
 --rollback Alter table Absence drop constraint diff;
 
 --changeset Kilian:15
-DROP table JustificatifEtTraitementJustificatif
+DROP table if exists JustificatifEtTraitementJustificatif;
 --rollback CREATE TABLE if not exists CoursEtUtilisateur(idUtilisateur   SERIAL references Utilisateur,idCours INT REFERENCES Cours ,primary key (idUtilisateur, idCours));
 
 --changet Kilian:16
-Alter table TraitementJustificatif add column idJustificatif INT REFERENCES Justificatif (idJustificatif);
+Alter table TraitementJustificatif add column if not exists idJustificatif INT REFERENCES Justificatif (idJustificatif);
 --rollback Alter table TraitementJustificatif drop column idJustificatif ;
 
 --changeset Kilian:17
-Alter table TraitementJustificatif add constraint differ UNIQUE(idUtilisateur,idJustificatif);
---rollback Alter table TraitementJustificatif drop constraint differ;
+Alter table TraitementJustificatif add constraint difference_id UNIQUE(idUtilisateur,idJustificatif);
+--rollback Alter table TraitementJustificatif drop constraint difference_id;

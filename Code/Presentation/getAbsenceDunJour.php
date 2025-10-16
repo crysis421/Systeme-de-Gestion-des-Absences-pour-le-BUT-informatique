@@ -13,7 +13,7 @@ $user = $_SESSION['user'];
 
 
 $bdd = new AbsenceModel();
-$result = $bdd->getAbsenceDunJour($_SESSION['jour'],$user);
+$result = $bdd->getAbsenceDunJour($_SESSION['jour'],$user,$_SESSION['mois']);
 if(empty($result)){
     echo "Aucune absence n’a été enregistrée à votre nom pour la journée du ".$_SESSION['jour'].date_format($_SESSION['date'],'  F');
 }else{
@@ -21,7 +21,7 @@ if(empty($result)){
         $id = 1;
         $commentaire= 'salut';
         ?>
-        <div class="element">
+        <div class="element" <?php if ($absence['statut']=="valide"){echo 'id=valide';}else if($absence['statut']=="report"){echo 'id=enAttente';}else{echo 'id=refus';} ?>>
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
@@ -29,7 +29,7 @@ if(empty($result)){
 
                     <div class="description-element">
                         <small><?= htmlspecialchars($absence['enseignement']) ?></small>
-                        <br><small><?= htmlspecialchars(date('d  F')) ?> à <?= htmlspecialchars($absence['heuredebut']) ?></small>
+                        <br><small><?= htmlspecialchars(date($_SESSION["jour"].'/'.$_SESSION['mois'])) ?> à <?= htmlspecialchars($absence['heuredebut']) ?></small>
                     </div>
 
                     <div class="ligne"></div>

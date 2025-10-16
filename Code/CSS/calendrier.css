@@ -36,3 +36,14 @@ td{
 #jour:hover{
     background-color: #0280af;
 }
+
+#valide{
+    color : #72af5e;
+}
+
+#enAttente{
+    color: #ffc049;
+}
+#refus{
+    color: #f32d2d;
+}
