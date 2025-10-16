@@ -136,7 +136,7 @@ EOL;
 
                         <div class="texte-refuser">
                             Motif du refus : <br><br>
-                            <textarea name="motif_refus" rows="4" cols="50"></textarea>
+                            <textarea name="motif_refus" rows="4" cols="50" required></textarea>
                             <br><br>
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                             <br><br>
@@ -144,7 +144,7 @@ EOL;
 
                         <div class="texte-demander">
                             Motif de la demande : <br><br>
-                            <textarea name="motif_demande" rows="4" cols="50"></textarea>
+                            <textarea name="motif_demande" rows="4" cols="50" required></textarea>
                             <br><br>
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                             <br><br>

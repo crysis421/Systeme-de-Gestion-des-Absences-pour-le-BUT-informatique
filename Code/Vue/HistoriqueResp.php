@@ -42,25 +42,25 @@ $justificatifs = $model->getJustificatifsHistorique();
 
                 <div class="details">
                     <div class="justificatif-viewer">
+                        <br/>
+                        <?php if ($justif['reponse']=='accepte') {
+                            $imageClass="histo-accepter";
+                            $imageSource="jolan/assemblage/AccepterSymbole.png";
+                            echo "Justificatif Accepté  <img class=$imageClass src=$imageSource> <br/><br/>";
+                            echo "Motif de l'absence : ",$justif['cause'];
+                        } else if ($justif['reponse']=='refuse') {
+                            $imageClass="histo-refuser";
+                            $imageSource="jolan/assemblage/RefuserSymbole.png";
+                            echo "Justificatif Refusé <img class=$imageClass src=$imageSource>";
+                        } else {
+                            $imageClass="histo-demander";
+                            $imageSource="jolan/assemblage/DemanderSymbole.png";
+                            echo "Justificatif nécessitant plus de précisions <img class=$imageClass src=$imageSource>";
+                        } ?>
+                        <br/><br/>
+                        <a class="justificatif-texte">Détails</a>
                         <details>
                             <summary>
-                                <br/>
-                                <?php if ($justif['reponse']=='accepte') {
-                                    $imageClass="histo-accepter";
-                                    $imageSource="jolan/assemblage/AccepterSymbole.png";
-                                    echo "Justificatif Accepté  <img class=$imageClass src=$imageSource> <br/><br/>";
-                                    echo "Motif de l'absence : ",$justif['cause'];
-                                } else if ($justif['reponse']=='refuse') {
-                                    $imageClass="histo-refuser";
-                                    $imageSource="jolan/assemblage/RefuserSymbole.png";
-                                    echo "Justificatif Refusé <img class=$imageClass src=$imageSource>";
-                                } else {
-                                    $imageClass="histo-demander";
-                                    $imageSource="jolan/assemblage/DemanderSymbole.png";
-                                    echo "Justificatif nécessitant plus de précisions <img class=$imageClass src=$imageSource>";
-                                } ?>
-                                <br/>
-                                <a class="justificatif-texte">Détails</a>
                                 <img class="oeil" src="jolan/assemblage/oeil.png" alt="Voir le justificatif">
                                 <br/><br/>
                             </summary>
