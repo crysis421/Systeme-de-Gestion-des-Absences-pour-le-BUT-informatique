@@ -259,17 +259,17 @@ input[id^="toggle3_"]:checked + .label-demander {
 }
 
 .label-accepter {
-    background: url('jolan/assemblage/AccepterSymbole.png') no-repeat center center;
+    background: url('/Image/AccepterSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 .label-refuser {
-    background: url('jolan/assemblage/RefuserSymbole.png') no-repeat center center;
+    background: url('/Image/RefuserSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 .label-demander {
-    background: url('jolan/assemblage/DemanderSymbole.png') no-repeat center center;
+    background: url('/Image/DemanderSymbole.png') no-repeat center center;
     background-size: contain;
 }
 

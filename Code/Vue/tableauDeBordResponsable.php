@@ -101,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!-- TabBar ici ! -->
 <ul>
     <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord</li></a>
-    <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
+    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
+    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
 </ul>
 
 <!-- Notification ici ! -->
@@ -197,7 +197,7 @@ EOL;
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
-                                <img src="close.png" alt="Fermer le justificatif">
+                                <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
                             <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
