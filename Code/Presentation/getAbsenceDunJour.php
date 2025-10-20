@@ -2,7 +2,7 @@
 
 require '../Model/AbsenceModel.php';
 
-echo '<link rel="stylesheet" href="../Vue/jolan/assemblage/Main.css">';
+echo '<link rel="stylesheet" href="../Vue/tableauDeBordResponsable.css">';
 
 if(!isset($_SESSION['jour']) or $_SESSION['jour']=="OK" or $_POST['jour']=="OK"){
     $_SESSION['jour'] = date('d');

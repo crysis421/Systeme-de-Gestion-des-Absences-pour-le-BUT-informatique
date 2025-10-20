@@ -1,6 +1,6 @@
 <?php
 
-require_once "../../../Model/AbsenceModel.php";
+require_once "../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
 
@@ -25,6 +25,13 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 $titre = "";
 $description = "";
 
+
+$model->traiterJustificatif(3796, 'accepte', 0, 'fd');
+$merde = $model->getJustificatifDetails(3796);
+
+print_r($merde);
+
+//accepte, refuse, enAttente
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
@@ -38,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $titre = "Accepté !";
         $description = $motif;
 
+
+        //$model->updateDecision($IDElement, 0, 'accepte', $motif);
 
         /*
          * Change dans la base de données :
@@ -67,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $description = substr($demande,0,10) . "...";
         }
 
-
         /*
          * Changements:
          *  - EnAttente : False
@@ -83,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="tableauDeBordResponsable.css">
     <title>Tableau de bord absence</title>
 </head>
 <body>
@@ -92,8 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- TabBar ici ! -->
 <ul>
-    <a class="pages" href="../../tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
-    <a class="pages" href="../../tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
+    <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord</li></a>
     <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
 </ul>
@@ -120,53 +127,42 @@ EOL;
         <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
         <label for="dateFiltreur">Filtrer par date</label>
 
-        <details class="dateFiltre">
-            <summary>
-                <h2>Filtrer par date</h2>
-
-                <?php
-                $dateDebut = date("Y") . '-01-01';
-                $dateFin = date("Y-m-d");
-                ?>
-
-            </summary>
+        <div class="dateFiltre">
+            <?php
+            $dateDebut = date("Y") . '-01-01';
+            $dateFin = date("Y-m-d");
+            ?>
 
             <h3>Date de début</h3>
             <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
             <h3>Date de fin</h3>
             <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
-        </details>
+        </div>
 
 
         <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
         <label for="matiereFilteur">Filtrer par matière</label>
-        <details class="matiereFiltre">
-            <summary>
-                <h2>Filtrer par date</h2>
-            </summary>
-
+        <div class="matiereFiltre">
             <h3>Nom de la matière</h3>
             <input type="text" id="inputMatiere" name="Matière" value="">
-        </details>
+        </div>
 
 
         <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
         <label for="eleveFiltreur">Filtrer par élève</label>
-        <details class="eleveFiltre">
-            <summary>
-                <h2>Filtrer par date</h2>
-            </summary>
-
+        <div class="eleveFiltre">
             <h3>Prénom</h3>
             <input type="text" id="inputPrenom" name="PrenomInput" value="">
             <h3>Nom</h3>
             <input type="text" id="inputNom" name="NomInput" value="">
-        </details>
+        </div>
 
 
         <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
 
     </form>
+
+    <br>
 </div>
 
 <!-- Liste des absences ici ! -->
@@ -194,7 +190,7 @@ EOL;
                         <details>
                             <summary>
                                 <a class="justificatif-texte">Justificatif</a>
-                                <img class="oeil" src="oeil.png" alt="Voir le justificatif">
+                                <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
                             </summary>
 
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
@@ -207,7 +203,7 @@ EOL;
                             <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
 
                             <div class="fondu-noir"></div>
-                            <img class="justificatif-image-big" src="justificatif.jpg" alt="Justificatif">
+                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
 

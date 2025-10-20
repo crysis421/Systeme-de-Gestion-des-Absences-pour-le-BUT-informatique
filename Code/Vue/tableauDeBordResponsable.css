@@ -138,7 +138,7 @@ summary::-webkit-details-marker {
     display: inline-block;
     width: 350px;
     height: 400px;
-    background-image: url("justificatif.jpg");
+    background-image: url("jolan/assemblage/justificatif.jpg");
     background-size: cover;
     background-position: center;
     cursor: pointer;
@@ -259,17 +259,17 @@ input[id^="toggle3_"]:checked + .label-demander {
 }
 
 .label-accepter {
-    background: url('AccepterSymbole.png') no-repeat center center;
+    background: url('jolan/assemblage/AccepterSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 .label-refuser {
-    background: url('RefuserSymbole.png') no-repeat center center;
+    background: url('jolan/assemblage/RefuserSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
 .label-demander {
-    background: url('DemanderSymbole.png') no-repeat center center;
+    background: url('jolan/assemblage/DemanderSymbole.png') no-repeat center center;
     background-size: contain;
 }
 
