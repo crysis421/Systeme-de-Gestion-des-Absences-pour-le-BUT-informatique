@@ -1,6 +1,6 @@
 <?php
 
-require_once "../../../Model/AbsenceModel.php";
+require_once "../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
 
@@ -25,6 +25,13 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 $titre = "";
 $description = "";
 
+
+$model->traiterJustificatif(3796, 'accepte', 0, 'fd');
+$merde = $model->getJustificatifDetails(3796);
+
+print_r($merde);
+
+//accepte, refuse, enAttente
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
@@ -38,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $titre = "Accepté !";
         $description = $motif;
 
+
+        //$model->updateDecision($IDElement, 0, 'accepte', $motif);
 
         /*
          * Change dans la base de données :
@@ -67,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $description = substr($demande,0,10) . "...";
         }
 
-
         /*
          * Changements:
          *  - EnAttente : False
@@ -83,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="tableauDeBordResponsable.css">
     <title>Tableau de bord absence</title>
 </head>
 <body>
@@ -92,10 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- TabBar ici ! -->
 <ul>
-    <a class="pages" href="../../tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
-    <a class="pages" href="../../tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
-    <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
+    <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord</li></a>
+    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
+    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
 </ul>
 
 <!-- Notification ici ! -->
@@ -183,20 +190,20 @@ EOL;
                         <details>
                             <summary>
                                 <a class="justificatif-texte">Justificatif</a>
-                                <img class="oeil" src="oeil.png" alt="Voir le justificatif">
+                                <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
                             </summary>
 
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
-                                <img src="close.png" alt="Fermer le justificatif">
+                                <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
                             <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
 
                             <div class="fondu-noir"></div>
-                            <img class="justificatif-image-big" src="justificatif.jpg" alt="Justificatif">
+                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
 

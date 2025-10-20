@@ -39,6 +39,71 @@ class AbsenceModel
         return $stmt->fetchAll();
     }
 
+    public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
+    {
+        $updateSql = "
+        UPDATE traitementjustificatif
+        SET attente = :attente,
+            reponse = :reponse,
+            commentaire_validation = :commentaire_validation,
+            cause = :cause,
+            date = NOW()
+        WHERE idJustificatif = :idJustificatif
+    ";
+        $updateStmt = $this->conn->prepare($updateSql);
+        $updateStmt->execute([
+            ':idJustificatif' => $idJustificatif,
+            ':attente' => $attente,
+            ':reponse' => $decision,
+            ':commentaire_validation' => $commentaire,
+            ':cause' => $cause
+        ]);
+    }
+
+    public function getJustificatifDetails($idJustificatif) {
+        $sql = "
+            SELECT 
+            j.idJustificatif,
+            j.datesoumission AS date_soumission,
+            j.commentaire_absence AS commentaire_justificatif,
+            j.verrouille,
+            
+            t.idTraitement,
+            t.attente,
+            t.reponse,
+            t.commentaire_validation AS commentaire_traitement,
+            t.date AS date_traitement,
+            t.cause,
+            
+            u.idUtilisateur,
+            u.nom AS nom_etudiant,
+            u.prenom AS prenom_etudiant,
+            
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS type_seance,
+            c.matiere
+                
+            FROM justificatif j
+            JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+            JOIN absence a ON aj.idAbsence = a.idAbsence
+            JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+            JOIN seance s ON a.idSeance = s.idSeance
+            JOIN cours c ON s.idCours = c.idCours
+            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+            WHERE j.idJustificatif = :idJustificatif
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':idJustificatif', $idJustificatif, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function getByUser($idUtilisateur)
     {
         $sql = "
@@ -127,7 +192,6 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-        WHERE (t.attente = TRUE OR t.reponse = 'enAttente' OR t.idTraitement IS NULL)
         ";
 
         $params = [];

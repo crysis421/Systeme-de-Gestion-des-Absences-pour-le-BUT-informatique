@@ -57,12 +57,38 @@ a:link {
     position: relative;
 }
 
+.histo-accepter, .histo-refuser, .histo-demander {
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+.histo-accepter {
+    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-refuser {
+    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-demander {
+    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
 .oeil {
+    cursor: pointer;
     position: relative;
     transition: transform 0.25s ease;
     width: 30px;
-    top: -25px;
-    left: 65px;
+    top: -28px;
+    left: 80px;
 }
 
 .oeil:hover {
@@ -195,6 +221,9 @@ input[id^="zoom"]:checked ~ .justificatif-image-big {
     display: none;
 }
 
+
+
+
 input[id^="zoom"]:checked ~ .fondu-noir {
     display: block;
     position: fixed;
@@ -222,73 +251,6 @@ select {
     transition: all 0.2s ease;
 }
 
-textarea {
-    border: none;
-    padding: 1rem;
-    border-radius: 1rem;
-    background: #e8e8e8;
-    transition: 0.3s;
-}
-
-.label-accepter, .label-refuser, .label-demander {
-    display: inline-block;
-    position: relative;
-    top: 10px;
-    left: 5px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    filter: grayscale(100%) brightness(1);
-}
-
-input[id^="toggle1_"]:checked + .label-accepter,
-input[id^="toggle2_"]:checked + .label-refuser,
-input[id^="toggle3_"]:checked + .label-demander {
-    filter: grayscale(0%) brightness(1);
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.label-accepter:hover,
-.label-refuser:hover,
-.label-demander:hover {
-    filter: grayscale(50%) brightness(0.9);
-    opacity: 0.8;
-    transform: scale(1.05);
-}
-
-.label-accepter {
-    background: url('/Image/AccepterSymbole.png') no-repeat center center;
-    background-size: contain;
-}
-
-.label-refuser {
-    background: url('/Image/RefuserSymbole.png') no-repeat center center;
-    background-size: contain;
-}
-
-.label-demander {
-    background: url('/Image/DemanderSymbole.png') no-repeat center center;
-    background-size: contain;
-}
-
-.texte-accepter, .texte-refuser, .texte-demander {
-    display: none;
-}
-
-input[id^="toggle1_"]:checked ~ .texte-accepter {
-    display: block;
-}
-
-input[id^="toggle2_"]:checked ~ .texte-refuser {
-    display: block;
-}
-
-input[id^="toggle3_"]:checked ~ .texte-demander {
-    display: block;
-}
-
 .nom {
     position: relative;
     top: -4px;
@@ -298,42 +260,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 .image-utilisateur {
     position: relative;
     left: 10px;
-}
-
-.notification {
-    position: fixed;
-    width: 250px;
-    height: 75px;
-    right: 10px;
-    top: 10px;
-    background-color: white;
-    border-radius: 10px;
-    filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.2));
-    animation: notification-animation 2s forwards;
-}
-
-.titre-notification {
-    position: fixed;
-    top: -10px;
-    left: 10px;
-}
-
-.description-notification {
-    position: fixed;
-    left: 10px;
-    top: 40px;
-}
-
-@keyframes notification-animation {
-    50%{
-        right: 10px;
-    }
-    65% {
-        right: 50px;
-    }
-    100% {
-        right: -100%;
-    }
 }
 
 .bouton-envoye {
@@ -371,6 +297,48 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     font-size: 18px;
 }
 
+.dateFiltreur:checked ~ .dateFiltre {
+    display: block;
+}
+
+.eleveFiltreur:checked ~ .eleveFiltre {
+    display: block;
+}
+
+.matiereFilteur:checked ~ .matiereFiltre {
+    display: block;
+}
+
+
+.dateFiltre {
+    display: none;
+}
+
+.matiereFiltre {
+    display: none;
+}
+
+.eleveFiltre {
+    display: none;
+}
+
+.bouton-filtrage {
+    display: none;
+}
+
+.dateFiltreur:checked ~ .bouton-filtrage {
+    display: block;
+}
+
+.eleveFiltreur:checked ~ .bouton-filtrage {
+    display: block;
+}
+
+.matiereFilteur:checked ~ .bouton-filtrage {
+    display: block;
+}
+
+
 .bouton-envoye:focus {
     box-shadow:
             #d6d6e7 0 0 0 1.5px inset,
@@ -390,35 +358,4 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 .bouton-envoye:active {
     box-shadow: #d6d6e7 0 3px 7px inset;
     transform: translateY(2px);
-}
-
-
-
-
-
-
-.histo-accepter {
-    background: url('/Image/AccepterSymbole.png') no-repeat center center;
-    background-size: contain;
-}
-
-.histo-refuser {
-    background: url('/Image/RefuserSymbole.png') no-repeat center center;
-    background-size: contain;
-}
-
-.histo-demander {
-    background: url('/Image/DemanderSymbole.png') no-repeat center center;
-    background-size: contain;
-}
-
-.histo-accepter, .histo-refuser, .histo-demander {
-    display: inline-block;
-    position: relative;
-    top: 10px;
-    left: 5px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
