@@ -50,3 +50,13 @@ td{
 #maLigne{
     width: 100%;
 }
+
+.valide{
+    color: #72af5e;
+}
+.refus{
+    color: #f32d2d;
+}
+.enAttente{
+    color: #ffc049;
+}

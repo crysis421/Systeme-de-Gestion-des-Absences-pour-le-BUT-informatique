@@ -16,7 +16,7 @@
 
 <!-- TabBar ici ! -->
 <ul>
-    <a class="pages" href="../../tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
+    <a class="pages" href="../../tableauDeBordResponsable.php"><li>Tableau de bord des absences</li></a>
     <a class="pages" href="../../tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
     <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
