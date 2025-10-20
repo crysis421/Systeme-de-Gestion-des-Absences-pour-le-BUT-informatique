@@ -192,6 +192,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+        WHERE t.attente = TRUE
         ";
 
         $params = [];
