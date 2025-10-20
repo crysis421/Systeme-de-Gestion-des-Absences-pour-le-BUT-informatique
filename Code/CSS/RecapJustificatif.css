@@ -1,4 +1,6 @@
 #main {
+    display: flex;
+    flex-direction: column;
     height: 500px;
     width: 900px;
     margin: 100px auto 0;
@@ -14,6 +16,7 @@
 }
 #info{
     justify-content: center;
+    padding-bottom: 180px;
 
 }
 body {
