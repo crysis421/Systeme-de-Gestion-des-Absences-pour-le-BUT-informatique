@@ -25,12 +25,6 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 $titre = "";
 $description = "";
 
-
-$model->traiterJustificatif(3796, 'accepte', 0, 'fd');
-$merde = $model->getJustificatifDetails(3796);
-
-print_r($merde);
-
 //accepte, refuse, enAttente
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -84,6 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 }
+
+
+
+$model->traiterJustificatif(3796, 'refuse', false, 'JE DETESTE');
+$merde = $model->CHECKSIENATTENTE(3796);
+
+print_r($merde);
 
 ?>
 
