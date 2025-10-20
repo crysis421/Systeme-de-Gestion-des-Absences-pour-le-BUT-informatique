@@ -9,26 +9,29 @@ session_start();
 require_once '../Model/NewJustificatif.php';
 require '../Vue/formulaireAbsence.php';
 
-$idAbsence = filter_input(INPUT_POST, 'id_absence', FILTER_VALIDATE_INT);
-$cause = htmlspecialchars($_POST['motif']);
-$commentaire = htmlspecialchars($_POST['commentaire']);
-$idUtilisateur = $_SESSION['id_utilisateur']; // L'ID de l'étudiant qui soumet
+//$idAbsence = filter_input(INPUT_POST, 'id_absence', FILTER_VALIDATE_INT);
+//$cause = htmlspecialchars($_POST['motif']);
+//$commentaire = htmlspecialchars($_POST['commentaire']);
+//$idUtilisateur = $_SESSION['id_utilisateur']; // L'ID de l'étudiant qui soumet
 
 $cheminFichierUploade = null; // Par defaut aucun fichier
 
 
 ///pour test pas touche !!!
 
-$comentaire = 'a';
+$commentaire = 'a';
 $idUtilisateur = 3;
 $motif = 'malade';
 $idAbsence = '10';
+$cause = 'malade';
+
+
 
 
 /// On regarde si un fichier a été soumis et s'il n'y a pas eu d'erreur
 if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] === UPLOAD_ERR_OK) {
 
-    $uploadDir = 'uploads/justificatifs/'; /// A CREER GUYS !!
+    $uploadDir = 'uploads/justificatifs/';
 
     $fileInfo = pathinfo($_FILES['justificatif']['name']);
     $extension = $fileInfo['extension'];
@@ -38,10 +41,7 @@ if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] === UPLOA
         $nomFichierUnique = $idUtilisateur . '_' . $idAbsence . '_' . time() . '.' . $extension;
         $cheminFichierUploade = $uploadDir . $nomFichierUnique;
 
-        if (!move_uploaded_file($_FILES['justificatif']['tmp_name'], $cheminFichierUploade)) {
-            header('Location: formulaire_justificatif.php?erreur=upload');
-            exit;
-        }
+
     }
 }
 

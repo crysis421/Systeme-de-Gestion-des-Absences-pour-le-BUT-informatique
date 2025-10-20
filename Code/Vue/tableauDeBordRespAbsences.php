@@ -1,6 +1,6 @@
 <?php
 
-require_once "../Model/AbsenceModel.php";
+require_once "../../../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="jolan/assemblage/Main.css">
+    <link rel="stylesheet" href="Main.css">
     <title>Tableau de bord absence</title>
 </head>
 <body>
@@ -92,10 +92,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- TabBar ici ! -->
 <ul>
-    <a class="pages" href="tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
-    <a class="pages" href="tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
-    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
+    <a class="pages" href="../../tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
+    <a class="pages" href="../../tableauDeBordRespRetards.php"><li>Tableau de bord des retards</li></a>
+    <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
+    <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
 </ul>
 
 <!-- Notification ici ! -->
@@ -142,7 +142,7 @@ EOL;
         <label for="matiereFilteur">Filtrer par matière</label>
         <details class="matiereFiltre">
             <summary>
-                <h2>Filtrer par matière</h2>
+                <h2>Filtrer par date</h2>
             </summary>
 
             <h3>Nom de la matière</h3>
@@ -154,7 +154,7 @@ EOL;
         <label for="eleveFiltreur">Filtrer par élève</label>
         <details class="eleveFiltre">
             <summary>
-                <h2>Filtrer par élève</h2>
+                <h2>Filtrer par date</h2>
             </summary>
 
             <h3>Prénom</h3>
@@ -168,7 +168,7 @@ EOL;
 
     </form>
 </div>
-<br/>
+
 <!-- Liste des absences ici ! -->
 <div class="liste-absence">
     <?php foreach ($justificatifs as $justif):
@@ -194,20 +194,20 @@ EOL;
                         <details>
                             <summary>
                                 <a class="justificatif-texte">Justificatif</a>
-                                <img class="oeil" src="jolan/assemblage/oeil.png" alt="Voir le justificatif">
+                                <img class="oeil" src="oeil.png" alt="Voir le justificatif">
                             </summary>
 
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
-                                <img src="jolan/assemblage/close.png" alt="Fermer le justificatif">
+                                <img src="close.png" alt="Fermer le justificatif">
                             </label>
 
                             <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
 
                             <div class="fondu-noir"></div>
-                            <img class="justificatif-image-big" src="jolan/assemblage/justificatif.jpg" alt="Justificatif">
+                            <img class="justificatif-image-big" src="justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
 

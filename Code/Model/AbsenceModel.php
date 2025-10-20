@@ -229,10 +229,11 @@ class AbsenceModel
     }
 
     //Cette fonction nous permet de recupérer les infos d'une absence d'un etudiant a un jour précis , utiliser pour le tableau de bord de l'etudiant
-    public function getAbsenceDunJour($date,$idEtudiant) {
-        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,typeSeance,salle,controle FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d");
+    public function getAbsenceDunJour($date,$idEtudiant,$mois) {
+        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,typeSeance,salle,controle FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m");
         $stmt->bindParam(":idEtudiant", $idEtudiant);
         $stmt->bindParam(":d", $date);
+        $stmt->bindParam(":m", $mois);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

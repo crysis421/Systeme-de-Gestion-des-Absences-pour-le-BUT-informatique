@@ -2,7 +2,6 @@
 
 namespace Util\Color;
 
-
 /*
  * Classe pour les couleur
  */
