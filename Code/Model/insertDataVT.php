@@ -28,13 +28,21 @@ class insertDataVT
         $this->conn = null;
     }
 
-    //Cette fonction ajoute un utilisateur si il n'est deja pas créé , on lui donne un mdp provisoire qui sera récupéré par la secretaire
+    //Cette fonction nous permet de savoir quel cour et utilisateur sont deja dans la base
+    public function getUtilisateurAndCours():array
+    {
+        $stmt = $this->conn->prepare("SELECT DISTINCT idUtilisateur,idCours FROM utilisateur left join Cours on utilisateur.idUtilisateur = Cours.idProf;");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Cette fonction ajoute un utilisateur si il n'est pas deja créé , on lui donne un mdp provisoire qui sera récupéré par la secretaire
     public function addUtilisateur($identifiant, $nom, $prenom, $prenom2, $email, $groupe, $dateDeNaissance, $diplome): void
     {
         try {
             $mdp = password_hash("unMDP", PASSWORD_DEFAULT);
 
-            $req2 = $this->conn->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, diplome) values(:id,:nom,:prenom,:prenom2,:email,:mdp,'eleve',:groupe,:dateDeNaissance,:diplome) on conflict do nothing returning idUtilisateur;");
+            $req2 = $this->conn->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, diplome) values(:id,:nom,:prenom,:prenom2,:email,:mdp,'eleve',:groupe,:dateDeNaissance,:diplome)");
             $req2->bindParam(':id', $identifiant);
             $req2->bindParam(':nom', $nom);
             $req2->bindParam(':prenom', $prenom);
@@ -54,7 +62,7 @@ class insertDataVT
     public function addCour($idCour, $idResponsable, $matiere): void
     {
         try {
-            $req2 = $this->conn->prepare("INSERT INTO Cours (idCours, matiere, idProf) values (:idC,:matiere,:idR) on conflict do nothing;");
+            $req2 = $this->conn->prepare("INSERT INTO Cours (idCours, matiere, idProf) values (:idC,:matiere,:idR)");
             $req2->bindParam(':idC', $idCour);
             $req2->bindParam(':matiere', $matiere);
             $req2->bindParam(':idR', $idResponsable);
@@ -72,6 +80,7 @@ class insertDataVT
     {
         try {
             //Regler les problemes de synchronisation des termes , exemple 01/01/2025 -> 2025/01/01, ou encore 8H10 -> 8:10:00
+            //Ceci ne peut que ce faire ici
             $date = $date[6] . $date[7] . $date[8] . $date[9] . "-" . $date[3] . $date[4] . "-" . $date[0] . $date[1];
             if (strlen($heure) == 4) {
                 $heure = $heure[0] . ":" . $heure[2] . $heure[3] . ":00";
@@ -98,7 +107,7 @@ class insertDataVT
                 $retard = 0;
             }
 
-           //Insertion des données , ici ajout d'une seance
+            //Insertion des données , ici ajout d'une seance
 
             $req2 = $this->conn->prepare("INSERT INTO Seance(idSeance, idCours, heureDebut, typeSeance, enseignement, salle, prof, controle, duree, date) values(default,:idMatiere,:heure,:type,:enseignement,:salle,:prof,:controle,:duree,:date) on conflict do nothing;");
             $req2->bindParam(':idMatiere', $idMatiere);
@@ -186,7 +195,7 @@ class insertDataVT
                 $req2->execute();
                 $req2 = null;
 
-            }else if ($nombreJustificatif == 0) {
+            } else if ($nombreJustificatif == 0) {
                 //De même , avec d'autre constante , ici l'élève a encore le temps de justifier son absence
 
                 $req2 = $this->conn->prepare("INSERT INTO Justificatif(idJustificatif, dateSoumission, verrouille,commentaire_absence) values(default,CURRENT_TIMESTAMP,false,:commentaire) returning idJustificatif;");
