@@ -25,12 +25,6 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 $titre = "";
 $description = "";
 
-
-$model->traiterJustificatif(3796, 'accepte', 0, 'fd');
-$merde = $model->getJustificatifDetails(3796);
-
-print_r($merde);
-
 //accepte, refuse, enAttente
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -85,6 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 }
 
+
+
+$model->traiterJustificatif(3796, 'refuse', false, 'JE DETESTE');
+$merde = $model->CHECKSIENATTENTE(3796);
+
+print_r($merde);
+
 ?>
 
 <!DOCTYPE html>
@@ -101,8 +102,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!-- TabBar ici ! -->
 <ul>
     <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord</li></a>
-    <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
+    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
+    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
 </ul>
 
 <!-- Notification ici ! -->
@@ -197,7 +198,7 @@ EOL;
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
-                                <img src="close.png" alt="Fermer le justificatif">
+                                <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
                             <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
