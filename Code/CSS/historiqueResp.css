@@ -64,7 +64,6 @@ a:link {
     left: 5px;
     width: 30px;
     height: 30px;
-    cursor: pointer;
     transition: all 0.3s ease;
 }
 
@@ -84,6 +83,7 @@ a:link {
 }
 
 .oeil {
+    cursor: pointer;
     position: relative;
     transition: transform 0.25s ease;
     width: 30px;
