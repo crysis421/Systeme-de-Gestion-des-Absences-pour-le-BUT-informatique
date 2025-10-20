@@ -89,7 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
 
 <a href="https://ent.uphf.fr/uPortal/f/Accueil/normal/render.uP"><img src="https://ent.uphf.fr/uphf/images/ent-logo.svg" alt="Logo de l'IUT"></a>
-
 <!-- TabBar ici ! -->
 <ul>
     <a class="pages" href="../../tableauDeBordRespAbsences.php"><li>Tableau de bord des absences</li></a>
@@ -97,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <a class="pages" href="../../HistoriqueResp.php"><li>Historique</li></a>
     <a class="pages" href="../../CompteResp.html"><li>Compte</li></a>
 </ul>
-
 <!-- Notification ici ! -->
 <?php
 if ($titre != "" && $description != "") {
@@ -109,7 +107,6 @@ if ($titre != "" && $description != "") {
 EOL;
 }
 ?>
-
 <!-- Titre -->
 <h1><u>Liste des absences à traiter : </u></h1>
 
