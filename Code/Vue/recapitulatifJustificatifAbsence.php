@@ -40,7 +40,10 @@ $data = $_SESSION['formData'];
     <br>
     <div id="but">
         <button id="back" onclick="history.back()">⬅️ Retour</button>
-        <button id="send"> envoyer justificatif ➡️</button>
+        <!-- Formulaire pour envoyer les données -->
+        <form action="insererJustiAbsence.php" method="post">
+            <button type="submit" id="send">Envoyer justificatif ➡️</button>
+        </form>
     </div>
 </div>
 </body>

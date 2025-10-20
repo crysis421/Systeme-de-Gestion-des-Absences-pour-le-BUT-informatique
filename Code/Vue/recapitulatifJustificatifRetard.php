@@ -43,7 +43,10 @@ $data = $_SESSION['formDataRetard'];
     <br>
     <div id="but">
         <button id="back"  onclick="history.back()">⬅️ Retour</button>
-        <button id="send"> envoyer le justificatif</button>
+        <!-- Formulaire pour envoyer les données -->
+        <form action="insertJustificatif.php" method="post">
+            <button type="submit" id="send">Envoyer justificatif ➡️</button>
+        </form>
     </div>
 </div>
 </body>

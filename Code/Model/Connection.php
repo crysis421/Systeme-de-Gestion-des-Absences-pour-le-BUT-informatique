@@ -10,7 +10,7 @@ try {
     $conn1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     echo "connected <br>";
-    $req2 = $conn1->prepare("select * from Utilisateur;");
+    $req2 = $conn1->prepare("select * from Absence;");
     $req2->execute();
     $r = $req2->fetchAll(PDO::FETCH_ASSOC);
     foreach($r as $row){
