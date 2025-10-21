@@ -22,7 +22,7 @@ class NewJustificatif
 
     ///insert dans justificatif les donnees saisis par l'etudiant et creer un nv traitementJustificatif pour la cause mais en valeur par defaut pour le reste
 
-    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null, ?string $cheminFichier = null): int|false
+    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null): int|false
     {
 
 
@@ -40,14 +40,6 @@ class NewJustificatif
                 throw new Exception("Impossible de créer l'entrée dans la table justificatif.");
             }
 
-            //nsérer le fichier justificatif
-            if ($cheminFichier !== null) {
-                $sqlFichier = "INSERT INTO fichierjustificatif (pathjustificatif, idjustificatif) VALUES (:path, :idjustificatif)";
-                $stmtFichier = $this->conn->prepare($sqlFichier);
-                $stmtFichier->bindValue(':path', $cheminFichier, PDO::PARAM_STR);
-                $stmtFichier->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
-                $stmtFichier->execute();
-            }
 
             //  Lier l'absence et le justificatif
             $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
@@ -65,7 +57,7 @@ class NewJustificatif
             $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
             $stmtTraitement->execute();
 
-            return $idJustificatif;
+            return 0;
 
         } catch (Exception $e) {
             return false;

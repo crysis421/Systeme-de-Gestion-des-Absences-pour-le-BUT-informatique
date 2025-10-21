@@ -2,12 +2,16 @@
 
 use Model\NewJustificatif;
 
+
 session_start();
 
 
 
+$data = $_SESSION['formData'];
+
+echo $data['nom2'];
+
 require_once '../Model/NewJustificatif.php';
-require '../Vue/formulaireAbsence.php';
 
 //$idAbsence = filter_input(INPUT_POST, 'id_absence', FILTER_VALIDATE_INT);
 //$cause = htmlspecialchars($_POST['motif']);
@@ -31,16 +35,12 @@ $cause = 'malade';
 /// On regarde si un fichier a été soumis et s'il n'y a pas eu d'erreur
 if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] === UPLOAD_ERR_OK) {
 
-    $uploadDir = 'uploads/justificatifs/';
-
     $fileInfo = pathinfo($_FILES['justificatif']['name']);
     $extension = $fileInfo['extension'];
     $extensionsAutorisees = ['jpg', 'jpeg', 'png', 'pdf'];
 
     if (in_array(strtolower($extension), $extensionsAutorisees)) {
         $nomFichierUnique = $idUtilisateur . '_' . $idAbsence . '_' . time() . '.' . $extension;
-        $cheminFichierUploade = $uploadDir . $nomFichierUnique;
-
 
     }
 }
@@ -53,7 +53,6 @@ try {
         $idUtilisateur,
         $cause,
         $commentaire,
-        $cheminFichierUploade
     );
 
 } catch (PDOException $e) {
