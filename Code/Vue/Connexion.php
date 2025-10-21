@@ -1,13 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
 <link rel="stylesheet" href="../CSS/connect.css">
 
 <body>
 <header>
-    <?php require_once("menuHorizontalEtu.html"); ?>
+    <?php require_once("menuHorizontal.html"); ?>
 </header>
 <main>
     <h1>Connection à un compte</h1>
     <div id="container">
-
         <form id="form" action="" method="post">
             <label for="Email">
                 Entrer votre adresse mail : <input type="email" name="email" placeholder="adresse mail" required>
@@ -27,8 +28,7 @@
     <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
 </footer>
 </body>
-
-
+</html>
 
 
 
