@@ -22,6 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
 
 $justificatifs = array_slice($justificatifs, 0, 10);
 
+$justificatifsDemande = $model->getJustificatifsDemande();
+$justificatifsDemande = array_slice($justificatifsDemande, 0, 10);
+
 $titre = "";
 $description = "";
 
@@ -39,14 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $titre = "Accepté !";
         $description = $motif;
 
-
-        //$model->updateDecision($IDElement, 0, 'accepte', $motif);
-
-        /*
-         * Change dans la base de données :
-         *   - EnAttente : False
-         *   - Reponse : Accepté
-         */
+        $model->traiterJustificatif($IDElement, 'accepte', false, '', $motif);
     }
 
     if ($choix == "refuse"){
@@ -56,11 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $description = substr($refus,0,10) . "...";
         }
 
-        /*
-         * Change dans la base de données :
-         *   - EnAttente : False
-         *   - Reponse : Refusée
-         */
+        $model->traiterJustificatif($IDElement, 'refuse', false, $refus);
     }
 
     if ($choix == "demande"){
@@ -70,21 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $description = substr($demande,0,10) . "...";
         }
 
-        /*
-         * Changements:
-         *  - EnAttente : False
-         *  - Reponse : enAttente
-         */
+        $model->traiterJustificatif($IDElement, 'enAttente', false, $demande);
     }
 
 }
-
-
-
-$model->traiterJustificatif(3796, 'refuse', false, 'JE DETESTE');
-$merde = $model->CHECKSIENATTENTE(3796);
-
-print_r($merde);
 
 ?>
 
@@ -176,8 +157,7 @@ EOL;
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a></b><br>
-
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></b></a><br>
                     <div class="description-element">
                         <small><?= htmlspecialchars($justif['matiere']) ?></small>
                         <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
@@ -257,6 +237,57 @@ EOL;
         </div>
     <?php endforeach; ?>
 </div>
+
+
+<h1>Justificatifs redemandés</h1>
+<!-- Liste des absences ici ! -->
+<div class="liste-absence-demandes">
+    <?php foreach ($justificatifsDemande as $justif):
+        $id = $justif['idjustificatif'];
+        $commentaire = $justif['commentaire_justificatif'] != '' ? $justif['commentaire_justificatif'] : $justif['cause'];
+        ?>
+        <div class="element">
+            <details>
+                <summary class="top-layer">
+                    <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></b></a><br>
+                    <div class="description-element">
+                        <small><?= htmlspecialchars($justif['matiere']) ?></small>
+                        <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                    </div>
+
+                    <div class="ligne"></div>
+                </summary>
+
+                <div class="details">
+                    <div class="justificatif-viewer">
+                        <details>
+                            <summary>
+                                <a class="justificatif-texte">Justificatif</a>
+                                <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
+                            </summary>
+
+                            <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
+                            <label for="zoom<?= $id ?>" class="zoom-button"></label>
+
+                            <label for="zoom<?= $id ?>" class="justificatif-close">
+                                <img src="/Image/close.png" alt="Fermer le justificatif">
+                            </label>
+
+                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
+                            <br>
+
+                            <div class="fondu-noir"></div>
+                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
+                        </details>
+                    </div>
+
+                </div>
+            </details>
+        </div>
+    <?php endforeach; ?>
+</div>
+
 
 </body>
 </html>

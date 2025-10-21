@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['formData'])) {
-    header("Location: formulaireAbsent.php");
-    exit();
-}
+
 
 $data = $_SESSION['formData'];
 ?>
@@ -41,7 +38,7 @@ $data = $_SESSION['formData'];
     <div id="but">
         <button id="back" onclick="history.back()">⬅️ Retour</button>
         <!-- Formulaire pour envoyer les données -->
-        <form action="insererJustiAbsence.php" method="post">
+        <form action="../Presentation/SoumettreJustificatif" method="post">
             <button type="submit" id="send">Envoyer justificatif ➡️</button>
         </form>
     </div>
