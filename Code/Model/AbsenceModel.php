@@ -12,6 +12,10 @@ class AbsenceModel
         $this->conn = $database->getConnection();
     }
 
+    public function __destruct(){
+        $this->conn = null;
+    }
+
     public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
     {
         $update = $this->conn->prepare("

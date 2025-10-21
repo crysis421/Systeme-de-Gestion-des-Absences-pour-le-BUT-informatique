@@ -1,4 +1,7 @@
 <?php
+
+echo '<link rel="stylesheet" href="../Vue/tableauDeBordResponsable.css">';
+
 if(empty($result)){
     echo "Aucune absence n’a été enregistrée à votre nom pour la journée du ".$_SESSION['jour'].date_format($_SESSION['date'],'  F');
 }else{
