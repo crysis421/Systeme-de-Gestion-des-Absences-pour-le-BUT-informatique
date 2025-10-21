@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 // Vérifie que les données existent
@@ -7,45 +8,22 @@ if (!isset($_SESSION['formData'])) {
 }
 
 $data = $_SESSION['formData'];
-
 // Inclure la classe Database
-require_once '../Model/Database.php';
+require_once '../Model/AbsenceModel.php';
 
-$db = new Database();
-$conn = $db->getConnection();
 
-if (!$conn) {
-    die("Erreur de connexion à la base de données.");
-}
+// Récupération des données du formulaire
+$dateDebut = $data["datedebut"];
+$heureDebut = $data["heuredebut"];
+$dateFin  = $data["datefin"];
+$heureFin  = $data["heurefin"];
 
-// ======================
-// Requête UPDATE sécurisée
-// ======================
-// Enumstatut : valeur directement dans la requête pour PostgreSQL
-$sql = "UPDATE Absence
-        SET statut = 'refus'::statut_absence,
-            estRetard = false
-        WHERE idSeance = :idSeance AND idEtudiant = :idEtudiant";
+// Création d’une instance du modèle
+$a = new AbsenceModel();
 
-$stmt = $conn->prepare($sql);
+// Appel de la méthode
+$a->justifierAbsence($dateDebut);
 
-try {
-    // Exécution avec les identifiants
-    $stmt->execute([
-        ':idSeance' => 1,
-        ':idEtudiant' => 42049956
-    ]);
-
-    echo "<h2>Absence mise à jour avec succès ✅</h2>";
-    echo "<a href='formulaireAbsence.php'>Retour au formulaire</a>";
-
-    // Supprimer les données de session pour éviter double envoi
-    unset($_SESSION['formData']);
-
-} catch (PDOException $e) {
-    echo "Erreur lors de la mise à jour : " . $e->getMessage();
-}
 ?>
 
 
-42049956

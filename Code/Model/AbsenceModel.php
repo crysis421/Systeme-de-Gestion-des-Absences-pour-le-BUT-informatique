@@ -306,5 +306,36 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function justifierAbsence($dateDebut)
+    {
+        if (!$this->conn) {
+            echo "❌ Connexion non établie<br>";
+            return false;
+        }
+
+        try {
+            $sql = "UPDATE Absence a
+                SET statut = 'valide'
+                FROM Seance s
+                WHERE a.idSeance = s.idSeance
+                  AND s.date >= :dateDebut";
+
+            $stmt = $this->conn->prepare($sql);
+
+            // Liaison du paramètre date
+            $stmt->bindParam(':dateDebut', $dateDebut);
+
+            $stmt->execute();
+
+            $count = $stmt->rowCount();
+            echo "✅ $count absences mises à jour à partir du $dateDebut avec le statut 'en attente'<br>";
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "❌ Erreur SQL : " . $e->getMessage();
+            return false;
+        }
+    }
 }
 

@@ -10,7 +10,22 @@ try {
     $conn1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     echo "connected <br>";
-    $req2 = $conn1->prepare("select * from Absence;");
+    $req2 = $conn1->prepare("SELECT 
+    s.idSeance,
+    s.date,
+    s.heureDebut,
+    s.typeSeance,
+    s.enseignement,
+    s.salle,
+    s.prof,
+    s.duree,
+    a.idAbsence,
+    a.idEtudiant,
+    a.statut,
+    a.estRetard
+FROM Absence a
+INNER JOIN Seance s ON a.idSeance = s.idSeance
+ORDER BY s.date DESC, s.heureDebut DESC, a.idEtudiant;");
     $req2->execute();
     $r = $req2->fetchAll(PDO::FETCH_ASSOC);
     foreach($r as $row){
@@ -22,3 +37,4 @@ try {
 }catch (PDOException $e){
     echo $e->getMessage();
 }
+?>
