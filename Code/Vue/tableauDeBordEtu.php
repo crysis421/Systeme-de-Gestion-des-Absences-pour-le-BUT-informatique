@@ -63,15 +63,18 @@ require "../Presentation/getAbsenceDunJour.php";
 
                     <td <?php if (date('m-d') == date_format($date, 'm-01')) {
                         echo 'id=adj';
-                    }?>>
-                        <form action="tableauDeBordEtu.php" method="post">
-                            <input type="submit" value="01" name="jour" id="jour" <?php if ($couleurDuMois['1'] == 'valide') {
-                        echo 'class=valide';
-                    } else if ($couleurDuMois['1'] == 'refus') {
-                        echo 'class=refus';
-                    } else if ($couleurDuMois['1'] == 'enAttente') {
-                        echo 'class=enAttente';
                     } ?>>
+                        <form action="tableauDeBordEtu.php" method="post">
+                            <input type="submit" value="01<?php if($interrogationDuMois['1']) {
+                                echo ' ⚠';
+                            } ?> " name="jour"
+                                   id="jour" <?php if ($couleurDuMois['1'] == 'valide') {
+                                echo 'class=valide';
+                            } else if ($couleurDuMois['1'] == 'refus') {
+                                echo 'class=refus';
+                            } else if ($couleurDuMois['1'] == 'enAttente') {
+                                echo 'class=enAttente';
+                            }?>>
                         </form>
                     </td>
                     <?php
@@ -91,14 +94,18 @@ require "../Presentation/getAbsenceDunJour.php";
                     <td <?php if (date('m-d') == date_format($date, 'm-d')) {
                         echo 'id=adj';
                     } ?>>
-                        <form action="tableauDeBordEtu.php" method="post" >
-                            <input type="submit" value=" <?php echo date_format($date, "d") ?> " name="jour" id="jour" <?php if ($couleurDuMois[$date->format('j')] == 'valide') {
+                        <form action="tableauDeBordEtu.php" method="post">
+                            <input type="submit" value=" <?php echo date_format($date, "d"); if ($interrogationDuMois[$date->format('j')]) {
+                                echo ' ⚠';
+                            }?> " name="jour"
+                                   id="jour" <?php if ($couleurDuMois[$date->format('j')] == 'valide') {
                                 echo 'class=valide';
                             } else if ($couleurDuMois[$date->format('j')] == 'refus') {
                                 echo 'class=refus';
                             } else if ($couleurDuMois[$date->format('j')] == 'enAttente') {
                                 echo 'class=enAttente';
-                            } ?> >
+                            }
+                             ?> >
                         </form>
                     </td>
                     <?php

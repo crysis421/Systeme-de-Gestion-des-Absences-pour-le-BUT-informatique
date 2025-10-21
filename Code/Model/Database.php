@@ -1,4 +1,7 @@
 <?php
+namespace Model;
+use PDO;
+use PDOException;
 
 ini_set('memory_limit', '512M');
 ini_set('max_execution_time', 600);
@@ -9,8 +12,6 @@ class Database
     private $username = "iutinfo474";
     private $password = "uwkXBERC";
     private $conn;
-
-
 
     public function getConnection()
     {
@@ -27,6 +28,24 @@ class Database
         }
         return $this->conn;
     }
+
+    public function getConnectionContinu()
+    {
+        $this->conn = null;
+        try {
+            $dsn = "pgsql:host={$this->host};";
+            $this->conn = new PDO($dsn, $this->username, $this->password);
+
+            $this->conn->setAttribute(PDO::ATTR_PERSISTENT, TRUE);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            echo "Erreur de connexion : " . $e->getMessage();
+        }
+        return $this->conn;
+    }
+
 
 }
 
