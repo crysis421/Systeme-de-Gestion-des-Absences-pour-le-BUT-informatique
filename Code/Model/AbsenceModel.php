@@ -16,7 +16,7 @@ class AbsenceModel
         $this->conn = null;
     }
 
-    public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
+    public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = '', $cause = '')
     {
         $update = $this->conn->prepare("
                 UPDATE traitementjustificatif
@@ -29,31 +29,20 @@ class AbsenceModel
             ");
 
         $update->bindValue(':id', $idJustificatif, PDO::PARAM_INT);
-        $update->bindValue(':attente', (bool)$attente, PDO::PARAM_BOOL);
+        $update->bindValue(':attente', (bool)$attente, PDO::PARAM_INT);
         $update->bindValue(':reponse', $decision);
         $update->bindValue(':commentaire', $commentaire);
         $update->bindValue(':cause', $cause);
         $update->execute();
-
-        //PAR PITIE POURQUOI CA NE VEUT PAS SUPDATE LE ATTENTE JE CABLE
-//        $sql = "
-//            UPDATE traitementjustificatif
-//            SET attente = FALSE
-//            WHERE idJustificatif = :idJustificatif
-//        ";
-//
-//        $stmt = $this->conn->prepare($sql);
-//        $stmt->execute(['idJustificatif' => $idJustificatif]);
     }
 
 
-    public function CHECKSIENATTENTE($idJustificatif) {
+    public function CHECKSIENATTENTE() {
         $sql = "
-            SELECT attente FROM traitementjustificatif WHERE idJustificatif = :idJustificatif
+            SELECT attente FROM traitementjustificatif WHERE attente = TRUE and reponse = 'enAttente'
         ";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':idJustificatif', $idJustificatif, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -156,7 +145,42 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = TRUE 
+            WHERE t.attente = TRUE and reponse = 'enAttente'
+        ORDER BY j.dateSoumission DESC
+    ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getJustificatifsDemande() {
+        $sql = "
+        SELECT 
+            j.idJustificatif,
+            j.datesoumission,
+            j.commentaire_absence AS commentaire_justificatif,
+            j.verrouille,
+            u.idUtilisateur,
+            u.nom AS nom_etudiant,
+            u.prenom AS prenom_etudiant,
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS typeSeance,
+            c.matiere,
+            t.idTraitement,
+            t.attente,
+            t.reponse,
+            t.commentaire_validation AS commentaire_traitement
+        FROM justificatif j
+        JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+            WHERE t.attente = FALSE and reponse = 'enAttente'
         ORDER BY j.dateSoumission DESC
     ";
         $stmt = $this->conn->prepare($sql);
