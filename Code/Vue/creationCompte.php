@@ -1,3 +1,35 @@
+<?php
+$nom = $prenom = $prenom2 = $email = $motdepasse = $role = $groupe = $datedenaissance = $diplome = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $prenom2= $_POST['prenom2'];
+    $email = $_POST['email'];
+    $motdepasse = $_POST['motdepasse'];
+    $role = $_POST['role'];
+    $groupe = $_POST['groupe'];
+    $datedenaissance = $_POST['datedenaissance'];
+    $diplome = $_POST['diplome'];
+
+    session_start();
+    $_SESSION['formData'] = [
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'prenom2' => $prenom2,
+        'email' => $email,
+        'motdepasse' => $motdepasse,
+        'role' => $role,
+        'groupe' => $groupe,
+        'datedenaissance' => $datedenaissance,
+        'diplome' => $diplome,
+    ];
+    header("Location: recapitulatifJustificatifAbsence.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="../CSS/connect.css">
@@ -32,7 +64,7 @@
             </label> <br>
             <br>
             <label for="Naissance">
-                Entrer votre date de naissance : <input type="text" name="naissance" placeholder="date de naissance">
+                Entrer votre date de naissance : <input type="text" name="datedenaissance" placeholder="date de naissance">
             </label> <br>
             <br>
             <label for="Diplome">
@@ -44,11 +76,11 @@
             </label> <br>
             <br>
             <label for="Mot de passe">
-                Entrer votre mot de passe :* <input type="password" name="motDePasse" placeholder="mot de passe" required>
+                Entrer votre mot de passe :* <input type="password" name="motdepasse" placeholder="mot de passe" required>
             </label> <br>
             <a style="font-family: Arial; color: yellow; font-size: 11px;">Tous les champs marqués avec * sont obligatoires</a><br>
             <br>
-            <input   type="submit" value="Créez votre compte">
+            <input type="submit" value="Créez votre compte">
         </form>
     </div>
 </main>
