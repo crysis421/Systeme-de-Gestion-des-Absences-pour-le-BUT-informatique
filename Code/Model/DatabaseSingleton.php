@@ -13,11 +13,12 @@ class DatabaseSingleton
 
     private static $instance; //Instance unique
     private $pdo = null;
+
     //Les id de connexion
     private $host = "iutinfo-sgbd.uphf.fr";
     private $username = "iutinfo474";
     private $password = "uwkXBERC";
-    private function __construct()
+    private function __construct() //En private, car on ne veut qu'une seule instance de l'objet
     {
         try {
             $dsn = "pgsql:host=$this->host;";
@@ -32,7 +33,7 @@ class DatabaseSingleton
         }
     }
 
-    // Point d'accès global à l'instance unique
+    //Point d'accès global à l'instance unique
     public static function getInstance() {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -40,7 +41,7 @@ class DatabaseSingleton
         return self::$instance;
     }
 
-    // Accès à l'objet PDO
+    //Accès à l'objet PDO
     public function getConnection() {
         return $this->pdo;
     }

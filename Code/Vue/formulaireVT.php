@@ -1,5 +1,8 @@
-<?php require 'menuHorizontalEtu.html'; ?>
+<?php
+require 'menuHorizontalEtu.html';
+?>
 <head>
+    <link rel="stylesheet" href="../CSS/formulaireVT.css">
     <title>Ajout d'un FichierVT</title>
 </head>
 
@@ -9,5 +12,12 @@
     <label for="VT">
         FichierVT <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv" required >
     </label> <br>
-    <input type="submit" value="Upload Image" name="submit" >
+    <input type="submit" value="Télécharger le fichier VT" name="submit" >
 </form>
+<main>
+
+</main>
+
+<footer id="footer">
+    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
+</footer>

@@ -71,3 +71,23 @@ td{
     font-size: 2vw;
     background-color: white;
 }
+#footer {
+    background-color: #2781a8;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    color: #333;
+    margin: 0;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex-grow: 1; /* Occupe tout l'espace disponible */
+}

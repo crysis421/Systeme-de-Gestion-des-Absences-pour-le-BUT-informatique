@@ -6,8 +6,7 @@ if(empty($result)){
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
 }else{
     ?>
-    <br>
-    <br>
+    <main><br><br></main>
     <form action="formulaireAbsence.php" method="get">
         <input type="submit" value="Justifier les absences du <?php echo $_SESSION['jour']."/".date_format($_SESSION['date'],"m/y");?>" id="jour" name="date">
     </form>
@@ -34,5 +33,8 @@ if(empty($result)){
                 </summary>
             </details>
         </div>
-    <?php endforeach;
-}
+    <?php endforeach;}?>
+<main><br></main>
+<footer id="footer">
+    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
+</footer>
