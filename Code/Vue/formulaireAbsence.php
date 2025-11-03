@@ -56,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </header>
 <main>
     <div id="titre">
-        <h1>Justificatif de retard </h1>
+        <h1>Justificatif d'Absence </h1>
         <p id="important"><b>Important : </b>Ce formulaire doit être entièrement complété.</p>
 
     </div>
@@ -132,4 +132,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </footer>
 </body>
 </html>
+
+
 
