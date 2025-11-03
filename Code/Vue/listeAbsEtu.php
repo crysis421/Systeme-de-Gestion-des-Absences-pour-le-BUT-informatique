@@ -1,13 +1,19 @@
 <?php
-
+//Ce fichier est là pour le Tableau De Bord de l'étudiant
 echo '<link rel="stylesheet" href="tableauDeBordResponsable.css">';
 
 if(empty($result)){
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
 }else{
+    ?>
+    <br>
+    <br>
+    <form action="formulaireAbsence.php" method="get">
+        <input type="submit" value="Justifier les absences du <?php echo $_SESSION['jour']."/".date_format($_SESSION['date'],"m/y");?>" id="jour" name="date">
+    </form>
+
+    <?php
     foreach ($result as $absence):
-        $id = 1;
-        $commentaire= 'salut';
         ?>
         <div class="element" <?php if ($absence['statut']=="valide"){echo 'id=valide';}else if($absence['statut']=="report"){echo 'id=enAttente';}else{echo 'id=refus';} ?>>
             <details>
@@ -24,7 +30,6 @@ if(empty($result)){
                         <small id="intero">⚠ Interrogation</small>
                         <?php
                     }?>
-
                     <div class="ligne" id="maLigne"></div>
                 </summary>
             </details>

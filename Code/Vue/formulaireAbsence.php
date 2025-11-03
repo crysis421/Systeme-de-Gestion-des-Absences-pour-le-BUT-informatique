@@ -87,13 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </label><br><br>
 
             <label for="">Du :
-                <input type="date" name="datedebut" value="<?php echo htmlspecialchars($datedebut); ?>" required>
-                de <input type="time" name="heuredebut" value="<?php echo htmlspecialchars($heuredebut); ?>" required>
+                <input type="date" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{echo htmlspecialchars($datedebut);} ?>" required>
+                de <input type="time" name="heuredebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("08:00");} else{echo htmlspecialchars($heuredebut);} ?>" required>
             </label><br><br>
 
             <label>Au :
-                <input type="date" name="fin" value="<?php echo htmlspecialchars($fin); ?>" required>
-                à <input type="time" name="heurefin1" value="<?php echo htmlspecialchars($heurefin1); ?>" required>
+                <input type="date" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{ echo htmlspecialchars($fin);} ?>" required>
+                à <input type="time" name="heurefin1" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("19:00");} else{ echo htmlspecialchars($heurefin1);} ?>" required>
             </label><br><br>
 
             <label>Motif :

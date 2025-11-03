@@ -67,3 +67,7 @@ td{
     color: #000000;
     font-size: 25px;
 }
+#date{
+    font-size: 2vw;
+    background-color: white;
+}
