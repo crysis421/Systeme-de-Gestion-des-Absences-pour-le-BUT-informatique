@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <form action="recapitulatifJustificatifAbsence.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
             <label for="nom2">L'étudiant :
