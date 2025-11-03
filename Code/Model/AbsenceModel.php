@@ -283,5 +283,26 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getNombyUser($id) {
+        $sql = "SELECT nom FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['nom'] : null; // retourne juste le nom ou null si non trouvé
+    }
+
+    public function getPrenomByUser($id) {
+        $sql = "SELECT prenom FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['prenom'] : null; // retourne juste le prénom ou null si non trouvé
+    }
+
 }
 

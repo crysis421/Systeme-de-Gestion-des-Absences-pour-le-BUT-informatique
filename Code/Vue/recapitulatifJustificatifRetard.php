@@ -1,6 +1,6 @@
 
 <?php
-
+require_once '../Model/AbsenceModel.php';
 session_start();
 if (!isset($_SESSION['formDataRetard'])) {
     header("Location: formulaireRetard.php");
@@ -8,6 +8,11 @@ if (!isset($_SESSION['formDataRetard'])) {
 }
 
 $data = $_SESSION['formDataRetard'];
+$id = $data['id'];
+$user = new AbsenceModel();
+$nom = $user->getNombyUser($id);
+$prenom = $user->getPrenomByUser($id);
+
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +24,12 @@ $data = $_SESSION['formDataRetard'];
 </head>
 <body>
 <h1 style="text-align: center">
-    Récapitulatif du justificatif de retard de <?php echo htmlspecialchars($data['nom']); ?>
+    Récapitulatif du justificatif de retard de <?php echo htmlspecialchars($prenom); ?> <?php echo htmlspecialchars($nom); ?>
 </h1>
 
 <div id="main" >
     <div id="info">
-        <p>L'étudiant <b id="gras1"> <?php echo htmlspecialchars($data['prenom']); ?> <?php echo htmlspecialchars($data['nom']); ?></b> est arrivé en retard le
+        <p>L'étudiant d'identifiant <b id="gras1"> <?php echo htmlspecialchars($data['id']); ?></b> est arrivé en retard le
             <b id="gras1"><?php echo htmlspecialchars($data['dateretard']); ?></b> à <b id="gras1"><?php echo htmlspecialchars($data['heurearrive']); ?></b>
             au cours de <b id="gras1"><?php echo htmlspecialchars($data['cours']); ?></b>.</p>
 
@@ -39,12 +44,11 @@ $data = $_SESSION['formDataRetard'];
         </p>
     </div>
     <br>
-    <br>
-    <br>
+
     <div id="but">
         <button id="back"  onclick="history.back()">⬅️ Retour</button>
         <!-- Formulaire pour envoyer les données -->
-        <form action="insertJustificatif.php" method="post">
+        <form action="" method="post">
             <button type="submit" id="send">Envoyer justificatif ➡️</button>
         </form>
     </div>

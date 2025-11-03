@@ -1,11 +1,11 @@
 <?php
 // Initialisation des variables
-$nom2 = $datedebut = $heuredebut = $fin = $heurefin1 = $motif = $commentaire = $signer = "";
+$id = $datedebut = $heuredebut = $fin = $heurefin1 = $motif = $commentaire = $signer = "";
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $nom2 = $_POST['nom2'];
+    $id = $_POST['id'];
     $datedebut = $_POST['datedebut'];
     $heuredebut = $_POST['heuredebut'];
     $fin = $_POST['fin'];
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Passer les données via session
         session_start();
         $_SESSION['formData'] = [
-                'nom2' => $nom2,
+                'id' => $id,
                 'datedebut' => $datedebut,
                 'heuredebut' => $heuredebut,
                 'fin' => $fin,
@@ -82,8 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
-            <label for="nom2">L'étudiant :
-                <input type="text" name="nom2" id="nom2" placeholder="Entrer votre nom complet" value="<?php echo htmlspecialchars($nom2); ?>" required>
+            <label for="id">L'étudiant :
+                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($id); ?>" required>
             </label><br><br>
 
             <label for="">Du :

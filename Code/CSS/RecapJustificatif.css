@@ -1,36 +1,32 @@
 #main {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    min-height: 500px;
     width: 900px;
     margin: 100px auto 0;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 30px;
     background-color: #ede9e9;
     border-radius: 10px;
     max-width: 800px;
-    border-style: solid;
-    border-color: #093057;
-    border-width: 10px;
+    border: 10px solid #093057;
+    box-sizing: border-box;
+    margin-bottom: 100px;
 }
-#info{
-    justify-content: center;
-    padding-bottom: 180px;
-
+#info {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
 }
 body {
     background-color: #ffffff;
     margin: 0;
 }
 
-#but{
+#but {
     display: flex;
     justify-content: center;
-    gap: 450px;
+    gap: 200px;
     margin-top: 20px;
-    padding-bottom: 20px;
+
 }
 
 #gras{
@@ -50,6 +46,7 @@ p{
     border-color: #093057;
     padding: 5px 10px;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 b{
     font-size: 10px;
@@ -62,4 +59,5 @@ b{
     border-color: #093057;
     padding: 5px 10px;
     font-size: 20px;
+    margin-bottom: 20px;
 }
