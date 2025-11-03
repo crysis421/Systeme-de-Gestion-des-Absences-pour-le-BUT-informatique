@@ -1,9 +1,9 @@
 <?php
 
-echo '<link rel="stylesheet" href="../Vue/tableauDeBordResponsable.css">';
+echo '<link rel="stylesheet" href="tableauDeBordResponsable.css">';
 
 if(empty($result)){
-    echo "Aucune absence n’a été enregistrée à votre nom pour la journée du ".$_SESSION['jour'].date_format($_SESSION['date'],'  F');
+    echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
 }else{
     foreach ($result as $absence):
         $id = 1;
@@ -19,6 +19,11 @@ if(empty($result)){
                         <small><?= htmlspecialchars($absence['enseignement']) ?></small>
                         <br><small><?= htmlspecialchars(date($_SESSION["jour"].'/ '.$_SESSION['mois'])) ?> à <?= htmlspecialchars($absence['heuredebut']) ?></small>
                     </div>
+                    <?php if ($absence['controle']){
+                        ?>
+                        <small id="intero">⚠ Interrogation</small>
+                        <?php
+                    }?>
 
                     <div class="ligne" id="maLigne"></div>
                 </summary>

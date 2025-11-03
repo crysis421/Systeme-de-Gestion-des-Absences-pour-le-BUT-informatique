@@ -1,6 +1,7 @@
 p{
     text-align: center;
     font-size: 35px;
+    font-family:"Latin Modern Math";
 }
 
 table{
@@ -9,7 +10,8 @@ table{
     border-width: 2px;
     text-align: center;
     margin: 0 auto;
-    font-size: 30px
+    font-size: 30px;
+    font-family:"Latin Modern Math";
 }
 th{
     width: 8vw;
@@ -31,7 +33,7 @@ td{
     height: 100%;
     width: 100%;
     background-color: white;
-    font-size: 30px
+    font-size: 30px;
 }
 #jour:hover{
     background-color: #0280af;
@@ -59,4 +61,9 @@ td{
 }
 .enAttente{
     color: #ffc049;
+}
+
+#intero{
+    color: #000000;
+    font-size: 25px;
 }

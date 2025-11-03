@@ -1,4 +1,7 @@
 <?php
+namespace Model;
+use PDO;
+use PDOException;
 
 ini_set('memory_limit', '512M');
 ini_set('max_execution_time', 600);
@@ -9,8 +12,6 @@ class Database
     private $username = "iutinfo474";
     private $password = "uwkXBERC";
     private $conn;
-
-
 
     public function getConnection()
     {
@@ -27,6 +28,7 @@ class Database
         }
         return $this->conn;
     }
+
 
 }
 

@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+if (!isset($_SESSION['formData'])) {
+    header("Location: formulaireAbsence.php");
+    exit();
+}
 
 $data = $_SESSION['formData'];
 ?>
