@@ -1,0 +1,123 @@
+/* === Style global === */
+body {
+    width: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+}
+
+/* === Titres === */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* === Zone du haut : Profil à gauche / Données à droite === */
+#haut {
+    display: flex;
+    justify-content: space-between; /* espace entre gauche et droite */
+    align-items: flex-start;
+    background-color: #f1eeee;
+    padding: 20px;
+    border: 1px solid #00aa00;
+    border-radius: 6px;
+    width: 90%;
+    margin: 0 auto;
+    flex-wrap: wrap; /* permet l’adaptation sur petits écrans */
+}
+
+/* === Bloc profil === */
+#profil {
+    background-color: #c1b276;
+    padding: 20px;
+    border: 1px solid #00aa00;
+    border-radius: 6px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+#profil img {
+    width: 120px;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+#profil button {
+    display: block;
+    margin: 15px auto 0 auto;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#profil button:hover {
+    background-color: #0056b3;
+}
+
+/* === Bloc données === */
+#donnees {
+    background-color: #587a58;
+    color: white;
+    padding: 20px;
+    border: 1px solid #00aa00;
+    border-radius: 6px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+/* === Section du bas centrée === */
+#bas {
+    display: flex;
+    justify-content: center;
+    background-color: #f1eeee;
+    padding: 20px;
+    border: 1px solid #00aa00;
+    border-radius: 6px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+/* === Graphique (centré) === */
+#graphe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #b0bfc5;
+    border: 1px solid #00aa00;
+    border-radius: 6px;
+    height: 400px;
+    width: 60%;
+    text-align: center;
+}
+
+/* === Pied de page === */
+#footer {
+    background-color: #2781a8;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    color: black;
+    box-sizing: border-box;
+}
+
+/* === Responsive (tablette & mobile) === */
+@media (max-width: 900px) {
+    #haut {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #profil, #donnees {
+        width: 90%;
+        margin-bottom: 15px;
+    }
+
+    #graphe {
+        width: 90%;
+    }
+}
