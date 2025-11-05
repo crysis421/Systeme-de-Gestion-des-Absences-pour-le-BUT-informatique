@@ -1,4 +1,5 @@
 <?php
+
 //Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
 session_start();
 require "menuHorizontalEtu.html";
@@ -110,18 +111,11 @@ require "../Presentation/getAbsenceDunJour.php";
                     <td <?php if (date('m-d') == date_format($date, 'm-d')) {
                         echo 'id=adj';
                     } ?>>
+                        <div <?php echo 'class='.$couleurDuMois[$date->format('j')];?>></div>
                         <form action="tableauDeBordEtu.php" method="post">
                             <input type="submit" value=" <?php echo date_format($date, "d"); if ($interrogationDuMois[$date->format('j')]) {
                                 echo ' ⚠';
-                            }?> " name="jour"
-                                   id="jour" <?php if ($couleurDuMois[$date->format('j')] == 'valide') {
-                                echo 'class=valide';
-                            } else if ($couleurDuMois[$date->format('j')] == 'refus') {
-                                echo 'class=refus';
-                            } else if ($couleurDuMois[$date->format('j')] == 'enAttente') {
-                                echo 'class=enAttente';
-                            }
-                             ?> >
+                            }?> " name="jour" id="jour">
                         </form>
                     </td>
                     <?php
@@ -135,4 +129,5 @@ require "../Presentation/getAbsenceDunJour.php";
 <?php
 
 require 'listeAbsEtu.php';
+
 

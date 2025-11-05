@@ -18,6 +18,8 @@ li {
     outline-color: black;
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
+    font-family:"Latin Modern Math";
+    font-size: 120%;
 }
 
 li:hover{
