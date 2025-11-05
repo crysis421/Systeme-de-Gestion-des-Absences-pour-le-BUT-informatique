@@ -60,7 +60,6 @@ h1 {
     width: 100px;   /* largeur */
     height: 100px;  /* hauteur */
     display: block; /* Force le comportement de bloc (utile pour centrer) */
-    margin: 0 auto; /* Centre horizontalement l'image */
 }
 
 
@@ -104,9 +103,11 @@ summary {
     padding: 10px; /* Espace intérieur */
     display: flex; /* Permet de placer le titre et l’image sur la même ligne */
     align-items: center; /* Aligne verticalement les éléments */
-    justify-content: space-between; /* Espace entre le texte et l’image */
+    justify-content: left; /* Espace entre le texte et l’image */
     background-color: rgba(0,0,0,0.05); /* Fond légèrement grisé */
     border-radius: 6px; /* Coins arrondis */
+    gap: 10px;
+
 }
 
 /* Effet au survol du titre */
@@ -126,7 +127,7 @@ details p, details img, details button {
 
 /* Effet visuel lorsque la section <details> est ouverte */
 details[open] summary {
-    background-color: #f1eeee; /* Fond légèrement vert */
+    background-color: rgba(0,0,0,0.1); /* Fond légèrement vert */
     transition: background-color 0.3s; /* Animation douce de la couleur */
 }
 
