@@ -19,8 +19,9 @@
         <div id="profil">
             <details>
                 <summary>
-                    <h1>Profil</h1>
+
                     <img src="/Image/profil-removebg-preview.png" alt="Photo de profil">
+                    <h1>Profil</h1>
                 </summary>
 
                 <p><b>Nom :</b> Dupont</p>
@@ -30,7 +31,7 @@
                 <p><b>Formation :</b> BUT Informatique</p>
                 <p><b>Groupe :</b> A2</p>
                 <details id="modifier">
-                    <summary id="modif">
+                    <summary id="modif" style="height: 20px; width: 270px">
                         <b>Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
@@ -44,7 +45,7 @@
                         </label> <br>
                         <a style="font-family: Arial; color: red; font-size: 11px;">Tous les champs marqués avec * sont obligatoires.</a><br>
                         <br>
-                        <input   type="submit" value="valider">
+                        <input   type="submit" value="valider" style=" background-color:#007BFF; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; border-radius: 10px;">
                     </form>
                 </details>
             </details>
@@ -53,11 +54,11 @@
         <div id="donnees">
             <details>
                 <summary>
-                    <h1>Mes absences</h1>
+                    <h1>Mes absences 📅</h1>
                 </summary>
                 <p><b>Nombre d'absences :</b> 5</p>
-                <p><b>Justifiées :</b> 3</p>
-                <p><b>Non justifiées :</b> 2</p>
+                <p><b>Justifiées ✅:</b> 3</p>
+                <p><b>Non justifiées 🚫:</b> 2</p>
             </details>
         </div>
     <!-- Section du bas, centrée -->

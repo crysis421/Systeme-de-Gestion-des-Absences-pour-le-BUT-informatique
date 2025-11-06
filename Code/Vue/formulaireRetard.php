@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
 
         <label for="preciserAutre">Commentaires :</label><br>
-        <textarea id="preciserAutre" name="preciserAutre"  style="width: 700px; height: 100px;"><?php echo htmlspecialchars($preciserAutre) ?></textarea>
+        <textarea id="preciserAutre" name="preciserAutre"  style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;" ><?php echo htmlspecialchars($preciserAutre) ?></textarea>
         <br>
         <br>
         <label for="justificatif">Inserer un justificatif :</label><br>
