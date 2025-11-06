@@ -38,7 +38,7 @@ $data = $_SESSION['formData'];
     <div id="but">
         <button id="back" onclick="history.back()">⬅️ Retour</button>
         <!-- Formulaire pour envoyer les données -->
-        <form action="../Presentation/SoumettreJustificatif" method="post">
+        <form action="../Presentation/SoumettreJustificatif.php" method="post">
             <button type="submit" id="send">Envoyer justificatif ➡️</button>
         </form>
     </div>

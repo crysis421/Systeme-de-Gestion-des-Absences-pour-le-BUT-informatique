@@ -6,7 +6,6 @@ use PDOException;
 
 require_once "Database.php";
 use Database;
-use mysql_xdevapi\Exception;
 use PDO;
 
 class NewJustificatif
@@ -37,9 +36,9 @@ class NewJustificatif
             $idJustificatif = (int)$this->conn->lastInsertId();
 
             if (!$idJustificatif) {
-                throw new Exception("Impossible de créer l'entrée dans la table justificatif.");
+                echo "y a pas l id justificatif bb";
+                exit;
             }
-
 
             //  Lier l'absence et le justificatif
             $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
@@ -49,7 +48,7 @@ class NewJustificatif
             $stmtAbsenceEtJustificatif->execute();
 
             // Créer l'entrée initiale dans traitementjustificatif
-            // On initialise le traitement avec la cause en attente et la date actuelle pour pouvoir mettre la cause rentrée par l'étudiant etc, le reste est null/default value
+            /// On commence le traitement avec la cause en attente et la date actuelle pour pouvoir mettre la cause rentrée par l'étudiant etc, le reste est null/default value
             $sqlTraitement = "INSERT INTO traitementjustificatif (attente, date, cause, idjustificatif, idutilisateur) VALUES (1, NOW(), :cause, :idjustificatif, :idutilisateur)";
             $stmtTraitement = $this->conn->prepare($sqlTraitement);
             $stmtTraitement->bindValue(':cause', $cause, PDO::PARAM_STR);
@@ -59,10 +58,12 @@ class NewJustificatif
 
             return 0;
 
-        } catch (Exception $e) {
+        } catch (PDOException $e) {
             return false;
         }
     }
+
+
 
 
 

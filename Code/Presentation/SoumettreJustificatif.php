@@ -1,71 +1,71 @@
 <?php
-
 use Model\NewJustificatif;
-
 
 session_start();
 
 
 
 $data = $_SESSION['formData'];
+$idUtilisateur = (int)$_SESSION['id_utilisateur']; // L'ID de l'étudiant
 
-echo $data['nom2'];
+
+$idAbsence = 4963; // guys jsp comment recup l'id de labsence encore mais ca arrive
+
+$cause = htmlspecialchars($data['motif']); /// jdois encore fix un ou deux truc sur ca
+$commentaire = htmlspecialchars($data['commentaire']);
+
+
+$cheminFichierUploade = $data['justificatif'];
 
 require_once '../Model/NewJustificatif.php';
-
-//$idAbsence = filter_input(INPUT_POST, 'id_absence', FILTER_VALIDATE_INT);
-//$cause = htmlspecialchars($_POST['motif']);
-//$commentaire = htmlspecialchars($_POST['commentaire']);
-//$idUtilisateur = $_SESSION['id_utilisateur']; // L'ID de l'étudiant qui soumet
-
-$cheminFichierUploade = null; // Par defaut aucun fichier
-
-
-///pour test pas touche !!!
-
-$commentaire = 'a';
-$idUtilisateur = 3;
-$motif = 'malade';
-$idAbsence = '10';
-$cause = 'malade';
-
-
-
-
-/// On regarde si un fichier a été soumis et s'il n'y a pas eu d'erreur
-if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] === UPLOAD_ERR_OK) {
-
-    $fileInfo = pathinfo($_FILES['justificatif']['name']);
-    $extension = $fileInfo['extension'];
-    $extensionsAutorisees = ['jpg', 'jpeg', 'png', 'pdf'];
-
-    if (in_array(strtolower($extension), $extensionsAutorisees)) {
-        $nomFichierUnique = $idUtilisateur . '_' . $idAbsence . '_' . time() . '.' . $extension;
-
-    }
-}
 
 try {
     $justificatifManager = new NewJustificatif();
 
+
+    ///hop la on creer un justificatif bb
     $succes = $justificatifManager->creerJustificatif(
-        $idAbsence,
-        $idUtilisateur,
-        $cause,
-        $commentaire,
+            $idAbsence,
+            $idUtilisateur,
+            $cause,
+            $commentaire
     );
 
-} catch (PDOException $e) {
+    if ($succes !== false) {
+        echo "Justificatif envoyé avec succès !";
+        unset($_SESSION['formData']);
 
+    } else {
+        echo "Erreur lors de la création du justificatif (littéralement)";
+    }
+
+} catch (PDOException $e) {
+    echo "Erreur de base de données : " . $e->getMessage();
     exit;
 }
 
 
-
 ?>
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/formulaire.css" />
+    <title>Formulaire d'absence</title>
+</head>
+<body>
+<header>
+    <?php require '../Vue/menuHorizontalEtu.html'; ?>
+</header>
+<main>
+    <div id="titre">
 
+        <a href="https://pokemondb.net/pokedex/reshiram"><img src="https://img.pokemondb.net/sprites/black-white/normal/reshiram.png" alt="Reshiram"></a>
 
-<p>allo</p>
-<a href="https://pokemondb.net/pokedex/reshiram"><img src="https://img.pokemondb.net/sprites/black-white/normal/reshiram.png" alt="Reshiram"></a>
+    </div>
 
+</main>
+</body>
+
+</html>
