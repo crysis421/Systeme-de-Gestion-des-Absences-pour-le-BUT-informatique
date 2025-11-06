@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDe
                 <p><b>Justifiées ✅:</b> .............<?php echo htmlspecialchars($valide); ?></p>
                 <p><b>Non justifiées 🚫:</b> .............<?php echo htmlspecialchars($nonjustife); ?></p>
                 <p><b>Non validé 🚫:</b> .............<?php echo htmlspecialchars($refus); ?></p>
-                <p><b>Autres justificatifs demandés 🚫:</b> .............<?php echo htmlspecialchars($autre); ?></p>
+                <p><b>Autres justificatifs demandés 🔔:</b> .............<?php echo htmlspecialchars($autre); ?></p>
             </details>
         </div>
     <!-- Section du bas, centrée -->
