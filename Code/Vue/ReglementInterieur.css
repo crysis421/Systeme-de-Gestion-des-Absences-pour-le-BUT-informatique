@@ -1,0 +1,94 @@
+/* Style pour simuler une liste non ordonnée (ul) */
+.list-container {
+    padding-left: 20px; /* Indentation pour la "liste" */
+    margin-bottom: 1em;
+}
+
+/* Style pour simuler un élément de liste (li) */
+.list-item {
+    position: relative;
+    padding-left: 25px; /* Espace pour la puce */
+    margin-bottom: 0.5em;
+}
+
+/* Création de la puce (le point) */
+.list-item::before {
+    content: '•'; /* Caractère de la puce */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+    line-height: 1;
+    color: #333;
+}
+
+/* Style pour une liste imbriquée */
+.nested-list {
+    padding-left: 20px;
+    margin-top: 0.5em;
+}
+
+/* Puces différentes pour les listes imbriquées (facultatif) */
+.nested-list .list-item::before {
+    content: '◦'; /* Puce en forme de cercle vide */
+}
+
+.nested-list .nested-list .list-item::before {
+    content: '▪'; /* Puce en forme de carré */
+}
+
+
+/* Style pour simuler une liste ordonnée (ol) */
+.ordered-list-container {
+    padding-left: 20px;
+    margin-bottom: 1em;
+    counter-reset: ordered-list-counter; /* Initialise un compteur */
+}
+
+/* Style pour simuler un élément de liste ordonnée (li) */
+.ordered-list-item {
+    position: relative;
+    padding-left: 30px; /* Espace pour le numéro */
+    margin-bottom: 0.5em;
+}
+
+/* Création du numéro */
+.ordered-list-item::before {
+    counter-increment: ordered-list-counter; /* Incrémente le compteur */
+    content: counter(ordered-list-counter) ". "; /* Affiche le compteur suivi d'un point */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styles généraux que vous aviez probablement déjà */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+article {
+    margin-bottom: 2em;
+}
+
+h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 1.5em;
+}
+
+.note {
+    font-style: italic;
+    color: #555;
+    margin-left: 20px;
+}
+
+blockquote.serment {
+    border-left: 4px solid #ccc;
+    padding-left: 20px;
+    margin-left: 20px;
+    font-style: italic;
+}
