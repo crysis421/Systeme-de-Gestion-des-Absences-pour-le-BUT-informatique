@@ -5,7 +5,7 @@ namespace Model;
 use PDOException;
 
 require_once "Database.php";
-use Database;
+
 use PDO;
 
 class NewJustificatif

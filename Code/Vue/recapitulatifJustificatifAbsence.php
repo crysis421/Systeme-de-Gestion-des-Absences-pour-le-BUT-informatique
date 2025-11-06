@@ -9,7 +9,7 @@ if (!isset($_SESSION['formData'])) {
 
 $data = $_SESSION['formData'];
 
-$id = $data['id'];
+$id = $_SESSION['id_utilisateur'];
 $user = new AbsenceModel();
 $nom = $user->getNombyUser($id);
 $prenom = $user->getPrenomByUser($id);

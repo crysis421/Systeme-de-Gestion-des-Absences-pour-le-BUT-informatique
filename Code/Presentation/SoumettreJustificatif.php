@@ -38,6 +38,7 @@ try {
     } else {
         echo "Erreur lors de la création du justificatif (littéralement)";
     }
+    ///c'est la ou ca me clcllclsckdlsmc,dkscs merde
 
 } catch (PDOException $e) {
     echo "Erreur de base de données : " . $e->getMessage();
