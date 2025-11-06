@@ -2,7 +2,7 @@
 require_once '../Model/AbsenceModel.php';
 session_start(); // toujours au début avant d'utiliser $_SESSION
 
-$id = 67038774;
+$id = 42049956;
 $user = new AbsenceModel();
 
 $nom = $user->getNombyUser($id);
@@ -15,6 +15,11 @@ $groupe = $user->getgroupeByUser($id);
 $mdp = $user->getmotdepasseByUser($id);
 $diplome = $user->getdiplomeByUser($id);
 
+$total = $user->getNombreAbsencesTotal($id);
+$valide = $user->getNombreAbsencesJustifie($id);
+$refus = $user->getNombreAbsencesRefus($id);
+$autre = $user->getNombreAbsencesEnAttente($id);
+$nonjustife =$total - $valide;
 // Gestion du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDePasse'])) {
     $_SESSION['modif'] = [
@@ -61,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDe
                 <p><b>Email :</b> <?php echo htmlspecialchars($email); ?></p>
                 <p><b>Formation :</b> <?php echo htmlspecialchars($diplome); ?> </p>
                 <p><b>Groupe :</b> <?php echo htmlspecialchars($groupe); ?></p>
-                <b>Mot de passe :</b><p > <?php echo htmlspecialchars($mdp); ?></p>
+                <b>Mot de passe :</b><br><textarea style="margin-left:10px; max-height: 50px; max-width: 600px ; min-height: 20px; min-width: 100px width: 100%; height: 100%;" > <?php echo htmlspecialchars($mdp); ?></textarea></p>
 
                 <details id="modifier">
                     <summary id="modif" style="height: 20px; width: 270px">
@@ -90,9 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDe
                 <summary style="background-color: #bce6f6">
                     <h1>Mes absences 📅</h1>
                 </summary>
-                <p><b>Nombre d'absences :</b> 5</p>
-                <p><b>Justifiées ✅:</b> 3</p>
-                <p><b>Non justifiées 🚫:</b> 2</p>
+                <p><b>Nombre d'absences :</b> .............<?php echo htmlspecialchars($total); ?></p>
+                <p><b>Justifiées ✅:</b> .............<?php echo htmlspecialchars($valide); ?></p>
+                <p><b>Non justifiées 🚫:</b> .............<?php echo htmlspecialchars($nonjustife); ?></p>
+                <p><b>Non validé 🚫:</b> .............<?php echo htmlspecialchars($refus); ?></p>
+                <p><b>Autres justificatifs demandés 🚫:</b> .............<?php echo htmlspecialchars($autre); ?></p>
             </details>
         </div>
     <!-- Section du bas, centrée -->
