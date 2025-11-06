@@ -433,7 +433,68 @@ class AbsenceModel
         return "Le mot de passe a bien été modifié";
     }
 
+    public function getNombreAbsencesTotal($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant ";
 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
+    public function getNombreAbsencesJustifie($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant 
+              AND statut = 'valide'";  // absences justifiées
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
+    public function getNombreAbsencesRefus($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant 
+              AND statut = 'refus'";  // ou le statut que tu considères comme absence
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
+    public function getNombreAbsencesEnAttente($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant 
+              AND statut = 'report'";  // ou le statut que tu considères comme absence
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
 
 }
 

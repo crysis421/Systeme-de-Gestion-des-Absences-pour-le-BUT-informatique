@@ -171,6 +171,17 @@ select {
     box-sizing: border-box;
 }
 
+textarea{
+    width: 100%;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #ede9e9;
+    border-color: #00aa00;
+    box-sizing: border-box;
+}
+
 #form{
     width:90%;
     padding-top: 20px;
