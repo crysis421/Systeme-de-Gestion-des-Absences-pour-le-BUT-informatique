@@ -28,7 +28,10 @@ if (empty($result)) {
                     <ol id="maListe">
                         <img src="../Image/profil_default.png" alt="avatar"
                              class="image-utilisateur" height="24">
-                        <a class="nom"><b><?= htmlspecialchars($absence['prof']) ?></a><br>
+                        <a class="nom"><b><?= htmlspecialchars($absence['prof']);
+                            if ($absence['estretard']) {
+                                echo " (Retard)";
+                            } ?></a><br>
                         <li class="elementDeListe">
                             <div <?php echo 'class=' . $absence['statut']; ?> id="liste"></div>
                         </li>

@@ -6,10 +6,10 @@ session_start();
 
 
 $data = $_SESSION['formData'];
-$idUtilisateur = (int)$_SESSION['id_utilisateur']; // L'ID de l'étudiant
+$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
 
 
-$idAbsence = 4963; // guys jsp comment recup l'id de labsence encore mais ca arrive
+$idAbsence = 3149; // guys jsp comment recup l'id de labsence encore mais ca arrive
 
 $cause = htmlspecialchars($data['motif']); /// jdois encore fix un ou deux truc sur ca
 $commentaire = htmlspecialchars($data['commentaire']);
@@ -19,9 +19,14 @@ $cheminFichierUploade = $data['justificatif'];
 
 require_once '../Model/NewJustificatif.php';
 
+foreach ($data as $key => $value) {
+    echo $key . " => " . $value . "<br>";
+}
+echo "<br>";
+echo $idUtilisateur . "<br>";
+
 try {
     $justificatifManager = new NewJustificatif();
-
 
     ///hop la on creer un justificatif bb
     $succes = $justificatifManager->creerJustificatif(
@@ -30,7 +35,7 @@ try {
             $cause,
             $commentaire
     );
-
+    echo $succes;
     if ($succes !== false) {
         echo "Justificatif envoyé avec succès !";
         unset($_SESSION['formData']);

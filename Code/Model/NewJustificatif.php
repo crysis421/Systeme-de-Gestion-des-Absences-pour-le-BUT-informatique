@@ -27,10 +27,11 @@ class NewJustificatif
 
         try {
             ///Insérer dans la table Justificatif
-            $sqlJustificatif = "INSERT INTO justificatif (datesoumission, commentaire_absence, verrouille) VALUES (NOW(), :commentaire, 0)";
+            $sqlJustificatif = "INSERT INTO justificatif (idjustificatif,datesoumission, commentaire_absence, verrouille) VALUES (default ,NOW(), :commentaire, false)";
             $stmtJustificatif = $this->conn->prepare($sqlJustificatif);
             $stmtJustificatif->bindValue(':commentaire', $commentaire, PDO::PARAM_STR);
             $stmtJustificatif->execute();
+
 
             // Récupérer l'ID du justificatif qui vient d'être créé
             $idJustificatif = (int)$this->conn->lastInsertId();
@@ -40,23 +41,26 @@ class NewJustificatif
                 exit;
             }
 
+
             //  Lier l'absence et le justificatif
+
             $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
             $stmtAbsenceEtJustificatif = $this->conn->prepare($sqlAbsenceEtJustificatif);
             $stmtAbsenceEtJustificatif->bindValue(':idabsence', $idAbsence, PDO::PARAM_INT);
             $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
             $stmtAbsenceEtJustificatif->execute();
 
+
             // Créer l'entrée initiale dans traitementjustificatif
             /// On commence le traitement avec la cause en attente et la date actuelle pour pouvoir mettre la cause rentrée par l'étudiant etc, le reste est null/default value
-            $sqlTraitement = "INSERT INTO traitementjustificatif (attente, date, cause, idjustificatif, idutilisateur) VALUES (1, NOW(), :cause, :idjustificatif, :idutilisateur)";
+            $sqlTraitement = "INSERT INTO traitementjustificatif (idtraitement,attente, date, cause, idjustificatif, idutilisateur) VALUES (default,true, NOW(), :cause, :idjustificatif, :idutilisateur)";
             $stmtTraitement = $this->conn->prepare($sqlTraitement);
             $stmtTraitement->bindValue(':cause', $cause, PDO::PARAM_STR);
             $stmtTraitement->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
             $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
             $stmtTraitement->execute();
 
-            return 0;
+            return true;
 
         } catch (PDOException $e) {
             return false;

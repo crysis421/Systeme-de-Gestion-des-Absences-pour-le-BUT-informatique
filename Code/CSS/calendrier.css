@@ -1,10 +1,15 @@
 /* Style global */
 html, body {
     height: 100%;
+    width: 99.8%;
     margin: 0;
     font-family: "Poppins", "Segoe UI", sans-serif;
     background-color: #f6f8fa;
     color: #333;
+}
+body{
+    display: flex;
+    flex-direction: column;
 }
 
 /* Titres et texte */
@@ -153,15 +158,6 @@ td {
     margin-top: auto;
 }
 
-html, body {
-    height: 100%;
-    width: 99.8%;
-    margin: 0;
-}
-body {
-    display: flex;
-    flex-direction: column;
-}
 #maLigne{
     width: 100%;
 }
@@ -174,6 +170,10 @@ body {
     outline-style: none;
     animation: none;
     font-size: 2vw;
+}
+.elementDeListe:hover{
+    animation: none;
+    background-color: #ECECEC;
 }
 .description-element{
     font-size: 1.2vw;
