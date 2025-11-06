@@ -33,14 +33,7 @@ try {
             $cause,
             $commentaire
     );
-    echo $succes;
-    if ($succes !== false) {
-        echo "Justificatif envoyé avec succès !";
-        unset($_SESSION['formData']);
 
-    } else {
-        echo "Erreur lors de la création du justificatif (littéralement)";
-    }
     ///c'est la ou ca me clcllclsckdlsmc,dkscs merde
 
 } catch (PDOException $e) {
@@ -64,6 +57,14 @@ try {
 </header>
 <main>
     <div id="titre">
+        <?php if ($succes !== false) {
+            echo "Justificatif envoyé avec succès !";
+            unset($_SESSION['formData']);
+
+        } else {
+            echo "Erreur lors de la création du justificatif (littéralement)";
+        }
+        ?>
 
         <a href="https://pokemondb.net/pokedex/reshiram"><img src="https://img.pokemondb.net/sprites/black-white/normal/reshiram.png" alt="Reshiram"></a>
 
