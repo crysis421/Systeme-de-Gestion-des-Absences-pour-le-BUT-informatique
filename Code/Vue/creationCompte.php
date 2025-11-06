@@ -1,4 +1,12 @@
 <?php
+
+
+require_once "../Model/ComptesModel.php";
+$model = new ComptesModel();
+
+$compte = $model->addCompte();
+
+
 $nom = $prenom = $prenom2 = $email = $motdepasse = $role = $groupe = $datedenaissance = $diplome = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

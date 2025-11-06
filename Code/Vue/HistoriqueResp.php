@@ -44,23 +44,23 @@ $justificatifs = $model->getJustificatifsHistorique();
                         <br/>
                         <?php if ($justif['reponse']=='accepte') {
                             $imageClass="histo-accepter";
-                            $imageSource="jolan/assemblage/AccepterSymbole.png";
+                            $imageSource="/Image/AccepterSymbole.png";
                             echo "Justificatif Accepté  <img class=$imageClass src=$imageSource> <br/><br/>";
                             echo "Motif de l'absence : ",$justif['cause'];
                         } else if ($justif['reponse']=='refuse') {
                             $imageClass="histo-refuser";
-                            $imageSource="jolan/assemblage/RefuserSymbole.png";
+                            $imageSource="/Image/RefuserSymbole.png";
                             echo "Justificatif Refusé <img class=$imageClass src=$imageSource>";
                         } else {
                             $imageClass="histo-demander";
-                            $imageSource="jolan/assemblage/DemanderSymbole.png";
+                            $imageSource="/Image/DemanderSymbole.png";
                             echo "Justificatif nécessitant plus de précisions <img class=$imageClass src=$imageSource>";
                         } ?>
                         <br/><br/>
                         <a class="justificatif-texte">Détails</a>
                         <details>
                             <summary>
-                                <img class="oeil" src="jolan/assemblage/oeil.png" alt="Voir le justificatif">
+                                <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
                                 <br/><br/>
                             </summary>
 
@@ -68,7 +68,7 @@ $justificatifs = $model->getJustificatifsHistorique();
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
-                                <img src="jolan/assemblage/close.png" alt="Fermer le justificatif">
+                                <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
                             <div class="fondu-noir"></div>

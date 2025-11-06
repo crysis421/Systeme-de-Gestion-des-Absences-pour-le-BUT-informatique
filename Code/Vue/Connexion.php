@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $motdepasse = $_POST['motdepasse'];
 
-    if ($motdepasse == $motdepasse && $email == $email) {
+    if ($email != "" && $motdepasse != "") {
         session_start();
         $_SESSION['formData'] = [
                 'email' => $email,

@@ -18,7 +18,7 @@ class ComptesModel
         $this->conn = null;
     }
 
-    public function creationCompte()
+    public function addCompte()
     {
         $sql = "INSERT INTO utilisateur VALUES(:nom,:prenom,:prenom2,:email,:motdepasse,:role,:groupe,:datenaissance,:diplome)";
         $stmt = $this->conn->prepare($sql);
@@ -32,94 +32,28 @@ class ComptesModel
         $stmt->bindParam(':datenaissance', $_POST['datenaissance']);
         $stmt->bindParam(':diplome', $_POST['diplome']);
         $stmt->execute();
+        return "Le compte a été créé correctement.";
     }
 
-    public function connexionCompte(){
-        $sql = "SELECT email, motdepasse FROM utilisateur WHERE email = :email AND motdepasse = :motdepasse";
-        $result = $this->conn = query($sql);
-
-        if ($result->num_rows = 1) {
-            if ($result.["role"] == "prof") {
-                header("Location:../Vue/CompteResp.php");
+    public function connectCompte(){
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        if (!$_POST['email']=="" && !$_POST['pass']==""){
+            $req = $this->conn->prepare("SELECT * FROM utilisateur WHERE email=$email and motdepasse=$pass");
+            $rep=$req->fetch();
+            if ($rep['id']!=false) {
+                echo "Vous êtes connecté";
+                sleep(5);
+                if ($rep['role']=="prof") {
+                    header("location:CompteEtu.php?id=$rep[id]");
+                }
+                else {
+                    header("location:CompteResp.html?id=$rep[id]");
+                }
+            } else {
+                echo "Email ou mot de passe incorrect";
             }
-            elseif ($result.["role"] == "eleve") {
-                header("Location:Eleve.php");
-            }
-        } else {
-            echo "Identifiant ou mot de passe incorrect";
         }
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-        if (!$_POST['name']=="" && !$_POST['pass']=="")
-        {
-            $name = $_POST['name'];
-            $pass = md5($_POST['pass']);
-
-            $connect = pg_connect("host=localhost port=5432 dbname=madbpg user=postgres password=****");
-
-            echo $name;
-
-            $sql= "SELECT rolpassword FROM pg_roles WHERE rolname like '$name';";
-            echo $sql."</br>";
-            $sql = pg_query($this->conn, $sql);
-
-            $row = pg_fetch_array($sql, 0, PGSQL_NUM);
-
-
-            $pass_sql= $row[0];
-            if ($pass_sql == $pass)
-            {if (!$_POST['name']=="" && !$_POST['pass']=="")
-        {
-            $name = $_POST['name'];
-            $pass = md5($_POST['pass']);
-
-            $connect = pg_connect("host=localhost port=5432 dbname=madbpg user=postgres password=****");
-
-            echo $name;
-
-            $sql= "SELECT rolpassword FROM pg_roles WHERE rolname like '$name';";
-            echo $sql."</br>";
-            if (!$_POST['name']=="" && !$_POST['pass']=="")
-        {
-            $name = $_POST['name'];
-            $pass = md5($_POST['pass']);
-
-            $connect = pg_connect("host=localhost port=5432 dbname=madbpg user=postgres password=****");
-
-            echo $name;
-
-            $sql= "SELECT rolpassword FROM pg_roles WHERE rolname like '$name';";
-            echo $sql."</br>";
-            $sql = pg_query($this->conn, $sql);
-
-            $row = pg_fetch_array($sql, 0, PGSQL_NUM);
-
-
-            $pass_sql= $row[0];
-            if ($pass_sql == $pass)
-            $sql = pg_query($this->conn, $sql);
-
-            $row = pg_fetch_array($sql, 0, PGSQL_NUM);
-
-                $_SESSION['name'] = $name;
-                $msg = 'Vous êtes correctement indentifié';
-            }
-            else {
-                $msg = 'Votre nom ou votre mot de passe est incorrect<br />';
-                $msg .= '<a href="/Vue/Connexion.php">Retour</a>';}
-
-            pg_close();}
-        else {
-            $msg = 'Votre nom et/ou votre mot de passe n\'est pas renseigné<br />';
-            $msg .= '<a href="/index.php">Retour</a>';}
-
-        //on affiche le resultat
-        echo $msg;
-
     }
 
     public function modifieCompte(){
