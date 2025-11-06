@@ -6,8 +6,8 @@ session_start();
 
 
 $data = $_SESSION['formData'];
-$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
-
+///$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
+$idUtilisateur = 42049956;
 
 $idAbsence = 3149; // guys jsp comment recup l'id de labsence encore mais ca arrive
 
@@ -19,11 +19,9 @@ $cheminFichierUploade = $data['justificatif'];
 
 require_once '../Model/NewJustificatif.php';
 
-foreach ($data as $key => $value) {
-    echo $key . " => " . $value . "<br>";
-}
-echo "<br>";
-echo $idUtilisateur . "<br>";
+
+
+
 
 try {
     $justificatifManager = new NewJustificatif();
