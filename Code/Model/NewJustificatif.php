@@ -67,6 +67,26 @@ class NewJustificatif
         }
     }
 
+    public function getIdAbsenceParSeance($datedebut, $heuredebut, $idEtudiant) {
+        $sql = "SELECT a.idAbsence
+            FROM absence AS a
+            JOIN seance AS s ON a.idseance = s.idseance
+            WHERE a.idEtudiant = :idEtudiant
+              AND s.date = :datedebut
+              AND s.heuredebut = :heuredebut";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":idEtudiant", $idEtudiant, PDO::PARAM_INT);
+        $stmt->bindParam(":datedebut", $datedebut);
+        $stmt->bindParam(":heuredebut", $heuredebut);
+
+        $stmt->execute();
+
+        $idAbsence = $stmt->fetchColumn();
+
+        return $idAbsence;
+    }
+
 
 
 

@@ -9,7 +9,9 @@ $data = $_SESSION['formData'];
 ///$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
 $idUtilisateur = 42049956;
 
-$idAbsence = 3149; // guys jsp comment recup l'id de labsence encore mais ca arrive
+$idAbsManager = new  NewJustificatif();
+
+$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],($data['heuredebut']),($idUtilisateur)); // guys jsp comment recup l'id de labsence encore mais ca arrive
 
 $cause = htmlspecialchars($data['motif']); /// jdois encore fix un ou deux truc sur ca
 $commentaire = htmlspecialchars($data['commentaire']);
@@ -21,7 +23,10 @@ require_once '../Model/NewJustificatif.php';
 
 
 
-
+foreach ($data as $key => $value) {
+    echo $key . " => " . $value . "<br>";
+    echo "ok";
+}
 
 try {
     $justificatifManager = new NewJustificatif();
@@ -33,6 +38,8 @@ try {
             $cause,
             $commentaire
     );
+
+
 
     ///c'est la ou ca me clcllclsckdlsmc,dkscs merde
 
