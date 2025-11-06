@@ -1,0 +1,202 @@
+/* === Structure de base pour coller le footer en bas === */
+html, body {
+    height: 100%; /* Le document occupe toute la hauteur de la fenêtre */
+    margin: 0; /* Supprime toute marge du navigateur */
+}
+
+body {
+    display: flex; /* Active le modèle flexbox pour empiler verticalement */
+    flex-direction: column; /* Les éléments s’empilent : header → main → footer */
+    min-height: 100vh; /* Garantit que le body couvre toute la hauteur visible */
+    width: 100%; /* Le corps occupe toute la largeur de la fenêtre */
+    font-family: Arial, sans-serif; /* Définit la police de base */
+    background-color: #fafafa; /* Couleur de fond générale */
+}
+
+/* === Le contenu principal s’étend pour pousser le footer vers le bas === */
+main {
+    flex: 1; /* Prend tout l’espace disponible entre header et footer */
+}
+
+/* === Style du titre principal === */
+h1 {
+    text-align: center; /* Centre le texte horizontalement */
+    color: #333; /* Couleur du texte (gris foncé) */
+    margin-top: 20px; /* Espace au-dessus du titre */
+}
+
+/* === Conteneur principal du haut : regroupe profil + données + graphe === */
+#haut {
+    display: flex; /* Active le modèle flexbox pour organiser les enfants horizontalement */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si l’espace est insuffisant */
+    justify-content: space-between; /* Crée un espace égal entre les éléments */
+    align-items: flex-start; /* Aligne les éléments en haut du conteneur */
+    background-color: #f1eeee; /* Couleur d’arrière-plan */
+    padding: 20px; /* Espace intérieur du conteneur */
+    border: 1px solid #00aa00; /* Bordure verte */
+    border-radius: 6px; /* Coins arrondis */
+    width: 80%; /* Largeur limitée à 90% de la page */
+    margin: 0 auto 30px auto; /* Centre horizontalement + espace en bas */
+    box-sizing: border-box; /* Inclut les bordures/paddings dans la largeur totale */
+    height: auto;
+}
+
+/* === Styles communs aux 3 blocs : profil, données, graphe === */
+#profil, #donnees, #graphe {
+    padding: 20px; /* Espace intérieur */
+    border: 1px solid #00aa00; /* Bordure verte */
+    border-radius: 6px; /* Coins arrondis */
+    box-sizing: border-box; /* Évite que le padding agrandisse la largeur */
+    margin-bottom: 20px; /* Espace entre les blocs (utile pour le responsive) */
+}
+
+/* === Bloc "Profil" === */
+#profil {
+    background-color: white; /* Fond beige/or */
+    width: 49%; /* Occupe environ la moitié du conteneur #haut */
+}
+
+/* Image du profil */
+#profil img {
+    width: 100px;   /* largeur */
+    height: 100px;  /* hauteur */
+    display: block; /* Force le comportement de bloc (utile pour centrer) */
+}
+
+
+/* === Bloc "Mes données" === */
+#donnees {
+    background-color: white; /* Fond vert/gris */
+    color: #3a2323; /* Texte en blanc */
+    width: 49%; /* Même largeur que #profil pour équilibre */
+}
+
+/* === Bloc "Graphe" (diagramme) === */
+#graphe {
+    background-color: white; /* Couleur gris-bleu clair */
+    border: 1px solid #00aa00; /* Bordure verte */
+    border-radius: 6px; /* Coins arrondis */
+    width: 49%; /* Prend toute la largeur sous les deux autres blocs */
+    text-align: center; /* Centre le texte et les images */
+}
+
+/* Image à l'intérieur du graphe */
+#graphe img {
+    max-width: 90%; /* Image ne dépasse jamais la largeur du bloc */
+    height: auto; /* Hauteur ajustée proportionnellement */
+    margin-top: 10px; /* Espace au-dessus de l’image */
+    border-radius: 6px; /* Coins arrondis sur l’image */
+}
+
+/* === Balises <details> et <summary> === */
+
+/* Conteneur <details> : chaque bloc déroulant */
+details {
+    margin-bottom: 15px; /* Espace sous chaque bloc */
+    border-radius: 6px; /* Coins arrondis */
+    overflow: hidden; /* Cache le contenu débordant (utile si animations) */
+}
+
+/* En-tête cliquable (<summary>) */
+summary {
+    cursor: pointer; /* Change le curseur pour indiquer que c’est cliquable */
+    font-weight: bold; /* Met le texte en gras */
+    padding: 10px; /* Espace intérieur */
+    display: flex; /* Permet de placer le titre et l’image sur la même ligne */
+    align-items: center; /* Aligne verticalement les éléments */
+    justify-content: left; /* Espace entre le texte et l’image */
+    background-color: rgba(0,0,0,0.05); /* Fond légèrement grisé */
+    border-radius: 6px; /* Coins arrondis */
+    gap: 10px;
+
+}
+
+/* Effet au survol du titre */
+summary:hover {
+    background-color: rgba(0,0,0,0.1); /* Assombrit légèrement au survol */
+}
+
+/* Supprime la flèche native du navigateur */
+summary::-webkit-details-marker {
+    display: none; /* Masque l’icône par défaut (Chrome/Safari) */
+}
+
+/* Style du contenu interne du <details> (paragraphes, images, boutons) */
+details p, details img, details button {
+    margin: 10px 0; /* Espacement vertical entre les éléments */
+}
+
+/* Effet visuel lorsque la section <details> est ouverte */
+details[open] summary {
+    background-color: rgba(0,0,0,0.1); /* Fond légèrement vert */
+    transition: background-color 0.3s; /* Animation douce de la couleur */
+}
+
+/* === Pied de page === */
+#footer {
+    background-color: #2781a8; /* Fond bleu */
+    text-align: center; /* Centre le texte */
+    padding: 15px; /* Espace intérieur */
+    width: 100%; /* S’étend sur toute la largeur de la page */
+    color: black; /* Couleur du texte */
+    box-sizing: border-box; /* Inclus bordure/padding dans la largeur */
+}
+
+/* === Mise en page responsive (pour tablette et mobile) === */
+@media (max-width: 900px) {
+    /* Le conteneur principal passe en colonne sur petit écran */
+    #haut {
+        flex-direction: column; /* Les blocs se superposent verticalement */
+        align-items: center; /* Centrage horizontal */
+    }
+
+    /* Chaque bloc occupe presque toute la largeur */
+    #profil, #donnees, #graphe {
+        width: 90%; /* Plus large sur petit écran */
+        margin-bottom: 15px; /* Espacement entre les blocs */
+    }
+}
+
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #ede9e9;
+    border-color: #00aa00;
+    box-sizing: border-box;
+}
+
+textarea{
+    width: 100%;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #ede9e9;
+    border-color: #00aa00;
+    box-sizing: border-box;
+}
+
+#form{
+    width:90%;
+    padding-top: 20px;
+}
+
+#modif{
+    display: block; /* Force le bloc pour centrer plus facilement */
+    margin: 15px auto 0 auto; /* Centre horizontalement et ajoute un espace au-dessus */
+    background-color: #007BFF; /* Bleu primaire */
+    color: white; /* Texte en blanc */
+    border: none; /* Supprime la bordure par défaut */
+    border-radius: 6px; /* Coins arrondis */
+    cursor: pointer; /* Curseur "main" au survol */
+}
+/* Effet au survol du bouton */
+#modif button:hover {
+    background-color: #0056b3; /* Change la couleur du bouton au survol */
+}

@@ -1,5 +1,6 @@
 <?php
 
+//Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
 session_start();
 require "menuHorizontalEtu.html";
 
@@ -8,6 +9,20 @@ echo '<link rel="stylesheet" href="../CSS/calendrier.css" />';
 $_SESSION['user'] = 42049956;
 
 $Y = date("Y");//On ne peut voir que notre année scolaire
+
+//Dictionnaire pour transformer les dates originalement anglais en francais
+$nomDesMois = [ "January" => "Janvier",
+        "February" => "Février",
+        "March" => "Mars",
+        "April" => "Avril",
+        "May" => "Mai",
+        "June" => "Juin",
+        "July" => "Juillet",
+        "August" => "Août",
+        "September" => "Septembre",
+        "October" => "Octobre",
+        "November" => "Novembre",
+        "December" => "Décembre"];
 
 if (!isset($_POST['mois'])) {
     $M = date("m");
@@ -32,6 +47,9 @@ $mois = date_format($_SESSION['date'], "m");
 require "../Presentation/getAbsenceDunJour.php";
 
 ?>
+<a href="ReglementInterieur.php">
+    <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
+</a>
     <form action="tableauDeBordEtu.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
@@ -39,7 +57,9 @@ require "../Presentation/getAbsenceDunJour.php";
         <input type="submit" value="OK" name="jour">
     </form>
 
-    <h1> <?php echo '<p>' . $_SESSION['date']->format("F - Y") . '</p>' ?> </h1>
+    <h1>
+        <?php echo '<p> ' . $nomDesMois[$_SESSION['date']->format("F")] . $_SESSION['date']->format(" - Y") . ' </p>' ?>
+    </h1>
     <table>
         <tr>
             <th>Lundi</th>
@@ -94,18 +114,11 @@ require "../Presentation/getAbsenceDunJour.php";
                     <td <?php if (date('m-d') == date_format($date, 'm-d')) {
                         echo 'id=adj';
                     } ?>>
+                        <div <?php echo 'class='.$couleurDuMois[$date->format('j')];?>></div>
                         <form action="tableauDeBordEtu.php" method="post">
                             <input type="submit" value=" <?php echo date_format($date, "d"); if ($interrogationDuMois[$date->format('j')]) {
                                 echo ' ⚠';
-                            }?> " name="jour"
-                                   id="jour" <?php if ($couleurDuMois[$date->format('j')] == 'valide') {
-                                echo 'class=valide';
-                            } else if ($couleurDuMois[$date->format('j')] == 'refus') {
-                                echo 'class=refus';
-                            } else if ($couleurDuMois[$date->format('j')] == 'enAttente') {
-                                echo 'class=enAttente';
-                            }
-                             ?> >
+                            }?> " name="jour" id="jour">
                         </form>
                     </td>
                     <?php
@@ -119,4 +132,3 @@ require "../Presentation/getAbsenceDunJour.php";
 <?php
 
 require 'listeAbsEtu.php';
-

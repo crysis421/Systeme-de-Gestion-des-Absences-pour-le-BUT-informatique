@@ -18,6 +18,8 @@ li {
     outline-color: black;
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
+    font-family:"Latin Modern Math";
+    font-size: 120%;
 }
 
 li:hover{
@@ -449,4 +451,47 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 .bouton-envoye:active {
     box-shadow: #d6d6e7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+.filtrage {
+    max-width: 300px;
+    margin: 20px;
+    padding: 5px;
+}
+
+.filtrage input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.75rem;
+    cursor: pointer;
+    accent-color: #2596be;
+}
+
+
+.bouton-filtrage {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    margin-top: 1.5rem;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.bouton-filtrage:hover {
+    background: #4338ca;
+}
+
+.bouton-filtrage:active {
+    background: #3730a3;
+}
+@media (max-width: 768px) {
+    .filtrage {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
 }

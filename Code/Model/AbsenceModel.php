@@ -131,6 +131,43 @@ class AbsenceModel
         return $result;
     }
 
+    public function getJustificatifsDemande()
+    {
+        $sql = "
+        SELECT 
+            j.idJustificatif,
+            j.datesoumission,
+            j.commentaire_absence AS commentaire_justificatif,
+            j.verrouille,
+            u.idUtilisateur,
+            u.nom AS nom_etudiant,
+            u.prenom AS prenom_etudiant,
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS typeSeance,
+            c.matiere,
+            t.idTraitement,
+            t.attente,
+            t.reponse,
+            t.commentaire_validation AS commentaire_traitement
+        FROM justificatif j
+        JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+            WHERE t.attente = FALSE and reponse = 'enAttente'
+        ORDER BY j.dateSoumission DESC
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getJustificatifsAttente() {
         $sql = "
         SELECT 
@@ -283,5 +320,181 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getNombyUser($id) {
+        $sql = "SELECT nom FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['nom'] : null; // retourne juste le nom ou null si non trouvé
+    }
+
+    public function getPrenomByUser($id) {
+        $sql = "SELECT prenom FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['prenom'] : null; // retourne juste le prénom ou null si non trouvé
+    }
+
+    public function getPrenom2ByUser($id)
+    {
+        $sql = "SELECT prenom2 FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['prenom2'] : null; // retourne le 2e prénom ou null si non trouvé
+    }
+
+    public function getEmailByUser($id)
+    {
+        $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getmotdepasseByUser($id)
+    {
+        $sql = "SELECT motDePasse FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['motdepasse'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getroleByUser($id)
+    {
+        $sql = "SELECT role FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['role'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getgroupeByUser($id)
+    {
+        $sql = "SELECT groupe FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['groupe'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getnaissanceByUser($id)
+    {
+        $sql = "SELECT dateDeNaissance FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['datedenaissance'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getdiplomeByUser($id)
+    {
+        $sql = "SELECT diplome FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['diplome'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function ModifierMDP($email, $mdp)
+    {
+        // Hash du mot de passe
+        $hashedMdp = password_hash($mdp, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE Utilisateur SET motDePasse = :mdp WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":mdp", $hashedMdp, PDO::PARAM_STR);
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return "Le mot de passe a bien été modifié";
+    }
+
+    public function getNombreAbsencesTotal($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
+    public function getNombreAbsencesJustifie($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant 
+              AND statut = 'valide'";  // absences justifiées
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
+    public function getNombreAbsencesRefus($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant 
+              AND statut = 'refus'";  // ou le statut que tu considères comme absence
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
+    public function getNombreAbsencesEnAttente($idEtudiant)
+    {
+        $sql = "SELECT COUNT(*) AS totalAbsences 
+            FROM Absence 
+            WHERE idEtudiant = :idEtudiant 
+              AND statut = 'report'";  // ou le statut que tu considères comme absence
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int)$result['totalabsences'] : 0;
+    }
+
 }
 

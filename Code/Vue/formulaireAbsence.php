@@ -1,11 +1,11 @@
 <?php
 // Initialisation des variables
-$nom2 = $datedebut = $heuredebut = $fin = $heurefin1 = $motif = $commentaire = $signer = "";
+$id = $datedebut = $heuredebut = $fin = $heurefin1 = $motif = $commentaire = $signer = "";
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $nom2 = $_POST['nom2'];
+    $id = $_POST['id'];
     $datedebut = $_POST['datedebut'];
     $heuredebut = $_POST['heuredebut'];
     $fin = $_POST['fin'];
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Passer les données via session
         session_start();
         $_SESSION['formData'] = [
-                'nom2' => $nom2,
+                'id' => $id,
                 'datedebut' => $datedebut,
                 'heuredebut' => $heuredebut,
                 'fin' => $fin,
@@ -56,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -79,21 +79,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
-            <label for="nom2">L'étudiant :
-                <input type="text" name="nom2" id="nom2" placeholder="Entrer votre nom complet" value="<?php echo htmlspecialchars($nom2); ?>" required>
+            <label for="id">L'étudiant :
+                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($id); ?>" required>
             </label><br><br>
 
             <label for="">Du :
-                <input type="date" name="datedebut" value="<?php echo htmlspecialchars($datedebut); ?>" required>
-                de <input type="time" name="heuredebut" value="<?php echo htmlspecialchars($heuredebut); ?>" required>
+                <input type="date" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{echo htmlspecialchars($datedebut);} ?>" required>
+                de <input type="time" name="heuredebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("08:00");} else{echo htmlspecialchars($heuredebut);} ?>" required>
             </label><br><br>
 
             <label>Au :
-                <input type="date" name="fin" value="<?php echo htmlspecialchars($fin); ?>" required>
-                à <input type="time" name="heurefin1" value="<?php echo htmlspecialchars($heurefin1); ?>" required>
+                <input type="date" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{ echo htmlspecialchars($fin);} ?>" required>
+                à <input type="time" name="heurefin1" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("19:00");} else{ echo htmlspecialchars($heurefin1);} ?>" required>
             </label><br><br>
 
             <label>Motif :
@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             <label>Commentaires :</label><br>
-            <textarea name="commentaire" style="width: 700px; height: 100px;" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
+            <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
             <label>Inserer un justificatif :</label>
             <input type="file" name="justificatif" accept=".pdf,image/*"><br><br>
@@ -132,6 +132,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </footer>
 </body>
 </html>
-
-
 
