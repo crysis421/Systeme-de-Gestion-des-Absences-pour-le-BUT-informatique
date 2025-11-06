@@ -35,9 +35,10 @@ h1 {
     padding: 20px; /* Espace intérieur du conteneur */
     border: 1px solid #00aa00; /* Bordure verte */
     border-radius: 6px; /* Coins arrondis */
-    width: 90%; /* Largeur limitée à 90% de la page */
+    width: 80%; /* Largeur limitée à 90% de la page */
     margin: 0 auto 30px auto; /* Centre horizontalement + espace en bas */
     box-sizing: border-box; /* Inclut les bordures/paddings dans la largeur totale */
+    height: auto;
 }
 
 /* === Styles communs aux 3 blocs : profil, données, graphe === */
@@ -51,7 +52,7 @@ h1 {
 
 /* === Bloc "Profil" === */
 #profil {
-    background-color: #fff0f5; /* Fond beige/or */
+    background-color: white; /* Fond beige/or */
     width: 49%; /* Occupe environ la moitié du conteneur #haut */
 }
 
@@ -65,14 +66,14 @@ h1 {
 
 /* === Bloc "Mes données" === */
 #donnees {
-    background-color: #e6ffe6; /* Fond vert/gris */
+    background-color: white; /* Fond vert/gris */
     color: #3a2323; /* Texte en blanc */
     width: 49%; /* Même largeur que #profil pour équilibre */
 }
 
 /* === Bloc "Graphe" (diagramme) === */
 #graphe {
-    background-color: #b0bfc5; /* Couleur gris-bleu clair */
+    background-color: white; /* Couleur gris-bleu clair */
     border: 1px solid #00aa00; /* Bordure verte */
     border-radius: 6px; /* Coins arrondis */
     width: 49%; /* Prend toute la largeur sous les deux autres blocs */
@@ -157,6 +158,7 @@ details[open] summary {
 }
 
 input[type="email"],
+input[type="number"],
 input[type="password"],
 select {
     width: 100%;

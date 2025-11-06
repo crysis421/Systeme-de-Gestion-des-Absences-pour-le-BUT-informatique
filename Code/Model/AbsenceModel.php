@@ -341,5 +341,99 @@ class AbsenceModel
         return $result ? $result['prenom'] : null; // retourne juste le prénom ou null si non trouvé
     }
 
+    public function getPrenom2ByUser($id)
+    {
+        $sql = "SELECT prenom2 FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['prenom2'] : null; // retourne le 2e prénom ou null si non trouvé
+    }
+
+    public function getEmailByUser($id)
+    {
+        $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getmotdepasseByUser($id)
+    {
+        $sql = "SELECT motDePasse FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['motdepasse'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getroleByUser($id)
+    {
+        $sql = "SELECT role FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['role'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getgroupeByUser($id)
+    {
+        $sql = "SELECT groupe FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['groupe'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getnaissanceByUser($id)
+    {
+        $sql = "SELECT dateDeNaissance FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['datedenaissance'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function getdiplomeByUser($id)
+    {
+        $sql = "SELECT diplome FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['diplome'] : null; // retourne l'émail ou null si non trouvé
+    }
+
+    public function ModifierMDP($email, $mdp)
+    {
+        // Hash du mot de passe
+        $hashedMdp = password_hash($mdp, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE Utilisateur SET motDePasse = :mdp WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":mdp", $hashedMdp, PDO::PARAM_STR);
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return "Le mot de passe a bien été modifié";
+    }
+
+
+
 }
 
