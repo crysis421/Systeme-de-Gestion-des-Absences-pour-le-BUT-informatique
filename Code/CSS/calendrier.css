@@ -77,11 +77,11 @@ td {
 
 /* Boutons des jours */
 #jour {
-    width: 100%;
-    height: 100%;
+    width: 200%;
+    height: 150%;
     background-color: transparent;
     border: none;
-    font-size: 1.1rem;
+    font-size: 1.5vw;
     font-weight: 500;
     color: #333;
     cursor: pointer;
@@ -98,8 +98,6 @@ td {
 #adj {
     border: 2px solid #007aa5;
     box-shadow: inset 0 0 5px rgba(0,122,165,0.4);
-}
-input{
 }
 
 /* État des jours selon statut */
@@ -166,4 +164,17 @@ body {
 }
 #maLigne{
     width: 100%;
+}
+#liste{
+    margin: 0 -1.5vw -1vw 0;
+    width: 10px;
+    height: 5.2vw;
+}
+.elementDeListe{
+    outline-style: none;
+    animation: none;
+    font-size: 2vw;
+}
+.description-element{
+    font-size: 1.2vw;
 }
