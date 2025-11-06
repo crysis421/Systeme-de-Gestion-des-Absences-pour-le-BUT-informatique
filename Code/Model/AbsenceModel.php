@@ -131,6 +131,43 @@ class AbsenceModel
         return $result;
     }
 
+    public function getJustificatifsDemande()
+    {
+        $sql = "
+        SELECT 
+            j.idJustificatif,
+            j.datesoumission,
+            j.commentaire_absence AS commentaire_justificatif,
+            j.verrouille,
+            u.idUtilisateur,
+            u.nom AS nom_etudiant,
+            u.prenom AS prenom_etudiant,
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS typeSeance,
+            c.matiere,
+            t.idTraitement,
+            t.attente,
+            t.reponse,
+            t.commentaire_validation AS commentaire_traitement
+        FROM justificatif j
+        JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+            WHERE t.attente = FALSE and reponse = 'enAttente'
+        ORDER BY j.dateSoumission DESC
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getJustificatifsAttente() {
         $sql = "
         SELECT 
