@@ -1,62 +1,180 @@
-p{
-    text-align: center;
-    font-size: 35px;
-}
-
-table{
-    border-style: solid;
-    border-collapse : collapse;
-    border-width: 2px;
-    text-align: center;
-    margin: 0 auto;
-    font-size: 30px
-}
-th{
-    width: 8vw;
-    text-align: center;
-    border-style: solid;
-    border-width: 2px;
-}
-td{
-    width: 8vw;
-    text-align: center;
-    border-style: solid;
-    border-width: 2px;
-}
-#adj{
-    border-width: 4px;
-    border-color: #006983;
-}
-#jour{
+/* Style global */
+html, body {
     height: 100%;
-    width: 100%;
-    background-color: white;
-    font-size: 30px
-}
-#jour:hover{
-    background-color: #0280af;
+    margin: 0;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    background-color: #f6f8fa;
+    color: #333;
 }
 
-#valide{
-    color : #72af5e;
+/* Titres et texte */
+p {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #005b83;
 }
 
-#enAttente{
-    color: #ffc049;
+/* Formulaire */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 10px;
 }
-#refus{
-    color: #f32d2d;
+
+form input[type="number"] {
+    width: 80px;
+    padding: 6px;
+    font-size: 1rem;
+    border: 2px solid #a6cbe3;
+    border-radius: 6px;
+    text-align: center;
+}
+
+form input[type="submit"] {
+    background-color: #007aa5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0098d1;
+}
+
+/* Tableau du calendrier */
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+th {
+    background-color: #0098d1;
+    color: white;
+    padding: 12px 0;
+    font-size: 1.1rem;
+}
+
+td {
+    width: 8vw;
+    height: 8vh;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    transition: background-color 0.3s;
+}
+
+/* Boutons des jours */
+#jour {
+    width: 200%;
+    height: 150%;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5vw;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#jour:hover {
+    background-color: #e6f4f8;
+    color: #007aa5;
+    border-radius: 4px;
+}
+
+/* État du jour actuel */
+#adj {
+    border: 2px solid #007aa5;
+    box-shadow: inset 0 0 5px rgba(0,122,165,0.4);
+}
+
+/* État des jours selon statut */
+.valide {
+    margin-bottom: -6%;
+    position: static;
+    background-color: #34a853;
+    margin-left: 90%;
+    padding-bottom: 1%;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px; /* triangle droit */
+    border-color: black; /* mettre couleur spécifique dans chaque classe*/
+    border-radius: 50px;
+    content: "";
+    width: 7%;
+    height: 14%;
+}
+
+.refus {
+    margin-bottom: -6%;
+    background-color: red;
+    margin-left: 90%;
+    padding-bottom: 1%;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px; /* triangle droit */
+    border-color: black; /* mettre couleur spécifique dans chaque classe*/
+    border-radius: 1000px;
+    content: "";
+    width: 7%;
+    height: 14%;
+}
+.report {
+    margin-bottom: -6%;
+    background-color: #f9a825;
+    margin-left: 90%;
+    padding-bottom: 1%;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px; /* triangle droit */
+    border-color: black; /* mettre couleur spécifique dans chaque classe*/
+    border-radius: 50px;
+    content: "";
+    width: 7%;
+    height: 14%;
+}
+
+/* Pied de page */
+#footer {
+    background-color: #007aa5;
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+html, body {
+    height: 100%;
+    width: 99.8%;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
 }
 #maLigne{
     width: 100%;
 }
-
-.valide{
-    color: #72af5e;
+#liste{
+    margin: 0 -1.5vw -1vw 0;
+    width: 10px;
+    height: 5.2vw;
 }
-.refus{
-    color: #f32d2d;
+.elementDeListe{
+    outline-style: none;
+    animation: none;
+    font-size: 2vw;
 }
-.enAttente{
-    color: #ffc049;
+.description-element{
+    font-size: 1.2vw;
 }

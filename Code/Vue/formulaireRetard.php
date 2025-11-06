@@ -1,12 +1,12 @@
 <?php
 
 // Initialisation des variables
-$nom = $prenom = $dateretard = $heurearrive = $cours = $motif = $preciserAutre = "";
+$id = $prenom = $dateretard = $heurearrive = $cours = $motif = $preciserAutre = "";
 $error = "";
 $justificatifFile = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom = $_POST['nom'];
+    $id = $_POST['id'];
     $prenom = $_POST['prenom'];
     $dateretard = $_POST['dateretard'];
     $heurearrive = $_POST['heurearrive'];
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($error == "") {
         session_start(); // Toujours en premier
         $_SESSION['formDataRetard'] = [
-                'nom' => $nom,
+                'id' => $id,
                 'prenom' => $prenom,
                 'dateretard' => $dateretard,
                 'heurearrive' => $heurearrive,
@@ -75,12 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="" method="post" enctype="multipart/form-data">
     <div id="infos">
         <br>
-        <label for="nom">Nom *: </label>
-        <input type="text" id="nom" name="nom" placeholder="entrer votre nom" value="<?php echo htmlspecialchars($nom) ?>" required><br>
+        <label for="id">Numero d'étudiant *: </label>
+        <input type="number" id="id" name="id" placeholder="entrer votre numéro d'étudiant" value="<?php echo htmlspecialchars($id) ?>" required><br>
         <br>
 
-        <label for="prenom">Prénom *: </label>
-        <input type="text" id="prenom" name="prenom" placeholder="entrer votre prénom" value="<?php echo htmlspecialchars($prenom) ?>" required><br>
         <br>
 
     </div>
@@ -110,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
 
         <label for="preciserAutre">Commentaires :</label><br>
-        <textarea id="preciserAutre" name="preciserAutre"  style="width: 700px; height: 100px;"><?php echo htmlspecialchars($preciserAutre) ?></textarea>
+        <textarea id="preciserAutre" name="preciserAutre"  style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;" ><?php echo htmlspecialchars($preciserAutre) ?></textarea>
         <br>
         <br>
         <label for="justificatif">Inserer un justificatif :</label><br>

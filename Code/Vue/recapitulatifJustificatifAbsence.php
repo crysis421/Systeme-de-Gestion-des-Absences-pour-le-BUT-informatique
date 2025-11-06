@@ -1,8 +1,20 @@
 <?php
+require_once '../Model/AbsenceModel.php';
 session_start();
 
+if (!isset($_SESSION['formData'])) {
+    header("Location: formulaireAbsence.php");
+    exit();
+}
 
 $data = $_SESSION['formData'];
+
+$id = $data['id'];
+$user = new AbsenceModel();
+$nom = $user->getNombyUser($id);
+$prenom = $user->getPrenomByUser($id);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +26,7 @@ $data = $_SESSION['formData'];
 </head>
 <body>
 <h1 style="text-align: center">
-    Récapitulatif du justificatif d'absence de <?php echo htmlspecialchars($data['nom2']); ?>
+    Récapitulatif du justificatif d'absence de <?php echo htmlspecialchars($prenom); ?> <?php echo htmlspecialchars($nom); ?>
 </h1>
 
 <div id="main" >
@@ -32,8 +44,6 @@ $data = $_SESSION['formData'];
             <?php endif; ?>
         </p>
     </div>
-    <br>
-    <br>
     <br>
     <div id="but">
         <button id="back" onclick="history.back()">⬅️ Retour</button>
