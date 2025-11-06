@@ -129,5 +129,3 @@ require "../Presentation/getAbsenceDunJour.php";
 <?php
 
 require 'listeAbsEtu.php';
-
-
