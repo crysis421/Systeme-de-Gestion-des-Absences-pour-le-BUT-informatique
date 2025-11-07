@@ -103,49 +103,59 @@ EOL;
 <h1><u>Liste des absences à traiter : </u></h1>
 
 <!-- Filtrage ici ! -->
-<div class="filtrage">
-    <form method="post">
+<details>
+    <summary class="filtrer">
+        <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
+        <a class="nom"><b>Filtrer</b></a><br>
+    </summary>
 
-        <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
-        <label for="dateFiltreur">Filtrer par date</label>
+    <div class="filtrage">
+        <form method="post">
 
-        <div class="dateFiltre">
-            <?php
-            $dateDebut = date("Y") . '-01-01';
-            $dateFin = date("Y-m-d");
-            ?>
+            <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
+            <label for="dateFiltreur">Filtrer par date</label>
 
-            <h3>Date de début</h3>
-            <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
-            <h3>Date de fin</h3>
-            <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
-        </div>
+            <div class="dateFiltre">
+                <?php
+                $dateDebut = date("Y") . '-01-01';
+                $dateFin = date("Y-m-d");
+                ?>
 
-
-        <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
-        <label for="matiereFilteur">Filtrer par matière</label>
-        <div class="matiereFiltre">
-            <h3>Nom de la matière</h3>
-            <input type="text" id="inputMatiere" name="Matière" value="">
-        </div>
+                <h3>Date de début</h3>
+                <input type="date" id="startDate" name="dateDebut" value="<?= $dateDebut ?>">
+                <h3>Date de fin</h3>
+                <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
+            </div>
 
 
-        <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
-        <label for="eleveFiltreur">Filtrer par élève</label>
-        <div class="eleveFiltre">
-            <h3>Prénom</h3>
-            <input type="text" id="inputPrenom" name="PrenomInput" value="">
-            <h3>Nom</h3>
-            <input type="text" id="inputNom" name="NomInput" value="">
-        </div>
+            <br>
+            <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
+            <label for="matiereFilteur">Filtrer par matière</label>
+            <div class="matiereFiltre">
+                <h3>Nom de la matière</h3>
+                <input type="text" id="inputMatiere" name="Matière" value="">
+            </div>
 
 
-        <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
+            <br>
+            <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
+            <label for="eleveFiltreur">Filtrer par élève</label>
+            <div class="eleveFiltre">
+                <h3>Prénom</h3>
+                <input type="text" id="inputPrenom" name="PrenomInput" value="">
+                <h3>Nom</h3>
+                <input type="text" id="inputNom" name="NomInput" value="">
+            </div>
 
-    </form>
 
-    <br>
-</div>
+            <input class='bouton-filtrage' type="submit" name="boutonFiltre" value="Filtrer">
+
+        </form>
+
+        <br>
+    </div>
+</details>
+
 
 <!-- Liste des absences ici ! -->
 <div class="liste-absence">

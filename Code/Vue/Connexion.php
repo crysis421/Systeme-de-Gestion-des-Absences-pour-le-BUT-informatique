@@ -1,3 +1,24 @@
+<?php
+$email = $motdepasse = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $motdepasse = $_POST['motdepasse'];
+
+    if ($email != "" && $motdepasse != "") {
+        session_start();
+        $_SESSION['formData'] = [
+                'email' => $email,
+                'motdepasse' => $motdepasse,
+        ];
+        header("Location: recapitulatifJustificatifAbsence.php");
+    }
+
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="../CSS/connect.css">

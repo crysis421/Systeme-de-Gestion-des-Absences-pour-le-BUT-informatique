@@ -47,6 +47,9 @@ $mois = date_format($_SESSION['date'], "m");
 require "../Presentation/getAbsenceDunJour.php";
 
 ?>
+<a href="ReglementInterieur.php">
+    <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
+</a>
     <form action="tableauDeBordEtu.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
