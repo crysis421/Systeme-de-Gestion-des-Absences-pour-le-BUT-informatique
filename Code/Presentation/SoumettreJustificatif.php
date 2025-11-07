@@ -1,32 +1,28 @@
 <?php
 use Model\NewJustificatif;
-
+require_once '../Model/NewJustificatif.php';
 session_start();
 
 
 
 $data = $_SESSION['formData'];
 ///$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
-$idUtilisateur = 42049956;
+///$idUtilisateur = 42049956;
 
 $idAbsManager = new  NewJustificatif();
 
-$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],($data['heuredebut']),($idUtilisateur)); // guys jsp comment recup l'id de labsence encore mais ca arrive
+
+$idAbsence = 1;
+///$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],($data['heuredebut']),($idUtilisateur)); // guys jsp comment recup l'id de labsence encore mais ca arrive
 
 $cause = htmlspecialchars($data['motif']); /// jdois encore fix un ou deux truc sur ca
 $commentaire = htmlspecialchars($data['commentaire']);
 
-
+$idUser = $data['id'];
 $cheminFichierUploade = $data['justificatif'];
 
-require_once '../Model/NewJustificatif.php';
 
 
-
-foreach ($data as $key => $value) {
-    echo $key . " => " . $value . "<br>";
-    echo "ok";
-}
 
 try {
     $justificatifManager = new NewJustificatif();
@@ -34,7 +30,7 @@ try {
     ///hop la on creer un justificatif bb
     $succes = $justificatifManager->creerJustificatif(
             $idAbsence,
-            $idUtilisateur,
+            $idUser,
             $cause,
             $commentaire
     );
@@ -73,7 +69,6 @@ try {
         }
         ?>
 
-        <a href="https://pokemondb.net/pokedex/reshiram"><img src="https://img.pokemondb.net/sprites/black-white/normal/reshiram.png" alt="Reshiram"></a>
 
     </div>
 
