@@ -1,10 +1,20 @@
 <?php
-// Initialisation des variables
-$id = $datedebut = $heuredebut = $fin = $heurefin1 = $motif = $commentaire = $signer = "";
+session_start();
+
+$formData = $_SESSION['formData'] ?? [];
+
+$id = $formData['id'] ?? '';
+$datedebut = $formData['datedebut'] ?? '';
+$heuredebut = $formData['heuredebut'] ?? '';
+$fin = $formData['fin'] ?? '';
+$heurefin1 = $formData['heurefin1'] ?? '';
+$motif = $formData['motif'] ?? '';
+$commentaire = $formData['commentaire'] ?? '';
+$justificatifs = $formData['justificatifs'] ?? [];
+
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
     $id = $_POST['id'];
     $datedebut = $_POST['datedebut'];
     $heuredebut = $_POST['heuredebut'];
@@ -13,35 +23,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motif = $_POST['motif'];
     $commentaire = $_POST['commentaire'];
 
-    // Vérifier date + heure
     $debut = strtotime("$datedebut $heuredebut");
     $finAbsence = strtotime("$fin $heurefin1");
     if ($finAbsence < $debut) {
-        $error = "Erreur : verifier votre periode d'absence... 😎";
+        $error = "Erreur : vérifiez votre période d'absence.";
     }
 
-    // Vérifier upload
-    if (isset($_FILES['justificatif']) && $_FILES['justificatif']['error'] == 0) {
+    $uploadDir = 'uploads/';
+    if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+
+    if (!isset($justificatifs)) $justificatifs = [];
+
+    if (isset($_FILES['justificatifs'])) {
         $allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/gif'];
-        $fileType = $_FILES['justificatif']['type'];
-        if (!in_array($fileType, $allowedTypes)) {
-            $error = "Type de fichier non autorisé. Seuls PDF et images sont acceptés.";
-        } else {
-            $uploadDir = 'uploads/';
-            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
-            $justificatifFile = $uploadDir . basename($_FILES['justificatif']['name']);
-            if (!move_uploaded_file($_FILES['justificatif']['tmp_name'], $justificatifFile)) {
-                $error = "Erreur lors de l'upload du justificatif.";
+        foreach ($_FILES['justificatifs']['tmp_name'] as $index => $tmpName) {
+            if ($_FILES['justificatifs']['error'][$index] === 0) {
+                $fileType = $_FILES['justificatifs']['type'][$index];
+                if (in_array($fileType, $allowedTypes)) {
+                    $fileName = basename($_FILES['justificatifs']['name'][$index]);
+                    $targetPath = $uploadDir . time() . "_" . $fileName;
+                    if (move_uploaded_file($tmpName, $targetPath)) {
+                        $justificatifs[] = $targetPath;
+                    }
+                } else {
+                    $error = "Un ou plusieurs fichiers ont un type non autorisé.";
+                    break;
+                }
             }
         }
-    } else {
-        $justificatifFile = '';
     }
 
-    // Si pas d'erreur, redirection vers récap
     if ($error == "") {
-        // Passer les données via session
-        session_start();
         $_SESSION['formData'] = [
                 'id' => $id,
                 'datedebut' => $datedebut,
@@ -50,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'heurefin1' => $heurefin1,
                 'motif' => $motif,
                 'commentaire' => $commentaire,
-                'justificatif' => $justificatifFile
+                'justificatifs' => $justificatifs
         ];
         header("Location: recapitulatifJustificatifAbsence.php");
         exit();
@@ -112,8 +124,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>Commentaires :</label><br>
             <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
-            <label>Inserer un justificatif :</label>
-            <input type="file" name="justificatif" accept=".pdf,image/*"><br><br>
+            <label>Ajouter un ou plusieurs justificatifs :</label><br>
+            <input type="file" name="justificatifs[]" accept=".pdf,image/*" multiple><br><br>
+            <i style="font-size: 17px">Pour sélectionner plusieurs fichiers à la fois, maintiens Ctrl (ou Cmd sur Mac) pour choisir individuellement ou Shift pour sélectionner un bloc de fichiers consécutifs avant de cliquer sur “Ouvrir”.</i>
             <br>
             <br>
             <br>
