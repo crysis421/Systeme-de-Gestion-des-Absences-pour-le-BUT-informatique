@@ -13,6 +13,23 @@ $user = new AbsenceModel();
 $nom = $user->getNombyUser($id);
 $prenom = $user->getPrenomByUser($id);
 
+/*______________________________*/
+
+
+$justificatifs = $data['justificatifs'] ?? [];
+// Suppression d'un fichier si formulaire soumis
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
+    $index = (int)$_POST['supprimer_index'];
+    if (isset($justificatifs[$index])) {
+        $fichierASupprimer = $justificatifs[$index];
+        if (file_exists($fichierASupprimer)) unlink($fichierASupprimer);
+
+        unset($_SESSION['formDataRetard']['justificatifs'][$index]);
+        $_SESSION['formDataRetard']['justificatifs'] = array_values($_SESSION['formDataRetard']['justificatifs']);
+        $justificatifs = $_SESSION['formDataRetard']['justificatifs'];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -35,21 +52,48 @@ $prenom = $user->getPrenomByUser($id);
 
         <p><b id="gras1">Motif :</b> <?php echo htmlspecialchars($data['motif']); ?></p>
         <p><b id="gras1">Commentaires :</b> <?php echo nl2br(htmlspecialchars($data['preciserAutre'])); ?></p>
-        <p><b id="gras1">Justificatif :</b>
-            <?php if ($data['justificatif'] != ""): ?>
-                <a href="<?php echo htmlspecialchars($data['justificatif']); ?>" target="_blank">Voir le justificatif...</a>
-            <?php else: ?>
-                Aucun justificatif fourni
-            <?php endif; ?>
-        </p>
+
+        <p><b id="gras1">Justificatifs :</b></p>
+        <?php if (!empty($justificatifs)): ?>
+            <ul>
+                <?php foreach ($justificatifs as $index => $fichier): ?>
+                    <li>
+                        <a href="<?php echo htmlspecialchars($fichier); ?>" target="_blank"><?php echo basename($fichier); ?></a>
+                        <form method="post" style="display:inline;">
+                            <input type="hidden" name="supprimer_index" value="<?php echo $index; ?>">
+                            <button type="submit">🗑 Supprimer</button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>Aucun justificatif fourni.</p>
+        <?php endif; ?>
+
     </div>
     <br>
 
     <div id="but">
-        <button id="back"  onclick="history.back()">⬅️ Retour</button>
-        <!-- Formulaire pour envoyer les données -->
-        <form action="" method="post">
-            <button type="submit" id="send">Envoyer justificatif ➡️</button>
+        <form action="formulaireRetard.php" method="get">
+            <button style="    background-color:red;
+    color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #093057;
+    padding: 5px 10px;
+    font-size: 20px;
+    margin-bottom: 20px;" type="submit">⬅️ Retour</button>
+        </form>
+
+        <form action="../Presentation/SoumettreJustificatif.php" method="post">
+            <button style="    background-color:green;
+    color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #093057;
+    padding: 5px 10px;
+    font-size: 20px;
+    margin-bottom: 20px;" type="submit">Envoyer justificatif ➡️</button>
         </form>
     </div>
 </div>
