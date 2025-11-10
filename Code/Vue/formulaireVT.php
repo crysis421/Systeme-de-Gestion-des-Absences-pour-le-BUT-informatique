@@ -8,7 +8,7 @@ require 'menuHorizontalEtu.html';
 
 <h1>Ajout d'un fichier VT</h1>
 
-<form action="../Presentation/upload.php" method="post" enctype="multipart/form-data">>
+<form action="../Presentation/upload.php" method="post" enctype="multipart/form-data">
     <label for="VT">
         FichierVT <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv" required >
     </label> <br>

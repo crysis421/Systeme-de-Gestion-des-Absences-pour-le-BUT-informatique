@@ -24,13 +24,13 @@ if (isset($_POST["submit"]) and $_FILES["fileToUpload"]["type"] == 'text/csv') {
                 //Si l'utilisateur n'existe pas dans la base, alors on rajoute cet utilisateur dans la base
                 if (!in_array($ligne[4], array_column($dejaPresent, "idutilisateur"))) {
                     $addData->addUtilisateur($ligne[4], $ligne[0], $ligne[1], $ligne[2], $ligne[4], $ligne[20], null, $ligne[5]);
-                    $dejaPresent["idutilisateur"] = $ligne[4];//On évite de le rajouter plusieurs fois
+                    $dejaPresent["idutilisateur"][] = $ligne[4];//On évite de le rajouter plusieurs fois
                     $nbUtilisateur++;
                 }
                 //Si le cours n'existe pas dans la base, alors on rajoute ce cours dans la base
                 if (!in_array($ligne[13], array_column($dejaPresent, "idcours"))) {
                     $addData->addCour($ligne[13], 2, $ligne[12]);
-                    $dejaPresent["idcours"] = $ligne[13];
+                    $dejaPresent["idcours"][] = $ligne[13];
                     $nbCour++;
                 }
                 //Enfin, on ajoute tout le reste des données

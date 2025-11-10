@@ -1,36 +1,11 @@
 <?php
-require_once '../Model/AbsenceModel.php';
-session_start(); // toujours au début avant d'utiliser $_SESSION
-
-$id = 42049956;
-$user = new AbsenceModel();
-
-$nom = $user->getNombyUser($id);
-$prenom = $user->getPrenomByUser($id);
-$prenom2 = $user->getPrenom2ByUser($id);
-$email = $user->getEmailByUser($id);
-$role = $user->getroleByUser($id);
-$dateNaissance = $user->getnaissanceByUser($id);
-$groupe = $user->getgroupeByUser($id);
-$mdp = $user->getmotdepasseByUser($id);
-$diplome = $user->getdiplomeByUser($id);
-
-$total = $user->getNombreAbsencesTotal($id);
-$valide = $user->getNombreAbsencesJustifie($id);
-$refus = $user->getNombreAbsencesRefus($id);
-$autre = $user->getNombreAbsencesEnAttente($id);
-$nonjustife =$total - $valide;
-// Gestion du formulaire
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDePasse'])) {
-    $_SESSION['modif'] = [
-            'email' => $_POST['email'],
-            'motDePasse' => $_POST['motDePasse']
-    ];
-    header("Location: ../Presentation/modifierMDPetudiant.php");
-    exit();
+session_start();
+if(!isset($_SESSION["user"])){
+    require ('../Vue/Connexion.php');
 }
-?>
 
+require_once '../Presentation/lesInfoEtu.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -66,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDe
                 <p><b>Email :</b> <?php echo htmlspecialchars($email); ?></p>
                 <p><b>Formation :</b> <?php echo htmlspecialchars($diplome); ?> </p>
                 <p><b>Groupe :</b> <?php echo htmlspecialchars($groupe); ?></p>
-                <b>Mot de passe :</b><br><textarea style="margin-left:10px; max-height: 50px; max-width: 600px ; min-height: 20px; min-width: 100px width: 100%; height: 100%;" > <?php echo htmlspecialchars($mdp); ?></textarea></p>
 
                 <details id="modifier">
                     <summary id="modif" style="height: 20px; width: 270px">

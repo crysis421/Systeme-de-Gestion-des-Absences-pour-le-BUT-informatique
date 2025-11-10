@@ -2,11 +2,12 @@
 
 //Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
 session_start();
+if(!isset($_SESSION["user"])){
+    require ('../Vue/Connexion.php');
+}
 require "menuHorizontalEtu.html";
 
 echo '<link rel="stylesheet" href="../CSS/calendrier.css" />';
-
-$_SESSION['user'] = 42049956;
 
 $Y = date("Y");//On ne peut voir que notre année scolaire
 

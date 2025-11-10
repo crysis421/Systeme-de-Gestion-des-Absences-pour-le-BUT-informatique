@@ -14,49 +14,39 @@ class ComptesModel
         $this->conn = $database->getConnection();
     }
 
-    public function __destruct(){
+    public function __destruct()
+    {
         $this->conn = null;
     }
 
-    public function addCompte()
+    public function addCompte($nom, $prenom, $prenom2, $email, $motdepasse, $role, $groupe, $date, $diplome)
     {
-        $sql = "INSERT INTO utilisateur VALUES(:nom,:prenom,:prenom2,:email,:motdepasse,:role,:groupe,:datenaissance,:diplome)";
+
+        $sql = "INSERT INTO utilisateur(idUtilisateur,nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome) VALUES(default,:nom,:prenom,:prenom2,:email,:motdepasse,:role,:groupe,:datenaissance,:diplome)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nom', $_POST['nom']);
-        $stmt->bindParam(':prenom', $_POST['prenom']);
-        $stmt->bindParam(':prenom2', $_POST['prenom2']);
-        $stmt->bindParam(':email', $_POST['email']);
-        $stmt->bindParam(':motdepasse', $_POST['motdepasse']);
-        $stmt->bindParam(':role', $_POST['role']);
-        $stmt->bindParam(':groupe', $_POST['groupe']);
-        $stmt->bindParam(':datenaissance', $_POST['datenaissance']);
-        $stmt->bindParam(':diplome', $_POST['diplome']);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':prenom2', $prenom2);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':motdepasse', $motdepasse);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':groupe', $groupe);
+        $stmt->bindParam(':datenaissance', $date);
+        $stmt->bindParam(':diplome', $diplome);
         $stmt->execute();
         return "Le compte a été créé correctement.";
     }
 
-    public function connectCompte(){
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        if (!$_POST['email']=="" && !$_POST['pass']==""){
-            $req = $this->conn->prepare("SELECT * FROM utilisateur WHERE email=$email and motdepasse=$pass");
-            $rep=$req->fetch();
-            if ($rep['id']!=false) {
-                echo "Vous êtes connecté";
-                sleep(5);
-                if ($rep['role']=="prof") {
-                    header("location:CompteEtu.php?id=$rep[id]");
-                }
-                else {
-                    header("location:CompteResp.html?id=$rep[id]");
-                }
-            } else {
-                echo "Email ou mot de passe incorrect";
-            }
-        }
+    public function connectCompte($email)
+    {
+        $stmt = $this->conn->prepare("SELECT idUtilisateur,motdepasse,role FROM utilisateur WHERE email=:email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function modifieCompte(){
+    public function modifieCompte()
+    {
         $sql = "UPDATE utilisateur SET motdepasse = :motdepasse WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':motdepasse', $_POST['motdepasse']);
@@ -64,7 +54,8 @@ class ComptesModel
         $stmt->execute();
     }
 
-    public function supprimeCompte(){
+    public function supprimeCompte()
+    {
         $sql = "DELETE FROM utilisateur WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':email', $_POST['email']);

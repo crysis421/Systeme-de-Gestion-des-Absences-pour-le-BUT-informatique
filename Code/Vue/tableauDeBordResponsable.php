@@ -1,5 +1,7 @@
 <?php
-
+if(!isset($_SESSION["user"])){
+    require ('../Vue/Connexion.php');
+}
 require_once "../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
