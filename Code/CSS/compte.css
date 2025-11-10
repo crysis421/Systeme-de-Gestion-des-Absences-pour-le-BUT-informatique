@@ -195,6 +195,7 @@ textarea{
     border: none; /* Supprime la bordure par défaut */
     border-radius: 6px; /* Coins arrondis */
     cursor: pointer; /* Curseur "main" au survol */
+    width: auto;
 }
 /* Effet au survol du bouton */
 #modif button:hover {
