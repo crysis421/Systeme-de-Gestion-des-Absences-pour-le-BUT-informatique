@@ -21,9 +21,6 @@ $commentaire = htmlspecialchars($data['commentaire']);
 $idUser = $data['id'];
 $cheminFichierUploade = $data['justificatif'];
 
-
-
-
 try {
     $justificatifManager = new NewJustificatif();
 
@@ -35,15 +32,10 @@ try {
             $commentaire
     );
 
-
-
-    ///c'est la ou ca me clcllclsckdlsmc,dkscs merde
-
 } catch (PDOException $e) {
     echo "Erreur de base de données : " . $e->getMessage();
     exit;
 }
-
 
 ?>
 
