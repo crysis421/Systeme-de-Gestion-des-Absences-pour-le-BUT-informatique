@@ -11,9 +11,9 @@ $prenom = $_POST['PrenomInput'] ?? null;
 $nom = $_POST['NomInput'] ?? null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
-    if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom))
-
-        $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut,$dateFin, $matiere, $nom, $prenom);
+    if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom)) {
+        $justificatifs = $model->getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom);
+    }
     else $justificatifs = $model->getJustificatifsAttente();
 
 } else {
@@ -117,7 +117,7 @@ EOL;
 
             <div class="dateFiltre">
                 <?php
-                $dateDebut = date("Y") . '-01-01';
+                $dateDebut = '2020-01-01';
                 $dateFin = date("Y-m-d");
                 ?>
 
