@@ -227,6 +227,8 @@ input[id^="zoom"]:checked ~ .justificatif-image-big {
 
 
 
+
+
 input[id^="zoom"]:checked ~ .fondu-noir {
     display: block;
     position: fixed;
@@ -264,6 +266,8 @@ select {
     position: relative;
     left: 10px;
 }
+
+
 
 .bouton-envoye {
     align-items: center;
@@ -308,7 +312,7 @@ select {
     display: block;
 }
 
-.matiereFilteur:checked ~ .matiereFiltre {
+.matiereFiltreur:checked ~ .matiereFiltre {
     display: block;
 }
 
@@ -337,7 +341,7 @@ select {
     display: block;
 }
 
-.matiereFilteur:checked ~ .bouton-filtrage {
+.matiereFiltreur:checked ~ .bouton-filtrage {
     display: block;
 }
 
@@ -361,4 +365,47 @@ select {
 .bouton-envoye:active {
     box-shadow: #d6d6e7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+.filtrage {
+    max-width: 300px;
+    margin: 20px;
+    padding: 5px;
+}
+
+.filtrage input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.75rem;
+    cursor: pointer;
+    accent-color: #2596be;
+}
+
+
+.bouton-filtrage {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    margin-top: 1.5rem;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.bouton-filtrage:hover {
+    background: #4338ca;
+}
+
+.bouton-filtrage:active {
+    background: #3730a3;
+}
+@media (max-width: 768px) {
+    .filtrage {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
 }

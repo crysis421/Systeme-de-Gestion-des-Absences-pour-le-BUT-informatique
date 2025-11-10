@@ -1,40 +1,40 @@
 <?php
 
 
-require_once "../Model/ComptesModel.php";
-$model = new ComptesModel();
+//require_once "../Model/ComptesModel.php";
+//$model = new ComptesModel();
 
-$compte = $model->addCompte();
+//$compte = $model->addCompte();
 
 
-$nom = $prenom = $prenom2 = $email = $motdepasse = $role = $groupe = $datedenaissance = $diplome = "";
+//$nom = $prenom = $prenom2 = $email = $motdepasse = $role = $groupe = $datedenaissance = $diplome = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $prenom2= $_POST['prenom2'];
-    $email = $_POST['email'];
-    $motdepasse = $_POST['motdepasse'];
-    $role = $_POST['role'];
-    $groupe = $_POST['groupe'];
-    $datedenaissance = $_POST['datedenaissance'];
-    $diplome = $_POST['diplome'];
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  //  $nom = $_POST['nom'];
+//    $prenom = $_POST['prenom'];
+//    $prenom2= $_POST['prenom2'];
+//    $email = $_POST['email'];
+//    $motdepasse = $_POST['motdepasse'];
+//    $role = $_POST['role'];
+//    $groupe = $_POST['groupe'];
+//    $datedenaissance = $_POST['datedenaissance'];
+//    $diplome = $_POST['diplome'];
 
-    session_start();
-    $_SESSION['formData'] = [
-        'nom' => $nom,
-        'prenom' => $prenom,
-        'prenom2' => $prenom2,
-        'email' => $email,
-        'motdepasse' => $motdepasse,
-        'role' => $role,
-        'groupe' => $groupe,
-        'datedenaissance' => $datedenaissance,
-        'diplome' => $diplome,
-    ];
-    header("Location: recapitulatifJustificatifAbsence.php");
-    exit();
-}
+    //session_start();
+    //$_SESSION['formData'] = [
+    //    'nom' => $nom,
+    //    'prenom' => $prenom,
+    //    'prenom2' => $prenom2,
+    //    'email' => $email,
+    //    'motdepasse' => $motdepasse,
+    //    'role' => $role,
+    //    'groupe' => $groupe,
+    //    'datedenaissance' => $datedenaissance,
+    //    'diplome' => $diplome,
+    //];
+    //header("Location: recapitulatifJustificatifAbsence.php");
+    //exit();
+//}
 
 ?>
 

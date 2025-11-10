@@ -1,8 +1,26 @@
 <?php
 
 require_once "../Model/AbsenceModel.php";
+
 $model = new AbsenceModel();
-$justificatifs = $model->getJustificatifsHistorique();
+
+$dateDebut = $_POST['dateDebut'] ?? null;
+$dateFin = $_POST['dateFin'] ?? null;
+$matiere = $_POST['Matière'] ?? null;
+$prenom = $_POST['PrenomInput'] ?? null;
+$nom = $_POST['NomInput'] ?? null;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
+    if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom)) {
+        $justificatifs = $model->getJustificatifsHistoriqueFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom);
+    }
+    else $justificatifs = $model->getJustificatifsHistorique();
+
+} else {
+    $justificatifs = $model->getJustificatifsHistorique();
+}
+
+$justificatifs = array_slice($justificatifs, 0, 10);
 
 ?>
 
@@ -24,8 +42,9 @@ $justificatifs = $model->getJustificatifsHistorique();
     <a class="pages" href="CompteResp.html"><li>Compte</li></a>
 </ul>
 
-<!-- Historique des justificatifs traités ici ! -->
-<h1><u>Historique : </u></h1>
+<!-- Titre -->
+<h1><u>Historique des absences : </u></h1>
+
 
 <!-- Filtrage ici ! -->
 <details>
@@ -42,7 +61,7 @@ $justificatifs = $model->getJustificatifsHistorique();
 
             <div class="dateFiltre">
                 <?php
-                $dateDebut = date("Y") . '-01-01';
+                $dateDebut = '2020-01-01';
                 $dateFin = date("Y-m-d");
                 ?>
 
@@ -54,8 +73,8 @@ $justificatifs = $model->getJustificatifsHistorique();
 
 
             <br>
-            <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
-            <label for="matiereFilteur">Filtrer par matière</label>
+            <input type="checkbox" id="matiereFiltreur" name="matiereFiltreur" class="matiereFiltreur" checked />
+            <label for="matiereFiltreur">Filtrer par matière</label>
             <div class="matiereFiltre">
                 <h3>Nom de la matière</h3>
                 <input type="text" id="inputMatiere" name="Matière" value="">
@@ -80,6 +99,7 @@ $justificatifs = $model->getJustificatifsHistorique();
         <br>
     </div>
 </details>
+
 
 <!-- Historique des absences ici ! -->
 <div class="liste-absence">
