@@ -60,6 +60,11 @@ class NewJustificatif
             $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
             $stmtTraitement->execute();
 
+//            $sqlficher = "INSERT INTO fichierjustificatif (idjustificatif,pathjustificatif) VALUES (:idjustificatif, ../../jspbb)";
+//            $stmtfichier =  $this->conn->prepare($sqlficher);
+//            $stmtfichier->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
+//            $stmtfichier->execute();
+
             return true;
 
         } catch (PDOException $e) {
