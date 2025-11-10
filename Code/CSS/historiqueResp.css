@@ -164,12 +164,15 @@ summary::-webkit-details-marker {
     display: inline-block;
     width: 350px;
     height: 400px;
-    background-image: url("/Image/justificatif.jpg");
     background-size: cover;
     background-position: center;
+    background-image:url("/Image/justificatif.jpg");
     cursor: pointer;
     border-radius: 8px;
     transition: transform 0.2s ease;
+    transform: scale(1.05) translateY(20px);
+    margin-bottom: 20px;
+    border: 2px solid #007BFF;
 }
 
 input[id^="zoom"]:checked + label.zoom-button {
