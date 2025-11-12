@@ -69,7 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $motif = isset($_POST['motifs']) ? $_POST['motifs'] : null;
     $refus = isset($_POST['motif_refus']) ? $_POST['motif_refus'] : null;
     $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
+    $checkboxAbsence = $_POST['checkboxAbsence'] ?? [];
 
+
+    return;
 
     if($choix == "accepte"){
         $titre = "Accepté !";
@@ -230,17 +233,18 @@ EOL;
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
-
-                    <?php foreach ($absences as $abs):
-                        $matiere = rtrim(substr($abs['matiere'],-6),')');
-                        $date = $abs['date'];
-                        $heure = $abs['heure'];
-                        $idAbsence = $abs['id'];
-                        ?>
-                        <a><?= htmlspecialchars($date)?> <?= htmlspecialchars($heure)?> <?= htmlspecialchars($matiere)?></a> <br>
-                    <?php endforeach; ?>
-
                     <form method="post">
+
+                        <?php foreach ($absences as $abs):
+                            $matiere = rtrim(substr($abs['matiere'],-6),')');
+                            $date = $abs['date'];
+                            $heure = $abs['heure'];
+                            $idAbsence = $abs['id'];
+                            ?>
+                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $idAbsence?>" id="checkboxAbsence_<?= $idAbsence?>">
+                            <a><?= htmlspecialchars($date)?> <?= htmlspecialchars($heure)?> <?= htmlspecialchars($matiere)?></a> <br>
+                        <?php endforeach; ?>
+
                         <a class="decision-finale">Décision finale</a>
 
                         <input type="radio" id="toggle1_<?= $id ?>" name="toggle" value="accepte" style="display: none;">
