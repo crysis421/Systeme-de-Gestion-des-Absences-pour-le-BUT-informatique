@@ -478,5 +478,9 @@ class AbsenceModel
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
+    public function inser()
+    {
+
+    }
 }
 

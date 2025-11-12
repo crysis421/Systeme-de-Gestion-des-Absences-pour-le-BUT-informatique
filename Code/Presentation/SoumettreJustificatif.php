@@ -3,40 +3,41 @@ use Model\NewJustificatif;
 require_once '../Model/NewJustificatif.php';
 session_start();
 
+// Vérifie que les données de session existent
+$data = $_SESSION['formData'] ?? null;
+if (!$data) {
+    die("Aucune donnée de formulaire trouvée. Retournez au formulaire.");
+}
 
+// 🔹 Informations de base
+$idUser = (int)$data['id'];
+$cause = htmlspecialchars($data['motif']);
+$commentaire = htmlspecialchars($data['commentaire'] ?? '');
+$justificatifs = $data['justificatifs'] ?? [];
 
-$data = $_SESSION['formData'];
-///$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
-///$idUtilisateur = 42049956;
+// 🔹 Initialisation du gestionnaire
+$justificatifManager = new NewJustificatif();
 
-$idAbsManager = new  NewJustificatif();
+// 🔹 ID d'absence fixe
+$idAbsence = 10733;
 
-
-$idAbsence = 1;
-///$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],($data['heuredebut']),($idUtilisateur)); // guys jsp comment recup l'id de labsence encore mais ca arrive
-
-$cause = htmlspecialchars($data['motif']); /// jdois encore fix un ou deux truc sur ca
-$commentaire = htmlspecialchars($data['commentaire']);
-
-$idUser = $data['id'];
-$cheminFichierUploade = $data['justificatif'];
-
+// 🔹 Création du justificatif
 try {
-    $justificatifManager = new NewJustificatif();
-
-    ///hop la on creer un justificatif bb
     $succes = $justificatifManager->creerJustificatif(
             $idAbsence,
             $idUser,
             $cause,
-            $commentaire
+            $commentaire,
+            $justificatifs // <-- on insère directement les chemins relatifs
     );
 
-} catch (PDOException $e) {
-    echo "Erreur de base de données : " . $e->getMessage();
-    exit;
-}
+    if ($succes) {
+        unset($_SESSION['formData']); // supprime la session après succès
+    }
 
+} catch (PDOException $e) {
+    die("Erreur SQL : " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,19 +53,37 @@ try {
 </header>
 <main>
     <div id="titre">
-        <?php if ($succes !== false) {
-            echo "Justificatif envoyé avec succès !";
-            unset($_SESSION['formData']);
-
-        } else {
-            echo "Erreur lors de la création du justificatif (littéralement)";
-        }
-        ?>
-
-
+        <?php if ($succes) : ?>
+            <p>✅ Justificatif envoyé avec succès !</p>
+        <?php else : ?>
+            <p>❌ Erreur lors de la création du justificatif.</p>
+        <?php endif; ?>
     </div>
 
+    <?php if (!empty($justificatifs)) : ?>
+        <h3>Fichiers enregistrés :</h3>
+        <ul>
+            <?php foreach ($justificatifs as $path): ?>
+                <?php
+                // On récupère juste le nom du fichier
+                $fileName = basename($path);
+                // Chemin relatif au web depuis ce script
+                $webPath = "../uploads/" . $fileName;
+                ?>
+                <li>
+                    <a href="<?php echo htmlspecialchars($webPath); ?>" target="_blank">
+                        <?php echo htmlspecialchars($fileName); ?>
+                    </a>
+                    <?php if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $fileName)) : ?>
+                        <!-- Affichage direct de l'image en miniature -->
+                        <br>
+                        <img src="<?php echo htmlspecialchars($webPath); ?>" alt="<?php echo htmlspecialchars($fileName); ?>" style="max-width:200px; margin-top:5px;">
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 </main>
 </body>
-
 </html>
+

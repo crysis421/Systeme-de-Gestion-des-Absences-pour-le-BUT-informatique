@@ -2,15 +2,14 @@
 
 namespace Model;
 
+use PDO;
 use PDOException;
 
 require_once "Database.php";
 
-use PDO;
-
 class NewJustificatif
 {
-    private $conn;
+    private PDO $conn;
 
     public function __construct()
     {
@@ -19,12 +18,8 @@ class NewJustificatif
     }
 
 
-    ///insert dans justificatif les donnees saisis par l'etudiant et creer un nv traitementJustificatif pour la cause mais en valeur par defaut pour le reste
-
-    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null): int|false
+    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = [],): int|false
     {
-
-
         try {
             ///Insérer dans la table Justificatif
             $sqlJustificatif = "INSERT INTO justificatif (idjustificatif,datesoumission, commentaire_absence, verrouille) VALUES (default ,NOW(), :commentaire, false)";
@@ -59,18 +54,28 @@ class NewJustificatif
             $stmtTraitement->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
             $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
             $stmtTraitement->execute();
+            // 4️⃣ Enregistrer les fichiers justificatifs (si présents)
+            if (!empty($justificatifs)) {
+                $sqlFichier = "INSERT INTO fichierjustificatif (pathJustificatif, idJustificatif)
+                           VALUES (:path, :idjustificatif)";
+                $stmtFichier = $this->conn->prepare($sqlFichier);
 
-//            $sqlficher = "INSERT INTO fichierjustificatif (idjustificatif,pathjustificatif) VALUES (:idjustificatif, ../../jspbb)";
-//            $stmtfichier =  $this->conn->prepare($sqlficher);
-//            $stmtfichier->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
-//            $stmtfichier->execute();
+                foreach ($justificatifs as $path) {
+                    $stmtFichier->execute([
+                        ':path' => $path,
+                        ':idjustificatif' => $idJustificatif
+                    ]);
+                }
+            }
 
             return true;
 
         } catch (PDOException $e) {
+            echo "Erreur SQL : " . $e->getMessage(); // 👈 temporaire pour debug
             return false;
         }
     }
+
 
     public function getIdAbsenceParSeance($datedebut, $heuredebut, $idEtudiant) {
         $sql = "SELECT a.idAbsence
@@ -91,9 +96,4 @@ class NewJustificatif
 
         return $idAbsence;
     }
-
-
-
-
-
 }
