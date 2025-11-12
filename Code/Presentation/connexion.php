@@ -1,6 +1,6 @@
 <?php
-require_once "../Model/ComptesModel.php";
 session_start();
+require_once "../Model/ComptesModel.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $res = $bdd->connectCompte($email);
 
     if (password_verify($motdepasse, $res['motdepasse'])) {
-        $_SESSION['user'] = $res['idutilisateur']; //TODO
+        $_SESSION["user"] = $res['idutilisateur'];
+        echo $_SESSION["user"];
         if ($res['role'] == 'secretaire') {
             ?>
             <form action="../Vue/tableauDeBordEtu.php">
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             <form action="../Vue/tableauDeBordResponsable.php">
                 Vous êtes connectée en tant que responsable
-                <input type="submit" value="OK">
+                <input type="submit" value="OK PARFAIT">
             </form>
             <?php
         }
