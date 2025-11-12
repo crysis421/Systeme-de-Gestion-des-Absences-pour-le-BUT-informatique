@@ -6,7 +6,11 @@
 
 <body>
 <header>
-    <?php require_once("menuHorizontal.html"); ?>
+    <?php
+    session_start();
+    $_SESSION["user"] = null;
+    require_once("menuHorizontal.html");
+    ?>
 </header>
 <main>
     <h1>Connection à un compte</h1>
