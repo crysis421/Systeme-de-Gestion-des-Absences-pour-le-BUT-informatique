@@ -43,8 +43,8 @@ require_once '../Presentation/lesInfoEtu.php';
                 <p><b>Groupe :</b> <?php echo htmlspecialchars($groupe); ?></p>
 
                 <details id="modifier">
-                    <summary id="modif" style="height: 20px; width: 270px">
-                        <b>Modifier votre mot de passe</b>
+                    <summary onclick="annuler()" id="modif" style="height: 20px; width: 270px">
+                        <b id="annuler">Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
                     <form id="form" action="" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
@@ -95,5 +95,18 @@ require_once '../Presentation/lesInfoEtu.php';
 </footer>
 </body>
 </html>
+
+<script>
+    // Fonction d'affichage/masquage
+    function annuler() {
+        const element = document.getElementById("annuler");
+        if (element.innerHTML === "Modifier votre mot de passe") {
+            element.innerHTML = "Annuler la modification "
+        } else {
+            element.innerHTML = "Modifier votre mot de passe"
+        }
+    }
+
+</script>
 
 
