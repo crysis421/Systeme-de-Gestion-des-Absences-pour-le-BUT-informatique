@@ -1,5 +1,6 @@
 <?php
 use Model\NewJustificatif;
+use PDOException;
 require_once '../Model/NewJustificatif.php';
 session_start();
 
@@ -17,6 +18,7 @@ $idAbsManager = new  NewJustificatif();
 
 $idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],$data['heuredebut'],$data['fin'],$data['heurefin1'],$data['id']);
 
+
 if(empty($idAbsence)){
     $_SESSION['aEssayer'] = true;
     header('Location: ../Vue/formulaireAbsence.php');
@@ -30,8 +32,8 @@ $commentaire = htmlspecialchars($data['commentaire'] ?? '');
 $justificatifs = $data['justificatifs'] ?? [];
 
 // 🔹 Initialisation du gestionnaire
-$justificatifManager = new NewJustificatif();
 
+try{
     ///hop la on creer un justificatif bb
     $succes = $idAbsManager->creerJustificatif(
             $idAbsence,
@@ -43,6 +45,8 @@ $justificatifManager = new NewJustificatif();
 
 } catch (PDOException $e) {
     die("Erreur SQL : " . $e->getMessage());
+    echo "Erreur de base de données : " . $e->getMessage();
+    exit;
 }
 
 ?>

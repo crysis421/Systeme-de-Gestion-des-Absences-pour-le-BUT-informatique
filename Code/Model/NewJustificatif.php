@@ -23,7 +23,7 @@ class NewJustificatif
     }
 
 
-    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = [],): int|false
+    public function creerJustificatif($idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = [],): int|false
     {
 
 
@@ -45,19 +45,18 @@ class NewJustificatif
 
 
             //  Lier l'absence et le justificatif
-            foreach($idAbsence[0] as $i){
+            foreach($idAbsence as $i){
                 echo 'LAV ';
                 $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
                 $stmtAbsenceEtJustificatif = $this->conn->prepare($sqlAbsenceEtJustificatif);
-                $stmtAbsenceEtJustificatif->bindValue(':idabsence', $i, PDO::PARAM_INT);
+                $stmtAbsenceEtJustificatif->bindValue(':idabsence', $i['idabsence'], PDO::PARAM_INT);
                 $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
                 $stmtAbsenceEtJustificatif->execute();
-                echo 'LAM ';
 
-                $this->changeStatut($i);
-                echo 'LAB ';
+
+                $this->changeStatut($i['idabsence']);
+
             }
-            echo 'LA ';
 
 
             // Créer l'entrée initiale dans traitementjustificatif

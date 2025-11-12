@@ -124,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endif;
     if($_SESSION['aEssayer']) {
         echo "<h1>Vous n'avez pas d'absence entre ces dates</h1>";
+        $_SESSION['aEssayer'] = false;
     }
     ?>
 
