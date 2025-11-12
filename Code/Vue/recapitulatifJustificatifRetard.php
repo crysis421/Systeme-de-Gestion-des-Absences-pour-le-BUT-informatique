@@ -44,6 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
     Récapitulatif du justificatif de retard de <?php echo htmlspecialchars($prenom); ?> <?php echo htmlspecialchars($nom); ?>
 </h1>
 
+// Affiche les chemins dans la console PHP
+<ul>
+    <?php foreach ($justificatifs as $path): ?>
+        <li>
+            <?php echo htmlspecialchars($path); ?>  <!-- Affiche le chemin complet -->
+        </li>
+    <?php endforeach; ?>
+</ul>
+
 <div id="main" >
     <div id="info">
         <p>L'étudiant d'identifiant <b id="gras1"> <?php echo htmlspecialchars($data['id']); ?></b> est arrivé en retard le
@@ -99,3 +108,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
 </div>
 </body>
 </html>
+
+<?php
+/* le code pour ajouter le chemin de chaque fichier importé dans la base de donnée */
+/*
+$justificatifs = $_SESSION['formDataRetard']['justificatifs']; // tableau des chemins
+$idEtudiant = $_SESSION['formDataRetard']['id'];
+
+$sql = "INSERT INTO JustificatifRetard (idEtudiant, pathjustificatif) VALUES (:idEtudiant, :path)";
+$stmt = $conn->prepare($sql);
+
+foreach ($justificatifs as $path) {
+    $stmt->execute([
+            ':idEtudiant' => $idEtudiant,
+            ':path' => $path
+    ]);
+}
+
+*/
+?>
