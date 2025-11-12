@@ -115,19 +115,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </header>
 <main>
     <div id="titre">
-        <h1>Justificatif d'Absence </h1>
+        <h1>Justificatif d'absence </h1>
         <p id="important"><b>Important : </b>Ce formulaire doit être entièrement complété.</p>
 
     </div>
     <?php if ($error != ""): ?>
         <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
-    <?php endif; ?>
+    <?php endif;
+    if($_SESSION['aEssayer']) {
+        echo "<h1>Vous n'avez pas d'absence entre ces dates</h1>";
+    }
+    ?>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
-            <label for="id">L'étudiant :
-                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($id); ?>" required>
+            <label for="id">Numéro d'étudiant :
+                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
             </label><br><br>
 
             <label for="">Du :

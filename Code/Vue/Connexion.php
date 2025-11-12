@@ -7,6 +7,7 @@
 <body>
 <header>
     <?php
+    session_destroy();
     session_start();
     $_SESSION["user"] = null;
     require_once("menuHorizontal.html");
