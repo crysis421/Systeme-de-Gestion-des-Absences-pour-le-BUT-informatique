@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["user"])){
-    require ('../Vue/Connexion.php');
+    header('Location: ../Vue/Connexion.php');
 }
 
 require_once '../Presentation/lesInfoEtu.php';

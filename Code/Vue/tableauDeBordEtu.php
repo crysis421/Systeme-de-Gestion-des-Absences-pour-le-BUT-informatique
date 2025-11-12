@@ -3,7 +3,7 @@
 //Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
 session_start();
 if(!isset($_SESSION["user"])){
-    require ('../Vue/Connexion.php');
+    header('Location: ../Vue/Connexion.php');
 }
 require "menuHorizontalEtu.html";
 
