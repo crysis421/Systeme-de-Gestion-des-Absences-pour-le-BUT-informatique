@@ -1,38 +1,50 @@
 <?php
 use Model\NewJustificatif;
+use PDOException;
 require_once '../Model/NewJustificatif.php';
 session_start();
 
+// Vérifie que les données de session existent
+$data = $_SESSION['formData'] ?? null;
+if (!$data) {
+    die("Aucune donnée de formulaire trouvée. Retournez au formulaire.");
+}
 
 
 $data = $_SESSION['formData'];
-///$idUtilisateur = (int)$_SESSION['user']; // L'ID de l'étudiant
-///$idUtilisateur = 42049956;
+
 
 $idAbsManager = new  NewJustificatif();
 
+$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],$data['heuredebut'],$data['fin'],$data['heurefin1'],$data['id']);
 
-$idAbsence = 1;
-///$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],($data['heuredebut']),($idUtilisateur)); // guys jsp comment recup l'id de labsence encore mais ca arrive
 
-$cause = htmlspecialchars($data['motif']); /// jdois encore fix un ou deux truc sur ca
-$commentaire = htmlspecialchars($data['commentaire']);
+if(empty($idAbsence)){
+    $_SESSION['aEssayer'] = true;
+    header('Location: ../Vue/formulaireAbsence.php');
+}else{
+    echo "<br>";
 
-$idUser = $data['id'];
-$cheminFichierUploade = $data['justificatif'];
+// 🔹 Informations de base
+$idUser = (int)$data['id'];
+$cause = htmlspecialchars($data['motif']);
+$commentaire = htmlspecialchars($data['commentaire'] ?? '');
+$justificatifs = $data['justificatifs'] ?? [];
 
-try {
-    $justificatifManager = new NewJustificatif();
+// 🔹 Initialisation du gestionnaire
 
+try{
     ///hop la on creer un justificatif bb
-    $succes = $justificatifManager->creerJustificatif(
+    $succes = $idAbsManager->creerJustificatif(
             $idAbsence,
             $idUser,
             $cause,
-            $commentaire
+            $commentaire,
+            $justificatifs // <-- on insère directement les chemins relatifs
     );
 
 } catch (PDOException $e) {
+    die("Erreur SQL : " . $e->getMessage());
     echo "Erreur de base de données : " . $e->getMessage();
     exit;
 }
@@ -55,6 +67,7 @@ try {
         <?php if ($succes !== false) {
             echo "Justificatif envoyé avec succès !";
             unset($_SESSION['formData']);
+            header('Location: ../Vue/formulaireAbsence.php');
 
         } else {
             echo "Erreur lors de la création du justificatif (littéralement)";
@@ -68,3 +81,4 @@ try {
 </body>
 
 </html>
+<?php }

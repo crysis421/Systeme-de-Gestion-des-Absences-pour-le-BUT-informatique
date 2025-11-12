@@ -2,15 +2,14 @@
 
 namespace Model;
 
+use PDO;
 use PDOException;
 
 require_once "Database.php";
 
-use PDO;
-
 class NewJustificatif
 {
-    private $conn;
+    private PDO $conn;
 
     public function __construct()
     {
@@ -18,10 +17,13 @@ class NewJustificatif
         $this->conn = $database->getConnection();
     }
 
+    public function __destruct()
+    {
+        $this->conn = null;
+    }
 
-    ///insert dans justificatif les donnees saisis par l'etudiant et creer un nv traitementJustificatif pour la cause mais en valeur par defaut pour le reste
 
-    public function creerJustificatif(int $idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null): int|false
+    public function creerJustificatif($idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = [],): int|false
     {
 
 
@@ -43,12 +45,18 @@ class NewJustificatif
 
 
             //  Lier l'absence et le justificatif
+            foreach($idAbsence as $i){
+                echo 'LAV ';
+                $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
+                $stmtAbsenceEtJustificatif = $this->conn->prepare($sqlAbsenceEtJustificatif);
+                $stmtAbsenceEtJustificatif->bindValue(':idabsence', $i['idabsence'], PDO::PARAM_INT);
+                $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
+                $stmtAbsenceEtJustificatif->execute();
 
-            $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
-            $stmtAbsenceEtJustificatif = $this->conn->prepare($sqlAbsenceEtJustificatif);
-            $stmtAbsenceEtJustificatif->bindValue(':idabsence', $idAbsence, PDO::PARAM_INT);
-            $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
-            $stmtAbsenceEtJustificatif->execute();
+
+                $this->changeStatut($i['idabsence']);
+
+            }
 
 
             // Créer l'entrée initiale dans traitementjustificatif
@@ -59,37 +67,48 @@ class NewJustificatif
             $stmtTraitement->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
             $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
             $stmtTraitement->execute();
+            // 4️⃣ Enregistrer les fichiers justificatifs (si présents)
+            if (!empty($justificatifs)) {
+                $sqlFichier = "INSERT INTO fichierjustificatif (pathJustificatif, idJustificatif)
+                           VALUES (:path, :idjustificatif)";
+                $stmtFichier = $this->conn->prepare($sqlFichier);
 
-//            $sqlficher = "INSERT INTO fichierjustificatif (idjustificatif,pathjustificatif) VALUES (:idjustificatif, ../../jspbb)";
-//            $stmtfichier =  $this->conn->prepare($sqlficher);
-//            $stmtfichier->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
-//            $stmtfichier->execute();
+                foreach ($justificatifs as $path) {
+                    $stmtFichier->execute([
+                        ':path' => $path,
+                        ':idjustificatif' => $idJustificatif
+                    ]);
+                }
+            }
 
             return true;
 
         } catch (PDOException $e) {
+            echo "Erreur SQL : " . $e->getMessage(); // 👈 temporaire pour debug
             return false;
         }
     }
 
-    public function getIdAbsenceParSeance($datedebut, $heuredebut, $idEtudiant) {
-        $sql = "SELECT a.idAbsence
-            FROM absence AS a
-            JOIN seance AS s ON a.idseance = s.idseance
-            WHERE a.idEtudiant = :idEtudiant
-              AND s.date = :datedebut
-              AND s.heuredebut = :heuredebut";
+    public function getIdAbsenceParSeance($datedebut, $heuredebut,$datefin,$heurefin, $idEtudiant) {
+        $sql = "select idAbsence from Absence join Seance using(idSeance) where statut='refus' and :dateDebut <= date and :dateFin >= date and :heureDebut <= heureDebut and :heureFin-duree >= heureDebut and idEtudiant=:idEtu;";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":idEtudiant", $idEtudiant, PDO::PARAM_INT);
-        $stmt->bindParam(":datedebut", $datedebut);
-        $stmt->bindParam(":heuredebut", $heuredebut);
-
+        $stmt->bindParam(":idEtu", $idEtudiant);
+        $stmt->bindParam(":dateDebut", $datedebut);
+        $stmt->bindParam(":heureDebut", $heuredebut);
+        $stmt->bindParam(":dateFin", $datefin);
+        $stmt->bindParam(":heureFin", $heurefin);
         $stmt->execute();
 
-        $idAbsence = $stmt->fetchColumn();
+        return $stmt->fetchAll();
+    }
 
-        return $idAbsence;
+    public function changeStatut($idAbsence) {
+        $var = 'report';
+        $stmt = $this->conn->prepare('UPDATE Absence SET statut = :report WHERE idAbsence = :abs');
+        $stmt->bindParam(':abs', $idAbsence);
+        $stmt->bindParam(':report', $var);
+        $stmt->execute();
     }
 
 

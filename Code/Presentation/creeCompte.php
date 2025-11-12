@@ -13,17 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $datedenaissance = $_POST['datedenaissance'];
     $diplome = $_POST['diplome'];
 
-    $_SESSION['formData'] = [
-        'nom' => $nom,
-        'prenom' => $prenom,
-        'prenom2' => $prenom2,
-        'email' => $email,
-        'motdepasse' => $motdepasse,
-        'role' => $role,
-        'groupe' => $groupe,
-        'datedenaissance' => $datedenaissance,
-        'diplome' => $diplome,
-    ];
     $model = new ComptesModel();
     try {
         $model->addCompte($nom, $prenom, $prenom2, $email, password_hash($motdepasse, PASSWORD_DEFAULT), $role, $groupe, $datedenaissance, $diplome);
