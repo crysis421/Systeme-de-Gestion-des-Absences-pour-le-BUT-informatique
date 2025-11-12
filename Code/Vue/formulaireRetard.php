@@ -92,9 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <div id="infos">
             <br>
-            <label for="id">Numéro d'étudiant *:</label>
+            <label for="id">Numéro d'étudiant :</label>
             <input type="number" id="id" name="id" placeholder="Entrez votre numéro d'étudiant"
-                   value="<?php echo htmlspecialchars($id); ?>" required><br><br>
+                   value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required><br><br>
         </div>
 
         <div id="inforetard">

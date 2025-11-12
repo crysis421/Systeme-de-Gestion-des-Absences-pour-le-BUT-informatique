@@ -9,6 +9,20 @@ if (!$data) {
     die("Aucune donnée de formulaire trouvée. Retournez au formulaire.");
 }
 
+
+$data = $_SESSION['formData'];
+
+
+$idAbsManager = new  NewJustificatif();
+
+$idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],$data['heuredebut'],$data['fin'],$data['heurefin1'],$data['id']);
+
+if(empty($idAbsence)){
+    $_SESSION['aEssayer'] = true;
+    header('Location: ../Vue/formulaireAbsence.php');
+}else{
+    echo "<br>";
+
 // 🔹 Informations de base
 $idUser = (int)$data['id'];
 $cause = htmlspecialchars($data['motif']);
@@ -18,12 +32,8 @@ $justificatifs = $data['justificatifs'] ?? [];
 // 🔹 Initialisation du gestionnaire
 $justificatifManager = new NewJustificatif();
 
-// 🔹 ID d'absence fixe
-$idAbsence = 10733;
-
-// 🔹 Création du justificatif
-try {
-    $succes = $justificatifManager->creerJustificatif(
+    ///hop la on creer un justificatif bb
+    $succes = $idAbsManager->creerJustificatif(
             $idAbsence,
             $idUser,
             $cause,
@@ -31,13 +41,10 @@ try {
             $justificatifs // <-- on insère directement les chemins relatifs
     );
 
-    if ($succes) {
-        unset($_SESSION['formData']); // supprime la session après succès
-    }
-
 } catch (PDOException $e) {
     die("Erreur SQL : " . $e->getMessage());
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -53,37 +60,21 @@ try {
 </header>
 <main>
     <div id="titre">
-        <?php if ($succes) : ?>
-            <p>✅ Justificatif envoyé avec succès !</p>
-        <?php else : ?>
-            <p>❌ Erreur lors de la création du justificatif.</p>
-        <?php endif; ?>
+        <?php if ($succes !== false) {
+            echo "Justificatif envoyé avec succès !";
+            unset($_SESSION['formData']);
+            header('Location: ../Vue/formulaireAbsence.php');
+
+        } else {
+            echo "Erreur lors de la création du justificatif (littéralement)";
+        }
+        ?>
+
+
     </div>
 
-    <?php if (!empty($justificatifs)) : ?>
-        <h3>Fichiers enregistrés :</h3>
-        <ul>
-            <?php foreach ($justificatifs as $path): ?>
-                <?php
-                // On récupère juste le nom du fichier
-                $fileName = basename($path);
-                // Chemin relatif au web depuis ce script
-                $webPath = "../uploads/" . $fileName;
-                ?>
-                <li>
-                    <a href="<?php echo htmlspecialchars($webPath); ?>" target="_blank">
-                        <?php echo htmlspecialchars($fileName); ?>
-                    </a>
-                    <?php if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $fileName)) : ?>
-                        <!-- Affichage direct de l'image en miniature -->
-                        <br>
-                        <img src="<?php echo htmlspecialchars($webPath); ?>" alt="<?php echo htmlspecialchars($fileName); ?>" style="max-width:200px; margin-top:5px;">
-                    <?php endif; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
 </main>
 </body>
-</html>
 
+</html>
+<?php }
