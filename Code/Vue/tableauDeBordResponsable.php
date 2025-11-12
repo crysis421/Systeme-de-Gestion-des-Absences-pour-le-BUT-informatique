@@ -23,10 +23,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     $justificatifs = $model->getJustificatifsAttente();
 }
 
-$justificatifs = array_slice($justificatifs, 0, 10);
-
 $justificatifsDemande = $model->getJustificatifsDemande();
 $justificatifsDemande = array_slice($justificatifsDemande, 0, 10);
+
+$groupes = [];
+foreach($justificatifs as $justif) {
+    $id = $justif['idjustificatif'];
+    if(!isset($groupes[$id])){
+        $groupes[$id] = [
+            'id' => $id,
+            'commentaire' => $justif['commentaire_justificatif'],
+            'nom' => $justif['nom_etudiant'],
+            'prenom' => $justif['prenom_etudiant'],
+            'description' => '',
+            'absences' => []
+        ];
+    }
+
+    $groupes[$id]['absences'][] = [
+        'id' => $justif['id_absence'],
+        'matiere' => $justif['matiere'],
+        'date' => $justif['date_seance'],
+        'heure' => $justif['heuredebut']
+    ];
+
+    // pour la desc
+    $dates = array_column($groupes[$id]['absences'], 'date');
+    sort($dates);
+
+    $nbAbs = count($dates);
+    $dateDebut = $dates[0];
+    $dateFin = end($dates);
+
+    $groupes[$id]['description'] = "$nbAbs absence" . ($nbAbs > 1 ? "s" : "") . ", du $dateDebut au $dateFin";
+}
 
 $titre = "";
 $description = "";
@@ -162,18 +192,18 @@ EOL;
 
 <!-- Liste des absences ici ! -->
 <div class="liste-absence">
-    <?php foreach ($justificatifs as $justif):
-        $id = $justif['idjustificatif'];
-        $commentaire = $justif['commentaire_justificatif'];
+    <?php foreach ($groupes as $justif):
+        $id = $justif['id'];
+        $commentaire = $justif['commentaire'];
+        $absences = $justif['absences'];
         ?>
         <div class="element">
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></b></a><br>
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom']) ?> <?= htmlspecialchars($justif['prenom']) ?></b></a><br>
                     <div class="description-element">
-                        <small><?= htmlspecialchars($justif['matiere']) ?></small>
-                        <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                        <small><?= htmlspecialchars($justif['description']) ?></small>
                     </div>
 
                     <div class="ligne"></div>
@@ -200,6 +230,15 @@ EOL;
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
+
+                    <?php foreach ($absences as $abs):
+                        $matiere = rtrim(substr($abs['matiere'],-6),')');
+                        $date = $abs['date'];
+                        $heure = $abs['heure'];
+                        $idAbsence = $abs['id'];
+                        ?>
+                        <a><?= htmlspecialchars($date)?> <?= htmlspecialchars($heure)?> <?= htmlspecialchars($matiere)?></a> <br>
+                    <?php endforeach; ?>
 
                     <form method="post">
                         <a class="decision-finale">Décision finale</a>

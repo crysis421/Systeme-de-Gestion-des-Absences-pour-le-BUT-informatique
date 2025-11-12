@@ -175,7 +175,7 @@ class AbsenceModel
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
-            a.idAbsence,
+            a.idAbsence AS id_absence,
             a.statut AS statut_absence,
             s.date AS date_seance,
             s.heuredebut,
