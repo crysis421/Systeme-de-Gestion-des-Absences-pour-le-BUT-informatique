@@ -59,6 +59,7 @@ button{
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="date"],
 select {
     width: 100%;
     padding: 10px;

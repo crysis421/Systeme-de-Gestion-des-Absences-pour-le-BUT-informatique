@@ -49,7 +49,7 @@ require_once '../Presentation/lesInfoEtu.php';
                     <h1></h1>
                     <form id="form" action="" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
                         <label for="Email">
-                            Entrer votre adresse mail :* <input type="number" name="email" placeholder="adresse mail" required>
+                            Entrer votre adresse mail :* <input type="email" name="email" placeholder="adresse mail" required>
                         </label> <br>
                         <br>
                         <label for="Mot de passe">
