@@ -24,6 +24,7 @@ require_once '../Presentation/lesInfoEtu.php';
 
     <!-- Section du haut : Profil à gauche / Données à droite -->
     <div id="haut">
+
         <div id="profil">
             <details>
                 <summary style="background-color: #bce6f6">
@@ -60,9 +61,7 @@ require_once '../Presentation/lesInfoEtu.php';
                         <input   type="submit" value="valider" style=" background-color:#007BFF; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; border-radius: 10px;">
                     </form>
                 </details>
-                <form id="form" action="Connexion.php" method="post">
-                    <input type="submit" value="Déconnexion" style="background-color:#bf0000; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; margin-left:88%; border-radius: 10px;">
-                </form>
+
             </details>
         </div>
 
@@ -89,7 +88,9 @@ require_once '../Presentation/lesInfoEtu.php';
         </div>
     </div>
 </main>
-
+<form id="form" action="Connexion.php" method="post">
+    <input type="submit" value="Déconnexion" style="background-color:#bf0000; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; margin-left:88%; border-radius: 10px;">
+</form>
 <footer id="footer">
     <a href="https://www.uphf.fr/" style="color: black; text-decoration: none;">
         &copy; 2025 Université Polytechnique Haut-de-France / IUT de Maubeuge
