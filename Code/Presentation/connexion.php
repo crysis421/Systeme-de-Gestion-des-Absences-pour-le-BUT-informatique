@@ -2,6 +2,8 @@
 session_start();
 require_once "../Model/ComptesModel.php";
 
+$erreur = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $motdepasse = $_POST['motDePasse'];
@@ -12,36 +14,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (password_verify($motdepasse, $res['motdepasse'])) {
         $_SESSION["user"] = $res['idutilisateur'];
+
+        // ----- SECRETAIRE -----
         if ($res['role'] == 'secretaire') {
-            ?>
-            <form action="../Vue/tableauDeBordEtu.php">
-                Vous êtes connectée en tant qu'étudiant
-                <input type="submit" value="OK">
-            </form>
-            <?php
+            header("Location: ../Vue/tableauDeBordEtu.php");
+            exit();
+            // ----- ELEVE -----
         } else if ($res['role'] == 'eleve') {
-            ?>
-            <form action="../Vue/tableauDeBordEtu.php">
-                Vous êtes connectée en tant qu'étudiant
-                <input type="submit" value="OK">
-            </form>
-            <?php
+            header("Location: ../Vue/tableauDeBordEtu.php");
+            exit();
+
+            // ----- RESPONSABLE -----
         } else if ($res['role'] == 'respon') {
-            ?>
-            <form action="../Vue/tableauDeBordResponsable.php">
-                Vous êtes connectée en tant que responsable
-                <input type="submit" value="OK">
-            </form>
-            <?php
+            header("Location: ../Vue/tableauDeBordResponsable.php");
+            exit();
         }
     } else {
-        echo 'Mot de passe invalide'; ?>
-        <form action="../Vue/Connexion.php" method="post"
-              enctype="multipart/form-data">>
-            <input type="submit" value="OK" name="OK">
-        </form>
-        <?php
-    }}
+        $_SESSION["erreur"] = "Mot de passe incorrect";
+        header("Location: ../Vue/Connexion.php");
+        exit();
+    }
+}
 else {
         require '../Vue/Connexion.php';
     }
