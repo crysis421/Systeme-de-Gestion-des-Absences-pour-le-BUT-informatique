@@ -86,11 +86,11 @@ require_once '../Presentation/lesInfoEtu.php';
                 <h2>Ajouter des diagrammes</h2>
             </details>
         </div>
+        <form id="form" action="Connexion.php" method="post">
+            <input type="submit" value="Déconnexion" style="margin-left:102% ;background-color:#bf0000; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px 10px 10px; border-radius: 10px;">
+        </form>
     </div>
 </main>
-<form id="form" action="Connexion.php" method="post">
-    <input type="submit" value="Déconnexion" style="background-color:#bf0000; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; margin-left:88%; border-radius: 10px;">
-</form>
 <footer id="footer">
     <a href="https://www.uphf.fr/" style="color: black; text-decoration: none;">
         &copy; 2025 Université Polytechnique Haut-de-France / IUT de Maubeuge

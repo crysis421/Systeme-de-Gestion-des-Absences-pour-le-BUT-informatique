@@ -19,7 +19,7 @@ class AbsenceModel
     }
 
     public function getUser($id){
-        $stmt = $this->conn->prepare("SELECT nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome,count(*) as totalabsences FROM utilisateur left join absence on utilisateur.idUtilisateur = absence.idEtudiant WHERE idUtilisateur = :id group by nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome;");
+        $stmt = $this->conn->prepare("SELECT nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome,count(idAbsence) as totalabsences FROM utilisateur left join absence on utilisateur.idUtilisateur = absence.idEtudiant WHERE idUtilisateur = :id group by nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome;");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
