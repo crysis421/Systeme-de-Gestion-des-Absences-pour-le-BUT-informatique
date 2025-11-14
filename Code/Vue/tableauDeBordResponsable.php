@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="tableauDeBordResponsable.css">
+    <link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">
     <title>Tableau de bord absence</title>
 </head>
 <body>

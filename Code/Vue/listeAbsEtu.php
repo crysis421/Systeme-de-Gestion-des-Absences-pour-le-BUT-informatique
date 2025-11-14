@@ -1,6 +1,6 @@
 <?php
 //Ce fichier est là pour le Tableau De Bord de l'étudiant
-echo '<link rel="stylesheet" href="tableauDeBordResponsable.css">';
+echo '<link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">';
 
 if (empty($result)) {
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
