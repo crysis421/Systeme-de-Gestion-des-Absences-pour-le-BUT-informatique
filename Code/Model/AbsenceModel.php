@@ -350,12 +350,12 @@ class AbsenceModel
 
         if (!empty($nom)) {
             $sql .= " AND u.nom ILIKE :nom";
-            $params[':nom'] = "$nom%";
+            $params[':nom'] = "$nom";
         }
 
         if (!empty($prenom)) {
             $sql .= " AND u.prenom ILIKE :prenom";
-            $params[':prenom'] = "$prenom%";
+            $params[':prenom'] = "$prenom";
         }
 
         $sql .= " ORDER BY j.dateSoumission DESC";
