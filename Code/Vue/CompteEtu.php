@@ -54,7 +54,7 @@ require_once '../Presentation/lesInfoEtu.php';
                         <b id="annuler">Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
-                    <form id="form" action="" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
+                    <form id="form" action="../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
                         <label for="Email">
                             Entrer votre adresse mail :* <input type="email" name="email" placeholder="adresse mail" required>
                         </label> <br>

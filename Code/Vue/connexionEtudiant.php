@@ -1,8 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="../CSS/connect.css">
 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/connect.css">
+    <title>connexion étudiant</title>
+</head>
 <body>
 <header>
     <?php
@@ -35,7 +39,7 @@
                 }
                 ?>
             </label>
-            <a style="font-family: Arial; color: yellow; font-size: 11px;" href="MDPoublier.php">Mot de passe oublié ?</a><br>
+            <a style="font-family: Arial; color: yellow; font-size: 11px;" href="MDPoublierEtudiant.php">Mot de passe oublié ?</a><br>
             <br>
             <input   type="submit" value="Connexion">
             <br>
