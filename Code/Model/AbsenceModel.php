@@ -344,18 +344,18 @@ class AbsenceModel
 
         // % et % comme ça juste un bout de la matière ça marche genre R2.03
         if (!empty($matiere)) {
-            $sql .= " AND c.matiere LIKE :matiere";
+            $sql .= " AND c.matiere ILIKE :matiere";
             $params[':matiere'] = "%$matiere%";
         }
 
         if (!empty($nom)) {
-            $sql .= " AND u.nom LIKE :nom";
-            $params[':nom'] = "$nom";
+            $sql .= " AND u.nom ILIKE :nom";
+            $params[':nom'] = "$nom%";
         }
 
         if (!empty($prenom)) {
-            $sql .= " AND u.prenom LIKE :prenom";
-            $params[':prenom'] = "$prenom";
+            $sql .= " AND u.prenom ILIKE :prenom";
+            $params[':prenom'] = "$prenom%";
         }
 
         $sql .= " ORDER BY j.dateSoumission DESC";
