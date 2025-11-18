@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
 }
 
 $justificatifsDemande = $model->getJustificatifsDemande();
-$justificatifsDemande = array_slice($justificatifsDemande, 0, 10);
 
 $groupes = [];
 foreach($justificatifs as $justif) {
@@ -62,7 +61,7 @@ $titre = "";
 $description = "";
 
 //accepte, refuse, enAttente
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
 
     $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
     $choix = isset($_POST['toggle']) ? $_POST['toggle'] : null;
@@ -72,35 +71,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $checkboxAbsence = $_POST['checkboxAbsence'] ?? [];
 
 
-    return;
-
-    if($choix == "accepte"){
-        $titre = "Accepté !";
-        $description = $motif;
-
-        $model->traiterJustificatif($IDElement, 'accepte', false, '', $motif);
-    }
-
-    if ($choix == "refuse"){
-        $titre = "Refusé !";
-        $description = $refus;
-        if(strlen($refus) > 10) {
-            $description = substr($refus,0,10) . "...";
+    if (empty($checkboxAbsence)) {
+        $titre = "Erreur";
+        $description = "Veuillez sélectionner au moins une absence à traiter.";
+    } else {
+        if ($choix == "accepte") {
+            $titre = "Accepté !";
+            $description = $motif;
+            $model->traiterAbsences($checkboxAbsence, 'valide', $motif);
         }
 
-        $model->traiterJustificatif($IDElement, 'refuse', false, $refus);
-    }
-
-    if ($choix == "demande"){
-        $titre = "Demandé !";
-        $description = $demande;
-        if(strlen($demande) > 10) {
-            $description = substr($demande,0,10) . "...";
+        if ($choix == "refuse") {
+            $titre = "Refusé !";
+            $description = $refus;
+            if (strlen($refus) > 10) {
+                $description = substr($refus, 0, 10) . "...";
+            }
+            $model->traiterAbsences($checkboxAbsence, 'refus', $refus);
         }
 
-        $model->traiterJustificatif($IDElement, 'enAttente', false, $demande);
+        if ($choix == "demande") {
+            $titre = "Demandé !";
+            $description = $demande;
+            if (strlen($demande) > 10) {
+                $description = substr($demande, 0, 10) . "...";
+            }
+            $model->traiterAbsences($checkboxAbsence, 'report', $demande);
+        }
     }
-
 }
 
 ?>
@@ -235,14 +233,16 @@ EOL;
                     </div>
                     <form method="post">
 
+                        <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>">
+
                         <?php foreach ($absences as $abs):
                             $matiere = rtrim(substr($abs['matiere'],-6),')');
                             $date = $abs['date'];
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
                             ?>
-                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $idAbsence?>" id="checkboxAbsence_<?= $idAbsence?>">
-                            <a><?= htmlspecialchars($date)?> <?= htmlspecialchars($heure)?> <?= htmlspecialchars($matiere)?></a> <br>
+                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">
+                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars($abs['heure'])?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
                         <?php endforeach; ?>
 
                         <a class="decision-finale">Décision finale</a>

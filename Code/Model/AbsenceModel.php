@@ -25,6 +25,126 @@ class AbsenceModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function traiterAbsences(array $absenceIds, string $decision, ?string $commentaire) {
+        if (empty($absenceIds)) return;
+
+        $this->conn->beginTransaction();
+
+        try {
+            $stmtInfo = $this->conn->prepare("
+                SELECT a.idEtudiant, aj.idJustificatif
+                FROM Absence a
+                JOIN AbsenceEtJustificatif aj ON a.idAbsence = aj.idAbsence
+                WHERE a.idAbsence = :idAbsence
+            ");
+            $stmtInfo->bindValue(':idAbsence', $absenceIds[0], PDO::PARAM_INT);
+            $stmtInfo->execute();
+            $info = $stmtInfo->fetch(PDO::FETCH_ASSOC);
+
+            if (!$info)
+                throw new Exception("Impossible de trouver les informations pour l'absence initiale.");
+
+
+            $idEtudiant = $info['idEtudiant'];
+            $originalJustificatifId = $info['idJustificatif'];
+            if ($decision === 'valide') {
+                $stmtFind = $this->conn->prepare("
+                    SELECT tj.idJustificatif
+                    FROM TraitementJustificatif tj
+                    JOIN Justificatif j ON tj.idJustificatif = j.idJustificatif
+                    JOIN AbsenceEtJustificatif aj ON j.idJustificatif = aj.idJustificatif
+                    JOIN Absence a ON aj.idAbsence = a.idAbsence
+                    WHERE a.idEtudiant = :idEtudiant
+                      AND tj.reponse = 'accepte'
+                      AND tj.cause = :cause
+                    LIMIT 1
+                ");
+                $stmtFind->bindValue(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
+                $stmtFind->bindValue(':cause', $commentaire, PDO::PARAM_STR);
+                $stmtFind->execute();
+                $existingJustificatif = $stmtFind->fetch(PDO::FETCH_ASSOC);
+
+                if ($existingJustificatif) {
+                    $targetJustificatifId = $existingJustificatif['idJustificatif'];
+                } else {
+                    $stmtNewJustif = $this->conn->prepare("INSERT INTO Justificatif (dateSoumission, commentaire_absence, verrouille) VALUES (NOW(), :comment, FALSE)");
+                    $stmtNewJustif->bindValue(':comment', "Justificatif groupé pour : " . $commentaire);
+                    $stmtNewJustif->execute();
+                    $targetJustificatifId = $this->conn->lastInsertId();
+
+                    $stmtNewTraitement = $this->conn->prepare("
+                        INSERT INTO TraitementJustificatif (attente, reponse, date, commentaire_validation, cause, idJustificatif)
+                        VALUES (FALSE, 'accepte', NOW(), 'Validé automatiquement par regroupement', :cause, :idJustificatif)
+                    ");
+                    $stmtNewTraitement->bindValue(':cause', $commentaire, PDO::PARAM_STR);
+                    $stmtNewTraitement->bindValue(':idJustificatif', $targetJustificatifId, PDO::PARAM_INT);
+                    $stmtNewTraitement->execute();
+                }
+
+                foreach ($absenceIds as $idAbsence) {
+                    $stmtUpdateAbsence = $this->conn->prepare("UPDATE Absence SET statut = 'valide' WHERE idAbsence = :idAbsence");
+                    $stmtUpdateAbsence->bindValue(':idAbsence', $idAbsence, PDO::PARAM_INT);
+                    $stmtUpdateAbsence->execute();
+
+                    $stmtUpdateLink = $this->conn->prepare("
+                        UPDATE AbsenceEtJustificatif SET idJustificatif = :newIdJustificatif WHERE idAbsence = :idAbsence
+                    ");
+                    $stmtUpdateLink->bindValue(':newIdJustificatif', $targetJustificatifId, PDO::PARAM_INT);
+                    $stmtUpdateLink->bindValue(':idAbsence', $idAbsence, PDO::PARAM_INT);
+                    $stmtUpdateLink->execute();
+                }
+
+            } else {
+                $updateAbsenceStatus = $this->conn->prepare("UPDATE Absence SET statut = :decision WHERE idAbsence = :idAbsence");
+                foreach ($absenceIds as $idAbsence) {
+                    $updateAbsenceStatus->bindValue(':decision', $decision, PDO::PARAM_STR);
+                    $updateAbsenceStatus->bindValue(':idAbsence', $idAbsence, PDO::PARAM_INT);
+                    $updateAbsenceStatus->execute();
+                }
+
+                $reponse = ($decision === 'refus') ? 'refuse' : 'enAttente';
+                $attente = ($decision === 'report');
+
+                $stmtUpdateTraitement = $this->conn->prepare("
+                    UPDATE TraitementJustificatif
+                    SET attente = :attente,
+                        reponse = :reponse,
+                        commentaire_validation = :commentaire,
+                        date = NOW()
+                    WHERE idJustificatif = :idJustificatif
+                ");
+                $stmtUpdateTraitement->bindValue(':attente', $attente, PDO::PARAM_BOOL);
+                $stmtUpdateTraitement->bindValue(':reponse', $reponse, PDO::PARAM_STR);
+                $stmtUpdateTraitement->bindValue(':commentaire', $commentaire, PDO::PARAM_STR);
+                $stmtUpdateTraitement->bindValue(':idJustificatif', $originalJustificatifId, PDO::PARAM_INT);
+                $stmtUpdateTraitement->execute();
+            }
+
+            $stmtCheckOrphan = $this->conn->prepare("
+                SELECT COUNT(*) FROM AbsenceEtJustificatif WHERE idJustificatif = :idJustificatif
+            ");
+            $stmtCheckOrphan->bindValue(':idJustificatif', $originalJustificatifId, PDO::PARAM_INT);
+            $stmtCheckOrphan->execute();
+            $count = $stmtCheckOrphan->fetchColumn();
+
+            if ($count == 0) {
+                $stmtDeleteTraitement = $this->conn->prepare("DELETE FROM TraitementJustificatif WHERE idJustificatif = :idJustificatif");
+                $stmtDeleteTraitement->bindValue(':idJustificatif', $originalJustificatifId, PDO::PARAM_INT);
+                $stmtDeleteTraitement->execute();
+
+                $stmtDeleteJustif = $this->conn->prepare("DELETE FROM Justificatif WHERE idJustificatif = :idJustificatif");
+                $stmtDeleteJustif->bindValue(':idJustificatif', $originalJustificatifId, PDO::PARAM_INT);
+                $stmtDeleteJustif->execute();
+            }
+
+            $this->conn->commit();
+
+        } catch (Exception $e) {
+            $this->conn->rollBack();
+            throw $e;
+        }
+    }
+
     public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
     {
         $update = $this->conn->prepare("
