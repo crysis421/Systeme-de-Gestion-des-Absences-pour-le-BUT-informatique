@@ -26,6 +26,31 @@ ul {
     transition: all 0.3s ease;
 }
 
+.histo-accepter, .histo-refuser, .histo-demander {
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+.histo-accepter {
+    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-refuser {
+    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
+.histo-demander {
+    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background-size: contain;
+}
+
 /* Titre principal (Résumé avec icône) */
 summary.filtrer {
     display: flex;

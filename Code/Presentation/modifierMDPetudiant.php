@@ -12,7 +12,7 @@ $mdp = $_POST['motDePasse'];
 $a = new AbsenceModel();
 $message = $a->ModifierMDP($email, $mdp);
 
-header('Location: ../Vue/connexionEtudiant.php');
+header('Location: ../Vue/Connexion.php');
 
 ?>
 

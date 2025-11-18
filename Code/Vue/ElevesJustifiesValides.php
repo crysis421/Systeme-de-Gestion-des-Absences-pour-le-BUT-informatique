@@ -39,7 +39,7 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 <ul>
     <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord des absences</li></a>
     <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
+    <a class="pages" href="CompteResp.php"><li>Compte</li></a>
 </ul>
 
 <!-- Titre -->

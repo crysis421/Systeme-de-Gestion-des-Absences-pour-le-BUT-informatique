@@ -28,36 +28,26 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/CSS/historiqueResp.css">
+    <link rel="stylesheet" href="/CSS/tableauDeBordResponsable.css">
     <title>Tableau de bord historique</title>
 </head>
 <body>
 
-<a href="https://ent.uphf.fr/uPortal/f/Accueil/normal/render.uP"><img src="https://ent.uphf.fr/uphf/images/ent-logo.svg" alt="Logo de l'IUT"></a>
-
 <!-- TabBar ici ! -->
-<ul>
-    <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord des absences</li></a>
-    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
-</ul>
-
+<?php require('menuHorizontalResp.html'); ?>
 <!-- Titre -->
 <h1><u>Historique des absences : </u></h1>
 
 
 <!-- Filtrage ici ! -->
-<details>
+<details id="details">
     <summary class="filtrer">
         <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
         <a class="nom"><b>Filtrer</b></a><br>
     </summary>
 
     <div class="filtrage">
-        <form method="post">
-
-            <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
-            <label for="dateFiltreur">Filtrer par date</label>
+        <form method="post" id="formFiltre">
 
             <div class="dateFiltre">
                 <?php
@@ -71,19 +61,11 @@ $justificatifs = array_slice($justificatifs, 0, 10);
                 <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
             </div>
 
-
-            <br>
-            <input type="checkbox" id="matiereFiltreur" name="matiereFiltreur" class="matiereFiltreur" checked />
-            <label for="matiereFiltreur">Filtrer par matière</label>
             <div class="matiereFiltre">
                 <h3>Nom de la matière</h3>
                 <input type="text" id="inputMatiere" name="Matière" value="">
             </div>
 
-
-            <br>
-            <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
-            <label for="eleveFiltreur">Filtrer par élève</label>
             <div class="eleveFiltre">
                 <h3>Prénom</h3>
                 <input type="text" id="inputPrenom" name="PrenomInput" value="">

@@ -112,14 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
 </head>
 <body>
 
-<a href="https://ent.uphf.fr/uPortal/f/Accueil/normal/render.uP"><img src="https://ent.uphf.fr/uphf/images/ent-logo.svg" alt="Logo de l'IUT"></a>
-
 <!-- TabBar ici ! -->
-<ul>
-    <a class="pages" href="tableauDeBordResponsable.php"><li>Tableau de bord</li></a>
-    <a class="pages" href="HistoriqueResp.php"><li>Historique</li></a>
-    <a class="pages" href="CompteResp.html"><li>Compte</li></a>
-</ul>
+<?php require('menuHorizontalResp.html'); ?>
 
 <!-- Notification ici ! -->
 <?php
