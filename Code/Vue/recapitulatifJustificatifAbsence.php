@@ -40,14 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
 <h1 style="text-align: center">
     Récapitulatif du justificatif d'absence de <?php echo htmlspecialchars($prenom); ?> <?php echo htmlspecialchars($nom); ?>
 </h1>
-// Affiche les chemins dans la console PHP
-<ul>
-    <?php foreach ($justificatifs as $path): ?>
-        <li>
-            <?php echo htmlspecialchars($path); ?>  <!-- Affiche le chemin complet -->
-        </li>
-    <?php endforeach; ?>
-</ul>
+
 <div id="main" >
     <div id="info">
         <p><b id="gras">Période d'absence :</b> du <?php echo htmlspecialchars($data['datedebut']); ?> à <?php echo htmlspecialchars($data['heuredebut']); ?>

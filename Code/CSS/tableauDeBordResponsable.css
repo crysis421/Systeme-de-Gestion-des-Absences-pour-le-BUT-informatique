@@ -1,15 +1,145 @@
-div{
-    font-size:20px;
+div {
+    font-size: 20px;
     padding: 1px;
 }
-ul{
+
+ul {
     text-align: right;
-    font-size:  1vw;
+    font-size: 1vw;
     padding-bottom: 3px;
     border-bottom-style: solid;
     border-bottom-width: 4px;
     border-color: #c6a04d;
+    margin-bottom: 0;
 }
+#details {
+    width: 100%;
+    max-width: 900px;
+    background: #f4f6f8;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    padding: 1em;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    color: #333;
+    margin: 1em auto;
+    transition: all 0.3s ease;
+}
+
+/* Titre principal (Résumé avec icône) */
+summary.filtrer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    list-style: none;
+    padding: 0.5em 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+summary.filtrer:hover {
+    color: #0078d7;
+}
+
+.Filtre {
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+
+summary.filtrer:hover .Filtre {
+    transform: rotate(20deg);
+    opacity: 1;
+}
+
+/* Conteneur principal des filtres */
+div.filtrage {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 1em;
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+}
+
+/* Chaque bloc de filtre (date, matière, élève) */
+div.dateFiltre,
+div.matiereFiltre,
+div.eleveFiltre {
+    flex: 1;
+    min-width: 250px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.8em;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* Titres internes */
+div.filtrage h3 {
+    margin: 0.5em 0 0.3em;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Champs de texte et date */
+div.filtrage input[type="text"],
+div.filtrage input[type="date"] {
+    width: 100%;
+    padding: 0.4em;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+div.filtrage input[type="text"]:focus,
+div.filtrage input[type="date"]:focus {
+    border-color: #0078d7;
+    outline: none;
+}
+
+/* Cases à cocher et labels */
+input[type="checkbox"] {
+    accent-color: #0078d7;
+    margin-right: 6px;
+}
+
+label {
+    font-weight: 500;
+    color: #333;
+}
+
+#formFiltre{
+    display: flex;
+}
+
+/* Bouton de filtrage tout en bas */
+.bouton-filtrage {
+    width: 100%;
+    background: #0078d7;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0.8em 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: -100%;
+    display: flex;
+    margin-top: 23%;
+}
+
+.bouton-filtrage:hover {
+    background: #005fa3;
+}
+
 
 li {
     display: inline-block;
@@ -18,30 +148,36 @@ li {
     outline-color: black;
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
-    font-family:"Latin Modern Math";
+    font-family: "Latin Modern Math";
     font-size: 120%;
 }
 
-li:hover{
+li:hover {
     background-color: #efefef;
     animation-name: myAnimation;
     animation-duration: 1s;
 }
 
 @keyframes myAnimation {
-    from {background-color: #ffffff;}
-    to {background-color: #efefef;}
+    from {
+        background-color: #ffffff;
+    }
+    to {
+        background-color: #efefef;
+    }
 }
 
-a:visited{
+a:visited {
     color: #000000;
     text-decoration-line: none;
 }
+
 a:link {
     color: #000000;
     text-decoration-line: none;
 }
-.pages:hover{
+
+.pages:hover {
     color: #0280af;
 }
 
@@ -86,10 +222,9 @@ a:link {
 .liste-absence {
     position: relative;
     background-color: white;
-    box-shadow:
-            rgba(45, 35, 66, 0.2) 0 2px 4px,
-            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+    rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
     border-color: black;
     border-width: 10px;
     width: 650px;
@@ -102,10 +237,9 @@ a:link {
 .liste-absence-demandes {
     position: relative;
     background-color: white;
-    box-shadow:
-            rgba(45, 35, 66, 0.2) 0 2px 4px,
-            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+    rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
     border-color: black;
     border-width: 10px;
     width: 650px;
@@ -344,7 +478,7 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 }
 
 @keyframes notification-animation {
-    50%{
+    50% {
         right: 10px;
     }
     65% {
@@ -361,10 +495,9 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     background-color: #fcfcfd;
     border-radius: 4px;
     border-width: 0;
-    box-shadow:
-            rgba(45, 35, 66, 0.2) 0 2px 4px,
-            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+    rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
     box-sizing: border-box;
     color: #36395a;
     cursor: pointer;
@@ -379,9 +512,8 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     position: relative;
     text-align: left;
     text-decoration: none;
-    transition:
-            box-shadow 0.15s,
-            transform 0.15s;
+    transition: box-shadow 0.15s,
+    transform 0.15s;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
@@ -390,61 +522,17 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     font-size: 18px;
 }
 
-.dateFiltreur:checked ~ .dateFiltre {
-    display: block;
-}
-
-.eleveFiltreur:checked ~ .eleveFiltre {
-    display: block;
-}
-
-.matiereFilteur:checked ~ .matiereFiltre {
-    display: block;
-}
-
-
-.dateFiltre {
-    display: none;
-}
-
-.matiereFiltre {
-    display: none;
-}
-
-.eleveFiltre {
-    display: none;
-}
-
-.bouton-filtrage {
-    display: none;
-}
-
-.dateFiltreur:checked ~ .bouton-filtrage {
-    display: block;
-}
-
-.eleveFiltreur:checked ~ .bouton-filtrage {
-    display: block;
-}
-
-.matiereFilteur:checked ~ .bouton-filtrage {
-    display: block;
-}
-
-
 .bouton-envoye:focus {
-    box-shadow:
-            #d6d6e7 0 0 0 1.5px inset,
-            rgba(45, 35, 66, 0.4) 0 2px 4px,
-            rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
+    box-shadow: #d6d6e7 0 0 0 1.5px inset,
+    rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
 }
 
 .bouton-envoye:hover {
-    box-shadow:
-            rgba(45, 35, 66, 0.3) 0 4px 8px,
-            rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px,
+    rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
+    #d6d6e7 0 -3px 0 inset;
     transform: translateY(-2px);
 }
 
@@ -468,20 +556,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 }
 
 
-.bouton-filtrage {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    margin-top: 1.5rem;
-    background: #4f46e5;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
 .bouton-filtrage:hover {
     background: #4338ca;
 }
@@ -489,6 +563,7 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 .bouton-filtrage:active {
     background: #3730a3;
 }
+
 @media (max-width: 768px) {
     .filtrage {
         margin: 1rem;

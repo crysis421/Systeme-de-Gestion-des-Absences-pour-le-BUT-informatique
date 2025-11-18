@@ -1,6 +1,6 @@
 <?php
 //Ce fichier est là pour le Tableau De Bord de l'étudiant
-echo '<link rel="stylesheet" href="tableauDeBordResponsable.css">';
+echo '<link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">';
 
 if (empty($result)) {
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
@@ -10,7 +10,7 @@ if (empty($result)) {
     <form action="formulaireAbsence.php" method="get">
         <input type="submit"
                value="Justifier les absences du <?php echo $_SESSION['jour'] . "/" . date_format($_SESSION['date'], "m/y"); ?>"
-               id="jour" name="date">
+               id="jourbutton" name="date">
     </form>
 
     <?php

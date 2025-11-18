@@ -1,8 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="../CSS/connect.css">
 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/connect.css">
+    <title>connexion étudiant</title>
+</head>
 <body>
 <header>
     <?php
@@ -10,11 +14,10 @@
     session_start();
     $_SESSION["user"] = null;
     $erreur = "";
-    require_once("menuHorizontal.html");
     ?>
 </header>
 <main>
-    <h1>Connection à un compte</h1>
+    <h1>Connectez vous à compte</h1>
 
     <div id="container">
         <form id="form" action="../Presentation/connexion.php" method="post">
@@ -36,7 +39,7 @@
                 }
                 ?>
             </label>
-            <a style="font-family: Arial; color: yellow; font-size: 11px;" href="MDPoublier.php">Mot de passe oublié ?</a><br>
+            <a style="font-family: Arial; color: yellow; font-size: 11px;" href="MDPoublierEtudiant.php">Mot de passe oublié ?</a><br>
             <br>
             <input   type="submit" value="Connexion">
             <br>
@@ -51,9 +54,3 @@
 </footer>
 </body>
 </html>
-
-
-
-
-
-

@@ -19,10 +19,15 @@ class AbsenceModel
     }
 
     public function getUser($id){
-        $stmt = $this->conn->prepare("SELECT nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome,count(*) as totalabsences FROM utilisateur left join absence on utilisateur.idUtilisateur = absence.idEtudiant WHERE idUtilisateur = :id group by nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome;");
+        $stmt = $this->conn->prepare("SELECT nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome,count(idAbsence) as totalabsences FROM utilisateur left join absence on utilisateur.idUtilisateur = absence.idEtudiant WHERE idUtilisateur = :id group by nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome;");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function traiterAbsences(array $absenceIds, string $decision, string $commentaire) {
+        if (empty($absenceIds)) return;
+
     }
 
     public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
@@ -241,17 +246,17 @@ class AbsenceModel
 
         // % et % comme ça juste un bout de la matière ça marche genre R2.03
         if (!empty($matiere)) {
-            $sql .= " AND c.matiere LIKE :matiere";
+            $sql .= " AND c.matiere ILIKE :matiere";
             $params[':matiere'] = "%$matiere%";
         }
 
         if (!empty($nom)) {
-            $sql .= " AND u.nom LIKE :nom";
+            $sql .= " AND u.nom ILIKE :nom";
             $params[':nom'] = "$nom";
         }
 
         if (!empty($prenom)) {
-            $sql .= " AND u.prenom LIKE :prenom";
+            $sql .= " AND u.prenom ILIKE :prenom";
             $params[':prenom'] = "$prenom";
         }
 
@@ -339,17 +344,17 @@ class AbsenceModel
 
         // % et % comme ça juste un bout de la matière ça marche genre R2.03
         if (!empty($matiere)) {
-            $sql .= " AND c.matiere LIKE :matiere";
+            $sql .= " AND c.matiere ILIKE :matiere";
             $params[':matiere'] = "%$matiere%";
         }
 
         if (!empty($nom)) {
-            $sql .= " AND u.nom LIKE :nom";
+            $sql .= " AND u.nom ILIKE :nom";
             $params[':nom'] = "$nom";
         }
 
         if (!empty($prenom)) {
-            $sql .= " AND u.prenom LIKE :prenom";
+            $sql .= " AND u.prenom ILIKE :prenom";
             $params[':prenom'] = "$prenom";
         }
 
@@ -512,6 +517,14 @@ class AbsenceModel
     public function inser()
     {
 
+    }
+
+    public function grapheDeAnnee($annee,$idEtudiant){
+        $stmt = $this->conn->prepare("select extract('Months' from date),count(*) as total from Seance left join Absence using(idSeance) where idEtudiant = :etu and extract('Years' from Seance.date) = :year group by extract('Months' from date);");
+        $stmt->bindParam(":etu", $idEtudiant);
+        $stmt->bindParam(":year", $annee);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

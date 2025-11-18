@@ -7,16 +7,14 @@
     <title>mot de passe oublié</title>
 </head>
 <body>
-<header>
-    <?php require 'menuHorizontalEtu.html' ?>
-</header>
+
 <main style="background-color: white">
     <h1 style="text-align: center;">Réinitialiser votre mot de passe</h1>
 
     <div id="container">
         <form id="form" action="" method="post">
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
-                <b>entrer votre adresse mail :</b> <br>
+                <b>entrer votre adresse mail:</b> <br>
                 <br>
                 <input type="email" id="mail" name="mail" placeholder="entrer votre adresse mail" style="width :300px" required>
             </label><br>
@@ -26,7 +24,7 @@
             </div>
         </form>
         <div >
-            <a href="Connexion.php"><button>retour</button></a>
+            <a href="connexionEtudiant.php"><button>retour</button></a>
         </div>
 
     </div>

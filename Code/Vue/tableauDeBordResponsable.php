@@ -10,8 +10,8 @@ $model = new AbsenceModel();
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;
 $matiere = $_POST['Matière'] ?? null;
-$prenom = $_POST['PrenomInput'] ?? null;
-$nom = $_POST['NomInput'] ?? null;
+$prenom = $_POST['PrenomInput'].'%' ?? null;
+$nom = $_POST['NomInput'].'%' ?? null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom)) {
@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
 }
 
 $justificatifsDemande = $model->getJustificatifsDemande();
-$justificatifsDemande = array_slice($justificatifsDemande, 0, 10);
 
 $groupes = [];
 foreach($justificatifs as $justif) {
@@ -62,42 +61,44 @@ $titre = "";
 $description = "";
 
 //accepte, refuse, enAttente
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
 
     $IDElement = isset($_POST['IDElement']) ? $_POST['IDElement'] : null;
     $choix = isset($_POST['toggle']) ? $_POST['toggle'] : null;
     $motif = isset($_POST['motifs']) ? $_POST['motifs'] : null;
     $refus = isset($_POST['motif_refus']) ? $_POST['motif_refus'] : null;
     $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
+    $checkboxAbsence = $_POST['checkboxAbsence'] ?? [];
 
 
-    if($choix == "accepte"){
-        $titre = "Accepté !";
-        $description = $motif;
-
-        $model->traiterJustificatif($IDElement, 'accepte', false, '', $motif);
-    }
-
-    if ($choix == "refuse"){
-        $titre = "Refusé !";
-        $description = $refus;
-        if(strlen($refus) > 10) {
-            $description = substr($refus,0,10) . "...";
+    if (empty($checkboxAbsence)) {
+        $titre = "Erreur";
+        $description = "Veuillez sélectionner au moins une absence à traiter.";
+    } else {
+        if ($choix == "accepte") {
+            $titre = "Accepté !";
+            $description = $motif;
+            $model->traiterAbsences($checkboxAbsence, 'valide', $motif);
         }
 
-        $model->traiterJustificatif($IDElement, 'refuse', false, $refus);
-    }
-
-    if ($choix == "demande"){
-        $titre = "Demandé !";
-        $description = $demande;
-        if(strlen($demande) > 10) {
-            $description = substr($demande,0,10) . "...";
+        if ($choix == "refuse") {
+            $titre = "Refusé !";
+            $description = $refus;
+            if (strlen($refus) > 10) {
+                $description = substr($refus, 0, 10) . "...";
+            }
+            $model->traiterAbsences($checkboxAbsence, 'refus', $refus);
         }
 
-        $model->traiterJustificatif($IDElement, 'enAttente', false, $demande);
+        if ($choix == "demande") {
+            $titre = "Demandé !";
+            $description = $demande;
+            if (strlen($demande) > 10) {
+                $description = substr($demande, 0, 10) . "...";
+            }
+            $model->traiterAbsences($checkboxAbsence, 'report', $demande);
+        }
     }
-
 }
 
 ?>
@@ -106,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="tableauDeBordResponsable.css">
+    <link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">
     <title>Tableau de bord absence</title>
 </head>
 <body>
@@ -136,17 +137,14 @@ EOL;
 <h1><u>Liste des absences à traiter : </u></h1>
 
 <!-- Filtrage ici ! -->
-<details>
+<details id="details">
     <summary class="filtrer">
         <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
         <a class="nom"><b>Filtrer</b></a><br>
     </summary>
 
     <div class="filtrage">
-        <form method="post">
-
-            <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
-            <label for="dateFiltreur">Filtrer par date</label>
+        <form method="post" id="formFiltre">
 
             <div class="dateFiltre">
                 <?php
@@ -160,19 +158,11 @@ EOL;
                 <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
             </div>
 
-
-            <br>
-            <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
-            <label for="matiereFilteur">Filtrer par matière</label>
             <div class="matiereFiltre">
                 <h3>Nom de la matière</h3>
                 <input type="text" id="inputMatiere" name="Matière" value="">
             </div>
 
-
-            <br>
-            <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
-            <label for="eleveFiltreur">Filtrer par élève</label>
             <div class="eleveFiltre">
                 <h3>Prénom</h3>
                 <input type="text" id="inputPrenom" name="PrenomInput" value="">
@@ -230,17 +220,20 @@ EOL;
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
                     </div>
-
-                    <?php foreach ($absences as $abs):
-                        $matiere = rtrim(substr($abs['matiere'],-6),')');
-                        $date = $abs['date'];
-                        $heure = $abs['heure'];
-                        $idAbsence = $abs['id'];
-                        ?>
-                        <a><?= htmlspecialchars($date)?> <?= htmlspecialchars($heure)?> <?= htmlspecialchars($matiere)?></a> <br>
-                    <?php endforeach; ?>
-
                     <form method="post">
+
+                        <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>">
+
+                        <?php foreach ($absences as $abs):
+                            $matiere = rtrim(substr($abs['matiere'],-6),')');
+                            $date = $abs['date'];
+                            $heure = $abs['heure'];
+                            $idAbsence = $abs['id'];
+                            ?>
+                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">
+                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars($abs['heure'])?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
+                        <?php endforeach; ?>
+
                         <a class="decision-finale">Décision finale</a>
 
                         <input type="radio" id="toggle1_<?= $id ?>" name="toggle" value="accepte" style="display: none;">
