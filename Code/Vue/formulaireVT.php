@@ -1,11 +1,17 @@
 <?php
-require 'menuHorizontalEtu.html';
+
 ?>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <link rel="stylesheet" href="../CSS/formulaireVT.css">
     <title>Ajout d'un FichierVT</title>
 </head>
 
+<body>
+<header>
+    <?php require 'menuHorizontaleSecretaire.html'; ?>
+</header>
 <h1>Ajout d'un fichier VT</h1>
 
 <form action="../Presentation/upload.php" method="post" enctype="multipart/form-data">
@@ -21,3 +27,5 @@ require 'menuHorizontalEtu.html';
 <footer id="footer">
     <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
 </footer>
+</body>
+</html>

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // ----- SECRETAIRE -----
         if ($res['role'] == 'secretaire') {
-            header("Location: ../Vue/tableauDeBordEtu.php");
+            header("Location: ../Vue/formulaireVT.php");
             exit();
             // ----- ELEVE -----
         } else if ($res['role'] == 'eleve') {
