@@ -20,7 +20,13 @@ require_once '../Presentation/lesInfoEtu.php';
 </header>
 
 <main>
-    <h1>Bonjour <?php echo htmlspecialchars($prenom); ?> ! 👋</h1>
+    <div style="display: flex">
+        <h1 style=" width: 90%">Bonjour <?php echo htmlspecialchars($prenom); ?> ! 👋</h1>
+        <form style="width: 10%" id="form" action="connexionEtudiant.php" method="post">
+            <input type="submit" value="Déconnexion" style="background-color:#bf0000; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px 10px 10px; border-radius: 10px;">
+        </form>
+    </div>
+
 
     <!-- Section du haut : Profil à gauche / Données à droite -->
     <div id="haut">
@@ -48,7 +54,7 @@ require_once '../Presentation/lesInfoEtu.php';
                         <b id="annuler">Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
-                    <form id="form" action="" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
+                    <form id="form" action="../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
                         <label for="Email">
                             Entrer votre adresse mail :* <input type="email" name="email" placeholder="adresse mail" required>
                         </label> <br>
@@ -86,9 +92,7 @@ require_once '../Presentation/lesInfoEtu.php';
                 <h2>Ajouter des diagrammes</h2>
             </details>
         </div>
-        <form id="form" action="Connexion.php" method="post">
-            <input type="submit" value="Déconnexion" style="margin-left:102% ;background-color:#bf0000; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px 10px 10px; border-radius: 10px;">
-        </form>
+
     </div>
 </main>
 <footer id="footer">

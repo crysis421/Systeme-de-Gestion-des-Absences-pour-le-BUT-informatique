@@ -2,21 +2,18 @@
 session_start();
 require_once '../Model/AbsenceModel.php';
 
-if (!isset($_SESSION['modif'])) {
+if (!isset($_POST['motDePasse'])) {
     die("Aucune donnée trouvée. Veuillez retourner au formulaire.");
 }
 
-$data = $_SESSION['modif'];
-$email = $data['email'];
-$mdp = $data['motDePasse'];
+$email = $_POST['email'];
+$mdp = $_POST['motDePasse'];
 
 $a = new AbsenceModel();
 $message = $a->ModifierMDP($email, $mdp);
 
-echo $message;
+header('Location: ../Vue/connexionEtudiant.php');
 
-// Supprimer la session après utilisation pour la sécurité
-unset($_SESSION['modif']);
 ?>
 
 
