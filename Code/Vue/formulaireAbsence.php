@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p id="erreur" style="color:red; font-weight:bold;"><?php echo $error; ?></p>
     <?php endif;
     if($_SESSION['aEssayer']) {
-        echo "<h1>Vous n'avez pas d'absence entre ces dates</h1>";
+        echo "<h1 style='color: red'>Vous n'avez pas d'absence à justifier entre ces dates</h1>";
         $_SESSION['aEssayer'] = false;
     }
     ?>

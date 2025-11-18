@@ -10,7 +10,7 @@ if (empty($result)) {
     <form action="formulaireAbsence.php" method="get">
         <input type="submit"
                value="Justifier les absences du <?php echo $_SESSION['jour'] . "/" . date_format($_SESSION['date'], "m/y"); ?>"
-               id="jour" name="date">
+               id="jourbutton" name="date">
     </form>
 
     <?php

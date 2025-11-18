@@ -137,17 +137,14 @@ EOL;
 <h1><u>Liste des absences à traiter : </u></h1>
 
 <!-- Filtrage ici ! -->
-<details>
+<details id="details">
     <summary class="filtrer">
         <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
         <a class="nom"><b>Filtrer</b></a><br>
     </summary>
 
     <div class="filtrage">
-        <form method="post">
-
-            <input type="checkbox" id="dateFiltreur" name="dateFiltreur" class="dateFiltreur" checked />
-            <label for="dateFiltreur">Filtrer par date</label>
+        <form method="post" id="formFiltre">
 
             <div class="dateFiltre">
                 <?php
@@ -161,19 +158,11 @@ EOL;
                 <input type="date" id="endDate" name="dateFin" value="<?= $dateFin ?>">
             </div>
 
-
-            <br>
-            <input type="checkbox" id="matiereFilteur" name="matiereFilteur" class="matiereFilteur" checked />
-            <label for="matiereFilteur">Filtrer par matière</label>
             <div class="matiereFiltre">
                 <h3>Nom de la matière</h3>
                 <input type="text" id="inputMatiere" name="Matière" value="">
             </div>
 
-
-            <br>
-            <input type="checkbox" id="eleveFiltreur" name="eleveFiltreur" class="eleveFiltreur" checked />
-            <label for="eleveFiltreur">Filtrer par élève</label>
             <div class="eleveFiltre">
                 <h3>Prénom</h3>
                 <input type="text" id="inputPrenom" name="PrenomInput" value="">
