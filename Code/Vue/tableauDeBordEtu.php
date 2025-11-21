@@ -25,6 +25,12 @@ $nomDesMois = [ "January" => "Janvier",
         "November" => "Novembre",
         "December" => "Décembre"];
 
+$interrogationDuMois = ;
+
+$couleurDuMois = [ "Rouge" => "Rouge",
+        "Jaune" => "Jaune",
+        "Vert" => "Vert",];
+
 if (!isset($_POST['mois'])) {
     $M = date("m");
     $Y = date("Y");
