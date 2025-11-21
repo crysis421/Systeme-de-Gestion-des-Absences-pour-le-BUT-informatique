@@ -17,7 +17,7 @@
     ?>
 </header>
 <main>
-    <h1>Connectez vous à compte</h1>
+    <h1>Connectez-vous à votre compte</h1>
 
     <div id="container">
         <form id="form" action="../Presentation/connexion.php" method="post">

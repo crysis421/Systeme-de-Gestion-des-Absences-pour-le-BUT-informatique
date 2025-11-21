@@ -31,7 +31,7 @@ class insertDataVT
     //Cette fonction nous permet de savoir quel cours et utilisateur sont deja dans la base
     public function getUtilisateurAndCours():array
     {
-        $stmt = $this->conn->prepare("SELECT DISTINCT idUtilisateur,idCours FROM utilisateur left join Cours on utilisateur.idUtilisateur = Cours.idProf;");
+        $stmt = $this->conn->prepare("SELECT DISTINCT idUtilisateur,concat(nom,' ',prenom) as prof,idCours FROM utilisateur left join Cours on utilisateur.idUtilisateur = Cours.idProf;");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -56,6 +56,29 @@ class insertDataVT
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function addProf($prof){
+        $i = 0;
+        $nom ='';
+        while ($prof[$i] != ' '){
+            $nom = $nom.$prof[$i];
+            $i++;
+        }
+        $i++;
+        while (isset($prof[$i])){
+            $prenom = $prenom.$prof[$i];
+            $i++;
+        }
+        $email = $nom.'.'.$prenom.'@uphf.fr';
+        $mdp = password_hash("unMDP", PASSWORD_DEFAULT);
+        $req2 = $this->conn->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, diplome) values(default,:nom,:prenom,null,:email,:mdp,'prof',null,null,null)");
+        $req2->bindParam(':nom', $nom);
+        $req2->bindParam(':prenom', $prenom);
+        $req2->bindParam(':email', $email);
+        $req2->bindParam(':mdp', $mdp);
+        $req2->execute();
+
     }
 
     //cette fonction ajoute un cours s'il n'est pas encore présent
@@ -153,3 +176,5 @@ class insertDataVT
 
 
 }
+$test[] = 'la';
+array_push( $test,'la');
