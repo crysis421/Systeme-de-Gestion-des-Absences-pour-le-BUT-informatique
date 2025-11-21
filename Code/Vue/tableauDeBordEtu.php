@@ -25,11 +25,6 @@ $nomDesMois = [ "January" => "Janvier",
         "November" => "Novembre",
         "December" => "Décembre"];
 
-$interrogationDuMois = ;
-
-$couleurDuMois = [ "Rouge" => "Rouge",
-        "Jaune" => "Jaune",
-        "Vert" => "Vert",];
 
 if (!isset($_POST['mois'])) {
     $M = date("m");
@@ -54,9 +49,23 @@ $mois = date_format($_SESSION['date'], "m");
 require "../Presentation/getAbsenceDunJour.php";
 
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/compte.css" />
+    <title>Mon compte</title>
+</head>
+
 <a href="ReglementInterieur.php">
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
+<div class="legendeCouleurs">
+    <label>Rouge = Absence non justifiée</label>
+    <label>Jaune = Absence non justifiée qui demande plus des précissions</label>
+    <label>Vert = Absence justifiée</label>
+</div>
     <form action="tableauDeBordEtu.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
