@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else if ($res['role'] == 'respon') {
             header("Location: ../Vue/tableauDeBordResponsable.php");
             exit();
+        }else if ($res['role'] == 'prof') {
+            header("Location: ../Vue/tableauDeBordProf.php");
         }
     } else {
         $_SESSION["erreur"] = "Mot de passe incorrect";

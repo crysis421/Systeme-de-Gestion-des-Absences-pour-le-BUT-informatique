@@ -12,7 +12,7 @@ if (isset($_POST['jour']) and $_POST['jour'][1] != 'K') {
 }
 $user = $_SESSION['user'];
 
-//Notre connection pour nos requetes
+//Notre connection pour nos requêtes
 $bdd = new AbsenceEtuTB();
 
 

@@ -15,8 +15,8 @@
 
 <h1>Compte secretaire</h1>
 
-<form action="creationCompte.php">
-    <input type="submit" value="creer un compte">
+<form action="Connexion.php">
+    <input type="submit" value="Deconnection">
 </form>
 
 </body>

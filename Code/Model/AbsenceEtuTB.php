@@ -40,17 +40,27 @@ class AbsenceEtuTB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    private function getProf($idProf){
+        $stmt = $this->conn->prepare("select concat(nom,' ',prenom) as p from utilisateur where idUtilisateur=:p");
+        $stmt->bindParam(":p", $idProf);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['p'];
+    }
+
     public function getAbsenceControleDunMois($mois,$year,$idProf) {
-        $stmt = $this->conn->prepare("SELECT statut,extract('Days' from Seance.date),controle FROM absence JOIN Seance using(idSeance) where extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and controle group by extract('Days' from Seance.date), statut, controle;");
+        $idProf = $this->getProf($idProf);
+        $stmt = $this->conn->prepare("SELECT extract('Days' from Seance.date) as date FROM absence JOIN Seance using(idSeance) where statut = 'valide' and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and controle and prof = :p group by extract('Days' from Seance.date);");
         $stmt->bindParam(":m", $mois);
         $stmt->bindParam(":year", $year);
+        $stmt->bindParam(":p", $idProf);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAbsenceControleDunJour($jour,$mois,$year,$idProf) {
-        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,controle FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year");
-        $stmt->bindParam(":prof", $idProf);
+        $idProf = $this->getProf($idProf);
+        $stmt = $this->conn->prepare("select email,heureDebut,enseignement,duree from Absence join Seance using (idSeance) join Utilisateur on absence.idEtudiant = Utilisateur.idUtilisateur where controle and prof = :id and statut='valide' and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year;");
+        $stmt->bindParam(":id", $idProf);
         $stmt->bindParam(":d", $jour);
         $stmt->bindParam(":m", $mois);
         $stmt->bindParam(":year", $year);

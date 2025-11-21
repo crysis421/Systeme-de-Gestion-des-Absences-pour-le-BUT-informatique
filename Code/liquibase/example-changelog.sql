@@ -147,3 +147,7 @@ Alter table TraitementJustificatif add column if not exists idJustificatif INT R
 --changeset Kilian:17
 Alter table TraitementJustificatif add constraint difference_id UNIQUE(idUtilisateur,idJustificatif);
 --rollback Alter table TraitementJustificatif drop constraint difference_id;
+
+--changeset Kilian:18
+Alter table Cours drop column idprof;
+--rollback Alter table Cours add column idprof int references utilisateur (idutilisateur);

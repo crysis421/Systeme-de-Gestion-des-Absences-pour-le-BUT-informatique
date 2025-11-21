@@ -4,7 +4,7 @@
 
 <body>
 <header>
-    <?php require_once("menuHorizontal.html"); ?>
+    <?php require_once("menuHorizontaleSecretaire.html"); ?>
 </header>
 <main>
     <h1>Création de compte</h1>

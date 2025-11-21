@@ -4,6 +4,7 @@ if(!isset($_SESSION["user"])){
     header('Location: ../Vue/Connexion.php');
 }
 
+require('menuHorizontalProf.html');
 
 echo '<link rel="stylesheet" href="../CSS/calendrier.css" />';
 
@@ -43,13 +44,10 @@ if (isset($_SESSION['mois'])) {
 $_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
 $mois = date_format($_SESSION['date'], "m");
 
-require "../Presentation/getAbsenceDunJour.php";
+require "../Presentation/getAbsenceDunControle.php";
 
 ?>
-    <a href="ReglementInterieur.php">
-        <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
-    </a>
-    <form action="tableauDeBordEtu.php" method="post">
+    <form action="tableauDeBordProf.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
         </label>
@@ -87,13 +85,7 @@ require "../Presentation/getAbsenceDunJour.php";
                             <input type="submit" value="01<?php if($interrogationDuMois['1']) {
                                 echo ' ⚠';
                             } ?> " name="jour"
-                                   id="jour" <?php if ($couleurDuMois['1'] == 'valide') {
-                                echo 'class=valide';
-                            } else if ($couleurDuMois['1'] == 'refus') {
-                                echo 'class=refus';
-                            } else if ($couleurDuMois['1'] == 'enAttente') {
-                                echo 'class=enAttente';
-                            }?>>
+                                   id="jour">
                         </form>
                     </td>
                     <?php
@@ -113,7 +105,6 @@ require "../Presentation/getAbsenceDunJour.php";
                     <td <?php if (date('m-d') == date_format($date, 'm-d')) {
                         echo 'id=adj';
                     } ?>>
-                        <div <?php echo 'class='.$couleurDuMois[$date->format('j')];?>></div>
                         <form action="tableauDeBordProf.php" method="post">
                             <input type="submit" value=" <?php echo date_format($date, "d"); if ($interrogationDuMois[$date->format('j')]) {
                                 echo ' ⚠';
