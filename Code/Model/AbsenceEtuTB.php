@@ -39,4 +39,22 @@ class AbsenceEtuTB
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getAbsenceControleDunMois($mois,$year,$idProf) {
+        $stmt = $this->conn->prepare("SELECT statut,extract('Days' from Seance.date),controle FROM absence JOIN Seance using(idSeance) where extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and controle group by extract('Days' from Seance.date), statut, controle;");
+        $stmt->bindParam(":m", $mois);
+        $stmt->bindParam(":year", $year);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAbsenceControleDunJour($jour,$mois,$year,$idProf) {
+        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,controle FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year");
+        $stmt->bindParam(":prof", $idProf);
+        $stmt->bindParam(":d", $jour);
+        $stmt->bindParam(":m", $mois);
+        $stmt->bindParam(":year", $year);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
