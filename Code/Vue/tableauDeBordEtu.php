@@ -60,11 +60,13 @@ require "../Presentation/getAbsenceDunJour.php";
 <a href="ReglementInterieur.php">
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
-<div class="legendeCouleurs">
-    <label>Rouge = Absence non justifiée</label>
-    <label>Jaune = Absence non justifiée qui demande plus des précissions</label>
-    <label>Vert = Absence justifiée</label>
-</div>
+
+<p id="i">ⓘ</p>
+<p class="refus" id="ir">.Non_Justifiée</p>
+<p class="report" id="ip">.En_Attente</p>
+<p class="valide" id="iv">.Justifiée <br>⚠:Interrogation</p>
+
+
     <form action="tableauDeBordEtu.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>

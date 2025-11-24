@@ -46,9 +46,9 @@ if (empty($result)) {
                                 <br><small><?= htmlspecialchars(date($_SESSION["jour"] . '/ ' . $_SESSION['mois'])) ?>
                                     à <?= htmlspecialchars($absence['heuredebut']) ?></small>
                             </div>
+                            <div class="ligne" id="maLigne"></div>
                         </li>
                     </ol>
-                    <div class="ligne" id="maLigne"></div>
                 </summary>
             </details>
         </div>
