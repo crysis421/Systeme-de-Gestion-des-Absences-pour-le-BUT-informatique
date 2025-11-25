@@ -4,7 +4,7 @@ namespace Model;
 
 use PDO;
 use PDOException;
-
+///pareil que pour database mais cette classe est en pattern singleton pour n'avoir qu'une seule instance
 ini_set('memory_limit', '512M');
 ini_set('max_execution_time', 600);
 

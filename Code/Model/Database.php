@@ -2,10 +2,11 @@
 namespace Model;
 use PDO;
 use PDOException;
-
+///on alloue un certain nombre de RAM pour ne pas surcharger la BDD, ainsi qu'un temps limite
 ini_set('memory_limit', '512M');
 ini_set('max_execution_time', 600);
 
+///connection classique
 class Database
 {
     private $host = "iutinfo-sgbd.uphf.fr";

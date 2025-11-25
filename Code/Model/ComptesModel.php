@@ -19,6 +19,7 @@ class ComptesModel
         $this->conn = null;
     }
 
+    //fonction pour creer un compte complet a un utilisateur, cette fonction est uniquement pour la secretaire qui s'occupera d'attribuer aussi le role
     public function addCompte($nom, $prenom, $prenom2, $email, $motdepasse, $role, $groupe, $date, $diplome)
     {
 
@@ -37,6 +38,7 @@ class ComptesModel
         return "Le compte a été créé correctement.";
     }
 
+    //pour se connecter au compte en utilisant son email on va chercher son mdp et si il est bon on regarde son role et on afficher les pages correspondantes, eleve,responsable,prof,secretaire.
     public function connectCompte($email)
     {
         $stmt = $this->conn->prepare("SELECT idUtilisateur,motdepasse,role FROM utilisateur WHERE email=:email");
