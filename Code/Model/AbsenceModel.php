@@ -32,7 +32,7 @@ class AbsenceModel
 
     }
 
-    //pour passer un justificatif de à traiter a / traité
+    //pour passer un justificatif de "à traiter" a "traité"
     public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
     {
         $update = $this->conn->prepare("
@@ -523,7 +523,7 @@ class AbsenceModel
         $sql = "SELECT COUNT(*) AS totalAbsences 
             FROM Absence 
             WHERE idEtudiant = :idEtudiant 
-              AND statut = 'report'";  // ou le statut que l'on considère comme absent
+              AND statut = 'report'";  // ou le statut que l'on considère comme absence
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
@@ -538,8 +538,7 @@ class AbsenceModel
     {
 
     }
-
-    ///fonction pour aller chercher les statisiques d'absences de l'annee de l'étudiant
+//fonction pour chercher les statistiques de l'annee de l'etudiant, de ces absences par mois etc...
     public function grapheDeAnnee($annee,$idEtudiant){
         $stmt = $this->conn->prepare("select extract('Months' from date),count(*) as total from Seance left join Absence using(idSeance) where idEtudiant = :etu and extract('Years' from Seance.date) = :year group by extract('Months' from date);");
         $stmt->bindParam(":etu", $idEtudiant);
