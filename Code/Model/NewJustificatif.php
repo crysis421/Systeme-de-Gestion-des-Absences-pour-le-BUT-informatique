@@ -89,6 +89,9 @@ class NewJustificatif
         }
     }
 
+
+
+    ///cette fonction pour prendre seulement les absences qui nous interessent (seance par seance)
     public function getIdAbsenceParSeance($datedebut, $heuredebut,$datefin,$heurefin, $idEtudiant) {
         $sql = "select idAbsence from Absence join Seance using(idSeance) where statut='refus' and :dateDebut <= date and :dateFin >= date and :heureDebut <= heureDebut and :heureFin-duree >= heureDebut and idEtudiant=:idEtu;";
 
@@ -103,6 +106,8 @@ class NewJustificatif
         return $stmt->fetchAll();
     }
 
+
+    ///changer le statut... litterallement le nom de la fonction breffffff
     public function changeStatut($idAbsence) {
         $var = 'report';
         $stmt = $this->conn->prepare('UPDATE Absence SET statut = :report WHERE idAbsence = :abs');

@@ -3,6 +3,8 @@ session_start();
 
 $formData = $_SESSION['formData'] ?? [];
 
+
+//on prends les infos du raccourcis calendrier mais si il n y en a pas on ne met rien
 $id = $formData['id'] ?? '';
 $datedebut = $formData['datedebut'] ?? '';
 $heuredebut = $formData['heuredebut'] ?? '';

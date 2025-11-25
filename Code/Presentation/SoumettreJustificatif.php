@@ -10,12 +10,13 @@ if (!$data) {
     die("Aucune donnée de formulaire trouvée. Retournez au formulaire.");
 }
 
-
+/// aller chercher la petite session
 $data = $_SESSION['formData'];
 
-
+/// commencer une instance de justificatif
 $idAbsManager = new  NewJustificatif();
 
+///aller chercher les absences concernees
 $idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],$data['heuredebut'],$data['fin'],$data['heurefin1'],$data['id']);
 
 
@@ -25,24 +26,24 @@ if(empty($idAbsence)){
 }else{
     echo "<br>";
 
-// 🔹 Informations de base
+//Informations de base
 $idUser = (int)$data['id'];
 $cause = htmlspecialchars($data['motif']);
 $commentaire = htmlspecialchars($data['commentaire'] ?? '');
 $justificatifs = $data['justificatifs'] ?? [];
 
-// 🔹 Initialisation du gestionnaire
+//Initialisation du gestionnaire
 
 try{
-    ///hop la on creer un justificatif bb
+    ///hop la on creer le justificatif bb (une fois que tout est mis en place)
     $succes = $idAbsManager->creerJustificatif(
             $idAbsence,
             $idUser,
             $cause,
             $commentaire,
-            $justificatifs // <-- on insère directement les chemins relatifs
+            $justificatifs // on insère directement les chemins relatifs !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     );
-
+//sinn erreur et tt.....
 } catch (PDOException $e) {
     die("Erreur SQL : " . $e->getMessage());
     echo "Erreur de base de données : " . $e->getMessage();
