@@ -50,7 +50,7 @@ class AbsenceModel
         $update->execute();
     }
 
-
+//fonction pour test
     public function CHECKSIENATTENTE($idJustificatif) {
         $sql = "
             SELECT attente FROM traitementjustificatif WHERE idJustificatif = :idJustificatif
@@ -62,6 +62,7 @@ class AbsenceModel
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function getJustificatifDetails($idJustificatif) {
         $sql = "
@@ -132,6 +133,7 @@ class AbsenceModel
         }
         return $result;
     }
+
 
     public function getJustificatifsDemande()
     {

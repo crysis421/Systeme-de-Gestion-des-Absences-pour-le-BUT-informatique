@@ -10,7 +10,7 @@ class AbsenceEtuTB
 
     public function __construct()
     {
-        //Pour ne pas submerger notre base de donnée avec des ouvertures de connexions à chaque choix de date par un étudiant, on utilise une connexion unique.
+        //Pour ne pas submerger notre base de donnée avec des ouvertures de connexions à chaque choix de date par un étudiant, on utilise une connexion unique. //il est trop malin celui qui a faire ca muehehe
         $database = DatabaseSingleton::getInstance();
         $this->conn = $database->getConnection();
     }
@@ -40,6 +40,7 @@ class AbsenceEtuTB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant , en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
     private function getProf($idProf){
         $stmt = $this->conn->prepare("select concat(nom,' ',prenom) as p from utilisateur where idUtilisateur=:p");
         $stmt->bindParam(":p", $idProf);
@@ -47,6 +48,7 @@ class AbsenceEtuTB
         return $stmt->fetch(PDO::FETCH_ASSOC)['p'];
     }
 
+    //Cette fonction nous permet d'avoir tous les jours où il y a eu une absence justifiée à un contrôle, utile pour créer le calendrier du prof.
     public function getAbsenceControleDunMois($mois,$year,$idProf) {
         $idProf = $this->getProf($idProf);
         $stmt = $this->conn->prepare("SELECT extract('Days' from Seance.date) as date FROM absence JOIN Seance using(idSeance) where statut = 'valide' and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and controle and prof = :p group by extract('Days' from Seance.date);");
@@ -57,9 +59,10 @@ class AbsenceEtuTB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Cette fonction nous permet d'avoir quel étudiant a été absent à quel cours a une date précise, toujours utile pour le tableau de bord du prof.
     public function getAbsenceControleDunJour($jour,$mois,$year,$idProf) {
         $idProf = $this->getProf($idProf);
-        $stmt = $this->conn->prepare("select email,heureDebut,enseignement,duree from Absence join Seance using (idSeance) join Utilisateur on absence.idEtudiant = Utilisateur.idUtilisateur where controle and prof = :id and statut='valide' and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year;");
+        $stmt = $this->conn->prepare("select email,heureDebut,enseignement,duree from Absence join Seance using (idSeance) join Utilisateur on absence.idEtudiant = Utilisateur.idUtilisateur where controle and prof = :id and statut='valide' and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year order by heureDebut ASC;");
         $stmt->bindParam(":id", $idProf);
         $stmt->bindParam(":d", $jour);
         $stmt->bindParam(":m", $mois);
@@ -67,4 +70,6 @@ class AbsenceEtuTB
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getCamenber(){}
 }

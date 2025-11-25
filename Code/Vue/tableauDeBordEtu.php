@@ -62,9 +62,12 @@ require "../Presentation/getAbsenceDunJour.php";
 </a>
 
 <p id="i">ⓘ</p>
-<p class="refus" id="ir">.Non_Justifiée</p>
-<p class="report" id="ip">.En_Attente</p>
-<p class="valide" id="iv">.Justifiée <br>⚠:Interrogation</p>
+<p class="refus i" id="ir"></p>
+<p id ="irt" class="i">Non_Justifiée</p>
+<p class="report i" id="ip"></p>
+<p class="i" id ="ipt">En_Attente</p>
+<p class="valide i" id="iv"></p>
+<p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
 
 
     <form action="tableauDeBordEtu.php" method="post">

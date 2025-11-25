@@ -4,8 +4,6 @@ namespace Model;
 
 //Traitement des données d'une table CSV, en particulier celle de VT.
 //Elle transfère toutes les données sur la base
-//On remarquera que beaucoup d'insert se font en 'on conflit do nothing' pour éviter de planter si une absence/utilisateur/seance existe deja
-//ce qui est très probable si on vient re-télécharger le CSV.
 
 require_once "Database.php";
 
@@ -176,5 +174,3 @@ class insertDataVT
 
 
 }
-$test[] = 'la';
-array_push( $test,'la');

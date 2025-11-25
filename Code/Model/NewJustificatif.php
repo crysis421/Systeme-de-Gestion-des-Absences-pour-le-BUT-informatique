@@ -22,7 +22,7 @@ class NewJustificatif
         $this->conn = null;
     }
 
-
+//concretement, on va aller dans differentes tables pour creer un justificatif et les relier entre eux, du fichier a la seance au traitement justificatif, ils vont tous y passer
     public function creerJustificatif($idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = [],): int|false
     {
 
@@ -67,7 +67,7 @@ class NewJustificatif
             $stmtTraitement->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
             $stmtTraitement->bindValue(':idutilisateur', $idUtilisateur, PDO::PARAM_INT); // ID de l'étudiant
             $stmtTraitement->execute();
-            // 4️⃣ Enregistrer les fichiers justificatifs (si présents)
+            // Enregistrer les fichiers justificatifs (si présents)
             if (!empty($justificatifs)) {
                 $sqlFichier = "INSERT INTO fichierjustificatif (pathJustificatif, idJustificatif)
                            VALUES (:path, :idjustificatif)";
@@ -89,6 +89,9 @@ class NewJustificatif
         }
     }
 
+
+
+    ///cette fonction pour prendre seulement les absences qui nous interessent (seance par seance)
     public function getIdAbsenceParSeance($datedebut, $heuredebut,$datefin,$heurefin, $idEtudiant) {
         $sql = "select idAbsence from Absence join Seance using(idSeance) where statut='refus' and :dateDebut <= date and :dateFin >= date and :heureDebut <= heureDebut and :heureFin-duree >= heureDebut and idEtudiant=:idEtu;";
 
@@ -103,6 +106,8 @@ class NewJustificatif
         return $stmt->fetchAll();
     }
 
+
+    ///changer le statut... litterallement le nom de la fonction breffffff
     public function changeStatut($idAbsence) {
         $var = 'report';
         $stmt = $this->conn->prepare('UPDATE Absence SET statut = :report WHERE idAbsence = :abs');

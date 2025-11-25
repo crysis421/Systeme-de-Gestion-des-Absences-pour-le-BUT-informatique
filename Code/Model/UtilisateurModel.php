@@ -1,7 +1,7 @@
 <?php
 
 require_once "Database.php";
-
+///la classe trop nulle xdddd personne s'en sert :tete de mort: xddd
 class UtilisateurModel
 {
     private $conn;
