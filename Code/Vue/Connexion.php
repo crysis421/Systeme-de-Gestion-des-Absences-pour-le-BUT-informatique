@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <?php
+    <?php //commence une nouvelle session pour le compte qui va etre entré
     session_destroy();
     session_start();
     $_SESSION["user"] = null;
