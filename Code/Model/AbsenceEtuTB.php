@@ -10,7 +10,7 @@ class AbsenceEtuTB
 
     public function __construct()
     {
-        //Pour ne pas submerger notre base de donnée avec des ouvertures de connexions à chaque choix de date par un étudiant, on utilise une connexion unique.
+        //Pour ne pas submerger notre base de donnée avec des ouvertures de connexions à chaque choix de date par un étudiant, on utilise une connexion unique. //il est trop malin celui qui a faire ca muehehe
         $database = DatabaseSingleton::getInstance();
         $this->conn = $database->getConnection();
     }

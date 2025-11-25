@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (password_verify($motdepasse, $res['motdepasse'])) {
         $_SESSION["user"] = $res['idutilisateur'];
-
+//endroit pour rediriger en fonction du role du user
         // ----- SECRETAIRE -----
         if ($res['role'] == 'secretaire') {
             header("Location: ../Vue/formulaireVT.php");
