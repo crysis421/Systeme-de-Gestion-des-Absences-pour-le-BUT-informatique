@@ -18,7 +18,6 @@ class AbsenceModel
         $this->conn = null;
     }
 
-    //avoir un user
     public function getUser($id){
         $stmt = $this->conn->prepare("SELECT nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome,count(idAbsence) as totalabsences FROM utilisateur left join absence on utilisateur.idUtilisateur = absence.idEtudiant WHERE idUtilisateur = :id group by nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome;");
         $stmt->bindParam(":id", $id);
@@ -26,13 +25,11 @@ class AbsenceModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
     public function traiterAbsences(array $absenceIds, string $decision, string $commentaire) {
         if (empty($absenceIds)) return;
 
     }
 
-    //pour passer un justificatif de "à traiter" a "traité"
     public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
     {
         $update = $this->conn->prepare("
@@ -66,7 +63,7 @@ class AbsenceModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-//pour aller chercher tout du justificatif : le nom du module etc...
+
     public function getJustificatifDetails($idJustificatif) {
         $sql = "
             SELECT 
@@ -110,7 +107,7 @@ class AbsenceModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-//prendre une absence mais pour un user precis
+
     public function getByUser($idUtilisateur)
     {
         $sql = "
@@ -137,7 +134,7 @@ class AbsenceModel
         return $result;
     }
 
-//aller chercher les justificatifs qui ont été reenvoyé par l'etudiant (à été flag comme a detailler par le responsable)
+
     public function getJustificatifsDemande()
     {
         $sql = "
@@ -175,7 +172,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    ///aller chercher les justificatifs qui doivent etre justifiés pour le responsable
     public function getJustificatifsAttente() {
         $sql = "
         SELECT 
@@ -211,7 +207,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //requete pour filtrer ; on fait la requete puis la fonction de triage est faite a la fin ou l'on va venir ajoiuter un "sufixe" a la requete pour filtrer les resultats cherché
     public function getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom) {
         $sql = "
         SELECT 
@@ -274,8 +269,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-    //aller chercher les justificatifs qui ont été soit accepté soit refusé par le responsable pour ensuite les afficher dans l'historique
     public function getJustificatifsHistorique() {
         $sql = "
         SELECT 
@@ -312,7 +305,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    ////fonction pour filtre mais cette fois spécialement pour la partie historique du responsable
     public function getJustificatifsHistoriqueFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom) {
         $sql = "
         SELECT 
@@ -375,7 +367,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //hmm aller chercher les justificatifs qui sont valides ...c'est un peu le nom mais bon haha
     public function getJustificatifsValides($dateDebut, $dateFin, $matiere, $nom, $prenom) {
         $sql = "
         SELECT 
@@ -421,7 +412,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //aller chercher les absences qui sont dans un mois precis, exemple : avoir les absences de février
     public function getAbsenceDunMois($idEtudiant,$mois,$year) {
         $stmt = $this->conn->prepare("SELECT statut,extract('Days' from Seance.date),controle FROM absence JOIN Seance using(idSeance) where extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and idEtudiant = :idEtudiant");
         $stmt->bindParam(":idEtudiant", $idEtudiant);
@@ -431,7 +421,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //aller chercher le nom du user
     public function getNombyUser($id) {
         $sql = "SELECT nom FROM utilisateur WHERE idUtilisateur = :id";
         $stmt = $this->conn->prepare($sql);
@@ -442,17 +431,6 @@ class AbsenceModel
         return $result ? $result['nom'] : null; // retourne juste le nom ou null si non trouvé
     }
 
-    public function getEmailbyUser($id) {
-        $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ? $result['email'] : null; // retourne juste le nom ou null si non trouvé
-    }
-
-    //aller chercher le prenom du user
     public function getPrenomByUser($id) {
         $sql = "SELECT prenom FROM utilisateur WHERE idUtilisateur = :id";
         $stmt = $this->conn->prepare($sql);
@@ -463,8 +441,6 @@ class AbsenceModel
         return $result ? $result['prenom'] : null; // retourne juste le prénom ou null si non trouvé
     }
 
-
-    //aller chercher le MDP du user
     public function getmotdepasseByUser($id)
     {
         $sql = "SELECT motDePasse FROM utilisateur WHERE idUtilisateur = :id";
@@ -476,8 +452,6 @@ class AbsenceModel
         return $result ? $result['motdepasse'] : null; // retourne l'émail ou null si non trouvé
     }
 
-
-    ///faire un hash du nouveau mot de passe et le modifier
     public function ModifierMDP($email, $mdp)
     {
         // Hash du mot de passe
@@ -493,7 +467,7 @@ class AbsenceModel
         return "Le mot de passe a bien été modifié";
     }
 
-///aller chercher le nombre d'absences d'un eleve
+
     public function getNombreAbsencesJustifie($idEtudiant)
     {
         $sql = "SELECT COUNT(*) AS totalAbsences 
@@ -510,7 +484,6 @@ class AbsenceModel
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
-    ///aller chercher le nombre d'absences mais qui ont été refusées
     public function getNombreAbsencesRefus($idEtudiant)
     {
         $sql = "SELECT COUNT(*) AS totalAbsences 
@@ -527,13 +500,12 @@ class AbsenceModel
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
-    //aller chercher les absences en attente d'un eleve
     public function getNombreAbsencesEnAttente($idEtudiant)
     {
         $sql = "SELECT COUNT(*) AS totalAbsences 
             FROM Absence 
             WHERE idEtudiant = :idEtudiant 
-              AND statut = 'report'";  // ou le statut que l'on considère comme absence
+              AND statut = 'report'";  // ou le statut que tu considères comme absence
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
@@ -548,7 +520,7 @@ class AbsenceModel
     {
 
     }
-//fonction pour chercher les statistiques de l'annee de l'etudiant, de ces absences par mois etc...
+
     public function grapheDeAnnee($annee,$idEtudiant){
         $stmt = $this->conn->prepare("select extract('Months' from date),count(*) as total from Seance left join Absence using(idSeance) where idEtudiant = :etu and extract('Years' from Seance.date) = :year group by extract('Months' from date);");
         $stmt->bindParam(":etu", $idEtudiant);

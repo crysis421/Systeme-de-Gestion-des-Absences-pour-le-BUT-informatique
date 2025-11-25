@@ -43,20 +43,20 @@ foreach($justificatifs as $justif) {
         'id' => $justif['id_absence'],
         'matiere' => $justif['matiere'],
         'date' => $justif['date_seance'],
-        'heure' => $justif['heuredebut']
+        'heure' => $justif['heuredebut'],
+        'status' => $justif['statut_absence']
     ];
 
     // pour la desc
     $dates = array_column($groupes[$id]['absences'], 'date');
-    sort($dates);
-
-    $nbAbs = count($dates);
-    $dateDebut = $dates[0];
-    $dateFin = end($dates);
-
-    $groupes[$id]['description'] = "$nbAbs absence" . ($nbAbs > 1 ? "s" : "") . ", du $dateDebut au $dateFin";
+    if(!empty($dates)) {
+        sort($dates);
+        $nbAbs = count($dates);
+        $dStart = $dates[0];
+        $dEnd = end($dates);
+        $groupes[$id]['description'] = "$nbAbs absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+    }
 }
-
 $titre = "";
 $description = "";
 
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
         if ($choix == "accepte") {
             $titre = "Accepté !";
             $description = $motif;
-            $model->traiterAbsences($checkboxAbsence, 'valide', $motif);
+            $model->traiterAbsences($IDElement, $checkboxAbsence, 'valide', $motif);
         }
 
         if ($choix == "refuse") {
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
             if (strlen($refus) > 10) {
                 $description = substr($refus, 0, 10) . "...";
             }
-            $model->traiterAbsences($checkboxAbsence, 'refus', $refus);
+            $model->traiterAbsences($IDElement, $checkboxAbsence, 'refus', $motif);
         }
 
         if ($choix == "demande") {
@@ -96,10 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
             if (strlen($demande) > 10) {
                 $description = substr($demande, 0, 10) . "...";
             }
-            $model->traiterAbsences($checkboxAbsence, 'report', $demande);
+            $model->traiterAbsences($IDElement, $checkboxAbsence, 'report', $motif);
         }
     }
 }
+
 
 ?>
 
@@ -223,7 +224,9 @@ EOL;
                             $date = $abs['date'];
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
+                            $statusAbsence = $abs['status'];
                             ?>
+                            <a><?= $statusAbsence ?></a>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">
                             <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars($abs['heure'])?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
                         <?php endforeach; ?>
