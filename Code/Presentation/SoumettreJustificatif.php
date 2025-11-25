@@ -2,6 +2,9 @@
 use Model\NewJustificatif;
 use PDOException;
 require_once '../Model/NewJustificatif.php';
+require_once '../test/send.php';
+require_once '../Model/AbsenceModel.php';
+use test\send;
 session_start();
 
 // Vérifie que les données de session existent
@@ -19,6 +22,11 @@ $idAbsManager = new  NewJustificatif();
 ///aller chercher les absences concernees
 $idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'],$data['heuredebut'],$data['fin'],$data['heurefin1'],$data['id']);
 
+$model = new AbsenceModel();
+$mail = $model->getEmailbyUser($data['id']);
+
+$contenu = "<h3>Confirmation de Dépôt de votre justificatif</h3>
+                <p>Votre Justificatif a bien été envoyé</p>";
 
 if(empty($idAbsence)){
     $_SESSION['aEssayer'] = true;
@@ -65,8 +73,13 @@ try{
 </header>
 <main>
     <div id="titre">
-        <?php if ($succes !== false) {
+        <?php
+        if ($succes !== false) {
+            $mailer = new send();
+
+            $result = $mailer->envoyerMailSendGrid($mail,'Confirmation de depot de justificatif',$contenu);
             echo "Justificatif envoyé avec succès !";
+
             unset($_SESSION['formData']);
             header('Location: ../Vue/formulaireAbsence.php');
 

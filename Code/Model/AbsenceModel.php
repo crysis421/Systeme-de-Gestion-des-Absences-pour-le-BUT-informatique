@@ -442,6 +442,16 @@ class AbsenceModel
         return $result ? $result['nom'] : null; // retourne juste le nom ou null si non trouvé
     }
 
+    public function getEmailbyUser($id) {
+        $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null; // retourne juste le nom ou null si non trouvé
+    }
+
     //aller chercher le prenom du user
     public function getPrenomByUser($id) {
         $sql = "SELECT prenom FROM utilisateur WHERE idUtilisateur = :id";
