@@ -97,7 +97,10 @@ $justificatifs = array_slice($justificatifs, 0, 10);
                         <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?> <?php if ($justif['reponse']=='accepte') {
                             $imageClass="histo-accepter";
                             $imageSource = $model->getImageJustificatifs($justif['nom_etudiant'],$justif['prenom_etudiant'],$justif['matiere'],$justif['date_seance'],$justif['heuredebut']);
-                            echo "<img class=$imageClass src=$imageSource> <br/><br/>";
+                            foreach ($imageSource as $im):
+
+                                echo "<img class=$imageClass src=$im> <br/><br/>";
+                            endforeach;
                         } else if ($justif['reponse']=='refuse') {
                             $imageClass="histo-refuser";
                             $imageSource="/Image/RefuserSymbole.png";

@@ -527,10 +527,10 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getImageJustificatifs($nom,$prenom,$prenom2, $email, $motdepasse, $role, $groupe, $date, $diplome){
+    public function getImageJustificatifs($nom,$prenom, $matiere, $date, $heure){
         $sql = "
             SELECT 
-            fj.pathJustificatif,
+            fj.pathJustificatif
 
             FROM fichierjustificatif fj
             JOIN absenceetjustificatif aj ON fj.idJustificatif = aj.idJustificatif
@@ -538,28 +538,22 @@ class AbsenceModel
             JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
             JOIN seance s ON a.idSeance = s.idSeance
             JOIN cours c ON s.idCours = c.idCours
-            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+            LEFT JOIN traitementjustificatif t ON fj.idJustificatif = t.idJustificatif
             WHERE u.nom = :nom
-            AND  u.prenom = :prenom
-            AND u.prenom2 = :prenom2
-            AND  u.email = :email
-            AND  u.motdepasse = :motdepasse
-            AND  u.role = :role
-            AND  u.groupe = :groupe
-            AND  a.date = :date
-            AND  a.diplome = :diplome
+            AND u.prenom = :prenom
+            AND c.matiere = :matiere
+            AND u.date = :date
+            AND s.heuredebut = :heure
+            AND t.attente = FALSE 
+
         ";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":nom", $nom);
         $stmt->bindParam(":prenom", $prenom);
-        $stmt->bindParam(":prenom2", $prenom2);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":motdepasse", $motdepasse);
-        $stmt->bindParam(":role", $role);
-        $stmt->bindParam(":groupe", $groupe);
+        $stmt->bindParam(":matiere", $matiere);
         $stmt->bindParam(":date", $date);
-        $stmt->bindParam(":diplome", $diplome);
+        $stmt->bindParam(":heure", $heure);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
