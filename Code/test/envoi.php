@@ -1,40 +1,46 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-require 'vendor/autoload.php';
+    $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES);
+    $message = htmlspecialchars($_POST['message'], ENT_QUOTES);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $mail = new PHPMailer(true);
+    $data = [
+        "personalizations" => [[
+            "to" => [["email" => "Kilian.Stievenard2@uphf.fr"]],
+            "subject" => "Nouveau message du formulaire"
+        ]],
+        "from" => ["email" => "Christian.EkaniManga@uphf.fr", "name" => "Formulaire de contact"],
+        "content" => [[
+            "type" => "text/html",
+            "value" => "<h3>Nouveau message</h3>
+                        <p><strong>Nom :</strong> {$name}</p>
+                        <p><strong>Email :</strong> {$email}</p>
+                        <p><strong>Message :</strong><br>" . nl2br($message) . "</p>"
+        ]]
+    ];
 
-    try {
-        // Configurer le serveur SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'christekanimanga@gmail.com';
-        $mail->Password = 'egnw xzdg afcq hplz ';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://api.sendgrid.com/v3/mail/send");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "le mdp",//TODO
+        "Content-Type: application/json"
+    ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        // Adresses
-        $mail->setFrom('christekanimanga@gmail.com', 'christian');
-        $mail->addAddress('christekanimanga@gmail.com', 'christian');
-        $mail->addReplyTo($_POST['email'], $_POST['name']);
+    $response = curl_exec($ch);
+    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
 
-        // Format et contenu
-        $mail->isHTML(true);
-        $mail->Subject = 'Nouveau message du formulaire';
-        $mail->Body = '<h1>Message du site</h1>'
-            . '<p><strong>Nom :</strong> ' . htmlspecialchars($_POST['name']) . '</p>'
-            . '<p><strong>Email :</strong> ' . htmlspecialchars($_POST['email']) . '</p>'
-            . '<p><strong>Message :</strong> ' . nl2br(htmlspecialchars($_POST['message'])) . '</p>';
-        $mail->AltBody = "Nom : {$_POST['name']}\nEmail : {$_POST['email']}\nMessage : {$_POST['message']}";
-
-        $mail->send();
-        echo 'Message envoyé avec succès.';
-    } catch (Exception $e) {
-        echo "Erreur lors de l'envoi : {$mail->ErrorInfo}";
+    if ($httpcode == 202) {
+        echo "Message envoyé avec succès !";
+    } else {
+        echo "Erreur lors de l'envoi : HTTP $httpcode - $response";
     }
+
+} else {
+    echo "Accès interdit.";
 }
 ?>
