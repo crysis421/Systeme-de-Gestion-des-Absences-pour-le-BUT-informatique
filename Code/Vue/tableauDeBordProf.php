@@ -47,6 +47,10 @@ $mois = date_format($_SESSION['date'], "m");
 require "../Presentation/getAbsenceDunControle.php";
 
 ?>
+
+    <p id="i">ⓘ</p>
+    <p id="ir">⚠:Rattrapage_à_effectuer</p>
+
     <form action="tableauDeBordProf.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
@@ -120,3 +124,4 @@ require "../Presentation/getAbsenceDunControle.php";
     </table>
 
 <?php
+require('listeAbsProf.php');
