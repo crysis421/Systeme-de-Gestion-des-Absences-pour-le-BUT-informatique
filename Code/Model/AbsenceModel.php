@@ -431,7 +431,7 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // aller récupérer l'émail de l'utilisateur
+    // aller récupérer l'émail de l'utilisateur.
     public function getEmailbyUser($id) {
         $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
         $stmt = $this->conn->prepare($sql);
