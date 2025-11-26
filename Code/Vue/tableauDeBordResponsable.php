@@ -44,7 +44,8 @@ foreach($justificatifs as $justif) {
         'matiere' => $justif['matiere'],
         'date' => $justif['date_seance'],
         'heure' => $justif['heuredebut'],
-        'status' => $justif['statut_absence']
+        'status' => $justif['statut_absence'],
+        'verrouille' => $justif['verrouille_absence']
     ];
 
     // pour la desc
@@ -54,7 +55,7 @@ foreach($justificatifs as $justif) {
         $nbAbs = count($dates);
         $dStart = $dates[0];
         $dEnd = end($dates);
-        $groupes[$id]['description'] = "$nbAbs absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+        $groupes[$id]['description'] = "absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
     }
 }
 $titre = "";
@@ -70,8 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
     $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
     $checkboxAbsence = $_POST['checkboxAbsence'] ?? [];
 
-
-    if (empty($checkboxAbsence)) {
+    if($motif == null) {
+        $titre = "Erreur";
+        $description = "FAIS UN MOTIF";
+    }elseif (empty($checkboxAbsence)) {
         $titre = "Erreur";
         $description = "Veuillez sélectionner au moins une absence à traiter.";
     } else {
@@ -225,6 +228,9 @@ EOL;
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
                             $statusAbsence = $abs['status'];
+                            $test = $abs['verrouille'];
+                            if($abs['verrouille'] == 1) continue;
+                            if($statusAbsence != 'report') continue;
                             ?>
                             <a><?= $statusAbsence ?></a>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">

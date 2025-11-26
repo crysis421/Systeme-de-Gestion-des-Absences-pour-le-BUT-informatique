@@ -27,7 +27,7 @@ class send
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        //voir discord,TODO
+            //mdp TODO
             "Content-Type: application/json"
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
