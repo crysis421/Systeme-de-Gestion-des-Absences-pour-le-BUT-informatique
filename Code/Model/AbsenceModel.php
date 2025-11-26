@@ -25,9 +25,47 @@ class AbsenceModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function traiterAbsences(array $absenceIds, string $decision, string $commentaire) {
+    public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire) {
         if (empty($absenceIds)) return;
 
+        foreach($absenceIds as $absenceId) {
+            $this->justifierAbsence($absenceId, $decision);
+        }
+
+        $absencesRestantes = $this->getAbsences($idJustificatif);
+        echo sizeof($absencesRestantes);
+        if(sizeof($absencesRestantes) == 0){
+            //enlever le justificatif
+        }
+    }
+
+    public function justifierAbsence($absenceId, $decision) {
+        $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence WHERE idAbsence = :idAbsence;");
+        $stmt->bindParam(":idAbsence", $absenceId);
+        $stmt->bindParam(":statutAbsence", $decision);
+        $stmt->execute();
+    }
+    public function getAbsences($idJustificatif) {
+        $sql = "
+        SELECT 
+            a.idAbsence,
+            a.statut AS statut_absence,
+            s.date AS date_seance,
+            s.heuredebut,
+            s.typeseance AS typeSeance,
+            c.matiere
+        FROM absence a
+        JOIN absenceetjustificatif aj ON a.idAbsence = aj.idAbsence
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+        WHERE aj.idJustificatif = :id AND a.statut = 'report';
+        ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $idJustificatif);
+        $stmt->execute();
+        $absences = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $absences;
     }
 
     public function traiterJustificatif($idJustificatif, $decision, $attente, $commentaire = null, $cause = null)
@@ -48,63 +86,6 @@ class AbsenceModel
         $update->bindValue(':commentaire', $commentaire);
         $update->bindValue(':cause', $cause);
         $update->execute();
-    }
-
-//fonction pour test
-    public function CHECKSIENATTENTE($idJustificatif) {
-        $sql = "
-            SELECT attente FROM traitementjustificatif WHERE idJustificatif = :idJustificatif
-        ";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':idJustificatif', $idJustificatif, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-
-    public function getJustificatifDetails($idJustificatif) {
-        $sql = "
-            SELECT 
-            j.idJustificatif,
-            j.datesoumission AS date_soumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
-            
-            t.idTraitement,
-            t.attente,
-            t.reponse,
-            t.commentaire_validation AS commentaire_traitement,
-            t.date AS date_traitement,
-            t.cause,
-            
-            u.idUtilisateur,
-            u.nom AS nom_etudiant,
-            u.prenom AS prenom_etudiant,
-            
-            a.idAbsence,
-            a.statut AS statut_absence,
-            s.date AS date_seance,
-            s.heuredebut,
-            s.typeseance AS type_seance,
-            c.matiere
-                
-            FROM justificatif j
-            JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
-            JOIN absence a ON aj.idAbsence = a.idAbsence
-            JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
-            JOIN seance s ON a.idSeance = s.idSeance
-            JOIN cours c ON s.idCours = c.idCours
-            LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE j.idJustificatif = :idJustificatif
-        ";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':idJustificatif', $idJustificatif, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
@@ -528,37 +509,4 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function getImageJustificatifs($nom,$prenom, $matiere, $date, $heure){
-        $sql = "
-            SELECT 
-            fj.pathJustificatif
-
-            FROM fichierjustificatif fj
-            JOIN absenceetjustificatif aj ON fj.idJustificatif = aj.idJustificatif
-            JOIN absence a ON aj.idAbsence = a.idAbsence
-            JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
-            JOIN seance s ON a.idSeance = s.idSeance
-            JOIN cours c ON s.idCours = c.idCours
-            LEFT JOIN traitementjustificatif t ON fj.idJustificatif = t.idJustificatif
-            WHERE u.nom = :nom
-            AND u.prenom = :prenom
-            AND c.matiere = :matiere
-            AND u.date = :date
-            AND s.heuredebut = :heure
-            AND t.attente = FALSE 
-
-        ";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":nom", $nom);
-        $stmt->bindParam(":prenom", $prenom);
-        $stmt->bindParam(":matiere", $matiere);
-        $stmt->bindParam(":date", $date);
-        $stmt->bindParam(":heure", $heure);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 }
-
