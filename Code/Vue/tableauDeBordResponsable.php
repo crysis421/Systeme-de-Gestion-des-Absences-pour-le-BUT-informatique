@@ -44,7 +44,8 @@ foreach($justificatifs as $justif) {
         'matiere' => $justif['matiere'],
         'date' => $justif['date_seance'],
         'heure' => $justif['heuredebut'],
-        'status' => $justif['statut_absence']
+        'status' => $justif['statut_absence'],
+        'verrouille' => $justif['verrouille_absence']
     ];
 
     // pour la desc
@@ -225,6 +226,8 @@ EOL;
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
                             $statusAbsence = $abs['status'];
+                            $test = $abs['verrouille'];
+                            echo $test;
                             if($statusAbsence != 'report') continue;
                             ?>
                             <a><?= $statusAbsence ?></a>

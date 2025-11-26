@@ -28,45 +28,42 @@ class AbsenceModel
     public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire) : void {
         if (empty($absenceIds)) return;
 
-        foreach($absenceIds as $absenceId) {
-            $this->justifierAbsence($absenceId, $decision);
+        $reponse = '';
+        $verouille = false;
+        switch ($decision) {
+            case 'report':
+                $reponse = 'refuse';
+                break;
+            case 'valide':
+                $reponse = 'accepte';
+                $verouille = true;
+                break;
+            case 'refus':
+                $reponse = 'refuse';
+                $verouille = true;
+                break;
         }
 
-        /*
-         * Valider et refuser ça marche heinnnn
-         * il manque que redemander
-         */
+        foreach($absenceIds as $absenceId) {
+            $this->justifierAbsence($absenceId, $decision, $verouille);
+        }
 
         /*
          *
          * Verouille quand accepte et refuser
          * redemander = refuser et pas verouillé
          */
-            $absencesRestantes = $this->getAbsencesNonJustifiees($idJustificatif);
+        $absencesRestantes = $this->getAbsencesNonJustifiees($idJustificatif);
         if(sizeof($absencesRestantes) == 0){
-            $reponse = '';
-            $verouille = false;
-            switch ($decision) {
-                case 'report':
-                    $reponse = 'refuse';
-                    break;
-                case 'valide':
-                    $reponse = 'accepte';
-                    $verouille = true;
-                    break;
-                case 'refus':
-                    $reponse = 'refuse';
-                    $verouille = true;
-                    break;
-            }
             $this->traiterJustificatif($idJustificatif, $reponse, false);
         }
     }
 
-    public function justifierAbsence($absenceId, $decision) : void {
-        $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence WHERE idAbsence = :idAbsence;");
+    public function justifierAbsence($absenceId, $decision, $verrouille) : void {
+        $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence, verrouille = :verrouilleAbsence WHERE idAbsence = :idAbsence;");
         $stmt->bindParam(":idAbsence", $absenceId);
         $stmt->bindParam(":statutAbsence", $decision);
+        $stmt->bindParam(":verrouilleAbsence", $verrouille);
         $stmt->execute();
     }
     public function getAbsencesNonJustifiees($idJustificatif) : array {
@@ -82,7 +79,7 @@ class AbsenceModel
         JOIN absenceetjustificatif aj ON a.idAbsence = aj.idAbsence
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
-        WHERE aj.idJustificatif = :id AND a.statut = 'report';
+        WHERE aj.idJustificatif = :id AND a.statut = 'report' AND a.verrouille = FALSE;
         ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $idJustificatif);
@@ -146,8 +143,6 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.datesoumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
@@ -182,13 +177,12 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.datesoumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
             a.idAbsence AS id_absence,
             a.statut AS statut_absence,
+            a.verrouille AS verrouille_absence,
             s.date AS date_seance,
             s.heuredebut,
             s.typeseance AS typeSeance,
@@ -204,9 +198,11 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = TRUE AND t.reponse IS NULL
+            WHERE t.attente = TRUE AND t.reponse IS NULL AND t.attente = TRUE
         ORDER BY j.dateSoumission DESC
     ";
+
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -217,8 +213,6 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.datesoumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
@@ -279,8 +273,6 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.datesoumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
@@ -315,8 +307,6 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.datesoumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
@@ -377,8 +367,6 @@ class AbsenceModel
         SELECT 
             j.idJustificatif,
             j.datesoumission,
-            j.commentaire_absence AS commentaire_justificatif,
-            j.verrouille,
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
