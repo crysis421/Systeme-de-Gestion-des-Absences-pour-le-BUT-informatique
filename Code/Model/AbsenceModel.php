@@ -509,4 +509,24 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getImageJustificatifs($nom,$prenom,$matiere,$date,$heure){
+        $sql = "SELECT fj.pathjustificatif FROM fichierjustificatif AS fj
+        JOIN absenceetjustificatif aj ON fj.idJustificatif = aj.idJustificatif
+        JOIN absence a ON aj.idAbsence = a.idAbsence
+        JOIN utilisateur u ON a.idEtudiant = u.idUtilisateur
+        JOIN seance s ON a.idSeance = s.idSeance
+        JOIN cours c ON s.idCours = c.idCours
+        LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
+        WHERE t.attente = FALSE u.nom = :nom AND u.prenom = :prenom AND c.matiere = :matiere AND s.date = :date AND s.heure = :heure";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->bindParam(":prenom", $prenom);
+        $stmt->bindParam(":matiere", $matiere);
+        $stmt->bindParam(":date", $date);
+        $stmt->bindParam(":heuredebut", $heure);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
