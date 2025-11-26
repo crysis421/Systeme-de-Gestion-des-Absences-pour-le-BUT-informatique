@@ -544,6 +544,46 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function getMatieres(){
+        $sql = "SELECT matiere FROM cours";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function alerteCours($matiere){
+        $sql = "SELECT count(a.idAbsence) FROM absence AS a
+        JOIN seance s ON s.idSeance = c.idSeance
+        JOIN cours c ON c.idCours = s.idCours
+        WHERE c.matiere = :matiere";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":matiere", $matiere);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getEleves(){
+        $sql = "SELECT nom,prenom FROM utilisateur as u WHERE u.role = 'eleve'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function alerteEleve($nom,$prenom)
+    {
+        $sql = "SELECT count(a.idEtudiant) FROM absence AS a
+        JOIN utilisateur u ON u.idUtilisateur = a.idEtudiant
+        WHERE u.nom = :nom AND u.prenom = :prenom";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":nom", $nom);
+        $stmt->bindParam(":prenom", $prenom);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function getAbsenceDeLannee($yearDebut,$yearFin,$idEtu){
         $yearDebut = $yearDebut."-07-01";
         $yearFin = $yearFin."-07-01";
