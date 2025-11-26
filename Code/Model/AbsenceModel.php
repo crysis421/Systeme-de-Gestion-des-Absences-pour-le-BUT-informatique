@@ -25,27 +25,43 @@ class AbsenceModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire) {
+    public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire) : void {
         if (empty($absenceIds)) return;
 
         foreach($absenceIds as $absenceId) {
             $this->justifierAbsence($absenceId, $decision);
         }
 
-        $absencesRestantes = $this->getAbsences($idJustificatif);
-        echo sizeof($absencesRestantes);
+        /*
+         * Valider et refuser ça marche heinnnn
+         * il manque que redemander
+         */
+
+        $absencesRestantes = $this->getAbsencesNonJustifiees($idJustificatif);
         if(sizeof($absencesRestantes) == 0){
-            //enlever le justificatif
+            $reponse = '';
+            switch ($decision) {
+                case 'report':
+                    $reponse = 'enAttente';
+                    break;
+                case 'valide':
+                    $reponse = 'accepte';
+                    break;
+                case 'refus':
+                    $reponse = 'refuse';
+                    break;
+            }
+            $this->traiterJustificatif($idJustificatif, $reponse, false);
         }
     }
 
-    public function justifierAbsence($absenceId, $decision) {
+    public function justifierAbsence($absenceId, $decision) : void {
         $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence WHERE idAbsence = :idAbsence;");
         $stmt->bindParam(":idAbsence", $absenceId);
         $stmt->bindParam(":statutAbsence", $decision);
         $stmt->execute();
     }
-    public function getAbsences($idJustificatif) {
+    public function getAbsencesNonJustifiees($idJustificatif) : array {
         $sql = "
         SELECT 
             a.idAbsence,
@@ -171,7 +187,7 @@ class AbsenceModel
             c.matiere,
             t.idTraitement,
             t.attente,
-            t.reponse,
+            t.reponse AS reponse_justificatif,
             t.commentaire_validation AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
@@ -180,7 +196,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = TRUE 
+            WHERE t.attente = TRUE AND t.reponse IS NULL
         ORDER BY j.dateSoumission DESC
     ";
         $stmt = $this->conn->prepare($sql);
