@@ -26,6 +26,9 @@ $eleve = array_slice($eleve, 0, 5);
 <?php require('menuHorizontalResp.html'); ?>
 
 <h1>Compte</h1>
+<form action="Connexion.php" name="Deconnexion">
+    <input type="submit" value="Déconnexion">
+</form>
 <div class="alertes">
     <?php foreach ($matiere as $mat):
         $alerteM = $model -> alerteCours($mat);
@@ -42,8 +45,6 @@ $eleve = array_slice($eleve, 0, 5);
     endforeach; ?>
 
 </div>
-<form action="Connexion.php" name="Deconnexion">
-    <input type="submit" value="Déconnexion">
-</form>
+
 </body>
 </html>
