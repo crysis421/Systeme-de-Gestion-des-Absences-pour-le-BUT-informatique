@@ -37,7 +37,7 @@ class AbsenceModel
          * il manque que redemander
          */
 
-        $absencesRestantes = $this->getAbsencesNonJustifiees($idJustificatif);
+            $absencesRestantes = $this->getAbsencesNonJustifiees($idJustificatif);
         if(sizeof($absencesRestantes) == 0){
             $reponse = '';
             switch ($decision) {
@@ -74,7 +74,7 @@ class AbsenceModel
         JOIN absenceetjustificatif aj ON a.idAbsence = aj.idAbsence
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
-        WHERE aj.idJustificatif = :id AND a.statut = 'report';
+        WHERE aj.idJustificatif = :id AND a.statut = 'refus';
         ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $idJustificatif);
