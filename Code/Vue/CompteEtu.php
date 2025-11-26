@@ -87,9 +87,8 @@ require_once '../Presentation/lesInfoEtu.php';
                 </summary>
                 <p><b>Nombre d'absences :</b> .............<?php echo htmlspecialchars($total); ?></p>
                 <p><b>Justifiées ✅:</b> .............<?php echo htmlspecialchars($valide); ?></p>
-                <p><b>Non justifiées 🚫:</b> .............<?php echo htmlspecialchars($nonjustife); ?></p>
-                <p><b>Non validé 🚫:</b> .............<?php echo htmlspecialchars($refus); ?></p>
-                <p><b>Autres justificatifs demandés 🔔:</b> .............<?php echo htmlspecialchars($autre); ?></p>
+                <p><b>Non justifiées 🚫:</b> .............<?php echo htmlspecialchars($refus); ?></p>
+                <p><b>En attente de confirmation 🔔:</b> .............<?php echo htmlspecialchars($autre); ?></p>
             </details>
         </div>
         <!-- Section du bas, centrée -->
@@ -104,7 +103,7 @@ require_once '../Presentation/lesInfoEtu.php';
                         <circle cx="100" cy="100" r="80" fill="none" stroke="#ddd" stroke-width="5"/>
                         <?php $cx = 100; // centre
                         $cy = 100; // centre
-                        $r = 80;   // rayon
+                        $r = 88;   // rayon
                         $startAngle = 0;
 
                         $color = '00003F';
@@ -117,7 +116,7 @@ require_once '../Presentation/lesInfoEtu.php';
                             $color = dechex((hexdec($color) + hexdec('AEFEAFE')) % hexdec('FFFFFF'));
                             $c = '#'.str_pad($color, 6, '0', STR_PAD_LEFT);
                             array_push($colorUtilise,$c);
-                            $angle = $value * 3.6; // 360° * fraction
+                            $angle = $value * 3.599999999999; // 360° * fraction, pas de 3.6 car ça ne forme pas un cercle complet s'il n'y a qu'une seule absence.
 
                             $endAngle = $startAngle + $angle;
                             $startX = $cx + $r * cos(deg2rad($startAngle));
@@ -132,12 +131,12 @@ require_once '../Presentation/lesInfoEtu.php';
                             $startAngle = $endAngle;
                         } ?>
                     </svg>
-                    <!-- La légende -->
                     <ol>
                         <?php foreach ($graphe as $key=>$nom) { ?>
                         <li id="li">
                             <div style="width:5px; height:5px; background-color:<?=$colorUtilise[$key+1]?>; border-radius:50%;"></div>
-                            <?='~ '.$nom['label']?>
+                            <p><?='~ '.$nom['label']?></p>
+                            <p id="pourcentage"><?=round($nom['count']).'%'?></p>
                         </li>
                         <?php } ?>
                     </ol>
