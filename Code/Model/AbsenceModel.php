@@ -560,5 +560,15 @@ class AbsenceModel
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-}
 
+    public function getAbsenceDeLannee($yearDebut,$yearFin,$idEtu){
+        $yearDebut = $yearDebut."-07-01";
+        $yearFin = $yearFin."-07-01";
+        $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join cours using (idCours) where Seance.date > :yea and Seance.date < :y and Absence.idEtudiant = :idEtudiant group by matiere;");
+        $stmt->bindParam(":idEtudiant", $idEtu);
+        $stmt->bindParam(":yea", $yearDebut);
+        $stmt->bindParam(":y", $yearFin);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}

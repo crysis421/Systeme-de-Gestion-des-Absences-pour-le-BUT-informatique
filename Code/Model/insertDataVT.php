@@ -158,7 +158,7 @@ class insertDataVT
 
             //Insertion d'une nouvelle absence
 
-            $req2 = $this->conn->prepare("INSERT INTO Absence(idAbsence, idSeance, idEtudiant, statut,estRetard) values(default,:seance,:idEtu,:status,:retard) on conflict do nothing;");
+            $req2 = $this->conn->prepare("INSERT INTO Absence(idAbsence, idSeance, idEtudiant, statut,estRetard,verrouille,commentaire_absence) values(default,:seance,:idEtu,:status,:retard,false,null) on conflict do nothing;");
             $req2->bindParam(":seance", $idSeance);
             $req2->bindParam(":status", $justification);
             $req2->bindParam(":idEtu", $identifiant);
