@@ -37,18 +37,26 @@ class AbsenceModel
          * il manque que redemander
          */
 
+        /*
+         *
+         * Verouille quand accepte et refuser
+         * redemander = refuser et pas verouillé
+         */
             $absencesRestantes = $this->getAbsencesNonJustifiees($idJustificatif);
         if(sizeof($absencesRestantes) == 0){
             $reponse = '';
+            $verouille = false;
             switch ($decision) {
                 case 'report':
-                    $reponse = 'enAttente';
+                    $reponse = 'refuse';
                     break;
                 case 'valide':
                     $reponse = 'accepte';
+                    $verouille = true;
                     break;
                 case 'refus':
                     $reponse = 'refuse';
+                    $verouille = true;
                     break;
             }
             $this->traiterJustificatif($idJustificatif, $reponse, false);
@@ -74,7 +82,7 @@ class AbsenceModel
         JOIN absenceetjustificatif aj ON a.idAbsence = aj.idAbsence
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
-        WHERE aj.idJustificatif = :id AND a.statut = 'refus';
+        WHERE aj.idJustificatif = :id AND a.statut = 'report';
         ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $idJustificatif);

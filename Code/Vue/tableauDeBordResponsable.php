@@ -225,7 +225,7 @@ EOL;
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
                             $statusAbsence = $abs['status'];
-                            if($statusAbsence != 'refus') continue;
+                            if($statusAbsence != 'report') continue;
                             ?>
                             <a><?= $statusAbsence ?></a>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">
