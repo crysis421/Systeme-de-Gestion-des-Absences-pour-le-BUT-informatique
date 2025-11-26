@@ -27,6 +27,7 @@ class AbsenceModel
 
     public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire) : void {
         if (empty($absenceIds)) return;
+        if ($commentaire == null) $commentaire = "";
 
         $reponse = '';
         $verouille = false;
@@ -45,7 +46,7 @@ class AbsenceModel
         }
 
         foreach($absenceIds as $absenceId) {
-            $this->justifierAbsence($absenceId, $decision, $verouille);
+            $this->justifierAbsence($absenceId, $decision, $verouille, $commentaire);
         }
 
         /*
@@ -59,11 +60,12 @@ class AbsenceModel
         }
     }
 
-    public function justifierAbsence($absenceId, $decision, $verrouille) : void {
-        $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence, verrouille = :verrouilleAbsence WHERE idAbsence = :idAbsence;");
+    public function justifierAbsence($absenceId, $decision, $verrouille, $commentaire) : void {
+        $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence, verrouille = :verrouilleAbsence, commentaire_absence = :commentaire WHERE idAbsence = :idAbsence;");
         $stmt->bindParam(":idAbsence", $absenceId);
         $stmt->bindParam(":statutAbsence", $decision);
         $stmt->bindParam(":verrouilleAbsence", $verrouille);
+        $stmt->bindParam(":commentaire", $commentaire);
         $stmt->execute();
     }
     public function getAbsencesNonJustifiees($idJustificatif) : array {
