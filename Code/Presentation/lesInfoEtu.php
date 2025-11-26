@@ -19,6 +19,20 @@ $total = $result["totalabsences"];
 $valide = $user->getNombreAbsencesJustifie($id);
 $refus = $user->getNombreAbsencesRefus($id);
 $autre = $user->getNombreAbsencesEnAttente($id);
+
+if(date('m') > 7){
+    $graphe = $user->getAbsenceDeLannee(date('Y')-2,date('Y')-1,$id); //TODO les absences sont en 2024
+}else{
+    $graphe = $user->getAbsenceDeLannee(date('Y')-1,date('Y'),$id);
+}
+$i = 0;
+foreach ($graphe as $row) {
+    $i = $i + $row['count'];
+}
+foreach ($graphe as $key=>$row) {
+    $graphe[$key]['count'] = $row['count']*100/$i;
+}
+
 $nonjustife =$total - $valide;
 // Gestion du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['motDePasse'])) {
