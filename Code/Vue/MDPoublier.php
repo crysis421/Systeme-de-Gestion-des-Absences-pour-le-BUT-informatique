@@ -1,4 +1,18 @@
+<?php
+session_start();
+if (!isset($_SESSION['mdp'])) {
+    header("Location: MDPoublierEtudiant.php");
+    exit();
+}
+$data = $_SESSION['mdp'];
+$code = $data['nombre'];
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($code == $_POST['code']){
+        header("Location: modifierMDP.php");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,26 +21,24 @@
     <title>mot de passe oublié</title>
 </head>
 <body>
-<header>
-    <?php require 'menuHorizontalEtu.html' ?>
-</header>
+
 <main style="background-color: white">
     <h1 style="text-align: center;">Réinitialiser votre mot de passe</h1>
 
     <div id="container">
         <form id="form" action="" method="post">
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
-                <b>entrer votre adresse mail :</b> <br>
+                <b>entrer votre Code secret reçu dans votre boite mail  :</b> <br>
                 <br>
-                <input type="email" id="mail" name="mail" placeholder="entrer votre adresse mail" style="width :300px" required>
+                <input type="number"  name="code"  style="width :300px" required>
             </label><br>
             <br>
             <div >
-                <input type="submit" value="recevoir un mot de passe par mail" >
+                <input type="submit" value="valider" >
             </div>
         </form>
         <div >
-            <a href="Connexion.php"><button>retour</button></a>
+            <a href="MDPoublierEtudiant.php"><button>retour</button></a>
         </div>
 
     </div>

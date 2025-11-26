@@ -1,4 +1,28 @@
+<?php
+session_start();
+require_once '../test/send.php';
+use test\send;
+$nombre = random_int(1, 10000); // génère un entier entre 1 et 100
 
+$mail = $_POST['mail'];
+
+
+
+$contenu = "<h3>Réinitialiser votre mot de passe</h3>
+                <p>Voici votre code secret : $nombre </p>";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $_SESSION['mdp'] = [
+            'mail' => $mail,
+            'nombre' => $nombre,
+    ];
+    $mailer = new send();
+    $result = $mailer->envoyerMailSendGrid($mail,'Mot de passe oublié',$contenu);
+    header('Location: ../Vue/MDPoublier.php');
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
