@@ -212,7 +212,7 @@ EOL;
                                 <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
-                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
+                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a> <br>
 
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
@@ -220,7 +220,7 @@ EOL;
                     </div>
                     <form method="post">
 
-                        <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>">
+                        <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>" >
 
                         <?php foreach ($absences as $abs):
                             $matiere = rtrim(substr($abs['matiere'],-6),')');
@@ -232,9 +232,8 @@ EOL;
                             if($abs['verrouille'] == 1) continue;
                             if($statusAbsence != 'report') continue;
                             ?>
-                            <a><?= $statusAbsence ?></a>
-                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">
-                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars($abs['heure'])?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
+                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
+                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
                         <?php endforeach; ?>
 
                         <a class="decision-finale">Décision finale</a>
@@ -288,9 +287,10 @@ EOL;
         </div>
     <?php endforeach; ?>
 </div>
+<br><br>
 
 
-<h1>Justificatifs redemandés</h1>
+<h1><u>Justificatifs redemandés :</u></h1>
 <!-- Liste des absences ici ! -->
 <div class="liste-absence-demandes">
     <?php foreach ($justificatifsDemande as $justif):
@@ -331,8 +331,9 @@ EOL;
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
-                    </div>
 
+                    </div>
+                    <div class="ligne2"></div>
                 </div>
             </details>
         </div>
