@@ -49,7 +49,7 @@ require "../Presentation/getAbsenceDunControle.php";
 ?>
 
     <p id="i">ⓘ</p>
-    <p id="ir">⚠:Rattrapage_à_effectuer</p>
+    <p class="i" id="ir">⚠:Rattrapage_à_effectuer</p>
 
     <form action="tableauDeBordProf.php" method="post">
         <label>

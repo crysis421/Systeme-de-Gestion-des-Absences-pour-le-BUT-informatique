@@ -1,3 +1,19 @@
+<?php session_start();
+
+if(!isset($_SESSION["user"])){
+header('Location: ../Vue/Connexion.php');
+}
+
+require_once "../Model/AbsenceModel.php";
+
+$model = new AbsenceModel();
+$matiere= $model -> getMatieres();
+$eleve = $model -> getEleves();
+$matiere = array_slice($matiere, 0, 5);
+$eleve = array_slice($eleve, 0, 5);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,5 +29,22 @@
 <form action="Connexion.php" name="Deconnexion">
     <input type="submit" value="Déconnexion">
 </form>
+<div class="alertes">
+    <?php foreach ($matiere as $mat):
+        $alerteM = $model -> alerteCours($mat);
+        if ($alerteM > 10){
+            echo "<p>Il a un problème d'absences pour la matière de $mat</p>";
+        }
+    endforeach; ?>
+    <br/>
+    <?php foreach($eleve as $el):
+        $alerteC = $model -> alerteEleve($el['nom'],$el['prenom']);
+        if ($alerteC > 10){
+            echo "<p>Il a un problème d'absences pour l'élève qui s'appelle $el</p>";
+        }
+    endforeach; ?>
+
+</div>
+
 </body>
 </html>

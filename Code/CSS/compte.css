@@ -49,8 +49,35 @@ h1 {
     box-sizing: border-box; /* Évite que le padding agrandisse la largeur */
     margin-bottom: 20px; /* Espace entre les blocs (utile pour le responsive) */
 }
-
-/* === Bloc "Profil" === */
+#pourcentage{
+    margin-left: auto;
+}
+#li:hover + #test{
+    fill: aquamarine;
+}
+#li{
+    display: flex;
+    padding: 0;
+    outline-style: none;
+    outline-color: white;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    animation: none;
+}
+ol{
+    text-align: left;
+    display: inline-grid;
+}
+#graphe{
+    box-sizing: unset;
+    padding-left: 26%;
+    padding-right: 26%;
+}
+#stat{
+    margin-left: -51%;
+    margin-right: -51%;
+}
+    /* === Bloc "Profil" === */
 #profil {
     background-color: white; /* Fond beige/or */
     width: 49%; /* Occupe environ la moitié du conteneur #haut */

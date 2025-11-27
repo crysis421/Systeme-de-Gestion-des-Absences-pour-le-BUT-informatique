@@ -151,3 +151,19 @@ Alter table TraitementJustificatif add constraint difference_id UNIQUE(idUtilisa
 --changeset Kilian:18
 Alter table Cours drop column idprof;
 --rollback Alter table Cours add column idprof int references utilisateur (idutilisateur);
+
+--changeset Kilian:19
+Alter table Justificatif drop column verrouille;
+--rollback Alter table Justificatif add column verrouille boolean;
+
+--changeset Kilian:20
+Alter table Absence add column verrouille boolean;
+--rollback Alter table Absence drop column verrouille;
+
+--changeset Kilian:21
+Alter table Justificatif drop column commentaire_absence;
+--rollback Alter table Justificatif add column verrouille boolean;
+
+--changeset Kilian:22
+Alter table Absence add column commentaire_absence TEXT;
+--rollback Alter table Absence drop column verrouille;

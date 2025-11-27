@@ -15,7 +15,7 @@ class send
                 "to" => [["email" => $destinataire]],
                 "subject" => $subject
             ]],
-            "from" => ["email" => "Christian.EkaniManga@uphf.fr", "name" => "Confirmation"],
+            "from" => ["email" => "christekanimanga@gmail.com", "name" => "Gestion Absence BUT informatique"],
             "content" => [[
                 "type" => "text/html",
                 "value" => $contentHtml
@@ -36,12 +36,13 @@ class send
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
+        /*
         if ($httpcode == 202) {
             echo "Message envoyé avec succès !";
         } else {
             echo "Erreur lors de l'envoi : HTTP $httpcode - $response";
         }
-
+        */
 
         return ['httpcode' => $httpcode, 'response' => $response];
     }
