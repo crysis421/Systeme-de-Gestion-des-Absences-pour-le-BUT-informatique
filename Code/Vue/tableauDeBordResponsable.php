@@ -243,6 +243,7 @@ EOL;
                             $test = $abs['verrouille'];
                             if($abs['verrouille'] == 1) continue;
                             if($statusAbsence != 'report') continue;
+                            echo $statusAbsence;
                             ?>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
                             <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></label> <br>

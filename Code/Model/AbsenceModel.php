@@ -31,22 +31,26 @@ class AbsenceModel
 
         $reponse = '';
         $verouille = false;
+        $vraiedecision = '';
         switch ($decision) {
             case 'report':
+                $vraiedecision = 'refus';
                 $reponse = 'refuse';
                 break;
             case 'valide':
+                $vraiedecision = 'valide';
                 $reponse = 'accepte';
                 $verouille = true;
                 break;
             case 'refus':
+                $vraiedecision = 'refus';
                 $reponse = 'refuse';
                 $verouille = true;
                 break;
         }
 
         foreach($absenceIds as $absenceId) {
-            $this->justifierAbsence($absenceId, $decision, $verouille, $commentaire);
+            $this->justifierAbsence($absenceId, $vraiedecision, $verouille, $commentaire);
         }
 
         /*
@@ -64,7 +68,7 @@ class AbsenceModel
         $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence, verrouille = :verrouilleAbsence, commentaire_absence = :commentaire WHERE idAbsence = :idAbsence;");
         $stmt->bindParam(":idAbsence", $absenceId);
         $stmt->bindParam(":statutAbsence", $decision);
-        $stmt->bindParam(":verrouilleAbsence", $verrouille);
+        $stmt->bindValue(":verrouilleAbsence", $verrouille, PDO::PARAM_BOOL);
         $stmt->bindParam(":commentaire", $commentaire);
         $stmt->execute();
     }
@@ -390,7 +394,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-        WHERE t.attente = FALSE && a.statut = valide
+        WHERE t.attente = FALSE && a.statut = 'valide'
         ";
     }
 
