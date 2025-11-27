@@ -31,7 +31,7 @@ foreach($justificatifs as $justif) {
     if(!isset($groupes[$id])){
         $groupes[$id] = [
             'id' => $id,
-            'commentaire' => $justif['commentaire_justificatif'],
+            'commentaire' => $justif['commentaire_traitement'],
             'nom' => $justif['nom_etudiant'],
             'prenom' => $justif['prenom_etudiant'],
             'description' => '',
@@ -230,7 +230,12 @@ EOL;
                         <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>" >
 
                         <?php foreach ($absences as $abs):
-                            $matiere = rtrim(substr($abs['matiere'],-6),')');
+
+                            $matiere = $abs['matiere'];
+                            preg_match('#\((.*?)\)#', $matiere, $match);
+                            $matiere = $match[1];
+                            $matiere = explode("-", $matiere)[1];
+
                             $date = $abs['date'];
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
@@ -302,7 +307,6 @@ EOL;
 <div class="liste-absence-demandes">
     <?php foreach ($justificatifsDemande as $justif):
         $id = $justif['idjustificatif'];
-        $commentaire = $justif['commentaire_justificatif'] != '' ? $justif['commentaire_justificatif'] : $justif['cause'];
         ?>
         <div class="element">
             <details>
@@ -332,7 +336,6 @@ EOL;
                                 <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
-                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
                             <br>
 
                             <div class="fondu-noir"></div>
