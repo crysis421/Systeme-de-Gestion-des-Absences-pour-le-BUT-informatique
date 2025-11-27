@@ -49,6 +49,12 @@ h1 {
     box-sizing: border-box; /* Évite que le padding agrandisse la largeur */
     margin-bottom: 20px; /* Espace entre les blocs (utile pour le responsive) */
 }
+#pourcentage{
+    margin-left: auto;
+}
+#li:hover + #test{
+    fill: aquamarine;
+}
 #li{
     display: flex;
     padding: 0;
@@ -79,8 +85,8 @@ ol{
 
 /* Image du profil */
 #profil img {
-    width: 100px;   /* largeur */
-    height: 100px;  /* hauteur */
+    width: 73px;   /* largeur */
+    height: 73px;  /* hauteur */
     display: block; /* Force le comportement de bloc (utile pour centrer) */
 }
 

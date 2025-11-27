@@ -23,16 +23,15 @@ class NewJustificatif
     }
 
 //concretement, on va aller dans differentes tables pour creer un justificatif et les relier entre eux, du fichier a la seance au traitement justificatif, ils vont tous y passer
-    public function creerJustificatif($idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = [],): int|false
+    public function creerJustificatif($idAbsence, int $idUtilisateur, string $cause, ?string $commentaire = null,array $justificatifs = []): int|false
     {
-
-
         try {
             ///Insérer dans la table Justificatif
-            $sqlJustificatif = "INSERT INTO justificatif (idjustificatif,datesoumission, commentaire_absence, verrouille) VALUES (default ,NOW(), :commentaire, false)";
+            $sqlJustificatif = "INSERT INTO justificatif (idjustificatif,datesoumission) VALUES (default ,NOW())";
             $stmtJustificatif = $this->conn->prepare($sqlJustificatif);
-            $stmtJustificatif->bindValue(':commentaire', $commentaire, PDO::PARAM_STR);
             $stmtJustificatif->execute();
+
+
 
 
             // Récupérer l'ID du justificatif qui vient d'être créé
@@ -46,7 +45,6 @@ class NewJustificatif
 
             //  Lier l'absence et le justificatif
             foreach($idAbsence as $i){
-                echo 'LAV ';
                 $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
                 $stmtAbsenceEtJustificatif = $this->conn->prepare($sqlAbsenceEtJustificatif);
                 $stmtAbsenceEtJustificatif->bindValue(':idabsence', $i['idabsence'], PDO::PARAM_INT);
@@ -54,10 +52,9 @@ class NewJustificatif
                 $stmtAbsenceEtJustificatif->execute();
 
 
-                $this->changeStatut($i['idabsence']);
+                $this->changeStatut($i['idabsence'],$commentaire);
 
             }
-
 
             // Créer l'entrée initiale dans traitementjustificatif
             /// On commence le traitement avec la cause en attente et la date actuelle pour pouvoir mettre la cause rentrée par l'étudiant etc, le reste est null/default value
@@ -70,7 +67,7 @@ class NewJustificatif
             // Enregistrer les fichiers justificatifs (si présents)
             if (!empty($justificatifs)) {
                 $sqlFichier = "INSERT INTO fichierjustificatif (pathJustificatif, idJustificatif)
-                           VALUES (:path, :idjustificatif)";
+                           VALUES (:path, :idjustificatif) on conflict do nothing";
                 $stmtFichier = $this->conn->prepare($sqlFichier);
 
                 foreach ($justificatifs as $path) {
@@ -108,16 +105,20 @@ class NewJustificatif
 
 
     ///changer le statut... litterallement le nom de la fonction breffffff
-    public function changeStatut($idAbsence) {
+    public function changeStatut($idAbsence,$commentaire) {
         $var = 'report';
-        $stmt = $this->conn->prepare('UPDATE Absence SET statut = :report WHERE idAbsence = :abs');
+        $stmt = $this->conn->prepare('UPDATE Absence SET statut = :report,commentaire_absence = :commentaire WHERE idAbsence = :abs');
         $stmt->bindParam(':abs', $idAbsence);
+        $stmt->bindParam(':commentaire', $commentaire);
         $stmt->bindParam(':report', $var);
         $stmt->execute();
     }
 
-
-
-
-
+    public function getEmailbyUser($id)
+    {
+        $stmt = $this->conn->prepare('SELECT email FROM Utilisateur WHERE idUtilisateur = :id');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }

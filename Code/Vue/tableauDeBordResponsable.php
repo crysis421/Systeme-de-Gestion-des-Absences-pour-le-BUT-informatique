@@ -31,7 +31,7 @@ foreach($justificatifs as $justif) {
     if(!isset($groupes[$id])){
         $groupes[$id] = [
             'id' => $id,
-            'commentaire' => $justif['commentaire_justificatif'],
+            'commentaire' => $justif['commentaire_traitement'],
             'nom' => $justif['nom_etudiant'],
             'prenom' => $justif['prenom_etudiant'],
             'description' => '',
@@ -55,7 +55,17 @@ foreach($justificatifs as $justif) {
         $nbAbs = count($dates);
         $dStart = $dates[0];
         $dEnd = end($dates);
-        $groupes[$id]['description'] = "absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+
+        // ofao
+        $nombreAbs = 0;
+        foreach ($groupes[$id]['absences'] as $abs){
+            $statusAbsence = $abs['status'];
+            if ($abs['verrouille'] == 1) continue;
+            if ($statusAbsence != 'report') continue;
+            $nombreAbs++;
+        }
+
+        $groupes[$id]['description'] = $nombreAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
     }
 }
 $titre = "";
@@ -71,10 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
     $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
     $checkboxAbsence = $_POST['checkboxAbsence'] ?? [];
 
-    if($motif == null) {
-        $titre = "Erreur";
-        $description = "FAIS UN MOTIF";
-    }elseif (empty($checkboxAbsence)) {
+    if (empty($checkboxAbsence)) {
         $titre = "Erreur";
         $description = "Veuillez sélectionner au moins une absence à traiter.";
     } else {
@@ -138,7 +145,7 @@ EOL;
 <details id="details">
     <summary class="filtrer">
         <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
-        <a class="nom"><b>Filtrer</b></a><br>
+        <a class="filtre-titre"><b>Filtrer</b></a><br>
     </summary>
 
     <div class="filtrage">
@@ -212,7 +219,7 @@ EOL;
                                 <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
-                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
+                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a> <br>
 
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
@@ -220,10 +227,15 @@ EOL;
                     </div>
                     <form method="post">
 
-                        <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>">
+                        <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>" >
 
                         <?php foreach ($absences as $abs):
-                            $matiere = rtrim(substr($abs['matiere'],-6),')');
+
+                            $matiere = $abs['matiere'];
+                            preg_match('#\((.*?)\)#', $matiere, $match);
+                            $matiere = $match[1];
+                            $matiere = explode("-", $matiere)[1];
+
                             $date = $abs['date'];
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
@@ -232,9 +244,8 @@ EOL;
                             if($abs['verrouille'] == 1) continue;
                             if($statusAbsence != 'report') continue;
                             ?>
-                            <a><?= $statusAbsence ?></a>
-                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>">
-                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars($abs['heure'])?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
+                            <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
+                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></label> <br>
                         <?php endforeach; ?>
 
                         <a class="decision-finale">Décision finale</a>
@@ -279,20 +290,23 @@ EOL;
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                             <br><br>
                         </div>
+                        <div class="ligne2"></div>
                     </form>
+
                 </div>
+
             </details>
         </div>
     <?php endforeach; ?>
 </div>
+<br><br>
 
 
-<h1>Justificatifs redemandés</h1>
+<h1><u>Justificatifs redemandés :</u></h1>
 <!-- Liste des absences ici ! -->
 <div class="liste-absence-demandes">
     <?php foreach ($justificatifsDemande as $justif):
         $id = $justif['idjustificatif'];
-        $commentaire = $justif['commentaire_justificatif'] != '' ? $justif['commentaire_justificatif'] : $justif['cause'];
         ?>
         <div class="element">
             <details>
@@ -322,14 +336,14 @@ EOL;
                                 <img src="/Image/close.png" alt="Fermer le justificatif">
                             </label>
 
-                            <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a>
                             <br>
 
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
-                    </div>
 
+                    </div>
+                    <div class="ligne2"></div>
                 </div>
             </details>
         </div>

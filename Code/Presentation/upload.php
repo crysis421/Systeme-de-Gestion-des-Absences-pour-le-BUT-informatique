@@ -30,20 +30,22 @@ if (isset($_POST["submit"]) and $_FILES["fileToUpload"]["type"] == 'text/csv') {
                 //Si l'utilisateur n'existe pas dans la base, alors on rajoute cet utilisateur dans la base
                 if (!in_array($ligne[4], array_column($dejaPresent, "idutilisateur"))) {
                     $addData->addUtilisateur($ligne[4], $ligne[0], $ligne[1], $ligne[2], $ligne[0] . '.' . $ligne[1] . $ligne[4] . '@uphf.fr', $ligne[20], null, $ligne[5]);
-                    array_push($dejaPresent["idutilisateur"] , $ligne[4]);//On évite de le rajouter plusieurs fois
+                    array_push($dejaPresent, ['idutilisateur'=>$ligne[4],'prof'=>null,'idcours'=>null]);//On évite de le rajouter plusieurs fois
                     $nbUtilisateur++;
                 }
                 if ($ligne[22] != '') {
                     if (!in_array($ligne[22], $prof)) {
-                    $addData->addProf($ligne[22]);
-                    array_push($prof, $ligne[22]);
+                        $addData->addProf($ligne[22]);
+                        array_push($prof, $ligne[22]);
                     }
                 }
 
                 //Si le cours n'existe pas dans la base, alors on rajoute ce cours dans la base
                 if (!in_array($ligne[13], array_column($dejaPresent, "idcours"))) {
-                    $addData->addCour($ligne[13], 2, $ligne[12]);
-                    array_push($dejaPresent["idcours"], $ligne[13]);
+                    echo "LAC".$i;
+                    $addData->addCour($ligne[13],$ligne[12]);
+                    echo "LAC".$i;
+                    array_push($dejaPresent, ['idutilisateur'=>null,'prof'=>null,'idcours'=>$ligne[13]]);
                     $nbCour++;
                 }
                 //Enfin, on ajoute tout le reste des données

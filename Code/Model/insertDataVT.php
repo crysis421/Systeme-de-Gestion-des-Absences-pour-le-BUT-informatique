@@ -29,7 +29,7 @@ class insertDataVT
     //Cette fonction nous permet de savoir quel cours et utilisateur sont deja dans la base
     public function getUtilisateurAndCours():array
     {
-        $stmt = $this->conn->prepare("SELECT DISTINCT idUtilisateur,concat(nom,' ',prenom) as prof,idCours FROM utilisateur left join Cours on utilisateur.idUtilisateur = Cours.idProf;");
+        $stmt = $this->conn->prepare("SELECT idUtilisateur,concat(nom,' ',prenom) as prof,idCours FROM utilisateur left join cours on idUtilisateur=1;");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -80,13 +80,12 @@ class insertDataVT
     }
 
     //cette fonction ajoute un cours s'il n'est pas encore présent
-    public function addCour($idCour, $idResponsable, $matiere): void
+    public function addCour($idCour, $matiere): void
     {
         try {
-            $req2 = $this->conn->prepare("INSERT INTO Cours (idCours, matiere, idProf) values (:idC,:matiere,:idR)");
+            $req2 = $this->conn->prepare("INSERT INTO Cours (idCours, matiere) values (:idC,:matiere)");
             $req2->bindParam(':idC', $idCour);
             $req2->bindParam(':matiere', $matiere);
-            $req2->bindParam(':idR', $idResponsable);
             $req2->execute();
             $req2 = null;
 

@@ -249,7 +249,7 @@ td {
 }
 .elementDeListe:hover{
     animation: none;
-    background-color: #ECECEC;
+    background-color: initial;
 }
 .description-element{
     font-size: 1.2vw;
@@ -263,6 +263,9 @@ td {
     height: 15px;
     font-size: 23px;
     position: absolute;
+}
+#prof{
+    font-size: 21px;
 }
 #ir{
     top: 175px;
@@ -291,4 +294,7 @@ td {
     margin-top: 50px;
     top: 130px;
     position: absolute;
+}
+ol{
+    display: inline-grid;
 }

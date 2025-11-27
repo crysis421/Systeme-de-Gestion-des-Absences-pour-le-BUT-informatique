@@ -9,7 +9,7 @@ if (empty($result)) {
     <main><br><br></main>
     <form action="formulaireAbsence.php" method="get">
         <input type="submit"
-               value="Justifier les absences du <?php echo $_SESSION['jour'] . "/" . date_format($_SESSION['date'], "m/y"); ?>"
+               value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT) . "/" . date_format($_SESSION['date'], "m/y"); ?>"
                id="jourbutton" name="date">
     </form>
 
@@ -26,12 +26,14 @@ if (empty($result)) {
             <details>
                 <summary class="top-layer">
                     <ol id="maListe">
+                        <li class="elementDeListe" id="prof">
                         <img src="../Image/profil_default.png" alt="avatar"
                              class="image-utilisateur" height="24">
                         <a class="nom"><b><?= htmlspecialchars($absence['prof']);
                             if ($absence['estretard']) {
                                 echo " (Retard)";
                             } ?></a><br>
+                        </li>
                         <li class="elementDeListe">
                             <div <?php echo 'class=' . $absence['statut']; ?> id="liste"></div>
                         </li>

@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             <label>Commentaires :</label><br>
-            <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;" required><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
+            <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;"><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
             <label>Ajouter un ou plusieurs justificatifs :</label><br>
             <input type="file" name="justificatifs[]" accept=".pdf,image/*" multiple><br><br>

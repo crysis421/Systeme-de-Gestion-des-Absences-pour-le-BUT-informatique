@@ -17,8 +17,6 @@ if (empty($resultatJour)) {
             <details>
                 <summary class="top-layer">
                     <ol id="maListe">
-                        <img src="../Image/profil_default.png" alt="avatar"
-                             class="image-utilisateur" height="24">
                         <a class="nom"><b><?= htmlspecialchars($cours['enseignement']) ?> à <?= htmlspecialchars($cours['heuredebut']) ?></a><br>
                         <li class="elementDeListe">
                             <div <?php echo 'class=' . $cours['statut']; ?> id="liste"></div>

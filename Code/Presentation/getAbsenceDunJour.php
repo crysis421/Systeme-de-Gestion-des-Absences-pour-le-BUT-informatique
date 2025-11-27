@@ -44,7 +44,9 @@ for ($i = 0; $i <= 31; $i++) {
                 $couleurDuMois[$i] = $absence['statut'];
             }
             //Les Interrogations
-            $interrogationDuMois[$i] = $absence['controle'];
+            if(!$interrogationDuMois[$i]){
+                $interrogationDuMois[$i] = $absence['controle'];
+            }
 
         }
     }
