@@ -26,10 +26,12 @@ if(date('m') > 7){
     $graphe = $user->getAbsenceDeLannee(date('Y')-1,date('Y'),$id);
 }
 $i = 0;
+$nbFois[] = ' ';
 foreach ($graphe as $row) {
     $i = $i + $row['count'];
 }
 foreach ($graphe as $key=>$row) {
+    array_push($nbFois, $row['count']);
     $graphe[$key]['count'] = $row['count']*100/$i;
 }
 

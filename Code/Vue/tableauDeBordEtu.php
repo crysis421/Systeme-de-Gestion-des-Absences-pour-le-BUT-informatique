@@ -53,7 +53,6 @@ require "../Presentation/getAbsenceDunJour.php";
     <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/compte.css"/>
     <title>Mon compte</title>
 </head>
 

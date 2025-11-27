@@ -132,11 +132,14 @@ require_once '../Presentation/lesInfoEtu.php';
                         } ?>
                     </svg>
                     <ol>
+                        <li id="li">
+                            <p id="pourcentage">Nombre d'absences</p>
+                        </li>
                         <?php foreach ($graphe as $key=>$nom) { ?>
                         <li id="li">
                             <div style="width:5px; height:5px; background-color:<?=$colorUtilise[$key+1]?>; border-radius:50%;"></div>
                             <p><?='~ '.$nom['label']?></p>
-                            <p id="pourcentage"><?=round($nom['count']).'%'?></p>
+                            <p id="pourcentage"><?=round($nbFois[$key+1])?></p>
                         </li>
                         <?php } ?>
                     </ol>
