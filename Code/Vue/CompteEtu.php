@@ -21,9 +21,6 @@ require_once '../Presentation/lesInfoEtu.php';
 
 <main>
     <div style="display: flex">
-        <form style="width: 10%" id="form" action="https://mail.uphf.fr/#1" method="post">
-            <input type="submit" value="votre boite mail" style="background-color:#bfff00; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px 10px 10px; border-radius: 10px;margin-left: 10px">
-        </form>
         <h1 style=" width: 90%">Bonjour <?php echo htmlspecialchars($prenom); ?> ! 👋</h1>
         <form style="width: 10%" id="form" action="Connexion.php" method="post">
             <input type="submit" value="Déconnexion"
