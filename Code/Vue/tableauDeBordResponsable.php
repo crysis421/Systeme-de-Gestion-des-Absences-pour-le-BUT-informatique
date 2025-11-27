@@ -10,8 +10,8 @@ $model = new AbsenceModel();
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;
 $matiere = $_POST['Matière'] ?? null;
-$prenom = $_POST['PrenomInput'].'%' ?? null;
-$nom = $_POST['NomInput'].'%' ?? null;
+$prenom = isset($_POST['PrenomInput']) ? $_POST['PrenomInput'] . '%' : null;
+$nom = isset($_POST['NomInput']) ? $_POST['NomInput'] . '%' : null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom)) {
