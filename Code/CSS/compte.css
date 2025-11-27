@@ -85,8 +85,8 @@ ol{
 
 /* Image du profil */
 #profil img {
-    width: 100px;   /* largeur */
-    height: 100px;  /* hauteur */
+    width: 73px;   /* largeur */
+    height: 73px;  /* hauteur */
     display: block; /* Force le comportement de bloc (utile pour centrer) */
 }
 

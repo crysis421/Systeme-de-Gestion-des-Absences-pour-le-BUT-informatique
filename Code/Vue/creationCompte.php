@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <link rel="stylesheet" href="../CSS/connect.css">
 
 <body>
@@ -11,58 +11,85 @@
     <div id="container">
 
         <form id="form" action="/Presentation/creeCompte.php" method="post">
-            <a style="font-family: Arial; color: yellow; font-size: 21px;">Tous les champs marqués avec * sont
-                obligatoires.</a><br>
+            <a style="font-family: Arial; color: yellow; font-size: 21px;">
+                Tous les champs marqués avec * sont obligatoires.
+            </a><br>
+
             <label for="Nom">
                 Nom :* <input type="text" name="nom" placeholder="nom" required>
-            </label> <br>
-            <br>
+            </label> <br><br>
+
             <label for="Prenom">
                 Prénom :* <input type="text" name="prenom" placeholder="prénom" required>
-            </label> <br>
-            <br>
+            </label> <br><br>
+
             <label for="Prenom2">
                 Deuxième prénom : <input type="text" name="prenom2" placeholder="deuxième prénom">
             </label> <br>
-            <br>
-            Role dans l'université :*<br>
-            <input type="radio" name="role" id='eleve' value="eleve" checked>
-            <label for="eleve">Élève</label><br>
-            <input type="radio" name="role" id='prof' value="prof">
-            <label for="prof">Professeur</label><br>
-            <input type="radio" name="role" id='secretaire' value="secretaire">
-            <label for="secretaire">Secretaire</label><br>
-            <input type="radio" name="role" id='respon' value="respon">
-            <label for="respon">Responsable pédagogique</label><br>
-            <br>
-            <label for="Groupe">
-                Groupe : <input type="text" name="groupe" placeholder="groupe">
-            </label> <br>
-            <br>
+
             <label for="Naissance">
                 Date de naissance :* <input type="date" name="datedenaissance" required>
-            </label> <br>
+            </label> <br><br>
+
+            <label for="role">Rôle dans l'université :*</label><br>
+            <select name="role" id="role" onchange="toggleFields()" required>
+                <option value="" disabled selected>-- Choisir un rôle --</option>
+                <option value="eleve">Élève</option>
+                <option value="prof">Professeur</option>
+                <option value="secretaire">Secrétaire</option>
+                <option value="respon">Responsable pédagogique</option>
+            </select>
+            <br><br>
+
+            <div id="groupeField">
+                <label>Groupe :
+                    <input type="text" name="groupe" placeholder="groupe">
+                </label>
+            </div>
             <br>
-            <label for="Diplome">
-                Diplome : <input type="text" name="diplome" placeholder="diplome">
-            </label> <br>
+
+            <div id="diplomeField">
+                <label>Diplôme :
+                    <input type="text" name="diplome" placeholder="diplôme">
+                </label>
+            </div>
             <br>
+
             <label for="Email">
                 Adresse mail :* <input type="email" name="email" placeholder="adresse mail" required>
-            </label> <br>
-            <br>
+            </label> <br><br>
+
             <label for="Mot de passe">
                 Mot de passe :* <input type="password" name="motdepasse" placeholder="mot de passe" required>
-            </label> <br>
-            <br>
-            <input type="submit" value="Créez le compte">
+            </label> <br><br>
+
+            <input type="submit" value="Créer le compte">
         </form>
     </div>
+
+    <script>
+        function toggleFields() {
+            const role = document.getElementById("role").value;
+            const groupeField = document.getElementById("groupeField");
+            const diplomeField = document.getElementById("diplomeField");
+
+            // Rôles pour lesquels on cache les champs
+            const rolesSansChamps = ["prof", "secretaire", "respon"];
+
+            if (rolesSansChamps.includes(role)) {
+                groupeField.style.display = "none";
+                diplomeField.style.display = "none";
+            } else {
+                groupeField.style.display = "block";
+                diplomeField.style.display = "block";
+            }
+        }
+    </script>
+
 </main>
 
 <footer id="footer">
-    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de
-        Maubeuge.</a>
+    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université Polytechnique Hauts-de-France / IUT de Maubeuge.</a>
 </footer>
 </body>
 </html>
