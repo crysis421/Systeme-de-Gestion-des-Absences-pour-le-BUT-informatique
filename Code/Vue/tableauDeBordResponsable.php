@@ -279,8 +279,11 @@ EOL;
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                             <br><br>
                         </div>
+                        <div class="ligne2"></div>
                     </form>
+
                 </div>
+
             </details>
         </div>
     <?php endforeach; ?>
