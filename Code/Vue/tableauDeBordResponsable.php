@@ -71,10 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
     $demande = isset($_POST['motif_demande']) ? $_POST['motif_demande'] : null;
     $checkboxAbsence = $_POST['checkboxAbsence'] ?? [];
 
-    if($motif == null) {
-        $titre = "Erreur";
-        $description = "FAIS UN MOTIF";
-    }elseif (empty($checkboxAbsence)) {
+    if (empty($checkboxAbsence)) {
         $titre = "Erreur";
         $description = "Veuillez sélectionner au moins une absence à traiter.";
     } else {
