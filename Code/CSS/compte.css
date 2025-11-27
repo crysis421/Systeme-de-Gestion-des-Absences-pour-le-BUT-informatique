@@ -228,3 +228,7 @@ textarea{
 #modif button:hover {
     background-color: #0056b3; /* Change la couleur du bouton au survol */
 }
+
+div.alertes{
+    color:red;
+}
