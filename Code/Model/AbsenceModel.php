@@ -549,18 +549,18 @@ class AbsenceModel
         $sql = "SELECT matiere FROM cours";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
     public function alerteCours($matiere){
         $sql = "SELECT count(a.idAbsence) FROM absence AS a
-        JOIN seance s ON s.idSeance = c.idSeance
+        JOIN seance s ON s.idSeance = a.idSeance
         JOIN cours c ON c.idCours = s.idCours
         WHERE c.matiere = :matiere";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":matiere", $matiere);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchColumn();
     }
 
     public function getEleves(){
@@ -580,7 +580,7 @@ class AbsenceModel
         $stmt->bindParam(":nom", $nom);
         $stmt->bindParam(":prenom", $prenom);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchColumn();
     }
 
 
