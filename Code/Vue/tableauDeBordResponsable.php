@@ -55,7 +55,17 @@ foreach($justificatifs as $justif) {
         $nbAbs = count($dates);
         $dStart = $dates[0];
         $dEnd = end($dates);
-        $groupes[$id]['description'] = "absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+
+        // ofao
+        $nombreAbs = 0;
+        foreach ($groupes[$id]['absences'] as $abs){
+            $statusAbsence = $abs['status'];
+            if ($abs['verrouille'] == 1) continue;
+            if ($statusAbsence != 'report') continue;
+            $nombreAbs++;
+        }
+
+        $groupes[$id]['description'] = $nombreAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
     }
 }
 $titre = "";
@@ -135,7 +145,7 @@ EOL;
 <details id="details">
     <summary class="filtrer">
         <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
-        <a class="nom"><b>Filtrer</b></a><br>
+        <a class="filtre-titre"><b>Filtrer</b></a><br>
     </summary>
 
     <div class="filtrage">
@@ -230,7 +240,7 @@ EOL;
                             if($statusAbsence != 'report') continue;
                             ?>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
-                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars(rtrim(substr($abs['matiere'],-6),')'))?></label> <br>
+                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></label> <br>
                         <?php endforeach; ?>
 
                         <a class="decision-finale">Décision finale</a>
