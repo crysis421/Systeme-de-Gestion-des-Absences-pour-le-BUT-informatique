@@ -614,3 +614,20 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
         padding: 1.5rem;
     }
 }
+
+
+details[open] .details,
+details[open] .filtrage {
+    animation: ouvertureFluide 0.4s ease-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes ouvertureFluide {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
