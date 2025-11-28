@@ -114,11 +114,15 @@ class NewJustificatif
         $stmt->execute();
     }
 
+
     public function getEmailbyUser($id)
     {
-        $stmt = $this->conn->prepare('SELECT email FROM Utilisateur WHERE idUtilisateur = :id');
-        $stmt->bindParam(':id', $id);
+        $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null; // retourne l'émail ou null si non trouvé
     }
 }

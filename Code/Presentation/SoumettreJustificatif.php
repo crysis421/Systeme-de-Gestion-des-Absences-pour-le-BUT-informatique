@@ -74,7 +74,7 @@ try {
         if ($succes !== false) {
             $mailer = new send();
 
-            $result = $mailer->envoyerMailSendGrid($mail, 'Confirmation de depot de justificatif', $contenu);
+            $result = $mailer->envoyerMailSendGrid($mail,'Confirmation de depot de justificatif',$contenu);
             echo "Justificatif envoyé avec succès !";
 
             unset($_SESSION['formData']);
