@@ -31,22 +31,26 @@ class AbsenceModel
 
         $reponse = '';
         $verouille = false;
+        $vraiedecision = '';
         switch ($decision) {
             case 'report':
+                $vraiedecision = 'refus';
                 $reponse = 'refuse';
                 break;
             case 'valide':
+                $vraiedecision = 'valide';
                 $reponse = 'accepte';
                 $verouille = true;
                 break;
             case 'refus':
+                $vraiedecision = 'refus';
                 $reponse = 'refuse';
                 $verouille = true;
                 break;
         }
 
         foreach($absenceIds as $absenceId) {
-            $this->justifierAbsence($absenceId, $decision, $verouille, $commentaire);
+            $this->justifierAbsence($absenceId, $vraiedecision, $verouille, $commentaire);
         }
 
         /*
@@ -64,7 +68,7 @@ class AbsenceModel
         $stmt = $this->conn->prepare("UPDATE Absence SET statut = :statutAbsence, verrouille = :verrouilleAbsence, commentaire_absence = :commentaire WHERE idAbsence = :idAbsence;");
         $stmt->bindParam(":idAbsence", $absenceId);
         $stmt->bindParam(":statutAbsence", $decision);
-        $stmt->bindParam(":verrouilleAbsence", $verrouille);
+        $stmt->bindValue(":verrouilleAbsence", $verrouille, PDO::PARAM_BOOL);
         $stmt->bindParam(":commentaire", $commentaire);
         $stmt->execute();
     }
@@ -148,15 +152,16 @@ class AbsenceModel
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
-            a.idAbsence,
+            a.idAbsence AS id_absence,
             a.statut AS statut_absence,
+            a.verrouille AS verrouille_absence,
             s.date AS date_seance,
             s.heuredebut,
             s.typeseance AS typeSeance,
             c.matiere,
             t.idTraitement,
             t.attente,
-            t.reponse,
+            t.reponse AS reponse_justificatif,
             t.commentaire_validation AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
@@ -165,9 +170,9 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = FALSE and reponse = 'enAttente'
+            WHERE t.attente = FALSE AND t.reponse = 'refuse'
         ORDER BY j.dateSoumission DESC
-        ";
+    ";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
@@ -390,31 +395,8 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-        WHERE t.attente = FALSE && a.statut = valide
+        WHERE t.attente = FALSE && a.statut = 'valide'
         ";
-    }
-
-
-
-
-    //Cette fonction nous permet de recupérer les infos d'une absence d'un etudiant a un jour précis , utiliser pour le tableau de bord de l'etudiant
-    public function getAbsenceDunJour($date,$idEtudiant,$mois,$year) {
-        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,typeSeance,salle,controle FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year");
-        $stmt->bindParam(":idEtudiant", $idEtudiant);
-        $stmt->bindParam(":d", $date);
-        $stmt->bindParam(":m", $mois);
-        $stmt->bindParam(":year", $year);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getAbsenceDunMois($idEtudiant,$mois,$year) {
-        $stmt = $this->conn->prepare("SELECT statut,extract('Days' from Seance.date),controle FROM absence JOIN Seance using(idSeance) where extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and idEtudiant = :idEtudiant");
-        $stmt->bindParam(":idEtudiant", $idEtudiant);
-        $stmt->bindParam(":m", $mois);
-        $stmt->bindParam(":year", $year);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getNombyUser($id) {
@@ -435,17 +417,6 @@ class AbsenceModel
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['prenom'] : null; // retourne juste le prénom ou null si non trouvé
-    }
-
-    public function getmotdepasseByUser($id)
-    {
-        $sql = "SELECT motDePasse FROM utilisateur WHERE idUtilisateur = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ? $result['motdepasse'] : null; // retourne l'émail ou null si non trouvé
     }
 
     public function ModifierMDP($email, $mdp)
@@ -512,19 +483,6 @@ class AbsenceModel
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
-    public function inser()
-    {
-
-    }
-
-    public function grapheDeAnnee($annee,$idEtudiant){
-        $stmt = $this->conn->prepare("select extract('Months' from date),count(*) as total from Seance left join Absence using(idSeance) where idEtudiant = :etu and extract('Years' from Seance.date) = :year group by extract('Months' from date);");
-        $stmt->bindParam(":etu", $idEtudiant);
-        $stmt->bindParam(":year", $annee);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     public function getImageJustificatifs($nom,$prenom,$matiere,$date,$heure){
         $sql = "SELECT fj.pathjustificatif FROM fichierjustificatif AS fj
         JOIN absenceetjustificatif aj ON fj.idJustificatif = aj.idJustificatif
@@ -588,10 +546,28 @@ class AbsenceModel
     public function getAbsenceDeLannee($yearDebut,$yearFin,$idEtu){
         $yearDebut = $yearDebut."-07-01";
         $yearFin = $yearFin."-07-01";
-        $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join cours using (idCours) where Seance.date > :yea and Seance.date < :y and Absence.idEtudiant = :idEtudiant group by matiere;");
+        $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join cours using (idCours) where Seance.date > :yea and Seance.date < :y and Absence.idEtudiant = :idEtudiant group by matiere order by count(*) desc;");
         $stmt->bindParam(":idEtudiant", $idEtu);
         $stmt->bindParam(":yea", $yearDebut);
         $stmt->bindParam(":y", $yearFin);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAbsenceCours($yearDebut,$yearFin){
+        $yearDebut = $yearDebut."-07-01";
+        $yearFin = $yearFin."-07-01";
+        $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance) where Seance.date > :yea and Seance.date < :y group by typeSeance order by count(*) desc;");
+        $stmt->bindParam(":yea", $yearDebut);
+        $stmt->bindParam(":y", $yearFin);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAbsenceCoursSemestre($semestre){
+        $semestre = "%S$semestre%";
+        $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance)  where enseignement like :se group by typeSeance order by count(*) desc;");
+        $stmt->bindParam(":se", $semestre);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

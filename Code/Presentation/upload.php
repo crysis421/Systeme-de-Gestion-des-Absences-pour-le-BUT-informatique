@@ -42,9 +42,7 @@ if (isset($_POST["submit"]) and $_FILES["fileToUpload"]["type"] == 'text/csv') {
 
                 //Si le cours n'existe pas dans la base, alors on rajoute ce cours dans la base
                 if (!in_array($ligne[13], array_column($dejaPresent, "idcours"))) {
-                    echo "LAC".$i;
                     $addData->addCour($ligne[13],$ligne[12]);
-                    echo "LAC".$i;
                     array_push($dejaPresent, ['idutilisateur'=>null,'prof'=>null,'idcours'=>$ligne[13]]);
                     $nbCour++;
                 }

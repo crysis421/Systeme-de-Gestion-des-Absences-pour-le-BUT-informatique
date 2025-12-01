@@ -164,7 +164,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;"><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
             <label>Ajouter un ou plusieurs justificatifs :</label><br>
-            <input type="file" name="justificatifs[]" accept=".pdf,image/*" multiple><br><br>
+            <input type="file" name="justificatifs[]" accept=".pdf,image/*" multiple><br>
+            <p style="font-size: 20px"> La taille maximale pour un fichier est de <u style="color: red" >2MO</u></p>
             <i style="font-size: 17px">Pour sélectionner plusieurs fichiers à la fois, maintiens Ctrl (ou Cmd sur Mac) pour choisir individuellement ou Shift pour sélectionner un bloc de fichiers consécutifs avant de cliquer sur “Ouvrir”.</i>
 
             <br>

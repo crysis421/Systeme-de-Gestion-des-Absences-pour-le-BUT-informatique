@@ -10,8 +10,8 @@ $model = new AbsenceModel();
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;
 $matiere = $_POST['Matière'] ?? null;
-$prenom = $_POST['PrenomInput'].'%' ?? null;
-$nom = $_POST['NomInput'].'%' ?? null;
+$prenom = isset($_POST['PrenomInput']) ? $_POST['PrenomInput'] . '%' : null;
+$nom = isset($_POST['NomInput']) ? $_POST['NomInput'] . '%' : null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     if (!empty($dateDebut) || !empty($dateFin) || !empty($matiere) || !empty($prenom) || !empty($nom)) {
@@ -68,6 +68,40 @@ foreach($justificatifs as $justif) {
         $groupes[$id]['description'] = $nombreAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
     }
 }
+
+$groupesDemandes = [];
+foreach($justificatifsDemande as $justif) {
+    $id = $justif['idjustificatif'];
+    if(!isset($groupesDemandes[$id])){
+        $groupesDemandes[$id] = [
+                'id' => $id,
+                'commentaire' => $justif['commentaire_traitement'],
+                'nom' => $justif['nom_etudiant'],
+                'prenom' => $justif['prenom_etudiant'],
+                'description' => '',
+                'absences' => []
+        ];
+    }
+
+    $groupesDemandes[$id]['absences'][] = [
+            'id' => $justif['id_absence'],
+            'matiere' => $justif['matiere'],
+            'date' => $justif['date_seance'],
+            'heure' => $justif['heuredebut']
+    ];
+
+    // pour la desc
+    $dates = array_column($groupesDemandes[$id]['absences'], 'date');
+    if(!empty($dates)) {
+        sort($dates);
+        $nbAbs = count($dates);
+        $dStart = $dates[0];
+        $dEnd = end($dates);
+
+        $groupesDemandes[$id]['description'] =  "$dStart au $dEnd";
+    }
+}
+
 $titre = "";
 $description = "";
 
@@ -243,6 +277,7 @@ EOL;
                             $test = $abs['verrouille'];
                             if($abs['verrouille'] == 1) continue;
                             if($statusAbsence != 'report') continue;
+                            echo $statusAbsence;
                             ?>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
                             <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></label> <br>
@@ -305,17 +340,18 @@ EOL;
 <h1><u>Justificatifs redemandés :</u></h1>
 <!-- Liste des absences ici ! -->
 <div class="liste-absence-demandes">
-    <?php foreach ($justificatifsDemande as $justif):
-        $id = $justif['idjustificatif'];
+    <?php foreach ($groupesDemandes as $justif):
+        $id = $justif['id'];
+        $commentaire = $justif['commentaire'];
+        $absences = $justif['absences'];
         ?>
         <div class="element">
             <details>
                 <summary class="top-layer">
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><b><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></b></a><br>
+                    <a class="nom"><b><?= htmlspecialchars($justif['nom']) ?> <?= htmlspecialchars($justif['prenom']) ?></b></a><br>
                     <div class="description-element">
-                        <small><?= htmlspecialchars($justif['matiere']) ?></small>
-                        <br><small><?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?></small>
+                        <small><?= htmlspecialchars($justif['description']) ?></small>
                     </div>
 
                     <div class="ligne"></div>
@@ -341,7 +377,19 @@ EOL;
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
                         </details>
+                        <?php foreach ($absences as $abs):
 
+                            $matiere = $abs['matiere'];
+                            preg_match('#\((.*?)\)#', $matiere, $match);
+                            $matiere = $match[1];
+                            $matiere = explode("-", $matiere)[1];
+
+                            $date = $abs['date'];
+                            $heure = $abs['heure'];
+                            $idAbsence = $abs['id'];
+                            ?>
+                            <a> - <?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></a> <br>
+                        <?php endforeach; ?>
                     </div>
                     <div class="ligne2"></div>
                 </div>
