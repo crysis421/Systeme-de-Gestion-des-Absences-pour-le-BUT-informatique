@@ -1,28 +1,22 @@
-<?php
-require_once '../test/send.php';
-use test\send;
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $contenu = "<h3>Confirmation de Dépôt de votre justificatif</h3>
-                <p>Votre Justificatif a bien été envoyé</p>";
-    $mailer = new send();
-
-    $result = $mailer->envoyerMailSendGrid($_POST['email'],'Confirmation de depot de justificatif',$contenu);
-}
-?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>for</title>
-    <form action="" method="post">
-        <input type="email" name="email"><br>
-        <input type="submit" >
-    </form>
-
+    <title>Formulaire de contact</title>
 </head>
 <body>
+<h2>Contactez-nous</h2>
+<form action="send.php" method="POST">
+    <label>Votre nom :</label><br>
+    <input type="text" name="name" required><br><br>
 
+    <label>Votre email :</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Message :</label><br>
+    <textarea name="message" required></textarea><br><br>
+
+    <button type="submit">Envoyer</button>
+</form>
 </body>
 </html>
