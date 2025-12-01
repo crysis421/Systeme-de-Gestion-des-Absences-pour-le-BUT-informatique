@@ -152,15 +152,16 @@ class AbsenceModel
             u.idUtilisateur,
             u.nom AS nom_etudiant,
             u.prenom AS prenom_etudiant,
-            a.idAbsence,
+            a.idAbsence AS id_absence,
             a.statut AS statut_absence,
+            a.verrouille AS verrouille_absence,
             s.date AS date_seance,
             s.heuredebut,
             s.typeseance AS typeSeance,
             c.matiere,
             t.idTraitement,
             t.attente,
-            t.reponse,
+            t.reponse AS reponse_justificatif,
             t.commentaire_validation AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
@@ -169,9 +170,9 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = FALSE and reponse = 'enAttente'
+            WHERE t.attente = FALSE AND t.reponse = 'refuse'
         ORDER BY j.dateSoumission DESC
-        ";
+    ";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
