@@ -59,6 +59,7 @@ class insertDataVT
     public function addProf($prof){
         $i = 0;
         $nom ='';
+        $prenom ='';
         while ($prof[$i] != ' '){
             $nom = $nom.$prof[$i];
             $i++;
