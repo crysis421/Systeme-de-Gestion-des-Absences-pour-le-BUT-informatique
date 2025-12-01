@@ -121,4 +121,35 @@ class NewJustificatif
         $stmt->execute();
         return $stmt->fetch();
     }
+
+    //public function connFTP($host,$user,$pwd,$lFile,$dFile){
+    //    $ftp_host = "localhost";
+    //    $ftp_user = "root";
+    //    $ftp_pass = $pwd;
+    //    $local_file = $lFile;
+    //    $distant_file = $dFile;
+
+    //    $conn_id = ftp_connect($ftp_host);
+    //    // on se connecte en tant qu'utilisateur
+    //    $login_result = ftp_login($conn_id, $ftp_user, $ftp_pass);
+    //    // on active le mode passif
+    //    ftp_pasv($conn_id, true);
+    //    // si on est connecté avec succès, on transfère le fichier
+    //    if($login_result && ftp_put($conn_id, $distant_file, $local_file, FTP_ASCII)){
+    //        // si le transfert a fonctionné, on supprime le fichier local
+    //        unlink($local_file);
+    //    }
+    //    // on clos la connexion
+    //    ftp_close($conn_id);
+    //}
+
+    //public function getImageFTP(){
+    //    ftp_nb_fget(FTP\Connection $ftp,
+    //    resource $stream,
+    //    string $remote_filename,
+    //    int $mode = FTP_BINARY,
+    //    int $offset = 0
+    //): int
+    //}
+
 }

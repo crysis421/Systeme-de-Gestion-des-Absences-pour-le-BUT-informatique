@@ -96,22 +96,22 @@ $justificatifs = array_slice($justificatifs, 0, 10);
                     <small><?= htmlspecialchars($justif['matiere']) ?> —
                         <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?> <?php if ($justif['reponse']=='accepte') {
                             $imageClass="histo-accepter";
-                            $imageSource = $model->getImageJustificatifs($justif['nom_etudiant'],$justif['prenom_etudiant'],$justif['matiere'],$justif['date_seance'],$justif['heuredebut']);
-                            foreach ($imageSource as $im):
-                                echo "<img class=$imageClass src=$im> <br/><br/>";
-                            endforeach;
+                            $img = "/Image/justificatif.jpg";
+                            echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
+
+                            //echo "<img class=$imageClass src=$img> <br/><br/>";
                         } else if ($justif['reponse']=='refuse') {
                             $imageClass="histo-refuser";
-                            $imageSource = $model->getImageJustificatifs($justif['nom_etudiant'],$justif['prenom_etudiant'],$justif['matiere'],$justif['date_seance'],$justif['heuredebut']);
-                            foreach ($imageSource as $im):
-                                echo "<img class=$imageClass src=$im><br/><br/>";
-                            endforeach;
+                            $img = "/Image/justificatif.jpg";
+                            echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
+
+                            //echo "<img class=$imageClass src=$img><br/><br/>";
                         } else {
                             $imageClass="histo-demander";
-                            $imageSource = $model->getImageJustificatifs($justif['nom_etudiant'],$justif['prenom_etudiant'],$justif['matiere'],$justif['date_seance'],$justif['heuredebut']);
-                            foreach ($imageSource as $im):
-                                echo "<img class=$imageClass src=$im><br/><br/>";
-                            endforeach;
+                            $img = "/Image/justificatif.jpg";
+                            echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
+
+                            //echo "<img class=$imageClass src=$img><br/><br/>";
                         } ?></small>
                 </summary>
 
@@ -128,8 +128,10 @@ $justificatifs = array_slice($justificatifs, 0, 10);
                             <img src="/Image/close.png" alt="Fermer le justificatif">
                         </label>
 
-                        <div class="fondu-noir"></div>
-                        <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
+                        <div class="fondu-noir">
+                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
+
+                        </div>
                         <br/><br/>
                     </div>
                 </div>
