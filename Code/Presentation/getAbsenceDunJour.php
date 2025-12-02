@@ -40,7 +40,9 @@ for ($i = 0; $i <= 31; $i++) {
                 $couleurDuMois[$i] = $absence['statut'];
             } else if ($absence['statut'] == 'report' and $couleurDuMois[$i] != 'refus') {
                 $couleurDuMois[$i] = $absence['statut'];
-            } else if ($couleurDuMois[$i] != 'refus' and $couleurDuMois[$i] != 'report') {
+            } else if ($absence['verrouille'] == 'true' and $couleurDuMois[$i] != 'refus') {
+                $couleurDuMois[$i] = 'refusVerouille';
+            } else if ($couleurDuMois[$i] != 'refus' and $couleurDuMois[$i] != 'refusVerouille') {
                 $couleurDuMois[$i] = $absence['statut'];
             }
             //Les Interrogations

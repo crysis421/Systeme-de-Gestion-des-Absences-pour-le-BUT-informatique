@@ -26,7 +26,7 @@ class Camembert
                     $color = dechex((hexdec($color) + hexdec('AE0EAFF')) % hexdec('FFFFFF'));
                     $c = '#' . str_pad($color, 6, '0', STR_PAD_LEFT);
                     array_push($colorUtilise, $c);
-                    $angle = $value * 3.599999999999; // 360° * fraction, pas de 3.6 car ça ne forme pas un cercle complet s'il n'y a qu'une seule absence.
+                    $angle = $value * 3.5999; // 360° * fraction, pas de 3.6 car ça ne forme pas un cercle complet s'il n'y a qu'une seule absence.
 
                     $endAngle = $startAngle + $angle;
                     $startX = $cx + $r * cos(deg2rad($startAngle));

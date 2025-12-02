@@ -21,7 +21,7 @@ class AbsenceEtuTB
 
     //Cette fonction nous permet de récupérer les infos d'une absence d'un étudiant à un jour précis
     public function getAbsenceDunJour($date,$idEtudiant,$mois,$year) {
-        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,controle FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year");
+        $stmt = $this->conn->prepare("SELECT statut,estRetard,heureDebut,prof,duree,enseignement,controle,verrouille FROM absence JOIN Seance using(idSeance) WHERE idEtudiant = :idEtudiant and extract('Days' from Seance.date) = :d and extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year");
         $stmt->bindParam(":idEtudiant", $idEtudiant);
         $stmt->bindParam(":d", $date);
         $stmt->bindParam(":m", $mois);
@@ -40,7 +40,7 @@ class AbsenceEtuTB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant , en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
+    //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant, en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
     private function getProf($idProf){
         $stmt = $this->conn->prepare("select concat(nom,' ',prenom) as p from utilisateur where idUtilisateur=:p");
         $stmt->bindParam(":p", $idProf);
