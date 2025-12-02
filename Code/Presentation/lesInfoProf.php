@@ -2,18 +2,14 @@
 require_once "../Model/AbsenceModel.php";
 
 $model = new AbsenceModel();
-$matiere= $model -> getMatieres();
-$eleve = $model -> getEleves();
-$matiere = array_slice($matiere, 0, 5);
-$eleve = array_slice($eleve, 0, 5);
 
 if(date('m') > 7){
-    $grapheAnnee = $model->getAbsenceCours(date('Y')-2,date('Y')-1); //TODO les absences sont en 2024
+    $grapheAnnee = $model->getAbsenceCoursProf(date('Y')-2,date('Y')-1,$_SESSION['user']); //TODO les absences sont en 2024
 }else{
-    $grapheAnnee = $model->getAbsenceCours(date('Y')-1,date('Y'));
+    $grapheAnnee = $model->getAbsenceCoursProf(date('Y')-1,date('Y'),$_SESSION['user']);
 }
-$grapheSemestre = $model->getAbsenceCoursSemestre($semestre);
-$grapheSemestreR = $model->getAbsenceRessourceSemestre($semestreR);
+$grapheSemestre = $model->getAbsenceCoursSemestreProf($semestre,$_SESSION['user']);
+$grapheSemestreR = $model->getAbsenceRessourceSemestreProf($semestreR,$_SESSION['user']);
 
 $model = null;
 
