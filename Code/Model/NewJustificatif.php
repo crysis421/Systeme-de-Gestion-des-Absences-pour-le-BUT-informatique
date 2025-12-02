@@ -78,7 +78,7 @@ class NewJustificatif
                 }
             }
 
-            return true;
+            return $idJustificatif;
 
         } catch (PDOException $e) {
             echo "Erreur SQL : " . $e->getMessage(); // 👈 temporaire pour debug

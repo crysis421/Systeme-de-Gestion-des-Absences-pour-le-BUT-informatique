@@ -15,7 +15,7 @@ class send
                 "to" => [["email" => $destinataire]],
                 "subject" => $subject
             ]],
-            "from" => ["email" => "christekanimanga@gmail.com", "name" => "Gestion Absence BUT informatique"],
+            "from" => ["email" => "ggestionabsenceuphf@gmail.com", "name" => "Gestion Absence BUT informatique"],
             "content" => [[
                 "type" => "text/html",
                 "value" => $contentHtml
@@ -27,7 +27,7 @@ class send
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            //mdp TODO
+            //TODO
             "Content-Type: application/json"
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

@@ -1,8 +1,12 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
-require 'vendor/autoload.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -13,18 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // CONFIG SMTP (exemple Gmail)
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'ton_email@gmail.com';
-        $mail->Password   = 'mot_de_passe_application';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'christekanimangal@gmail.com';
+        $mail->Password = 'jyynfnxgjnwubumf';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        $mail->Port = 587;
 
         // EXPÉDITEUR / DESTINATAIRE
-        $mail->setFrom($email, $name);
-        $mail->addAddress('ton_email@gmail.com'); // où tu reçois le message
+        $mail->setFrom('christekanimangal@gmail.com', 'Nom Expéditeur');
+        $mail->addAddress('Christian.EkaniManga@uphf.fr'); // où tu reçois le message
 
         // CONTENU
         $mail->isHTML(true);
@@ -34,7 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Email :</strong> $email</p>
             <p><strong>Message :</strong><br>$message</p>
         ";
-        $mail->AltBody = strip_tags($message);
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ];
+
 
         $mail->send();
         echo "Message envoyé avec succès !";

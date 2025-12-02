@@ -1,20 +1,64 @@
 <?php
-session_start();
+session_start(); // Démarrer la session
 require_once '../Model/AbsenceModel.php';
 
-if (!isset($_POST['motDePasse'])) {
-    die("Aucune donnée trouvée. Veuillez retourner au formulaire.");
+// Vérifier quel formulaire a été soumis
+if (!isset($_POST['formulaire'])) {
+    $_SESSION['erreur'] = "Formulaire non identifié.";
+    header("Location: ../Vue/modifierMDP.php");
+    exit();
 }
 
-$email = $_POST['email'];
-$mdp = $_POST['motDePasse'];
+switch ($_POST['formulaire']) {
 
-$a = new AbsenceModel();
-$message = $a->ModifierMDP($email, $mdp);
+    case 'formulaire1': // Formulaire sur modifierMDP.php
+        if (!isset($_POST['email1'], $_POST['motDePasse'], $_POST['confirmationMotDePasse'])) {
+            $_SESSION['erreur'] = "Données manquantes.";
+            header("Location: ../Vue/modifierMDP.php");
+            exit();
+        }
 
-header('Location: ../Vue/Connexion.php');
+        $email = $_POST['email1'];
+        $motDePasse = $_POST['motDePasse'];
+        $confirmation = $_POST['confirmationMotDePasse'];
 
+        if ($motDePasse !== $confirmation) {
+            $_SESSION['erreur'] = "Les mots de passe ne correspondent pas.";
+            header("Location: ../Vue/modifierMDP.php");
+            exit();
+        }
+
+        // Modifier le mot de passe dans la base (en clair)
+        $a = new AbsenceModel();
+        $a->ModifierMDP($email, $confirmation);
+
+        header('Location: ../Vue/Connexion.php');
+        exit();
+
+    case 'formulaire2': // Formulaire sur CompteEtu.php
+        if (!isset($_POST['email1'], $_POST['motDePasse1'], $_POST['confirmationMotDePasse1'])) {
+            $_SESSION['erreur'] = "Données manquantes.";
+            header("Location: ../Vue/CompteEtu.php");
+            exit();
+        }
+
+        $email = $_POST['email1'];
+        $motDePasse = $_POST['motDePasse1'];
+        $confirmation = $_POST['confirmationMotDePasse1'];
+
+        if ($motDePasse !== $confirmation) {
+            $_SESSION['erreur'] = "Les mots de passe ne correspondent pas.";
+            header("Location: ../Vue/CompteEtu.php");
+            exit();
+        }
+
+        // Modifier le mot de passe dans la base (en clair)
+        $a = new AbsenceModel();
+        $a->ModifierMDP($email, $confirmation);
+
+        header('Location: ../Vue/Connexion.php');
+        exit();
+}
 ?>
-
 
 

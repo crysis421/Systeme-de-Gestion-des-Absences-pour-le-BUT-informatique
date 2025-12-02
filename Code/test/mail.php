@@ -36,6 +36,15 @@ class mail
             $mail->Subject = $sujet;
             $mail->Body    = $contenu;
 
+
+            $mail->SMTPOptions = [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                ]
+            ];
+
             $mail->send();
             return true;
 
@@ -47,10 +56,10 @@ class mail
 }
 
 // Exemple d'utilisation
-$destinataire = "exemple@gmail.com";
+$destinataire = "Christian.EkaniManga@uphf.fr";
 $contenu = "<h1>Bonjour !</h1><p>Voici un test d'envoi de mail.</p>";
 
-$mailer = new Mailer();
+$mailer = new mail();
 if ($mailer->envoyerMail($destinataire, $contenu)) {
     echo "Mail envoyé avec succès !";
 } else {
