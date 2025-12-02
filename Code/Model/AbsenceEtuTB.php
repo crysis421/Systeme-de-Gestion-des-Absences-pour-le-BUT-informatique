@@ -40,7 +40,7 @@ class AbsenceEtuTB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant , en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
+    //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant, en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
     private function getProf($idProf){
         $stmt = $this->conn->prepare("select concat(nom,' ',prenom) as p from utilisateur where idUtilisateur=:p");
         $stmt->bindParam(":p", $idProf);

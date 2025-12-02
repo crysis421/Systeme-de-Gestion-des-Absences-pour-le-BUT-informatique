@@ -564,10 +564,60 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAbsenceCoursSemestre($semestre){
+    public function getAbsenceCoursSemestre($semestre)
+    {
         $semestre = "%S$semestre%";
         $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance)  where enseignement like :se group by typeSeance order by count(*) desc;");
         $stmt->bindParam(":se", $semestre);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAbsenceRessourceSemestre($semestre){
+        $semestre = "%S$semestre%";
+        $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join Cours using(idCours) where enseignement like :se group by matiere order by count(*) desc;");
+        $stmt->bindParam(":se", $semestre);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant, en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
+    private function getProf($idProf){
+        $stmt = $this->conn->prepare("select concat(nom,' ',prenom) as p from utilisateur where idUtilisateur=:p");
+        $stmt->bindParam(":p", $idProf);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['p'];
+    }
+
+    public function getAbsenceCoursProf($yearDebut,$yearFin,$prof){
+        $yearDebut = $yearDebut."-07-01";
+        $yearFin = $yearFin."-07-01";
+        $prof = $this->getProf($prof);
+        $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance) where Seance.date > :yea and Seance.date < :y and prof like :p group by typeSeance order by count(*) desc;");
+        $stmt->bindParam(":yea", $yearDebut);
+        $stmt->bindParam(":y", $yearFin);
+        $stmt->bindParam(":p", $prof);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAbsenceCoursSemestreProf($semestre,$prof)
+    {
+        $semestre = "%S$semestre%";
+        $prof = $this->getProf($prof);
+        $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance)  where enseignement like :se and prof like :p group by typeSeance order by count(*) desc;");
+        $stmt->bindParam(":se", $semestre);
+        $stmt->bindParam(":p", $prof);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAbsenceRessourceSemestreProf($semestre,$prof){
+        $semestre = "%S$semestre%";
+        $prof = $this->getProf($prof);
+        $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join Cours using(idCours) where enseignement like :se and prof like :p group by matiere order by count(*) desc;");
+        $stmt->bindParam(":se", $semestre);
+        $stmt->bindParam(":p", $prof);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

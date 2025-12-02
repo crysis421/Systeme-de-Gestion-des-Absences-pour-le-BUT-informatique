@@ -13,11 +13,28 @@ if(date('m') > 7){
     $grapheAnnee = $model->getAbsenceCours(date('Y')-1,date('Y'));
 }
 $grapheSemestre = $model->getAbsenceCoursSemestre($semestre);
+$grapheSemestreR = $model->getAbsenceRessourceSemestre($semestreR);
 
+$alerteM[] = '';
+$alerteC[] = '';
+foreach ($matiere as $mat):
+    if ($model->alerteCours($mat) > 10) {
+        array_push($alerteM,"<p>Il a un problème d'absences pour la matière de $mat</p>");
+    }
+    endforeach;
+
+foreach ($eleve as $el):
+    if ($model->alerteEleve($el['nom'], $el['prenom']) > 10) {
+        array_push($alerteC,"<p>Il a un problème d'absences pour l'élève qui s'appelle ", $el['nom'], " ", $el['prenom'], "</p>");
+    }
+endforeach;
+
+$model = null;
 
 $i = 0;
 $nbFoisAnnee[] = ' ';
 $nbFoisSemestre[] = ' ';
+$nbFoisSemestreR[] = ' ';
 foreach ($grapheAnnee as $row) {
     $i = $i + $row['count'];
 }
@@ -33,4 +50,13 @@ foreach ($grapheSemestre as $ro) {
 foreach ($grapheSemestre as $key=>$ro) {
     array_push($nbFoisSemestre, $ro['count']);
     $grapheSemestre[$key]['count'] = $ro['count']*100/$i;
+}
+
+$i=0;
+foreach ($grapheSemestreR as $row) {
+    $i = $i + $row['count'];
+}
+foreach ($grapheSemestreR as $key=>$row) {
+    array_push($nbFoisSemestreR, $row['count']);
+    $grapheSemestreR[$key]['count'] = $row['count']*100/$i;
 }
