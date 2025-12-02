@@ -28,7 +28,6 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/CSS/tableauDeBordResponsable.css">
     <title>Tableau de bord historique</title>
 </head>
 <body>
@@ -122,15 +121,17 @@ $justificatifs = array_slice($justificatifs, 0, 10);
                             echo "Motif de l'absence : ",$justif['cause'],"<br/><br/>";
                         } ?>
                         <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
-                        <label for="zoom<?= $id ?>" class="zoom-button"></label>
+                        <label for="zoom<?= $id ?>" class="zoom-button">
+
+                        </label>
 
                         <label for="zoom<?= $id ?>" class="justificatif-close">
                             <img src="/Image/close.png" alt="Fermer le justificatif">
+
                         </label>
 
                         <div class="fondu-noir">
                             <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
-
                         </div>
                         <br/><br/>
                     </div>
