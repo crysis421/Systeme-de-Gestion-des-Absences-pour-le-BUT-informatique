@@ -22,8 +22,12 @@ if (empty($result)) {
                value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT) . "/" . date_format($_SESSION['date'], "m/y"); ?>"
                id="jourbutton" name="date">
     </form>
-    <?php }?>
-
+    <?php }
+    else{ ?>
+    <form  action="tableauDeBordEtu.php" method="get">
+        <input type="submit" value="Les absences de ce jour sont vérouillées." id="jourbutton" name="date">
+        <?php } ?>
+    </form>
     <?php
     foreach ($result as $absence):
         ?>
