@@ -170,7 +170,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = FALSE AND t.reponse = 'refuse'
+            WHERE t.attente = FALSE AND t.reponse = 'refuse' AND a.verrouille = FALSE
         ORDER BY j.dateSoumission DESC
     ";
 
@@ -205,7 +205,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
             LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-            WHERE t.attente = TRUE AND t.reponse IS NULL AND t.attente = TRUE
+            WHERE t.attente = TRUE AND t.reponse IS NULL AND t.attente = TRUE AND a.verrouille = FALSE
         ORDER BY j.dateSoumission DESC
     ";
 

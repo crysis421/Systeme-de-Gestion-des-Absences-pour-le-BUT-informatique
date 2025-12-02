@@ -2,16 +2,27 @@
 //Ce fichier est là pour le Tableau De Bord de l'étudiant
 echo '<link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">';
 
+
 if (empty($result)) {
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
 } else {
+
+    $peuxCliquer = true;
+    foreach ($result as $absence) {
+        if($absence['verrouille'] == true)
+            $peuxCliquer = false;
+    }
     ?>
+
+
     <main><br><br></main>
+    <?php if($peuxCliquer){ ?>}
     <form action="formulaireAbsence.php" method="get">
         <input type="submit"
                value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT) . "/" . date_format($_SESSION['date'], "m/y"); ?>"
                id="jourbutton" name="date">
     </form>
+    <?php }?>
 
     <?php
     foreach ($result as $absence):

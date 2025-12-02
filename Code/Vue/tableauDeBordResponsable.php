@@ -44,8 +44,7 @@ foreach($justificatifs as $justif) {
         'matiere' => $justif['matiere'],
         'date' => $justif['date_seance'],
         'heure' => $justif['heuredebut'],
-        'status' => $justif['statut_absence'],
-        'verrouille' => $justif['verrouille_absence']
+        'status' => $justif['statut_absence']
     ];
 
     // pour la desc
@@ -60,7 +59,6 @@ foreach($justificatifs as $justif) {
         $nombreAbs = 0;
         foreach ($groupes[$id]['absences'] as $abs){
             $statusAbsence = $abs['status'];
-            if ($abs['verrouille'] == 1) continue;
             if ($statusAbsence != 'report') continue;
             $nombreAbs++;
         }
@@ -274,10 +272,7 @@ EOL;
                             $heure = $abs['heure'];
                             $idAbsence = $abs['id'];
                             $statusAbsence = $abs['status'];
-                            $test = $abs['verrouille'];
-                            if($abs['verrouille'] == 1) continue;
                             if($statusAbsence != 'report') continue;
-                            echo $statusAbsence;
                             ?>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
                             <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></label> <br>
