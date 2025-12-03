@@ -61,13 +61,20 @@ require "../Presentation/getAbsenceDunJour.php";
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
 
-<p id="i">ⓘ</p>
-<p class="refus i" id="ir"></p>
-<p id="irt" class="i">Non_Justifiée</p>
-<p class="report i" id="ip"></p>
-<p class="i" id="ipt">En_Attente</p>
-<p class="valide i" id="iv"></p>
-<p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
+<details>
+    <summary>
+        <p id="i">ⓘ</p>
+    </summary>
+
+    <p class="refus i" id="ir"></p>
+    <p id="irt" class="i">Non_Justifiée</p>
+    <p class="report i" id="ip"></p>
+    <p class="i" id="ipt">En_Attente</p>
+    <p class="valide i" id="iv"></p>
+    <p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
+
+</details>
+
 
 
 <form action="tableauDeBordEtu.php" method="post">

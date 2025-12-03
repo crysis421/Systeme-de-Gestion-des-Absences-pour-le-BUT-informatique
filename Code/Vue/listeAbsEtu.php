@@ -25,7 +25,7 @@ if (empty($result)) {
     <?php }
     else{ ?>
     <form  action="tableauDeBordEtu.php" method="get">
-        <input type="submit" value="Les absences de ce jour sont vérouillées." id="jourbutton" name="date">
+        <input type="submit" value="Les absences de ce jour sont vérouillées." id="jourbuttonDisabled" name="date" disabled>
         <?php } ?>
     </form>
     <?php
