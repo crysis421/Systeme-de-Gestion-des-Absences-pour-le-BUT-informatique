@@ -1,6 +1,7 @@
 <?php
 
 //Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
+global $couleurDuMois, $interrogationDuMois;
 session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
@@ -139,7 +140,7 @@ require "../Presentation/getAbsenceDunJour.php";
                 <?php
             }
 
-            $mois = $date->format('m');//Voir le mois pour ne pas faire le mois d'apres
+            $mois = $date->format('m'); //Voir le mois pour ne pas faire le mois d'apres
         }
         ?>
 </table>
