@@ -383,6 +383,7 @@ input[id^="zoom"]:checked ~ .justificatif-image-big {
 
 .fondu-noir {
     display: none;
+    background-color: black;
 }
 
 input[id^="zoom"]:checked ~ .fondu-noir {

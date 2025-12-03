@@ -93,21 +93,18 @@ $justificatifs = array_slice($justificatifs, 0, 10);
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
                     <a class="nom"><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a><br>
                     <small><?= htmlspecialchars($justif['matiere']) ?> —
-                        <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?> <?php if ($justif['reponse']=='accepte') {
+                        <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?> <br/><?php if ($justif['reponse']=='accepte') {
                             $imageClass="histo-accepter";
                             $img = "/Image/justificatif.jpg";
+                            echo "Justificatif accepté <img class=$imageClass><br/>";
                             echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
 
                             //echo "<img class=$imageClass src=$img> <br/><br/>";
-                        } else if ($justif['reponse']=='refuse') {
+                        } else {
                             $imageClass="histo-refuser";
                             $img = "/Image/justificatif.jpg";
-                            echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
 
-                            //echo "<img class=$imageClass src=$img><br/><br/>";
-                        } else {
-                            $imageClass="histo-demander";
-                            $img = "/Image/justificatif.jpg";
+                            echo "Justificatif réfusé <img class=$imageClass><br/>";
                             echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
 
                             //echo "<img class=$imageClass src=$img><br/><br/>";
