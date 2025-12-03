@@ -99,25 +99,6 @@ require_once("../Presentation/lesInfoResp.php");
 
         </details>
     </div>
-
-    <div class="alertes" id="alertes">
-        <?php foreach ($matiere as $mat):
-            $alerteM = $model->alerteCours($mat);
-            if ($alerteM > 10) {
-                echo "<p>Il a un problème d'absences pour la matière de $mat</p>";
-            }
-
-        endforeach; ?>
-        <br/>
-        <?php foreach ($eleve as $el):
-            $alerteC = $model->alerteEleve($el['nom'], $el['prenom']);
-            if ($alerteC > 10) {
-                echo "<p>Il a un problème d'absences pour l'élève qui s'appelle ", $el['nom'], " ", $el['prenom'], "</p>";
-            }
-        endforeach; ?>
-        <br/>
-    </div>
-
     <form action="Connexion.php" name="Deconnexion">
         <input type="submit" value="Déconnexion" style="background-color:#bf0000;
     color:black;
@@ -126,6 +107,18 @@ require_once("../Presentation/lesInfoResp.php");
     padding : 7px 15px 10px 10px;
     font-size: 20px; position:absolute; left:750px;">
     </form>
+
+    <div class="alertes" id="alertes">
+        <br><br>
+        <?php foreach ($alerteM as $f):
+            echo $f;
+        endforeach; ?>
+        <br/>
+        <?php foreach ($alerteC as $f):
+            echo $f;
+        endforeach; ?>
+        <br/>
+    </div>
 
 </body>
 </html>

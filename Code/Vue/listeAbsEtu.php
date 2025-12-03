@@ -6,12 +6,12 @@ echo '<link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">';
 if (empty($result)) {
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
 } else {
-
-    $peuxCliquer = true;
+    $peuxCliquer = false;
     foreach ($result as $absence) {
-        if($absence['verrouille'] == true)
-            $peuxCliquer = false;
+        if(!$absence['verrouille'])
+            $peuxCliquer = true;
     }
+
     ?>
 
 
@@ -25,7 +25,7 @@ if (empty($result)) {
     <?php }
     else{ ?>
     <form  action="tableauDeBordEtu.php" method="get">
-        <input type="submit" value="Les absences de ce jour sont vérouillées." id="jourbutton" name="date">
+        <input type="submit" value="Les absences de ce jour sont vérouillées." id="jourbuttonDisabled" name="date" disabled>
         <?php } ?>
     </form>
     <?php

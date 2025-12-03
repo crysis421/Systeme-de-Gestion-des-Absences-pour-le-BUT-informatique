@@ -32,7 +32,7 @@ class AbsenceEtuTB
 
     //Cette fonction nous permet de récupérer les infos du mois d'un étudiant
     public function getAbsenceDunMois($idEtudiant,$mois,$year) {
-        $stmt = $this->conn->prepare("SELECT statut,extract('Days' from Seance.date),controle FROM absence JOIN Seance using(idSeance) where extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and idEtudiant = :idEtudiant");
+        $stmt = $this->conn->prepare("SELECT statut,extract('Days' from Seance.date),controle, verrouille FROM absence JOIN Seance using(idSeance) where extract('Months' from Seance.date) = :m and extract('Years' from Seance.date) = :year and idEtudiant = :idEtudiant");
         $stmt->bindParam(":idEtudiant", $idEtudiant);
         $stmt->bindParam(":m", $mois);
         $stmt->bindParam(":year", $year);

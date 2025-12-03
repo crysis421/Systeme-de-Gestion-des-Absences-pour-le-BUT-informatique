@@ -35,21 +35,20 @@ $interrogationDuMois = [];
 for ($i = 0; $i <= 31; $i++) {
     foreach ($resultat as $absence) {
         if ($absence['extract'] == $i) {
-            //Les couleurs
-            if ($absence['statut'] == 'refus') {
-                $couleurDuMois[$i] = $absence['statut'];
-            } else if ($absence['statut'] == 'report' and $couleurDuMois[$i] != 'refus') {
-                $couleurDuMois[$i] = $absence['statut'];
-            } else if ($absence['verrouille'] == 'true' and $couleurDuMois[$i] != 'refus') {
+
+            if ($absence['verrouille'] && $absence['statut'] == 'refus') {
                 $couleurDuMois[$i] = 'refusVerouille';
-            } else if ($couleurDuMois[$i] != 'refus' and $couleurDuMois[$i] != 'refusVerouille') {
+            } else if ($absence['statut'] == 'refus') {
+                $couleurDuMois[$i] = 'refus';
+            } else if ($absence['statut'] == 'report' && $couleurDuMois[$i] != 'refus') {
+                $couleurDuMois[$i] = 'report';
+            } else if ($couleurDuMois[$i] != 'refus') {
                 $couleurDuMois[$i] = $absence['statut'];
-            }
-            //Les Interrogations
-            if(!$interrogationDuMois[$i]){
-                $interrogationDuMois[$i] = $absence['controle'];
             }
 
+            if (!$interrogationDuMois[$i]) {
+                $interrogationDuMois[$i] = $absence['controle'];
+            }
         }
     }
 }

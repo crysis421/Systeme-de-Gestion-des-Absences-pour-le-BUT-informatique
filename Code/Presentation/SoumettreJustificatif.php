@@ -25,8 +25,7 @@ $cause = htmlspecialchars($data['motif']);
 $commentaire = htmlspecialchars($data['commentaire'] ?? '');
 $justificatifs = $data['justificatifs'] ?? [];
 
-$contenu = "<h3>Confirmation de Dépôt de votre justificatif</h3>
-                <p>Votre Justificatif a bien été envoyé</p>";
+
 
 /// commencer une instance de justificatif
 $idAbsManager = new  NewJustificatif();
@@ -72,6 +71,12 @@ try {
     <div id="titre">
         <?php
         if ($succes !== false) {
+
+            $id = $succes;
+
+
+            $contenu = "<h1>Confirmation de Dépôt de votre justificatif</h1>
+                <p>Votre Justificatif N° $id a bien été envoyé</p>";
             $mailer = new send();
 
             $result = $mailer->envoyerMailSendGrid($mail,'Confirmation de depot de justificatif',$contenu);

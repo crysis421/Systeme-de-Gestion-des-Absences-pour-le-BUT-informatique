@@ -163,6 +163,19 @@ td {
     border-style: solid;
 }
 
+#jourbuttonDisabled {
+    width: 10000px;
+    height: 150%;
+    background-color: rgba(13, 154, 139, 0.15);
+    border: none;
+    font-size: 1.5vw;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-style: solid;
+}
+
 #jour:hover {
     background-color: #e6f4f8;
     color: #007aa5;
@@ -185,7 +198,7 @@ td {
 .refusVerouille {
     margin-bottom: -6%;
     position: static;
-    background-color: #333333;
+    background-color: #686868;
     margin-left: 90%;
     padding-bottom: 1%;
     border-style: solid;

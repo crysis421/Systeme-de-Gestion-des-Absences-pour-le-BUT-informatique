@@ -15,6 +15,20 @@ if(date('m') > 7){
 $grapheSemestre = $model->getAbsenceCoursSemestre($semestre);
 $grapheSemestreR = $model->getAbsenceRessourceSemestre($semestreR);
 
+$alerteM[] = '';
+$alerteC[] = '';
+foreach ($matiere as $mat):
+    if ($model->alerteCours($mat) > 10) {
+        array_push($alerteM,"<p>Il a un problème d'absences pour la matière de $mat</p>");
+    }
+    endforeach;
+
+foreach ($eleve as $el):
+    if ($model->alerteEleve($el['nom'], $el['prenom']) > 10) {
+        array_push($alerteC,"<p>Il a un problème d'absences pour l'élève qui s'appelle ", $el['nom'], " ", $el['prenom'], "</p>");
+    }
+endforeach;
+
 $model = null;
 
 $i = 0;

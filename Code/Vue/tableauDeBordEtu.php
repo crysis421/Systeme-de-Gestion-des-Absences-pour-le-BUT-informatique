@@ -1,6 +1,7 @@
 <?php
 
 //Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
+global $couleurDuMois, $interrogationDuMois;
 session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
@@ -60,13 +61,20 @@ require "../Presentation/getAbsenceDunJour.php";
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
 
-<p id="i">ⓘ</p>
-<p class="refus i" id="ir"></p>
-<p id="irt" class="i">Non_Justifiée</p>
-<p class="report i" id="ip"></p>
-<p class="i" id="ipt">En_Attente</p>
-<p class="valide i" id="iv"></p>
-<p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
+<details>
+    <summary>
+        <p id="i">ⓘ</p>
+    </summary>
+
+    <p class="refus i" id="ir"></p>
+    <p id="irt" class="i">Non_Justifiée</p>
+    <p class="report i" id="ip"></p>
+    <p class="i" id="ipt">En_Attente</p>
+    <p class="valide i" id="iv"></p>
+    <p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
+
+</details>
+
 
 
 <form action="tableauDeBordEtu.php" method="post">
@@ -139,7 +147,7 @@ require "../Presentation/getAbsenceDunJour.php";
                 <?php
             }
 
-            $mois = $date->format('m');//Voir le mois pour ne pas faire le mois d'apres
+            $mois = $date->format('m'); //Voir le mois pour ne pas faire le mois d'apres
         }
         ?>
 </table>

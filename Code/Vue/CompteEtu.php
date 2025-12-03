@@ -58,16 +58,27 @@ require_once '../Presentation/lesInfoEtu.php';
                         <b id="annuler">Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
-                    <form id="form" action="../Presentation/modifierMDPetudiant.php" method="post"
-                          style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
+                    <form id="form" action="../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
+                    <input type="hidden" name="formulaire" value="formulaire2">
+                    <?php
+                    if (isset($_SESSION['erreur'])) {
+                        echo '<p style="color:red; font-weight:bold;">' . htmlspecialchars($_SESSION['erreur']) . '</p>';
+                        unset($_SESSION['erreur']);
+                    }
+                    ?>
+
                         <label for="Email">
-                            Entrer votre adresse mail :* <input type="email" name="email" placeholder="adresse mail"
+                            Entrer votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail"
                                                                 required>
                         </label> <br>
                         <br>
                         <label for="Mot de passe">
-                            Entrer votre mot de passe :* <input type="password" name="motDePasse"
+                            Entrer votre mot de passe :* <input type="password" name="motDePasse1"
                                                                 placeholder="mot de passe" required>
+                        </label> <br>
+                        <br>
+                        <label for="confirmation">
+                            Confirmer votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse1" placeholder="Confirmer votre mot de passe" required onpaste="return false" ><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
                         </label> <br>
                         <a style="font-family: Arial; color: red; font-size: 11px;">Tous les champs marqués avec * sont
                             obligatoires.</a><br>
