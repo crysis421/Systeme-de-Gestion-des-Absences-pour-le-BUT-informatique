@@ -66,12 +66,17 @@ require "../Presentation/getAbsenceDunJour.php";
         <p id="i">ⓘ</p>
     </summary>
 
-    <p class="refus i" id="ir"></p>
-    <p id="irt" class="i">Non_Justifiée</p>
-    <p class="report i" id="ip"></p>
-    <p class="i" id="ipt">En_Attente</p>
-    <p class="valide i" id="iv"></p>
-    <p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
+    <p class="refusVerouille i" id="barreInfoRefus"></p>
+    <p class="i" id="texteInfoRefus">Refusé</p>
+
+    <p class="refus i" id="barreInfoAJustif"></p>
+    <p class="i" id="texteInfoAJustif">Non_Justifiée</p>
+
+    <p class="report i" id="barreInfoAttente"></p>
+    <p class="i" id="texteInfoAttente">En_Attente</p>
+
+    <p class="valide i" id="barreInfoValide"></p>
+    <p class="i" id="texteInfoValide">Justifiée ⚠:Interrogation</p>
 
 </details>
 

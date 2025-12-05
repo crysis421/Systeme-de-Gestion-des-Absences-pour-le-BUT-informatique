@@ -295,25 +295,36 @@ td {
 #prof{
     font-size: 21px;
 }
-#ir{
-    top: 175px;
-}
-#irt{
-    top: 175px;
-    left: 15px;
-}
-#ip{
+#barreInfoAttente{
     top: 210px;
 }
-#ipt{
-    top:210px;
+#texteInfoAttente{
+    top: 210px;
     left: 15px;
 }
-#iv{
+#barreInfoAJustif{
     top: 245px;
 }
-#ivt{
-    top: 245px;
+#texteInfoAJustif{
+    top:245px;
+    left: 15px;
+}
+
+#barreInfoRefus{
+    top: 175px;
+}
+
+#texteInfoRefus{
+    top: 175px;
+    left: 15px;
+}
+
+#barreInfoValide{
+    top: 280px;
+}
+
+#texteInfoValide{
+    top: 280px;
     left: 15px;
 }
 #i{
