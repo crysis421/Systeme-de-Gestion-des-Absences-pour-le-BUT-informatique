@@ -50,7 +50,10 @@ if (empty($result)) {
                             } ?></a><br>
                         </li>
                         <li class="elementDeListe">
-                            <div <?php echo 'class=' . $absence['statut']; ?> id="liste"></div>
+                            <div <?php  if ($absence['statut'] == "valide"){ echo 'class=valide';}
+                            elseif ($absence['statut'] == "report"){ echo 'class=report';}
+                            elseif ($absence['statut'] == "refus" and $absence['verrouille']){ echo 'class=refusVerouille';}
+                            else{echo 'class=refus';}?> id="liste"></div>
                         </li>
                         <li class="elementDeListe">
                             <?php if ($absence['controle']) {
