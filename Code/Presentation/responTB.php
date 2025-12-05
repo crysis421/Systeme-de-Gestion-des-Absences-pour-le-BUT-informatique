@@ -1,6 +1,7 @@
 <?php
 require_once "../Model/AbsenceModel.php";
-
+require_once '../test/send.php';
+use test\send;
 
 
 $dateDebut = $_POST['dateDebut'] ?? null;
@@ -113,6 +114,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
         $titre = "Erreur";
         $description = "Veuillez sélectionner au moins une absence à traiter.";
     } else {
+
+        $idUser = $model->getIdUserByIdJustificatif($IDElement);
+
+        $mail = $model->getEmailbyUser($idUser);
+
+
+        $contenu = "<h1>Notification de traitement de votre Justificatif</h1>
+                <p>Votre Justificatif N° $IDElement a bien été traité par le responsable.</p>
+                <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour voir quelle décision a été prise</p>";
+        $mailer = new send();
+
+        $result = $mailer->envoyerMailSendGrid($mail,'Traitement justificatif absence',$contenu);
+
+
         if ($choix == "accepte") {
             $titre = "Accepté !";
             $description = $motif;

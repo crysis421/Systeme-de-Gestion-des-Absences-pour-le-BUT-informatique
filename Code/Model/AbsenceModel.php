@@ -114,6 +114,45 @@ class AbsenceModel
         $update->bindValue(':cause', $cause);
         $update->execute();
     }
+    //recupérer l'identifiant de l'utilisateur grace à l'identifiant de son justificatf
+    public function getIdUserByIdJustificatif($idJustificatif) : int
+    {
+        $sql = "
+        SELECT u.idutilisateur
+        FROM justificatif j
+        JOIN absenceetjustificatif aj
+            ON aj.idjustificatif = j.idjustificatif
+        JOIN absence a
+            ON a.idabsence = aj.idabsence
+        JOIN utilisateur u
+            ON u.idutilisateur = a.idetudiant
+        WHERE j.idjustificatif = :idJustificatif
+        LIMIT 1
+    ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':idJustificatif', $idJustificatif, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            throw new Exception("Aucun utilisateur trouvé pour ce justificatif (#$idJustificatif).");
+        }
+
+        return (int) $result['idutilisateur'];
+    }
+
+    public function getEmailbyUser($id)
+    {
+        $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null; // retourne l'émail ou null si non trouvé
+    }
 
 
     public function getByUser($idUtilisateur)
