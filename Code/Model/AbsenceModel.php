@@ -197,7 +197,7 @@ class AbsenceModel
             t.idTraitement,
             t.attente,
             t.reponse AS reponse_justificatif,
-            t.commentaire_validation AS commentaire_traitement
+            a.commentaire_absence AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
         JOIN absence a ON aj.idAbsence = a.idAbsence
@@ -233,7 +233,7 @@ class AbsenceModel
             t.idTraitement,
             t.attente,
             t.reponse AS reponse_justificatif,
-            t.commentaire_validation AS commentaire_traitement
+            a.commentaire_absence AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
         JOIN absence a ON aj.idAbsence = a.idAbsence
@@ -294,7 +294,7 @@ class AbsenceModel
             t.attente,
             t.reponse,
             t.cause,
-            t.commentaire_validation AS commentaire_traitement
+            a.commentaire_absence AS commentaire_traitement
         FROM justificatif j
         JOIN absenceetjustificatif aj ON j.idJustificatif = aj.idJustificatif
         JOIN absence a ON aj.idAbsence = a.idAbsence
@@ -355,12 +355,12 @@ class AbsenceModel
 
         if (!empty($nom)) {
             $sql .= " AND u.nom ILIKE :nom";
-            $params[':nom'] = "$nom";
+            $params[':nom'] = "$nom%";
         }
 
         if (!empty($prenom)) {
             $sql .= " AND u.prenom ILIKE :prenom";
-            $params[':prenom'] = "$prenom";
+            $params[':prenom'] = "$prenom%";
         }
 
         $sql .= " ORDER BY j.dateSoumission DESC";
