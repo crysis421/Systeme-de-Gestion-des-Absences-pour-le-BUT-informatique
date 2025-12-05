@@ -35,6 +35,7 @@ $mail = $idAbsManager->getEmailbyUser($data['id']);
 ///aller chercher les absences concernees
 $idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'], $data['heuredebut'], $data['fin'], $data['heurefin1'], $data['id']);
 
+
 if (empty($idAbsence)) {
     $idAbsence = null;
     $_SESSION['aEssayer'] = true;

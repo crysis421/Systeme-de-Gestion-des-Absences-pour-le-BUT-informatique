@@ -90,7 +90,7 @@ class NewJustificatif
 
     ///cette fonction pour prendre seulement les absences qui nous interessent (seance par seance)
     public function getIdAbsenceParSeance($datedebut, $heuredebut,$datefin,$heurefin, $idEtudiant) {
-        $sql = "select idAbsence from Absence join Seance using(idSeance) where statut='refus' and :dateDebut <= date and :dateFin >= date and :heureDebut <= heureDebut and :heureFin-duree >= heureDebut and idEtudiant=:idEtu;";
+        $sql = "select idAbsence,verrouille from Absence join Seance using(idSeance) where statut='refus' and :dateDebut <= date and :dateFin >= date and :heureDebut <= heureDebut and :heureFin-duree >= heureDebut and idEtudiant=:idEtu and verrouille=false;";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":idEtu", $idEtudiant);
