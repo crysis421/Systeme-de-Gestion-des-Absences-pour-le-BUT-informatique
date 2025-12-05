@@ -35,7 +35,8 @@ foreach($justificatifs as $justif) {
             'nom' => $justif['nom_etudiant'],
             'prenom' => $justif['prenom_etudiant'],
             'description' => '',
-            'absences' => []
+            'absences' => [],
+            'datesoumission' => $justif['datesoumission'],
         ];
     }
 
@@ -230,7 +231,8 @@ EOL;
                     <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
                     <a class="nom"><b><?= htmlspecialchars($justif['nom']) ?> <?= htmlspecialchars($justif['prenom']) ?></b></a><br>
                     <div class="description-element">
-                        <small><?= htmlspecialchars($justif['description']) ?></small>
+                        <small><?= htmlspecialchars($justif['description']) ?></small><br>
+                        <small>Soumis le <?= htmlspecialchars($justif['datesoumission']) ?></small>
                     </div>
 
                     <div class="ligne"></div>

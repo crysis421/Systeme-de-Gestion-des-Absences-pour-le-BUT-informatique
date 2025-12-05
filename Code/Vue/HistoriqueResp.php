@@ -20,6 +20,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
     $justificatifs = $model->getJustificatifsHistorique();
 }
 
+$groupes = [];
+foreach($justificatifs as $justif) {
+    $id = $justif['idjustificatif'];
+    if(!isset($groupes[$id])){
+        $groupes[$id] = [
+                'id' => $id,
+                'commentaire' => $justif['commentaire_traitement'],
+                'nom' => $justif['nom_etudiant'],
+                'prenom' => $justif['prenom_etudiant'],
+                'description' => '',
+                'absences' => [],
+                'datesoumission' => $justif['datesoumission'],
+                'reponse'=> $justif['reponse'],
+        ];
+    }
+
+    $groupes[$id]['absences'][] = [
+            'id' => $justif['id_absence'],
+            'matiere' => $justif['matiere'],
+            'date' => $justif['date_seance'],
+            'heure' => $justif['heuredebut'],
+            'status' => $justif['statut_absence']
+    ];
+
+    // pour la desc
+    $dates = array_column($groupes[$id]['absences'], 'date');
+    if(!empty($dates)) {
+        sort($dates);
+        $nbAbs = count($dates);
+        $dStart = $dates[0];
+        $dEnd = end($dates);
+
+        // ofao
+        $nombreAbs = 0;
+        foreach ($groupes[$id]['absences'] as $abs){
+            $statusAbsence = $abs['status'];
+            $nombreAbs++;
+        }
+
+        $groupes[$id]['description'] = $nombreAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+    }
+}
+
 $justificatifs = array_slice($justificatifs, 0, 10);
 
 ?>
@@ -84,57 +127,83 @@ $justificatifs = array_slice($justificatifs, 0, 10);
 
 <!-- Historique des absences ici ! -->
 <div class="liste-absence">
-    <?php foreach ($justificatifs as $justif):
-        $id = $justif['idjustificatif'];
-        ?>
-        <div class="element">
-            <details>
-                <summary class="top-layer">
-                    <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
-                    <a class="nom"><?= htmlspecialchars($justif['nom_etudiant']) ?> <?= htmlspecialchars($justif['prenom_etudiant']) ?></a><br>
-                    <small><?= htmlspecialchars($justif['matiere']) ?> —
-                        <?= htmlspecialchars($justif['date_seance']) ?> à <?= htmlspecialchars($justif['heuredebut']) ?> <br/><?php if ($justif['reponse']=='accepte') {
-                            $imageClass="histo-accepter";
-                            $img = "/Image/justificatif.jpg";
-                            echo "Justificatif accepté <img class=$imageClass><br/>";
-                            echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
+    <?php foreach ($groupes as $justif):
+    $id = $justif['id'];
+    $commentaire = $justif['commentaire'];
+    $absences = $justif['absences'];
+    ?>
+    <div class="element">
+        <details>
+            <summary class="top-layer">
+                <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
+                <a class="nom"><b><?= htmlspecialchars($justif['nom']) ?> <?= htmlspecialchars($justif['prenom']) ?></b></a><br>
+                <div class="description-element">
+                    <small><?= htmlspecialchars($justif['description']) ?></small><br>
+                    <small>Soumis le <?= htmlspecialchars($justif['datesoumission']) ?></small>
+                    <?php if ($justif['reponse']=='accepte') {
+                                                $imageClass="histo-accepter";
+                                                $img = "/Image/justificatif.jpg";
+                                                echo "Justificatif accepté <img class=$imageClass><br/>";
 
-                            //echo "<img class=$imageClass src=$img> <br/><br/>";
-                        } else {
-                            $imageClass="histo-refuser";
-                            $img = "/Image/justificatif.jpg";
+                                                //echo "<img class=$imageClass src=$img> <br/><br/>";
+                                            } else {
+                                                $imageClass="histo-refuser";
+                                                $img = "/Image/justificatif.jpg";
 
-                            echo "Justificatif réfusé <img class=$imageClass><br/>";
-                            echo "<img class='oeil' src='/Image/oeil.png' alt='Voir le justificatif'> <br/><br/>";
+                                                echo "Justificatif refusé <img class=$imageClass><br/>";
 
-                            //echo "<img class=$imageClass src=$img><br/><br/>";
-                        } ?></small>
-                </summary>
+                                                //echo "<img class=$imageClass src=$img><br/><br/>";
+                                            } ?>
+                </div>
 
-                <div class="details">
-                    <div class="justificatif-viewer">
-                        <br/>
-                        <?php if ($justif['reponse']=='accepte') {
-                            echo "Motif de l'absence : ",$justif['cause'],"<br/><br/>";
-                        } ?>
+                <div class="ligne"></div>
+            </summary>
+
+            <div class="details">
+                <div class="justificatif-viewer">
+                    <details>
+                        <summary>
+                            <a class="justificatif-texte">Justificatif</a>
+                            <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
+                        </summary>
+
                         <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
-                        <label for="zoom<?= $id ?>" class="zoom-button">
-
-                        </label>
+                        <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                         <label for="zoom<?= $id ?>" class="justificatif-close">
                             <img src="/Image/close.png" alt="Fermer le justificatif">
-
                         </label>
 
-                        <div class="fondu-noir">
-                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
-                        </div>
-                        <br/><br/>
-                    </div>
+                        <br><a><b>Commentaire :</b><br> <?php echo $commentaire ?></a> <br>
+
+                        <div class="fondu-noir"></div>
+                        <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
+                    </details>
                 </div>
-            </details>
-        </div>
+                <form method="post">
+
+                    <input type="hidden" name="IDElement" value="<?= $justif['id'] ?>" >
+
+                    <?php foreach ($absences as $abs):
+
+                        $matiere = $abs['matiere'];
+                        preg_match('#\((.*?)\)#', $matiere, $match);
+                        $matiere = $match[1];
+                        $matiere = explode("-", $matiere)[1];
+
+                        $date = $abs['date'];
+                        $heure = $abs['heure'];
+                        $idAbsence = $abs['id'];
+                        $statusAbsence = $abs['status'];?>
+                            <label for="checkboxAbsence_<?= $abs['id'] ?>"><?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(rtrim(substr($abs['heure'],0,5),')'))?> <?= htmlspecialchars($matiere)?></label> <br>
+                    <?php endforeach; ?>
+                    <div class="ligne2"></div>
+                </form>
+
+            </div>
+
+        </details>
+    </div>
     <?php endforeach; ?>
 </div>
 
