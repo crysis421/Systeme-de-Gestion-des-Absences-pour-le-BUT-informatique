@@ -154,6 +154,18 @@ class AbsenceModel
         return $result ? $result['email'] : null; // retourne l'émail ou null si non trouvé
     }
 
+    //Récuperer les emails des étudiants dont les justificatifs sont en attente depuis 48h
+    public function getEmailAttendu()
+    {
+        $sql = "select distinct email from Absence join utilisateur on idUtilisateur = idEtudiant join Seance using (idSeance) where verrouille = false and statut != 'valide' and current_date-2 > date";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        echo "sssssssssssssssssssss";
+        $liste = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo $liste;
+        return $liste;
+    }
+
 
     public function getByUser($idUtilisateur)
     {
@@ -661,3 +673,5 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+$modelAbsence = new AbsenceModel();
+$modelAbsence->getEmailAttendu();

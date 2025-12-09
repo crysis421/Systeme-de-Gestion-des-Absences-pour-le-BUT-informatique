@@ -1,5 +1,8 @@
 <?php
 use Vue\Camembert;
+require_once "../Model/AbsenceModel.php";
+require_once '../test/send.php';
+use test\send;
 require('Camembert.php');
 session_start();
 
@@ -30,6 +33,18 @@ if(!isset($_POST['SemestreR'])){
 }
 require_once("../Presentation/lesInfoResp.php");
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
+    $model = new AbsenceModel();
+    $mailer = new send();
+    $resultat = $model->getEmailAttendu();
+    foreach ($resultat as $result) {
+
+        $contenu = "<h1>Notification de rappel concernant votre Justificatif</h1>
+                <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
+                <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus</p>";
+        $result = $mailer->envoyerMailSendGrid($result,'Rappel justificatif absence',$contenu);
+    }
+}
 
 ?>
 
@@ -119,6 +134,15 @@ require_once("../Presentation/lesInfoResp.php");
         endforeach; ?>
         <br/>
     </div>
+    <form action="" method="post" name="Rappel">
+        <input type="submit" name="rappel" value="Rappel justification" style="background-color:#c7d685;
+    color:black;
+    border: 2px solid #00aa00;
+    border-radius: 10px;
+    padding : 7px 15px 10px 10px;
+    font-size: 20px; position:absolute; left:750px;">
+    </form>
+
 
 </body>
 </html>

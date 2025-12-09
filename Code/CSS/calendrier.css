@@ -329,11 +329,20 @@ td {
     left: 15px;
 }
 #i{
-    font-size: 35px;
-    margin-left: 10px;
     margin-top: 50px;
     top: 130px;
     position: absolute;
+    font-size: 35px;               /* plus grande taille pour être visible */
+    margin-left: 10px;     /* relative pour éviter les problèmes de top */
+    color: #007BFF;                /* couleur bleue attractive */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* légère ombre pour se détacher */
+    transition: all 0.3s ease;     /* transition fluide */
+}
+#i:hover {
+    font-size: 40px;               /* grossit au survol */
+    color: #FF4500;                /* change de couleur pour attirer l’œil */
+    transform: rotate(5deg);      /* petit mouvement pour plus d’effet */
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.5); /* ombre renforcée */
 }
 ol{
     display: inline-grid;
