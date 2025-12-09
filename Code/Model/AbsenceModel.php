@@ -160,9 +160,7 @@ class AbsenceModel
         $sql = "select distinct email from Absence join utilisateur on idUtilisateur = idEtudiant join Seance using (idSeance) where verrouille = false and statut != 'valide' and current_date-2 > date";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        echo "sssssssssssssssssssss";
         $liste = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo $liste;
         return $liste;
     }
 

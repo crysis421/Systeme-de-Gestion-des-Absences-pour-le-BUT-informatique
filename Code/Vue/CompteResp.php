@@ -38,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     $mailer = new send();
     $resultat = $model->getEmailAttendu();
     foreach ($resultat as $result) {
-
+        $email = $result['email'];
         $contenu = "<h1>Notification de rappel concernant votre Justificatif</h1>
                 <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
                 <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus</p>";
-        $result = $mailer->envoyerMailSendGrid($result,'Rappel justificatif absence',$contenu);
+        $result = $mailer->envoyerMailSendGrid($email,'Rappel justificatif absence',$contenu);
     }
 }
 
