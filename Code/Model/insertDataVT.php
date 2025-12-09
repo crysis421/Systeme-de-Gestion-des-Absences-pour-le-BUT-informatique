@@ -40,7 +40,7 @@ class insertDataVT
         try {
             $mdp = password_hash("unMDP", PASSWORD_DEFAULT);
 
-            $req2 = $this->conn->prepare("INSERT INTO Utilisateur (idUtilisateur, nom, prenom, prenom2, email, motDePasse, role, groupe, dateDeNaissance, diplome) values(:id,:nom,:prenom,:prenom2,:email,:mdp,'eleve',:groupe,:dateDeNaissance,:diplome)");
+            $req2 = $this->conn->prepare("insert into utilisateur values (:id,:nom,:prenom,:prenom2,:email,:mdp,'eleve',:groupe,:dateDeNaissance,:diplome) on conflict (idUtilisateur) do update set nom=:nom , prenom = :prenom , prenom2 = :prenom2 ,email=:email,diplome = :diplome,dateDeNaissance = :dateDeNaissance");
             $req2->bindParam(':id', $identifiant);
             $req2->bindParam(':nom', $nom);
             $req2->bindParam(':prenom', $prenom);

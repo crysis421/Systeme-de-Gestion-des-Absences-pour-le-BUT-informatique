@@ -10,6 +10,12 @@
     <h1>Création de compte</h1>
     <div id="container">
 
+        <form id="form" action="/Presentation/creeDesComptes.php" method="post" enctype="multipart/form-data">
+             <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv" required >
+             <br>
+            <input type="submit" value="Télécharger le CSV" name="submit" >
+        </form>
+        <br>
         <form id="form" action="/Presentation/creeCompte.php" method="post">
             <a style="font-family: Arial; color: yellow; font-size: 21px;">
                 Tous les champs marqués avec * sont obligatoires.
