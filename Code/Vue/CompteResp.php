@@ -37,13 +37,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     $model = new AbsenceModel();
     $mailer = new send();
     $resultat = $model->getEmailAttendu();
-    foreach ($resultat as $result) {
-        $email = $result['email'];
-        $contenu = "<h1>Notification de rappel concernant votre Justificatif</h1>
-                <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
-                <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus</p>";
-        $result = $mailer->envoyerMailSendGrid($email,'Rappel justificatif absence',$contenu);
+    $res = 0;
+    if (sizeof($resultat)>0){
+        foreach ($resultat as $result) {
+            $email = $result['email'];
+            $contenu = "<h1>Notification de rappel concernant vos Justificatifs</h1>
+                    <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
+                    <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus...</p>";
+            $result = $mailer->envoyerMailSendGrid($email,'Rappel justificatif absence',$contenu);
+            if ($result) {
+                $res += 1;
+            }else{
+                $res += 0;
+            }
+        }
+        if($res==sizeof($resultat)){
+            $_SESSION['alerte'] = "tous les rappels ont bien été envoyés!!!!!!!";
+        }else{
+            $_SESSION['alerte'] = "Erreur lors de l'envoi des rappels!!!!!!!!!";
+        }
+    }else{
+        $_SESSION['alerte'] = "Aucun justificatif n'est attendu!!!!!!!!!";
     }
+
 }
 
 ?>
@@ -135,13 +151,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
         <br/>
     </div>
     <form action="" method="post" name="Rappel">
-        <input type="submit" name="rappel" value="Rappel justification" style="background-color:#c7d685;
-    color:black;
-    border: 2px solid #00aa00;
-    border-radius: 10px;
-    padding : 7px 15px 10px 10px;
-    font-size: 20px; position:absolute; left:750px;">
+        <input type="submit" name="rappel" value="Rappel justification" style="background-color:#c7d685;color:black;border: 2px solid #00aa00;border-radius: 10px;padding : 7px 15px 10px 10px;font-size: 20px; position:absolute; left:750px;cursor: pointer">
     </form>
+    <?php
+    if (isset($_SESSION['alerte'])) {
+        echo '<p style="color:#5c1e1e; font-weight:bold;text-align: center">' . htmlspecialchars($_SESSION['alerte']) . '</p>';
+        unset($_SESSION['alerte']);
+    }
+    ?>
 
 
 </body>
