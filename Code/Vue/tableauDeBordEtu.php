@@ -65,7 +65,11 @@ require "../Presentation/getAbsenceDunJour.php";
     <summary>
         <p id="i" style="cursor: pointer; ">ⓘ</p>
     </summary>
-
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
     <p class="refusVerouille i" id="barreInfoRefus"></p>
     <p class="i" id="texteInfoRefus">Refusé</p>
 

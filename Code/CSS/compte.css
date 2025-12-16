@@ -100,10 +100,11 @@ ol{
 
 /* === Bloc "Graphe" (diagramme) === */
 #graphe {
+    margin: 2%;
     background-color: white; /* Couleur gris-bleu clair */
     border: 1px solid #00aa00; /* Bordure verte */
     border-radius: 6px; /* Coins arrondis */
-    width: 49%; /* Prend toute la largeur sous les deux autres blocs */
+    width: 45%; /* Prend toute la largeur sous les deux autres blocs */
     text-align: center; /* Centre le texte et les images */
 }
 

@@ -671,5 +671,3 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-$modelAbsence = new AbsenceModel();
-$modelAbsence->getEmailAttendu();
