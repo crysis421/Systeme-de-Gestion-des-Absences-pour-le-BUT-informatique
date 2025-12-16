@@ -76,6 +76,6 @@ if (empty($result)) {
 } ?>
 <main><br></main>
 <footer id="footer">
-    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de
+    <a class="credits" style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de
         Maubeuge.</a>
 </footer>
