@@ -26,6 +26,8 @@ ul {
     transition: all 0.3s ease;
 }
 
+
+
 .histo-accepter, .histo-refuser, .histo-demander {
     display: inline-block;
     position: relative;
@@ -62,6 +64,20 @@ summary.filtrer {
     font-size: 16px;
     font-weight: 600;
 }
+
+
+.credits:hover {
+    background-color: #018cbd;
+    font-size: 15px;
+}
+
+.credits {
+    background-color: #007aa5;
+    font-size: 14px;
+    transition: background-color 0.5s ease-out;
+    transition: font-size 0.5s ease-out;
+}
+
 
 summary.filtrer:hover {
     color: #0078d7;
@@ -182,6 +198,8 @@ li:hover {
     animation-name: myAnimation;
     animation-duration: 1s;
 }
+
+
 
 @keyframes myAnimation {
     from {

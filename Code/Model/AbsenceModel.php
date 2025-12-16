@@ -14,18 +14,21 @@ class AbsenceModel
         $this->conn = $database->getConnection();
     }
 
-    public function __destruct(){
+    public function __destruct()
+    {
         $this->conn = null;
     }
 
-    public function getUser($id){
+    public function getUser($id)
+    {
         $stmt = $this->conn->prepare("SELECT nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome,count(idAbsence) as totalabsences FROM utilisateur left join absence on utilisateur.idUtilisateur = absence.idEtudiant WHERE idUtilisateur = :id group by nom,prenom,prenom2,email,motdepasse,role,groupe,datedenaissance,diplome;");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire) : void {
+    public function traiterAbsences(int $idJustificatif, array $absenceIds, string $decision, string $commentaire): void
+    {
         if (empty($absenceIds)) return;
         if ($commentaire == null) $commentaire = "";
 
@@ -49,7 +52,7 @@ class AbsenceModel
                 break;
         }
 
-        foreach($absenceIds as $absenceId) {
+        foreach ($absenceIds as $absenceId) {
             $this->justifierAbsence($absenceId, $vraiedecision, $verouille, $commentaire);
         }
 
@@ -72,7 +75,9 @@ class AbsenceModel
         $stmt->bindParam(":commentaire", $commentaire);
         $stmt->execute();
     }
-    public function getAbsencesNonJustifiees($idJustificatif) : array {
+
+    public function getAbsencesNonJustifiees($idJustificatif): array
+    {
         $sql = "
         SELECT 
             a.idAbsence,
@@ -114,8 +119,9 @@ class AbsenceModel
         $update->bindValue(':cause', $cause);
         $update->execute();
     }
+
     //recupérer l'identifiant de l'utilisateur grace à l'identifiant de son justificatf
-    public function getIdUserByIdJustificatif($idJustificatif) : int
+    public function getIdUserByIdJustificatif($idJustificatif): int
     {
         $sql = "
         SELECT u.idutilisateur
@@ -140,7 +146,7 @@ class AbsenceModel
             throw new Exception("Aucun utilisateur trouvé pour ce justificatif (#$idJustificatif).");
         }
 
-        return (int) $result['idutilisateur'];
+        return (int)$result['idutilisateur'];
     }
 
     public function getEmailbyUser($id)
@@ -185,7 +191,7 @@ class AbsenceModel
         $stmt->bindValue(":idUtilisateur", $idUtilisateur, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll();
-        if(empty($result)){
+        if (empty($result)) {
             echo "aucune absence trouvé pour cette identifiant";
         }
         return $result;
@@ -228,7 +234,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getJustificatifsAttente() {
+    public function getJustificatifsAttente()
+    {
         $sql = "
         SELECT 
             j.idJustificatif,
@@ -264,7 +271,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom) {
+    public function getJustificatifsAttenteFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom)
+    {
         $sql = "
         SELECT 
             j.idJustificatif,
@@ -325,7 +333,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getJustificatifsHistorique() {
+    public function getJustificatifsHistorique()
+    {
         $sql = "
         SELECT 
             j.idJustificatif,
@@ -359,7 +368,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getJustificatifsHistoriqueFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom) {
+    public function getJustificatifsHistoriqueFiltre($dateDebut, $dateFin, $matiere, $nom, $prenom)
+    {
         $sql = "
         SELECT 
             j.idJustificatif,
@@ -419,7 +429,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getJustificatifsValides($dateDebut, $dateFin, $matiere, $nom, $prenom) {
+    public function getJustificatifsValides($dateDebut, $dateFin, $matiere, $nom, $prenom)
+    {
         $sql = "
         SELECT 
             j.idJustificatif,
@@ -448,7 +459,8 @@ class AbsenceModel
         ";
     }
 
-    public function getNombyUser($id) {
+    public function getNombyUser($id)
+    {
         $sql = "SELECT nom FROM utilisateur WHERE idUtilisateur = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -458,7 +470,8 @@ class AbsenceModel
         return $result ? $result['nom'] : null; // retourne juste le nom ou null si non trouvé
     }
 
-    public function getPrenomByUser($id) {
+    public function getPrenomByUser($id)
+    {
         $sql = "SELECT prenom FROM utilisateur WHERE idUtilisateur = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -532,7 +545,8 @@ class AbsenceModel
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
-    public function getImageJustificatifs($nom,$prenom,$matiere,$date,$heure){
+    public function getImageJustificatifs($nom, $prenom, $matiere, $date, $heure)
+    {
         $sql = "SELECT fj.pathjustificatif FROM fichierjustificatif AS fj
         JOIN absenceetjustificatif aj ON fj.idJustificatif = aj.idJustificatif
         JOIN absence a ON aj.idAbsence = a.idAbsence
@@ -553,13 +567,16 @@ class AbsenceModel
     }
 
 
-    public function getMatieres(){
+    public function getMatieres()
+    {
         $sql = "SELECT matiere FROM cours";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
-    public function alerteCours($matiere){
+
+    public function alerteCours($matiere)
+    {
         $sql = "SELECT count(a.idAbsence) FROM absence AS a
         JOIN seance s ON s.idSeance = a.idSeance
         JOIN cours c ON c.idCours = s.idCours
@@ -571,14 +588,15 @@ class AbsenceModel
         return $stmt->fetchColumn();
     }
 
-    public function getEleves(){
+    public function getEleves()
+    {
         $sql = "SELECT nom,prenom FROM utilisateur as u WHERE u.role = 'eleve'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function alerteEleve($nom,$prenom)
+    public function alerteEleve($nom, $prenom)
     {
         $sql = "SELECT count(a.idEtudiant) FROM absence AS a
         JOIN utilisateur u ON u.idUtilisateur = a.idEtudiant
@@ -592,9 +610,10 @@ class AbsenceModel
     }
 
 
-    public function getAbsenceDeLannee($yearDebut,$yearFin,$idEtu){
-        $yearDebut = $yearDebut."-07-01";
-        $yearFin = $yearFin."-07-01";
+    public function getAbsenceDeLannee($yearDebut, $yearFin, $idEtu)
+    {
+        $yearDebut = $yearDebut . "-07-01";
+        $yearFin = $yearFin . "-07-01";
         $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join cours using (idCours) where Seance.date > :yea and Seance.date < :y and Absence.idEtudiant = :idEtudiant group by matiere order by count(*) desc;");
         $stmt->bindParam(":idEtudiant", $idEtu);
         $stmt->bindParam(":yea", $yearDebut);
@@ -603,9 +622,10 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAbsenceCours($yearDebut,$yearFin){
-        $yearDebut = $yearDebut."-07-01";
-        $yearFin = $yearFin."-07-01";
+    public function getAbsenceCours($yearDebut, $yearFin)
+    {
+        $yearDebut = $yearDebut . "-07-01";
+        $yearFin = $yearFin . "-07-01";
         $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance) where Seance.date > :yea and Seance.date < :y group by typeSeance order by count(*) desc;");
         $stmt->bindParam(":yea", $yearDebut);
         $stmt->bindParam(":y", $yearFin);
@@ -622,7 +642,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAbsenceRessourceSemestre($semestre){
+    public function getAbsenceRessourceSemestre($semestre)
+    {
         $semestre = "%S$semestre%";
         $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join Cours using(idCours) where enseignement like :se group by matiere order by count(*) desc;");
         $stmt->bindParam(":se", $semestre);
@@ -631,16 +652,18 @@ class AbsenceModel
     }
 
     //Cette fonction nous permet de récupérer le nom et le prenom d'un professeur grace a son identifiant, en effet dans la table Seance les profs sont sous la forme "NOM PRENOM"
-    private function getProf($idProf){
+    private function getProf($idProf)
+    {
         $stmt = $this->conn->prepare("select concat(nom,' ',prenom) as p from utilisateur where idUtilisateur=:p");
         $stmt->bindParam(":p", $idProf);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC)['p'];
     }
 
-    public function getAbsenceCoursProf($yearDebut,$yearFin,$prof){
-        $yearDebut = $yearDebut."-07-01";
-        $yearFin = $yearFin."-07-01";
+    public function getAbsenceCoursProf($yearDebut, $yearFin, $prof)
+    {
+        $yearDebut = $yearDebut . "-07-01";
+        $yearFin = $yearFin . "-07-01";
         $prof = $this->getProf($prof);
         $stmt = $this->conn->prepare("SELECT typeSeance as label,count(*) FROM absence JOIN Seance using(idSeance) where Seance.date > :yea and Seance.date < :y and prof like :p group by typeSeance order by count(*) desc;");
         $stmt->bindParam(":yea", $yearDebut);
@@ -650,7 +673,7 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAbsenceCoursSemestreProf($semestre,$prof)
+    public function getAbsenceCoursSemestreProf($semestre, $prof)
     {
         $semestre = "%S$semestre%";
         $prof = $this->getProf($prof);
@@ -661,7 +684,8 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAbsenceRessourceSemestreProf($semestre,$prof){
+    public function getAbsenceRessourceSemestreProf($semestre, $prof)
+    {
         $semestre = "%S$semestre%";
         $prof = $this->getProf($prof);
         $stmt = $this->conn->prepare("SELECT matiere as label,count(*) FROM absence JOIN Seance using(idSeance) join Cours using(idCours) where enseignement like :se and prof like :p group by matiere order by count(*) desc;");
@@ -670,4 +694,23 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function getNombreAJustifier()
+    {
+        $sql = "SELECT COUNT(*) AS totalJustifs 
+            FROM justificatif";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        echo $result["totalJustifs"];
+
+        return $result ? (int)$result['totalJustifs'] : 0;
+    }
+
 }
+$modelAbsence = new AbsenceModel();
+$modelAbsence->getEmailAttendu();

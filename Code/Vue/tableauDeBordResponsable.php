@@ -31,7 +31,8 @@ EOL;
 ?>
 
 <!-- Titre -->
-<h1><u>Liste des absences à traiter : </u></h1>
+<h1><u>Liste des absences à traiter : <?php $nbtotal = new absenceModel();
+                                            $nbtotal->getNombreAJustifier(); ?> </u></h1>
 
 <!-- Filtrage ici ! -->
 <details id="details">
