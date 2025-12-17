@@ -102,12 +102,7 @@ require_once("../Presentation/lesInfoProf.php");
     </div>
 
     <form action="Connexion.php" name="Deconnexion">
-        <input type="submit" value="Déconnexion" style="background-color:#bf0000;
-    color:black;
-    border: 2px solid #00aa00;
-    border-radius: 10px;
-    padding : 7px 15px 10px 10px;
-    font-size: 20px; position:absolute; left:750px;">
+        <input id="deconnexion" type="submit" value="Déconnexion" style=" position:absolute; margin-left:50%;margin-right: 50%">
     </form>
 
 </body>

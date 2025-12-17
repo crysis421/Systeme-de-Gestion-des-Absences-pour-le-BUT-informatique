@@ -16,7 +16,7 @@ if (empty($result)) {
 
 
     <main><br><br></main>
-    <?php if($peuxCliquer){ ?>}
+    <?php if($peuxCliquer){ ?>
     <form action="formulaireAbsence.php" method="get">
         <input type="submit"
                value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT) . "/" . date_format($_SESSION['date'], "m/y"); ?>"

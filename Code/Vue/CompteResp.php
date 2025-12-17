@@ -142,19 +142,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
         </details>
     </div>
     <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:30px;">
-        <form style="width: 20%" action="Connexion.php" name="Deconnexion" id="deconnexion">
-            <input type="submit" value="Déconnexion"
-               style="
-               display: flex;
-               justify-content: center;
-               background-color:#bf0000;
-               color:black;
-               border:2px solid #00aa00;
-               border-radius:10px;
-               padding:8px 16px;
-               font-size:18px;
-               cursor:pointer;
-               ">
+        <form style="width: 20%" action="Connexion.php" name="Deconnexion" ">
+            <input type="submit" id="deconnexion" value="Déconnexion">
         </form>
 
         <div style="width: 60%" class="alertes" id="alertes">
@@ -170,16 +159,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
         </div>
         <div style="width:20%; text-align:center;">
             <form style="width: 100%" action="" method="post" name="Rappel" id="rappel">
-                <input type="submit" name="rappel" value="Rappel justification"
-                       style="
-                   background-color:#c7d685;
-                   color:black;
-                   border:2px solid #00aa00;
-                   border-radius:10px;
-                   padding:8px 16px;
-                   font-size:18px;
-                   cursor:pointer;
-                   ">
+                <input type="submit" name="rappel" id="Rappeljustification" value="Rappel justification">
+                <div id="messageHover">
+                    Envoie un rappel pour demander une justification
+                </div>
                 <?php
                 if (isset($_SESSION['alerte'])) {
                     ?>
@@ -198,6 +181,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
             </form>
         </div>
     </div>
+    <script>
+        const bouton = document.getElementById("Rappeljustification");
+        const message = document.getElementById("messageHover");
+
+        bouton.addEventListener("mouseenter", () => {
+            message.style.opacity = "1";
+            message.style.transform = "translateY(0)";
+        });
+
+        bouton.addEventListener("mouseleave", () => {
+            message.style.opacity = "0";
+            message.style.transform = "translateY(5px)";
+        });
+        bouton.addEventListener("mousemove", (e) => {
+            message.style.left = e.pageX + 12 + "px";
+            message.style.top  = e.pageY + 12 + "px";
+        });
+    </script>
 
 </main>
 </body>

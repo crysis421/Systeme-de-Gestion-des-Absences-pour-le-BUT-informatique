@@ -16,7 +16,7 @@
 <h1>Compte secretaire</h1>
 
 <form action="Connexion.php">
-    <input type="submit" value="Deconnection">
+    <input type="submit" id="deconnexion" value="Deconnection">
 </form>
 
 </body>
