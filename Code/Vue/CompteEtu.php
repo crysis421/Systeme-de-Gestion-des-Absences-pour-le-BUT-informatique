@@ -53,7 +53,7 @@ require_once '../Presentation/lesInfoEtu.php';
                 <p><b>Groupe :</b> <?php echo htmlspecialchars($groupe); ?></p>
 
                 <details id="modifier">
-                    <summary onclick="annuler()" id="modif" style="height: 20px; width: 270px">
+                    <summary onclick="annuler()" id="modif" style="height: 20px; width: auto; text-align: center">
                         <b id="annuler">Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
