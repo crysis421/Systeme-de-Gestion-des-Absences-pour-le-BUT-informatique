@@ -1,26 +1,39 @@
 <?php
+declare(strict_types=1);
 
 namespace test;
+
+require "../Model/AbsenceModel.php";
 
 use AbsenceModel;
 use PHPUnit\Framework\TestCase;
 
+
 class AbsenceModelTest extends TestCase
 {
-    protected function setUp()
+    private AbsenceModel $model;
+    protected function setUp(): void
     {
-        parent::setUp();
+        $this->model = new AbsenceModel();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
-        parent::tearDown();
+        $this->model = null;
     }
 
-    public function testCreate()
+    public function testmodifMDP()
     {
-
-
+        $this->assertEquals("Le mot de passe a bien été modifié",$this->model->ModifierMDP("kilian.stievenard2@uphf.fr","1234"));
     }
+
+    public function testgetUser(){
+        $this->assertEquals('kilian.stievenard2',$this->model->getUser(1));
+    }
+
+    public function testgetAllMatiere(){
+        $this->assertTrue(sizeof($this->model->getMatieres())>1);
+    }
+
 
 }
