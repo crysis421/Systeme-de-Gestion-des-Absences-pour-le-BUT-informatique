@@ -58,6 +58,30 @@ switch ($_POST['formulaire']) {
 
         header('Location: ../Vue/Connexion.php');
         exit();
+
+    case 'formulaire3': // Formulaire sur modifierMDP.php
+        if (!isset($_POST['email3'], $_POST['motDePasse3'], $_POST['confirmationMotDePasse3'])) {
+            $_SESSION['erreur'] = "Données manquantes.";
+            header("Location: ../Vue/compteSecretaire.php");
+            exit();
+        }
+
+        $email = $_POST['email3'];
+        $motDePasse = $_POST['motDePasse3'];
+        $confirmation = $_POST['confirmationMotDePasse3'];
+
+        if ($motDePasse !== $confirmation) {
+            $_SESSION['erreur'] = "Les mots de passe ne correspondent pas.";
+            header("Location: ../Vue/compteSecretaire.php");
+            exit();
+        }
+
+        // Modifier le mot de passe dans la base (en clair)
+        $a = new AbsenceModel();
+        $a->ModifierMDP($email, $confirmation);
+
+        header('Location: ../Vue/Connexion.php');
+        exit();
 }
 ?>
 

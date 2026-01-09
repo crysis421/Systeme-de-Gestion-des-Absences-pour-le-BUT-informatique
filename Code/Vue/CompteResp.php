@@ -1,5 +1,8 @@
 <?php
 use Vue\Camembert;
+require_once "../Model/AbsenceModel.php";
+require_once '../test/send.php';
+use test\send;
 require('Camembert.php');
 session_start();
 
@@ -30,6 +33,45 @@ if(!isset($_POST['SemestreR'])){
 }
 require_once("../Presentation/lesInfoResp.php");
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
+    $model = new AbsenceModel();
+    $mailer = new send();
+    $resultat = $model->getEmailAttendu();
+    $res = 0;
+//    $email = $resultat;
+//    $contenu = "<h1>Notification de rappel concernant vos Justificatifs</h1>
+//                <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
+//                <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus...</p>";
+//    $result = $mailer->envoyerMailSendGrid($email,'Rappel justificatif absence',$contenu);
+//    if($result){
+//        $_SESSION['alerte'] = "tous les rappels ont bien été envoyés!!!!!!!";
+//    }else{
+//        $_SESSION['alerte'] = "Erreur lors de l'envoi des rappels!!!!!!!!!";
+//    }
+
+    if (sizeof($resultat)>0){
+        foreach ($resultat as $result) {
+            $email = $result['email'];
+            $contenu = "<h1>Notification de rappel concernant vos Justificatifs</h1>
+                    <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
+                    <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus...</p>";
+            $result = $mailer->envoyerMailSendGrid($email,'Rappel justificatif absence',$contenu);
+            if ($result['httpcode'] == 202) {
+                $res += 1;
+            }else{
+                $res += 0;
+            }
+        }
+        if($res==sizeof($resultat)){
+            $_SESSION['alerte'] = "tous les rappels ont bien été envoyés!!!!!!!";
+        }else{
+            $_SESSION['alerte'] = "Erreur lors de l'envoi des rappels!!!!!!!!!";
+        }
+    }else{
+        $_SESSION['alerte'] = "Aucun justificatif n'est attendu!!!!!!!!!";
+    }
+
+}
 
 ?>
 
@@ -99,26 +141,65 @@ require_once("../Presentation/lesInfoResp.php");
 
         </details>
     </div>
-    <form action="Connexion.php" name="Deconnexion">
-        <input type="submit" value="Déconnexion" style="background-color:#bf0000;
-    color:black;
-    border: 2px solid #00aa00;
-    border-radius: 10px;
-    padding : 7px 15px 10px 10px;
-    font-size: 20px; position:absolute; left:750px;">
-    </form>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:30px;">
+        <form style="width: 20%" action="Connexion.php" name="Deconnexion" ">
+            <input type="submit" id="deconnexion" value="Déconnexion">
+        </form>
 
-    <div class="alertes" id="alertes">
-        <br><br>
-        <?php foreach ($alerteM as $f):
-            echo $f;
-        endforeach; ?>
-        <br/>
-        <?php foreach ($alerteC as $f):
-            echo $f;
-        endforeach; ?>
-        <br/>
+        <div style="width: 60%" class="alertes" id="alertes">
+            <br><br>
+            <?php foreach ($alerteM as $f):
+                echo $f;
+            endforeach; ?>
+            <br/>
+            <?php foreach ($alerteC as $f):
+                echo $f;
+            endforeach; ?>
+            <br/>
+        </div>
+        <div style="width:20%; text-align:center;">
+            <form style="width: 100%" action="" method="post" name="Rappel" id="rappel">
+                <input type="submit" name="rappel" id="Rappeljustification" value="Rappel justification">
+                <div id="messageHover">
+                    Envoie un rappel pour demander une justification
+                </div>
+                <?php
+                if (isset($_SESSION['alerte'])) {
+                    ?>
+                    <p style="color:#5c1e1e; font-weight:bold; margin-top:15px;">
+                        <?= htmlspecialchars($_SESSION['alerte']) ?>
+                    </p>
+
+                    <form style="width:100%" action="CompteResp.php" method="post" >
+                        <input type="submit" value="OK" style="width:20%;background-color: gray;color: #3a2323; font-size: 80%;cursor:pointer;">
+                    </form>
+                    <?php
+                    unset($_SESSION['alerte']);
+                }
+                ?>
+
+            </form>
+        </div>
     </div>
+    <script>
+        const bouton = document.getElementById("Rappeljustification");
+        const message = document.getElementById("messageHover");
 
+        bouton.addEventListener("mouseenter", () => {
+            message.style.opacity = "1";
+            message.style.transform = "translateY(0)";
+        });
+
+        bouton.addEventListener("mouseleave", () => {
+            message.style.opacity = "0";
+            message.style.transform = "translateY(5px)";
+        });
+        bouton.addEventListener("mousemove", (e) => {
+            message.style.left = e.pageX + 12 + "px";
+            message.style.top  = e.pageY + 12 + "px";
+        });
+    </script>
+
+</main>
 </body>
 </html>

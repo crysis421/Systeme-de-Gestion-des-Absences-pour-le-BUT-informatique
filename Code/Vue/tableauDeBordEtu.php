@@ -63,15 +63,24 @@ require "../Presentation/getAbsenceDunJour.php";
 
 <details>
     <summary>
-        <p id="i">ⓘ</p>
+        <p id="i" style="cursor: pointer; ">ⓘ</p>
     </summary>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p class="refusVerouille i" id="barreInfoRefus"></p>
+    <p class="i" id="texteInfoRefus">Refusé</p>
 
-    <p class="refus i" id="ir"></p>
-    <p id="irt" class="i">Non_Justifiée</p>
-    <p class="report i" id="ip"></p>
-    <p class="i" id="ipt">En_Attente</p>
-    <p class="valide i" id="iv"></p>
-    <p class="i" id="ivt">Justifiée ⚠:Interrogation</p>
+    <p class="refus i" id="barreInfoAJustif"></p>
+    <p class="i" id="texteInfoAJustif">Non_Justifiée</p>
+
+    <p class="report i" id="barreInfoAttente"></p>
+    <p class="i" id="texteInfoAttente">En_Attente</p>
+
+    <p class="valide i" id="barreInfoValide"></p>
+    <p class="i" id="texteInfoValide">Justifiée ⚠:Interrogation</p>
 
 </details>
 
@@ -133,13 +142,13 @@ require "../Presentation/getAbsenceDunJour.php";
             date_add($date, date_interval_create_from_date_string("1 days")); //Incrementation de la date
             if ($date->format('j') != 1) { //Supprimer le 01 a la fin
                 ?>
-                <td <?php if (date('m-d') == date_format($date, 'm-d')) {
+                <td <?php if (date('m-d') == date_format($date, 'm-d')) { //Si c'est aujourd'hui
                     echo 'id=adj';
                 } ?>>
                     <div <?php echo 'class=' . $couleurDuMois[$date->format('j')]; ?>></div>
                     <form action="tableauDeBordEtu.php" method="post">
                         <input type="submit" value=" <?php echo date_format($date, "d");
-                        if ($interrogationDuMois[$date->format('j')]) {
+                        if ($interrogationDuMois[$date->format('j')]) { //Si il y a une interro
                             echo ' ⚠';
                         } ?> " name="jour" id="jour">
                     </form>

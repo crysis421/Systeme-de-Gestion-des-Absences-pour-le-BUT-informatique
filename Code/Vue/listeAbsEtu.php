@@ -16,7 +16,7 @@ if (empty($result)) {
 
 
     <main><br><br></main>
-    <?php if($peuxCliquer){ ?>}
+    <?php if($peuxCliquer){ ?>
     <form action="formulaireAbsence.php" method="get">
         <input type="submit"
                value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT) . "/" . date_format($_SESSION['date'], "m/y"); ?>"
@@ -50,7 +50,10 @@ if (empty($result)) {
                             } ?></a><br>
                         </li>
                         <li class="elementDeListe">
-                            <div <?php echo 'class=' . $absence['statut']; ?> id="liste"></div>
+                            <div <?php  if ($absence['statut'] == "valide"){ echo 'class=valide';}
+                            elseif ($absence['statut'] == "report"){ echo 'class=report';}
+                            elseif ($absence['statut'] == "refus" and $absence['verrouille']){ echo 'class=refusVerouille';}
+                            else{echo 'class=refus';}?> id="liste"></div>
                         </li>
                         <li class="elementDeListe">
                             <?php if ($absence['controle']) {
@@ -73,6 +76,6 @@ if (empty($result)) {
 } ?>
 <main><br></main>
 <footer id="footer">
-    <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de
+    <a class="credits" style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de
         Maubeuge.</a>
 </footer>

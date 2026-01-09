@@ -23,7 +23,7 @@ $autre = $user->getNombreAbsencesEnAttente($id);
 if(date('m') > 7){
     $graphe = $user->getAbsenceDeLannee(date('Y')-2,date('Y')-1,$id); //TODO les absences sont en 2024
 }else{
-    $graphe = $user->getAbsenceDeLannee(date('Y')-1,date('Y'),$id);
+    $graphe = $user->getAbsenceDeLannee(date('Y')-3,date('Y')-2,$id);
 }
 $i = 0;
 $nbFois[] = ' ';

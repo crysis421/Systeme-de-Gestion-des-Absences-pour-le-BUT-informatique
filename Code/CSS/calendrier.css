@@ -14,55 +14,22 @@ body{
 
 
 .boutonReglement {
-    display: flex;
-    background-color: #fcfcfd;
-    border-radius: 4px;
-    border-width: 0;
-    box-shadow:
-            rgba(45, 35, 66, 0.2) 0 2px 4px,
-            rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
-    color: #36395a;
-    cursor: pointer;
-    width: 290px;
-    height: 50px;
-    justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
-    padding-left: 16px;
-    position: absolute;
-    padding-right: 16px;
+    background-color: #007aa5;
+    color: white;
+    border: none;
+    position:absolute;
     right: 10px;
-    top: 175px;
-    text-align: left;
-    text-decoration: none;
-    transition:
-            box-shadow 0.15s,
-            transform 0.15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow, transform;
-    font-size: 18px;
-}
-
-
-.boutonReglement:focus {
-    box-shadow:
-            #d6d6e7 0 0 0 1.5px inset,
-            rgba(45, 35, 66, 0.4) 0 2px 4px,
-            rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
+    top:10px;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition-property: background-color, transform;
+    transition-duration: 0.2s;
 }
 
 .boutonReglement:hover {
-    box-shadow:
-            rgba(45, 35, 66, 0.3) 0 4px 8px,
-            rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
-            #d6d6e7 0 -3px 0 inset;
-    transform: translateY(-2px);
+    background-color: #0098d1;
 }
 
 .boutonReglement:active {
@@ -105,11 +72,17 @@ form input[type="submit"] {
     padding: 6px 12px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.2s ease;
+    transition-property: background-color, transform;
+    transition-duration: 0.2s;
 }
 
 form input[type="submit"]:hover {
     background-color: #0098d1;
+}
+
+form input[type="submit"]:active {
+    box-shadow: #d6d6e7 0 3px 7px inset;
+    transform: translateY(2px);
 }
 
 /* Tableau du calendrier */
@@ -263,7 +236,7 @@ td {
 }
 
 #maLigne{
-    width: 100%;
+    width: 95%;
 }
 #liste{
     margin: 0 -1.5vw -1vw 0;
@@ -295,33 +268,54 @@ td {
 #prof{
     font-size: 21px;
 }
-#ir{
-    top: 175px;
+
+#barreInfoRefus{
+    top: 179px;
 }
-#irt{
+
+#texteInfoRefus{
     top: 175px;
     left: 15px;
 }
-#ip{
+
+#barreInfoAttente{
+    top: 214px;
+}
+#texteInfoAttente{
     top: 210px;
-}
-#ipt{
-    top:210px;
     left: 15px;
 }
-#iv{
-    top: 245px;
+#barreInfoAJustif{
+    top: 249px;
 }
-#ivt{
-    top: 245px;
+#texteInfoAJustif{
+    top:245px;
+    left: 15px;
+}
+
+#barreInfoValide{
+    top: 284px;
+}
+
+#texteInfoValide{
+    top: 280px;
     left: 15px;
 }
 #i{
-    font-size: 35px;
-    margin-left: 10px;
     margin-top: 50px;
     top: 130px;
     position: absolute;
+    font-size: 50px;               /* plus grande taille pour être visible */
+    margin-left: 10px;     /* relative pour éviter les problèmes de top */
+    color: #007BFF;                /* couleur bleue attractive */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* légère ombre pour se détacher */
+    transition: all 0.3s ease;     /* transition fluide */
+}
+#i:hover {
+    font-size: 60px;               /* grossit au survol */
+    color: #FF4500;                /* change de couleur pour attirer l’œil */
+    transform: rotate(5deg);      /* petit mouvement pour plus d’effet */
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.5); /* ombre renforcée */
 }
 ol{
     display: inline-grid;

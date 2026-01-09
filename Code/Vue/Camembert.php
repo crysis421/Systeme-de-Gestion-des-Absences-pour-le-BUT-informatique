@@ -42,13 +42,12 @@ class Camembert
                 } ?>
             </svg>
             <ol>
-                <li id="li">
                     <p id="pourcentage">Nombre d'absences</p>
-                </li>
+
                 <?php foreach ($graphe as $key => $nom) { ?>
                     <li id="li">
-                        <div style="width:5px; height:5px; background-color:<?= $colorUtilise[$key + 1] ?>; border-radius:50%;"></div>
-                        <p><?= '~ ' . $nom['label'] ?></p>
+                        <div style="width:3px; height:38px; background-color:<?= $colorUtilise[$key + 1] ?>; padding-bottom: 10px;"></div>
+                        <p><?= '‎ ' . $nom['label'] ?></p>
                         <p id="pourcentage"><?= round($nbFois[$key + 1]) ?></p>
                     </li>
                 <?php } ?>
