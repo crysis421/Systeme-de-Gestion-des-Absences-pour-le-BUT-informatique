@@ -142,13 +142,13 @@ require "../Presentation/getAbsenceDunJour.php";
             date_add($date, date_interval_create_from_date_string("1 days")); //Incrementation de la date
             if ($date->format('j') != 1) { //Supprimer le 01 a la fin
                 ?>
-                <td <?php if (date('m-d') == date_format($date, 'm-d')) {
+                <td <?php if (date('m-d') == date_format($date, 'm-d')) { //Si c'est aujourd'hui
                     echo 'id=adj';
                 } ?>>
                     <div <?php echo 'class=' . $couleurDuMois[$date->format('j')]; ?>></div>
                     <form action="tableauDeBordEtu.php" method="post">
                         <input type="submit" value=" <?php echo date_format($date, "d");
-                        if ($interrogationDuMois[$date->format('j')]) {
+                        if ($interrogationDuMois[$date->format('j')]) { //Si il y a une interro
                             echo ' ⚠';
                         } ?> " name="jour" id="jour">
                     </form>
