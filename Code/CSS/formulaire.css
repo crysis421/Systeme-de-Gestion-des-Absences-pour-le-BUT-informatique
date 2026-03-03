@@ -10,11 +10,11 @@ header, main, footer {
     margin: 0;
     padding: 0;
 }
+
 header {
     background-color: #ffffff;
     padding: 0px;
 }
-
 
 main {
     background-color: #ffffff;
@@ -38,6 +38,7 @@ main {
     margin: 0 auto;
     border-radius: 10px;
 }
+
 h1{
     color: black;
     text-align: center;
@@ -84,7 +85,6 @@ form {
     margin-top: 30px;
 }
 
-
 #infos, #infoAbsence, #signature {
     margin-bottom: 1px;
 }
@@ -106,4 +106,3 @@ select {
     border-color: #333333;
     box-sizing: border-box;
 }
-

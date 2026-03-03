@@ -1,6 +1,6 @@
 ul{
     text-align: right;
-    font-size:  1vw;
+    font-size: 1vw;
     padding-bottom: 3px;
     border-bottom-style: solid;
     border-bottom-width: 4px;
@@ -14,7 +14,6 @@ li {
     outline-color: black;
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
-
 }
 
 li:hover{
@@ -32,15 +31,15 @@ a:visited{
     color: #000000;
     text-decoration-line: none;
 }
+
 a:link {
     color: #000000;
     text-decoration-line: none;
 }
+
 .pages:hover{
     color: #0280af;
 }
-
-
 
 .onglets {
     position: relative;
@@ -55,6 +54,7 @@ a:link {
 .justificatif-texte {
     position: relative;
 }
+
 .oeil {
     position: relative;
     transition: transform 0.25s ease;
@@ -99,7 +99,6 @@ a:link {
     background-color: #ececec;
     position: relative;
     left: -10px;
-
     border-radius: 5px 5px 0px 0px;
     padding-top: 10px;
     margin-top: -10px;
@@ -107,6 +106,7 @@ a:link {
     margin-bottom: -10px;
 
 }
+
 .details {
     position: relative;
     left: 15px;
@@ -143,8 +143,6 @@ si fondu noir hover alors croix visible sinon non
     border: 2px solid #007BFF;
 }
 
-
-
 .justificatif-close {
     display: none;
 }
@@ -154,7 +152,6 @@ si fondu noir hover alors croix visible sinon non
     height: 100%;
     object-fit: contain;
 }
-
 
 #zoom:checked ~ .justificatif-close {
     position: fixed;
@@ -257,10 +254,12 @@ textarea {
     top: -4px;
     left: 14px;
 }
+
 .image-utilisateur {
     position: relative;
     left: 10px;
 }
+
 .notification {
     position: fixed;
     width: 250px;
@@ -278,6 +277,7 @@ textarea {
     top: -10px;
     left: 10px;
 }
+
 .description-notification {
     position: fixed;
     left: 10px;
@@ -296,7 +296,6 @@ textarea {
     }
 }
 
-
 #label_accepter {
     background: url('../Image/AccepterSymbole.png') no-repeat center center;
     background-size: contain;
@@ -312,7 +311,6 @@ textarea {
     background-size: contain;
 }
 
-
 #texte1 {
     display: none;
 }
@@ -324,6 +322,7 @@ textarea {
 #texte3 {
     display: none;
 }
+
 #toggle3:checked ~ #texte3 {
     display: block;
 }
@@ -391,7 +390,3 @@ textarea {
     box-shadow: #d6d6e7 0 3px 7px inset;
     transform: translateY(2px);
 }
-
-
-
-

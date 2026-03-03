@@ -12,6 +12,7 @@ ul {
     border-color: #c6a04d;
     margin-bottom: 0;
 }
+
 #details {
     width: 100%;
     max-width: 900px;
@@ -25,8 +26,6 @@ ul {
     margin: 1em auto;
     transition: all 0.3s ease;
 }
-
-
 
 .histo-accepter, .histo-refuser, .histo-demander {
     display: inline-block;
@@ -65,7 +64,6 @@ summary.filtrer {
     font-weight: 600;
 }
 
-
 .credits:hover {
     background-color: #018cbd;
     font-size: 15px;
@@ -77,7 +75,6 @@ summary.filtrer {
     transition: background-color 0.5s ease-out;
     transition: font-size 0.5s ease-out;
 }
-
 
 summary.filtrer:hover {
     color: #0078d7;
@@ -181,7 +178,6 @@ label {
     background: #005fa3;
 }
 
-
 li {
     display: inline-block;
     padding: 12px;
@@ -191,17 +187,13 @@ li {
     border-start-end-radius: 15px;
     font-family: "Latin Modern Math";
     font-size: 120%;
-
 }
 
 li:hover {
     background-color: #efefef;
     animation-name: myAnimation;
     animation-duration: 1s;
-
 }
-
-
 
 @keyframes myAnimation {
     from {
@@ -209,42 +201,35 @@ li:hover {
     }
     to {
         background-color: #efefef;
-
     }
 }
 
 a:visited {
     color: #000000;
     text-decoration-line: none;
-
 }
 
 a:link {
     color: #000000;
     text-decoration-line: none;
-
 }
 
 .pages:hover {
     color: #0280af;
-
 }
 
 .onglets {
     position: relative;
     display: flex;
-
 }
 
 .onglets {
     flex: 1;
     width: 100vw;
-
 }
 
 .justificatif-texte {
     position: relative;
-
 }
 
 .oeil {
@@ -253,13 +238,11 @@ a:link {
     width: 30px;
     top: 9px;
     left: 5px;
-
 }
 
 .oeil:hover {
     transform: rotate(10deg) scale(1.2) translateX(2px);
     transition: transform 0.25s ease;
-
 }
 
 .justificatif-image {
@@ -271,7 +254,6 @@ a:link {
     position: relative;
     left: 10px;
     top: 10px;
-
 }
 
 .liste-absence {
@@ -288,7 +270,6 @@ a:link {
     height: auto;
     left: 25%;
     border-radius: 10px;
-
 }
 
 .liste-absence-demandes {
@@ -305,13 +286,10 @@ a:link {
     height: auto;
     left: 25%;
     border-radius: 10px;
-
-
 }
 
 .description-element {
     padding-left: 45px;
-
 }
 
 .ligne {
@@ -320,7 +298,6 @@ a:link {
     padding-bottom: 9px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     position: absolute;
-
 }
 
 .ligne2 {
@@ -330,7 +307,6 @@ a:link {
     padding-bottom: 9px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.5);
     position: relative;
-
 }
 
 .top-layer {
@@ -342,26 +318,21 @@ a:link {
     margin-top: -10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
-
 }
 
 .details {
     position: relative;
     left: 15px;
     top: -8px;
-
 }
 
 summary {
     list-style: none;
-
 }
 
 summary::-webkit-details-marker {
     display: none;
-
 }
-
 
 .zoom-button {
     display: inline-block;
@@ -452,7 +423,6 @@ select {
     cursor: pointer;
     transition: all 0.2s ease;
 }
-
 
 textarea {
     border: none;
@@ -641,7 +611,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     accent-color: #2596be;
 }
 
-
 .bouton-filtrage:hover {
     background: #4338ca;
 }
@@ -657,7 +626,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     }
 }
 
-
 details[open] .details,
 details[open] .filtrage {
     animation: ouvertureFluide 0.4s ease-out forwards;
@@ -672,24 +640,3 @@ details[open] .filtrage {
         opacity: 1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
