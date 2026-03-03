@@ -29,6 +29,7 @@ $nomDesMois = ["January" => "Janvier",
 if (!isset($_POST['mois'])) {
     $M = date("m");
     $Y = date("Y");
+    $_SESSION['year'] = $Y;
 } else {
     $M = $_POST['mois'];
     $_SESSION['mois'] = $M;
@@ -46,12 +47,12 @@ if (isset($_SESSION['mois'])) {
 $_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
 $mois = date_format($_SESSION['date'], "m");
 
-require "../Presentation/getAbsenceDunJour.php";
+require "../Presentation/getAbsenceDuMois.php";
 
 ?>
 
-    <!DOCTYPE html>
-    <html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Mon compte</title>
@@ -65,11 +66,11 @@ require "../Presentation/getAbsenceDunJour.php";
     <summary>
         <p id="i" style="cursor: pointer; ">ⓘ</p>
     </summary>
-    <p> </p>
-    <p> </p>
-    <p> </p>
-    <p> </p>
-    <p> </p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
     <p class="refusVerouille i" id="barreInfoRefus"></p>
     <p class="i" id="texteInfoRefus">Refusé</p>
 
@@ -83,7 +84,6 @@ require "../Presentation/getAbsenceDunJour.php";
     <p class="i" id="texteInfoValide">Justifiée ⚠:Interrogation</p>
 
 </details>
-
 
 
 <form action="tableauDeBordEtu.php" method="post">
@@ -146,7 +146,7 @@ require "../Presentation/getAbsenceDunJour.php";
                     echo 'id=adj';
                 } ?>>
                     <div <?php echo 'class=' . $couleurDuMois[$date->format('j')]; ?>></div>
-                    <form action="tableauDeBordEtu.php" method="post">
+                    <form>
                         <input type="submit" value=" <?php echo date_format($date, "d");
                         if ($interrogationDuMois[$date->format('j')]) { //Si il y a une interro
                             echo ' ⚠';
@@ -160,7 +160,62 @@ require "../Presentation/getAbsenceDunJour.php";
         }
         ?>
 </table>
+<div id="res">
+    <?php
+    require 'listeAbsEtu.php'; ?>
+</div>
 
-<?php
 
-require 'listeAbsEtu.php';
+<script>
+    let ajax = new XMLHttpRequest();
+    let container = document.querySelector("#res")
+    let mois = <?php echo $_SESSION['mois'] ?>;
+    let year = <?php echo $_SESSION['year'] ?>;
+    let user = <?php echo $_SESSION['user'] ?>;
+    var v = 1;
+    var res;
+
+    function recupInfo(){
+            if (ajax.readyState === 4 && ajax.status === 200) {
+                res = ajax.responseText;
+                ajax.onreadystatechange = mettreInfo
+                console.log("Recup info : result="+res+"&jour=" + v + "&mois=" + mois)
+                ajax.open('POST', 'listeAbsEtu.php', true)
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                ajax.send("result="+res+"&jour=" + v + "&mois=" + mois)
+            }
+
+
+    }
+
+    function mettreInfo(){
+        if (ajax.readyState === 4 && ajax.status === 200) {
+            ajax.onreadystatechange = recupInfo
+            container.innerHTML = ajax.responseText
+        }
+    }
+
+    ajax.onreadystatechange = recupInfo
+
+    function reset() {
+        let longueur = container.children.length
+        for (let i = 0; i < longueur; i++) {
+            container.removeChild(container.children[0]);
+        }
+    }
+
+    let boutons = document.querySelectorAll("#jour")
+    for (let bouton of boutons) {
+        bouton.addEventListener("click", (e) => {
+            e.preventDefault()
+            reset()
+            v = bouton.getAttribute("Value")
+            v = v[1] + v[2]
+            console.log("Event :  jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
+            ajax.open('POST', '../Presentation/getAbsenceDunJour.php', true)
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send("jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
+        })
+    }
+</script>
+
