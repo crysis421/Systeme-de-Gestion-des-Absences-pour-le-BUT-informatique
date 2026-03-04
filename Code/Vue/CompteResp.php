@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     </div>
     <script>
         const bouton = document.getElementById("Rappeljustification");
-        const message = document.getElementById("messageHover");
+        let message = document.getElementById("messageHover");
 
         bouton.addEventListener("mouseenter", () => {
             message.style.opacity = "1";

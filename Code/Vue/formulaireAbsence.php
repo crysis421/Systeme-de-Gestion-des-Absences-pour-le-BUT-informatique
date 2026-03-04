@@ -130,6 +130,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
 
+    <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
+
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <div id="infoAbsence">
             <br>
@@ -137,18 +139,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
             </label><br><br>
 
-            <label for="">Du :
-                <input type="date" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{echo htmlspecialchars($datedebut);} ?>" required>
-                de <input type="time" name="heuredebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("08:00");} else{echo htmlspecialchars($heuredebut);} ?>" required>
+            <label for="">Du : <p style="color: red;display: none" id="erreur1">Veuillez d'abord remplir ce champ</p>
+                <input type="date" id="debut" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{echo htmlspecialchars($datedebut);} ?>" required>
+<!--                de <input type="time" name="heuredebut" value="--><?php //if(isset($_GET['date'])){echo htmlspecialchars("08:00");} else{echo htmlspecialchars($heuredebut);} ?><!--" required>-->
+
+                de  <p style="color: red;display: none" id="erreur2">  Veuillez d'abord remplir ce champ</p>
+                <select name="heuredebut" id="heuredebut" required>
+                    <?php
+                    $heures = ["08:00","09:30","11:00","12:30","14:00","15:30","17:00"];
+                    foreach ($heures as $heure) {
+                        $selected = null;
+                        // Détermine si cette option doit être sélectionnée
+                        if (isset($_GET['date'])) {
+                            if($heure == "08:00") {
+                                $selected = "selected";
+                            }else{
+                                $selected = "";
+                            }
+                        } else {
+                            if($heure == $heuredebut) {
+                                $selected = "selected";
+                            }else{
+                                $selected = "";
+                            }
+                        }
+                        echo "<option value=\"$heure\" $selected>$heure</option>";
+                    }
+                    ?>
+                </select>
             </label><br><br>
 
-            <label>Au :
-                <input type="date" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{ echo htmlspecialchars($fin);} ?>" required>
-                à <input type="time" name="heurefin1" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("19:00");} else{ echo htmlspecialchars($heurefin1);} ?>" required>
+            <label>Au :  <p style="color: red;display: none" id="erreur3">   Veuillez d'abord remplir ce champ</p>
+                <input type="date" id="fin" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{ echo htmlspecialchars($fin);} ?>" required>
+<!--                à <input type="time" name="heurefin1" value="--><?php //if(isset($_GET['date'])){echo htmlspecialchars("19:00");} else{ echo htmlspecialchars($heurefin1);} ?><!--" required>-->
+                à
+                <select name="heurefin1" id="heurefin" required>
+                    <?php
+                    $heures = ["09:30","11:00","12:30","14:00","15:30","17:00","18:30"];
+                    foreach ($heures as $heure) {
+                        $selected = null;
+                        // Détermine si cette option doit être sélectionnée
+                        if (isset($_GET['date'])) {
+                            if($heure == "18:30") {
+                                $selected = "selected";
+                            }else{
+                                $selected = "";
+                            }
+                        } else {
+                            if($heure == $heurefin1) {
+                                $selected = "selected";
+                            }else{
+                                $selected = "";
+                            }
+                        }
+                        echo "<option value=\"$heure\" $selected>$heure</option>";
+                    }
+                    ?>
+                </select>
             </label><br><br>
 
             <label>Motif :
-                <select name="motif" required>
+                <select name="motif" id="motif" required>
                     <option value="Problème de santé" <?php if($motif=="Problème de santé") echo "selected"; ?>>Problème de santé</option>
                     <option value="transport" <?php if($motif=="transport") echo "selected"; ?>>Problème de transport</option>
                     <option value="problèmes d'inscription" <?php if($motif=="problèmes d'inscription") echo "selected"; ?>>Problèmes d'inscription</option>
@@ -173,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
         </div>
         <div id="signature">
-            <input type="submit" value="Valider">
+            <input id="submit" type="submit" value="Valider">
             <br>
             <br>
             <br>
@@ -184,6 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer id="footer">
     <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
 </footer>
+<script src="../ajax/ajaxFormulaire.js"></script>
 </body>
 </html>
 
