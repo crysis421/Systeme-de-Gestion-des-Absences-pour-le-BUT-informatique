@@ -74,3 +74,21 @@ function verifierDateHeure() {
 
 heureFin.addEventListener("change",verifierDateHeure);
 
+const fileInput = document.getElementById("import");
+const error = document.getElementById("message");
+const maxSize = 2 * 1024 * 1024; // 2 Mo
+fileInput.addEventListener("change", function () {
+    error.textContent = "";
+    error.style.color = "red";
+    let totalSize = 0;
+    for (let file of this.files) {
+        totalSize += file.size;
+    }
+    if (totalSize > maxSize) {
+        error.textContent = "La taille totale des fichiers dépasse 2 Mo.";
+        this.value = ""; // vide l'input
+        return;
+    }
+    error.textContent = "Vos documents ont bien été importés";
+    error.style.color = "green";
+});
