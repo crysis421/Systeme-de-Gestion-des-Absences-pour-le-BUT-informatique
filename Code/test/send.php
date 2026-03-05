@@ -15,7 +15,7 @@ class send
                 "to" => [["email" => $destinataire]],
                 "subject" => $subject
             ]],
-            "from" => ["email" => "ggestionabsenceuphf@gmail.com", "name" => "Gestion Absence BUT informatique"],
+            "from" => ["email" => "christianekanimanga@gmail.com", "name" => "Gestion Absence BUT informatique"],
             "content" => [[
                 "type" => "text/html",
                 "value" => $contentHtml
