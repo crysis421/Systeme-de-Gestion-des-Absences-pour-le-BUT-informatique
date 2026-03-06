@@ -170,7 +170,6 @@ class AbsenceModel
         return $liste;
     }
 
-
     public function getByUser($idUtilisateur)
     {
         $sql = "
@@ -196,7 +195,6 @@ class AbsenceModel
         }
         return $result;
     }
-
 
     public function getJustificatifsDemande()
     {
@@ -496,7 +494,6 @@ class AbsenceModel
         return "Le mot de passe a bien été modifié";
     }
 
-
     public function getNombreAbsencesJustifie($idEtudiant)
     {
         $sql = "SELECT COUNT(*) AS totalAbsences 
@@ -566,7 +563,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
     public function getMatieres()
     {
         $sql = "SELECT matiere FROM cours";
@@ -608,7 +604,6 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchColumn();
     }
-
 
     public function getAbsenceDeLannee($yearDebut, $yearFin, $idEtu)
     {
@@ -694,7 +689,6 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function getNombreAJustifier()
     {

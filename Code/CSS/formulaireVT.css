@@ -55,6 +55,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: goldenrod;
 }
+
 #footer {
     background-color: #2781a8;
     text-align: center;

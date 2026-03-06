@@ -12,6 +12,7 @@ ul {
     border-color: #c6a04d;
     margin-bottom: 0;
 }
+
 #details {
     width: 100%;
     max-width: 900px;
@@ -25,8 +26,6 @@ ul {
     margin: 1em auto;
     transition: all 0.3s ease;
 }
-
-
 
 .histo-accepter, .histo-refuser, .histo-demander {
     display: inline-block;
@@ -65,7 +64,6 @@ summary.filtrer {
     font-weight: 600;
 }
 
-
 .credits:hover {
     background-color: #018cbd;
     font-size: 15px;
@@ -77,7 +75,6 @@ summary.filtrer {
     transition: background-color 0.5s ease-out;
     transition: font-size 0.5s ease-out;
 }
-
 
 summary.filtrer:hover {
     color: #0078d7;
@@ -181,7 +178,6 @@ label {
     background: #005fa3;
 }
 
-
 li {
     display: inline-block;
     padding: 12px;
@@ -198,8 +194,6 @@ li:hover {
     animation-name: myAnimation;
     animation-duration: 1s;
 }
-
-
 
 @keyframes myAnimation {
     from {
@@ -292,7 +286,6 @@ a:link {
     height: auto;
     left: 25%;
     border-radius: 10px;
-
 }
 
 .description-element {
@@ -341,7 +334,6 @@ summary::-webkit-details-marker {
     display: none;
 }
 
-
 .zoom-button {
     display: inline-block;
     width: 350px;
@@ -358,6 +350,7 @@ input[id^="zoom"]:checked + label.zoom-button {
     transform: scale(1.05) translateY(20px);
     margin-bottom: 20px;
     border: 2px solid #007BFF;
+
 }
 
 .justificatif-close {
@@ -378,8 +371,9 @@ input[id^="zoom"]:checked ~ .justificatif-close {
     width: 25px;
     list-style: none;
     cursor: pointer;
-    z-index: 3;
+    z-index: 10000;
     display: block;
+
 }
 
 .justificatif-image-big {
@@ -396,12 +390,11 @@ input[id^="zoom"]:checked ~ .justificatif-image-big {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 9999;
 }
 
 .fondu-noir {
     display: none;
-    background-color: black;
 }
 
 input[id^="zoom"]:checked ~ .fondu-noir {
@@ -411,8 +404,8 @@ input[id^="zoom"]:checked ~ .fondu-noir {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.49);
-    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9998;
 }
 
 select {
@@ -618,7 +611,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     accent-color: #2596be;
 }
 
-
 .bouton-filtrage:hover {
     background: #4338ca;
 }
@@ -634,7 +626,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     }
 }
 
-
 details[open] .details,
 details[open] .filtrage {
     animation: ouvertureFluide 0.4s ease-out forwards;
@@ -649,4 +640,3 @@ details[open] .filtrage {
         opacity: 1;
     }
 }
-
