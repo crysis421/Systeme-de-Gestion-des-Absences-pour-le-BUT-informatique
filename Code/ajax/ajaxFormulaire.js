@@ -6,8 +6,15 @@ const motif = document.getElementById("motif")
 let valider = document.getElementById("submit")
 
 
-
-
+const erreur = document.getElementById("erreur4");
+function verifierErreur() {
+    if (erreur.style.display === "block" || document.getElementById("erreur1").style.display === "block" || document.getElementById("erreur3").style.display === "block" ){
+        valider.disabled = true;
+    } else {
+        valider.disabled = false;
+    }
+}
+valider.addEventListener("click",verifierErreur)
 debut.addEventListener("input", function () {
     if (debut.value.trim() !== "") {
         final.disabled = false;
@@ -67,13 +74,17 @@ function verifierDateHeure() {
 
     if (finDateTime < debutDateTime) {
         document.getElementById("erreur4").style.display = "block";
+        valider.disabled = true;
     } else {
         document.getElementById("erreur4").style.display = "none";
+        valider.disabled = false;
     }
 }
 
 heureFin.addEventListener("change",verifierDateHeure);
 
+
+//verifiaction de la taille des fichiers importés
 const fileInput = document.getElementById("import");
 const error = document.getElementById("message");
 const maxSize = 2 * 1024 * 1024; // 2 Mo

@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-        <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
+
         <div id="infoAbsence">
             <br>
             <label for="id">Numéro d'étudiant :
@@ -169,6 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                 </select>
             </label><br><br>
+            <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
 
             <label>Au :  <p style="color: red;display: none" id="erreur3">   Veuillez d'abord remplir ce champ</p>
                 <input type="date" id="fin" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{ echo htmlspecialchars($fin);} ?>" required>
