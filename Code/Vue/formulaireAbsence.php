@@ -130,9 +130,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
 
-    <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
+
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+        <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
         <div id="infoAbsence">
             <br>
             <label for="id">Numéro d'étudiant :
@@ -215,8 +216,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;"><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
             <label>Ajouter un ou plusieurs justificatifs :</label><br>
-            <input type="file" name="justificatifs[]" accept=".pdf,image/*" multiple><br>
-            <p style="font-size: 20px"> La taille maximale pour un fichier est de <u style="color: red" >2MO</u></p>
+            <p id="message" style="color:red;"></p>
+            <input type="file" id="import" name="justificatifs[]" accept=".pdf,image/*" multiple><br>
+            <p style="font-size: 20px"> La taille maximale pour des fichiers importés est de <u style="color: red" >2MO</u></p>
             <i style="font-size: 17px">Pour sélectionner plusieurs fichiers à la fois, maintiens Ctrl (ou Cmd sur Mac) pour choisir individuellement ou Shift pour sélectionner un bloc de fichiers consécutifs avant de cliquer sur “Ouvrir”.</i>
 
             <br>

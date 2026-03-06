@@ -13,6 +13,7 @@ debut.addEventListener("input", function () {
         final.disabled = false;
         heureDebut.disabled = false;
         heureFin.disabled = false;
+        debut.addEventListener("change",verifierDateHeure);
         let message = document.getElementById("erreur1")
         message.style.display = "none";
     } else {
@@ -27,15 +28,18 @@ heureDebut.addEventListener("click",function (){
         heureDebut.disabled = true;
         let message = document.getElementById("erreur1")
         message.style.display = "block";
+    }else{
+        heureDebut.addEventListener("change",verifierDateHeure);
     }
 })
 
 final.addEventListener("input", function () {
     if (final.value.trim() === "") {
-        heureFin.disabled = true;
+        heureFin.disabled = false;
     } else {
         heureFin.disabled = false;
         let message = document.getElementById("erreur3")
+        final.addEventListener("change",verifierDateHeure);
         message.style.display = "none";
     }
 });
@@ -45,6 +49,8 @@ heureFin.addEventListener("click",function (){
         heureFin.disabled = true;
         let message = document.getElementById("erreur3")
         message.style.display = "block";
+    }else {
+        heureFin.addEventListener("change",verifierDateHeure);
     }
 })
 
@@ -68,3 +74,21 @@ function verifierDateHeure() {
 
 heureFin.addEventListener("change",verifierDateHeure);
 
+const fileInput = document.getElementById("import");
+const error = document.getElementById("message");
+const maxSize = 2 * 1024 * 1024; // 2 Mo
+fileInput.addEventListener("change", function () {
+    error.textContent = "";
+    error.style.color = "red";
+    let totalSize = 0;
+    for (let file of this.files) {
+        totalSize += file.size;
+    }
+    if (totalSize > maxSize) {
+        error.textContent = "La taille totale des fichiers dépasse 2 Mo.";
+        this.value = ""; // vide l'input
+        return;
+    }
+    error.textContent = "Vos documents ont bien été importés";
+    error.style.color = "green";
+});
