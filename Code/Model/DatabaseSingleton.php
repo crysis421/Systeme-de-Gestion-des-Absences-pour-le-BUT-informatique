@@ -10,7 +10,6 @@ ini_set('max_execution_time', 600);
 
 class DatabaseSingleton
 {
-
     private static $instance; //Instance unique
     private $pdo = null;
 
@@ -45,5 +44,4 @@ class DatabaseSingleton
     public function getConnection() {
         return $this->pdo;
     }
-
 }
