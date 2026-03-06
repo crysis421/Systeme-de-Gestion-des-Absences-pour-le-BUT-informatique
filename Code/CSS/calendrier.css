@@ -12,7 +12,6 @@ body{
     flex-direction: column;
 }
 
-
 .boutonReglement {
     background-color: #007aa5;
     color: white;
@@ -123,6 +122,7 @@ td {
     cursor: pointer;
     transition: all 0.2s ease;
 }
+
 #jourbutton {
     width: 10000px;
     height: 150%;
@@ -176,7 +176,7 @@ td {
     padding-bottom: 1%;
     border-style: solid;
     border-width: 1px 1px 1px 1px; /* triangle droit */
-    border-color: black; /* mettre couleur spécifique dans chaque classe*/
+    border-color: black; /* mettre couleur spécifique dans chaque classe */
     border-radius: 50px;
     content: "";
     width: 7%;
@@ -211,6 +211,7 @@ td {
     width: 7%;
     height: 14%;
 }
+
 .report {
     margin-bottom: -6%;
     background-color: #f9a825;
@@ -238,23 +239,28 @@ td {
 #maLigne{
     width: 95%;
 }
+
 #liste{
     margin: 0 -1.5vw -1vw 0;
     width: 10px;
     height: 5.2vw;
 }
+
 .elementDeListe{
     outline-style: none;
     animation: none;
     font-size: 2vw;
 }
+
 .elementDeListe:hover{
     animation: none;
     background-color: initial;
 }
+
 .description-element{
     font-size: 1.2vw;
 }
+
 .i{
     margin-left: 10px;
     margin-top: 50px;
@@ -265,6 +271,7 @@ td {
     font-size: 23px;
     position: absolute;
 }
+
 #prof{
     font-size: 21px;
 }
@@ -281,13 +288,16 @@ td {
 #barreInfoAttente{
     top: 214px;
 }
+
 #texteInfoAttente{
     top: 210px;
     left: 15px;
 }
+
 #barreInfoAJustif{
     top: 249px;
 }
+
 #texteInfoAJustif{
     top:245px;
     left: 15px;
@@ -301,22 +311,25 @@ td {
     top: 280px;
     left: 15px;
 }
+
 #i{
     margin-top: 50px;
     top: 130px;
     position: absolute;
-    font-size: 50px;               /* plus grande taille pour être visible */
-    margin-left: 10px;     /* relative pour éviter les problèmes de top */
-    color: #007BFF;                /* couleur bleue attractive */
+    font-size: 50px; /* plus grande taille pour être visible */
+    margin-left: 10px; /* relative pour éviter les problèmes de top */
+    color: #007BFF; /* couleur bleue attractive */
     text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* légère ombre pour se détacher */
-    transition: all 0.3s ease;     /* transition fluide */
+    transition: all 0.3s ease; /* transition fluide */
 }
+
 #i:hover {
-    font-size: 60px;               /* grossit au survol */
-    color: #FF4500;                /* change de couleur pour attirer l’œil */
-    transform: rotate(5deg);      /* petit mouvement pour plus d’effet */
+    font-size: 60px; /* grossit au survol */
+    color: #FF4500; /* change de couleur pour attirer l’œil */
+    transform: rotate(5deg); /* petit mouvement pour plus d’effet */
     text-shadow: 4px 4px 10px rgba(0,0,0,0.5); /* ombre renforcée */
 }
+
 ol{
     display: inline-grid;
 }
