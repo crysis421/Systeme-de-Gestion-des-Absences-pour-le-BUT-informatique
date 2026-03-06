@@ -5,9 +5,15 @@ use Model\AbsenceEtuTB;
 require '../Model/AbsenceEtuTB.php';
 
 if (isset($_POST['jour']) and $_POST['jour'][1] != 'K') {
-    $_SESSION['jour'] = $_POST['jour'][1] . $_POST['jour'][2];
+    $_SESSION['jour'] = $_POST['jour'][0] . $_POST['jour'][1];
 }else {
     $_SESSION['jour'] = date('d');
+}
+if(isset($_POST['mois'])) {
+    $_SESSION['mois'] = $_POST['mois'];
+    $_SESSION['year'] = $_POST['year'];
+    $_SESSION['user'] = $_POST['user'];
+    $post = true;
 }
 $user = $_SESSION['user'];
 
@@ -20,6 +26,10 @@ $resultatMois = $bdd->getAbsenceControleDunMois($_SESSION['mois'], $_SESSION['ye
 
 // $result est la variable utilisée pour avoir les absences d'une journée d'un contrôle
 $resultatJour = $bdd->getAbsenceControleDunJour($_SESSION['jour'], $_SESSION['mois'], $_SESSION['year'] - 2,$user); //ATTENTION : le -2 est juste là pour nos données qui datent de fevrier 2025
+
+if($post){
+    echo json_encode($resultatJour);
+}
 
 //Fin de notre connection
 $bdd = null;

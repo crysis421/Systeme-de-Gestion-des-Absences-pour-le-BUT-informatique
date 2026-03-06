@@ -1,5 +1,12 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //Ce fichier est là pour le Tableau De Bord du prof
+if(isset($_POST["result"])){
+    $resultatJour = json_decode($_POST["result"],true);
+    $_SESSION["jour"]=$_POST["jour"];
+    $_SESSION["mois"]=$_POST["mois"];
+}
 echo '<link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">';
 
 if (empty($resultatJour)) {
@@ -18,9 +25,6 @@ if (empty($resultatJour)) {
                 <summary class="top-layer">
                     <ol id="maListe">
                         <a class="nom"><b><?= htmlspecialchars($cours['enseignement']) ?> à <?= htmlspecialchars($cours['heuredebut']) ?></a><br>
-                        <li class="elementDeListe">
-                            <div <?php echo 'class=' . $cours['statut']; ?> id="liste"></div>
-                        </li>
                         <li class="elementDeListe">
                             <div class="description-element">
                                 <?php foreach ($resultatJour as $jour){ ?>
