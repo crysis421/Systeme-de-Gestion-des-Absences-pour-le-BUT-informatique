@@ -1,3 +1,26 @@
+.cotainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+@media (min-width:760px) {
+
+    .container{
+        flex-direction: row;
+        font-size: 20px;
+    }
+
+    #jour, #jourbutton, #jourbuttonDisabled {
+        font-size: 1.2rem;        /* texte lisible sur petit écran */
+    }
+
+    /* Onglets / navigation */
+    .elementDeListe {
+        font-size: 1rem;
+    }
+}
+
 /* Style global */
 html, body {
     height: 100%;
@@ -102,7 +125,7 @@ th {
 }
 
 td {
-    width: 8vw;
+    width: 8rem;
     height: 8vh;
     border: 1px solid #ddd;
     text-align: center;
@@ -116,7 +139,7 @@ td {
     height: 150%;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     font-weight: 500;
     color: #333;
     cursor: pointer;
@@ -128,7 +151,7 @@ td {
     height: 150%;
     background-color: rgba(0, 255, 227, 0.15);
     border: none;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     font-weight: 500;
     color: #333;
     cursor: pointer;
@@ -141,7 +164,7 @@ td {
     height: 150%;
     background-color: rgba(13, 154, 139, 0.15);
     border: none;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     font-weight: 500;
     color: #333;
     cursor: pointer;
@@ -243,13 +266,13 @@ td {
 #liste{
     margin: 0 -1.5vw -1vw 0;
     width: 10px;
-    height: 5.2vw;
+    height: 5.2rem;
 }
 
 .elementDeListe{
     outline-style: none;
     animation: none;
-    font-size: 2vw;
+    font-size: 2rem;
 }
 
 .elementDeListe:hover{
@@ -258,7 +281,7 @@ td {
 }
 
 .description-element{
-    font-size: 1.2vw;
+    font-size: 1.2rem;
 }
 
 .i{

@@ -56,6 +56,8 @@ require "../Presentation/getAbsenceDuMois.php";
 <head>
     <meta charset="UTF-8">
     <title>Mon compte</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+
 </head>
 
 <a href="ReglementInterieur.php">
@@ -63,6 +65,7 @@ require "../Presentation/getAbsenceDuMois.php";
 </a>
 
 <details>
+
     <summary>
         <p id="i" style="cursor: pointer; ">ⓘ</p>
     </summary>
