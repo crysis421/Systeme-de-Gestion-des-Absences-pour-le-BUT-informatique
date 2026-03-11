@@ -1,3 +1,16 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+@media (min-width:760px) {
+    .container{
+        flex-direction: row;
+        font-size: 20px;
+    }
+}
+
 /* === Structure de base pour coller le footer en bas === */
 html, body {
     height: 100%; /* Le document occupe toute la hauteur de la fenêtre */
