@@ -56,7 +56,6 @@ require "../Presentation/getAbsenceDuMois.php";
 <head>
     <meta charset="UTF-8">
     <title>Mon compte</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
 
 </head>
 
@@ -187,8 +186,6 @@ require "../Presentation/getAbsenceDuMois.php";
                 ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 ajax.send("result="+res+"&jour=" + v + "&mois=" + mois)
             }
-
-
     }
 
     function mettreInfo(){

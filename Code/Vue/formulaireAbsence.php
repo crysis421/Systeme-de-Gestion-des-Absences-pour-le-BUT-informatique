@@ -3,7 +3,6 @@ session_start();
 
 $formData = $_SESSION['formData'] ?? [];
 
-
 //on prends les infos du raccourcis calendrier mais si il n y en a pas on ne met rien
 $id = $formData['id'] ?? '';
 $datedebut = $formData['datedebut'] ?? '';
@@ -86,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
     if ($error == "") {
         $_SESSION['formData'] = [
                 'id' => $id,
@@ -108,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../CSS/formulaire.css" />
     <title>Formulaire d'absence</title>
@@ -131,8 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['aEssayer'] = false;
     }
     ?>
-
-
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 

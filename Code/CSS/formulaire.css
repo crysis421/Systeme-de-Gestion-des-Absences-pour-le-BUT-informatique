@@ -1,16 +1,3 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-}
-
-@media (min-width:760px) {
-    .container{
-        flex-direction: row;
-        font-size: 20px;
-    }
-}
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -84,18 +71,14 @@ input[type="submit"]{
 }
 
 form {
-    border-color: #333333;
-    border: 3px;
-    border-style: solid;
+    border: 3px solid #333333;
     background-color: #efefef;
-    padding: 1px;
     border-radius: 10px;
     max-width: 800px;
-    margin: 0 auto;
-    padding-left: 100px;
-    padding-right: 100px;
-    margin-bottom: 50px;
-    margin-top: 30px;
+    width: 90%;
+    margin: 30px auto 50px auto;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
 }
 
 #infos, #infoAbsence, #signature {
@@ -118,4 +101,18 @@ select {
     border: 2px solid #ede9e9;
     border-color: #333333;
     box-sizing: border-box;
+}
+
+form label {
+    display: flex;
+    flex-direction: column; /* texte au-dessus du champ */
+    width: 100%;
+}
+select, input[type="number"], input[type="date"], input[type="time"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#debut, #fin {
+    max-width: 100%;
 }
