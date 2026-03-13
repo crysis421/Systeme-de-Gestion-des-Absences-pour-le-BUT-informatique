@@ -53,7 +53,7 @@ foreach ($justificatifs as $justif) {
         $dEnd = end($dates);
 
 // ofao
-        $nombreAbs = 0;
+        $nombreAbs = 1;
         foreach ($groupes[$id]['absences'] as $abs) {
             $statusAbsence = $abs['status'];
             if ($statusAbsence != 'report') continue;
