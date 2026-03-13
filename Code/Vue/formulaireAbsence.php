@@ -3,7 +3,6 @@ session_start();
 
 $formData = $_SESSION['formData'] ?? [];
 
-
 //on prends les infos du raccourcis calendrier mais si il n y en a pas on ne met rien
 $id = $formData['id'] ?? '';
 $datedebut = $formData['datedebut'] ?? '';
@@ -86,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
     if ($error == "") {
         $_SESSION['formData'] = [
                 'id' => $id,
@@ -108,6 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../CSS/formulaire.css" />
     <title>Formulaire d'absence</title>
 </head>
@@ -130,17 +130,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
 
-    <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
-
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+
         <div id="infoAbsence">
             <br>
-            <label for="id">Numéro d'étudiant :
-                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
-            </label><br><br>
+            <label for="id">Numéro d'étudiant :   <p id="autre"  style="color:#09572b ;font-size: 80%"></p><br>
+                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" onkeyup="verifierEtudiant()" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
+            </label><br>
 
             <label for="">Du : <p style="color: red;display: none" id="erreur1">Veuillez d'abord remplir ce champ</p>
-                <input type="date" id="debut" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{echo htmlspecialchars($datedebut);} ?>" required>
+                <input type="date" id="debut" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-3].$_GET['date'][-4]."-".$_GET['date'][-7].$_GET['date'][-9]);} else{echo htmlspecialchars($datedebut);} ?>" required>
 <!--                de <input type="time" name="heuredebut" value="--><?php //if(isset($_GET['date'])){echo htmlspecialchars("08:00");} else{echo htmlspecialchars($heuredebut);} ?><!--" required>-->
 
                 de  <p style="color: red;display: none" id="erreur2">  Veuillez d'abord remplir ce champ</p>
@@ -168,9 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                 </select>
             </label><br><br>
+            <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
 
             <label>Au :  <p style="color: red;display: none" id="erreur3">   Veuillez d'abord remplir ce champ</p>
-                <input type="date" id="fin" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-5].$_GET['date'][-4]."-".$_GET['date'][-8].$_GET['date'][-7]);} else{ echo htmlspecialchars($fin);} ?>" required>
+                <input type="date" id="fin" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-3].$_GET['date'][-4]."-".$_GET['date'][-7].$_GET['date'][-9]);} else{ echo htmlspecialchars($fin);} ?>" required>
 <!--                à <input type="time" name="heurefin1" value="--><?php //if(isset($_GET['date'])){echo htmlspecialchars("19:00");} else{ echo htmlspecialchars($heurefin1);} ?><!--" required>-->
                 à
                 <select name="heurefin1" id="heurefin" required>
@@ -215,8 +215,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea name="commentaire" style="max-height: 500px; max-width: 800px ; min-height: 70px; min-width: 600px width: 700px; height: 100px;"><?php echo htmlspecialchars($commentaire); ?></textarea><br><br>
 
             <label>Ajouter un ou plusieurs justificatifs :</label><br>
-            <input type="file" name="justificatifs[]" accept=".pdf,image/*" multiple><br>
-            <p style="font-size: 20px"> La taille maximale pour un fichier est de <u style="color: red" >2MO</u></p>
+            <p id="message" style="color:red;"></p>
+            <input type="file" id="import" name="justificatifs[]" accept=".pdf,image/*" multiple><br>
+            <p style="font-size: 20px"> La taille maximale pour des fichiers importés est de <u style="color: red" >2MO</u></p>
             <i style="font-size: 17px">Pour sélectionner plusieurs fichiers à la fois, maintiens Ctrl (ou Cmd sur Mac) pour choisir individuellement ou Shift pour sélectionner un bloc de fichiers consécutifs avant de cliquer sur “Ouvrir”.</i>
 
             <br>

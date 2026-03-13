@@ -10,6 +10,8 @@ require_once "../Presentation/responTB.php"
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+
     <link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">
     <script src="../ajax/ajaxFiltre.js"></script>
     <title>Tableau de bord absence</title>

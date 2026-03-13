@@ -10,11 +10,11 @@ header, main, footer {
     margin: 0;
     padding: 0;
 }
+
 header {
     background-color: #ffffff;
     padding: 0px;
 }
-
 
 main {
     background-color: #ffffff;
@@ -38,6 +38,7 @@ main {
     margin: 0 auto;
     border-radius: 10px;
 }
+
 h1{
     color: black;
     text-align: center;
@@ -70,20 +71,15 @@ input[type="submit"]{
 }
 
 form {
-    border-color: #333333;
-    border: 3px;
-    border-style: solid;
+    border: 3px solid #333333;
     background-color: #efefef;
-    padding: 1px;
     border-radius: 10px;
     max-width: 800px;
-    margin: 0 auto;
-    padding-left: 100px;
-    padding-right: 100px;
-    margin-bottom: 50px;
-    margin-top: 30px;
+    width: 90%;
+    margin: 30px auto 50px auto;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
 }
-
 
 #infos, #infoAbsence, #signature {
     margin-bottom: 1px;
@@ -107,3 +103,16 @@ select {
     box-sizing: border-box;
 }
 
+form label {
+    display: flex;
+    flex-direction: column; /* texte au-dessus du champ */
+    width: 100%;
+}
+select, input[type="number"], input[type="date"], input[type="time"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#debut, #fin {
+    max-width: 100%;
+}

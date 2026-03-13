@@ -1,3 +1,16 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+@media (min-width:760px) {
+    .container{
+        flex-direction: row;
+        font-size: 20px;
+    }
+}
+
 body {
     font-family:"Latin Modern Math";
     margin: 0;
@@ -55,6 +68,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: goldenrod;
 }
+
 #footer {
     background-color: #2781a8;
     text-align: center;

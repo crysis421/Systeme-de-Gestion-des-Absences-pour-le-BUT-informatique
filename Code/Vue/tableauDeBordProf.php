@@ -48,6 +48,13 @@ require "../Presentation/getAbsenceDunControle.php";
 
 ?>
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+</head>
 
     <details>
         <summary>
@@ -134,5 +141,61 @@ require "../Presentation/getAbsenceDunControle.php";
             ?>
     </table>
 
-<?php
-require('listeAbsProf.php');
+    <div id="res">
+        <?php
+        require 'listeAbsProf.php'; ?>
+    </div>
+
+
+    <script>
+        let ajax = new XMLHttpRequest();
+        let container = document.querySelector("#res")
+        let mois = <?php echo $_SESSION['mois'] ?>;
+        let year = <?php echo $_SESSION['year'] ?>;
+        let user = <?php echo $_SESSION['user'] ?>;
+        var v = 1;
+        var res;
+
+        function recupInfo(){
+            if (ajax.readyState === 4 && ajax.status === 200) {
+                res = ajax.responseText;
+                ajax.onreadystatechange = mettreInfo
+                console.log("Recup info : result="+res+"&jour=" + v + "&mois=" + mois)
+                ajax.open('POST', 'listeAbsProf.php', true)
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                ajax.send("result="+res+"&jour=" + v + "&mois=" + mois)
+            }
+
+
+        }
+
+        function mettreInfo(){
+            if (ajax.readyState === 4 && ajax.status === 200) {
+                ajax.onreadystatechange = recupInfo
+                container.innerHTML = ajax.responseText
+            }
+        }
+
+        ajax.onreadystatechange = recupInfo
+
+        function reset() {
+            let longueur = container.children.length
+            for (let i = 0; i < longueur; i++) {
+                container.removeChild(container.children[0]);
+            }
+        }
+
+        let boutons = document.querySelectorAll("#jour")
+        for (let bouton of boutons) {
+            bouton.addEventListener("click", (e) => {
+                e.preventDefault()
+                reset()
+                v = bouton.getAttribute("Value")
+                v = v[1] + v[2]
+                console.log("Event :  jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
+                ajax.open('POST', '../Presentation/getAbsenceDunControle.php', true)
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                ajax.send("jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
+            })
+        }
+    </script>

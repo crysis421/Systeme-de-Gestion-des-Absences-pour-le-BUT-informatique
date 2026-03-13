@@ -1,3 +1,16 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+@media (min-width:760px) {
+    .container{
+        flex-direction: row;
+        font-size: 20px;
+    }
+}
+
 /* === Structure de base pour coller le footer en bas === */
 html, body {
     height: 100%; /* Le document occupe toute la hauteur de la fenêtre */
@@ -49,12 +62,15 @@ h1 {
     box-sizing: border-box; /* Évite que le padding agrandisse la largeur */
     margin-bottom: 20px; /* Espace entre les blocs (utile pour le responsive) */
 }
+
 #pourcentage{
     margin-left: auto;
 }
+
 #li:hover + #test{
     fill: aquamarine;
 }
+
 #li{
     display: flex;
     padding: 0;
@@ -64,20 +80,24 @@ h1 {
     border-start-end-radius: 0;
     animation: none;
 }
+
 ol{
     text-align: left;
     display: inline-grid;
 }
+
 #graphe{
     box-sizing: unset;
     padding-left: 26%;
     padding-right: 26%;
 }
+
 #stat{
     margin-left: -51%;
     margin-right: -51%;
 }
-    /* === Bloc "Profil" === */
+
+/* === Bloc "Profil" === */
 #profil {
     background-color: white; /* Fond beige/or */
     width: 49%; /* Occupe environ la moitié du conteneur #haut */
@@ -85,11 +105,10 @@ ol{
 
 /* Image du profil */
 #profil img {
-    width: 73px;   /* largeur */
-    height: 73px;  /* hauteur */
+    width: 73px; /* largeur */
+    height: 73px; /* hauteur */
     display: block; /* Force le comportement de bloc (utile pour centrer) */
 }
-
 
 /* === Bloc "Mes données" === */
 #donnees {
@@ -136,7 +155,6 @@ summary {
     background-color: rgba(0,0,0,0.05); /* Fond légèrement grisé */
     border-radius: 6px; /* Coins arrondis */
     gap: 10px;
-
 }
 
 /* Effet au survol du titre */
@@ -225,6 +243,7 @@ textarea{
     cursor: pointer; /* Curseur "main" au survol */
     width: auto;
 }
+
 /* Effet au survol du bouton */
 #modif button:hover {
     background-color: #0056b3; /* Change la couleur du bouton au survol */
@@ -233,14 +252,17 @@ textarea{
 div.alertes{
     color:red;
 }
+
 .graphe{
     display: inline-flex;
 }
+
 .lesGraphes{
     outline-style: none;
     font-size: 21px;
     text-align: left;
 }
+
 #deconnexion{
     background-color:#bf0000;
     color: black;
@@ -256,6 +278,7 @@ div.alertes{
             text-shadow 0.4s ease,
             box-shadow 0.4s ease;
 }
+
 #deconnexion:hover {
     transform: scale(1.2) rotate(10deg) translateY(-3px);
     color: black;
@@ -274,6 +297,7 @@ div.alertes{
     border-radius: 10px;
     transition: transform 0.4s ease, color 0.4s ease, text-shadow 0.4s ease;
 }
+
 #valider:hover {
     transform: scale(1.2) rotate(3deg);
     transition: all 0.4s ease;
@@ -295,12 +319,14 @@ div.alertes{
             text-shadow 0.4s ease,
             box-shadow 0.4s ease;
 }
+
 #Rappeljustification:hover {
     transform: scale(1.2) rotate(10deg) translateY(-3px);
     color: black;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.9);
     text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
 }
+
 #messageHover {
     position: absolute;
     background-color: rgba(96, 79, 79, 0.85);
