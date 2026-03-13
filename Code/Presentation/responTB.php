@@ -53,14 +53,14 @@ foreach ($justificatifs as $justif) {
         $dEnd = end($dates);
 
 // ofao
-        $nombreAbs = 0;
+        $nombreAbs = 1;
         foreach ($groupes[$id]['absences'] as $abs) {
             $statusAbsence = $abs['status'];
             if ($statusAbsence != 'report') continue;
             $nombreAbs++;
         }
 
-        $groupes[$id]['description'] = $nombreAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+        $groupes[$id]['description'] = $nbAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
     }
 }
 
