@@ -73,10 +73,10 @@ function verifierDateHeure() {
     const finDateTime = new Date(dateFin + "T" + heureFin);
 
 
-    if (finDateTime < debutDateTime) {
+    if (finDateTime <= debutDateTime ) {
         document.getElementById("erreur4").style.display = "block";
         valider.disabled = true;
-    } else {
+    } else{
         document.getElementById("erreur4").style.display = "none";
         valider.disabled = false;
     }
