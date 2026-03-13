@@ -26,7 +26,6 @@ if (empty($groupes)) {
                                 <a class="justificatif-texte">Justificatif</a>
                                 <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
                             </summary>
-                            <!-- Code du zoom image -->
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
                             <label for="zoom<?= $id ?>" class="justificatif-close">
@@ -42,10 +41,11 @@ if (empty($groupes)) {
                         <input type="hidden" name="IDElement" value="<?= $id ?>" >
 
                         <?php foreach ($absences as $abs):
+
                             $matiere = $abs['matiere'];
-                            if (preg_match('#\((.*?)\)#', $matiere, $match)) {
-                                $matiere = explode("-", $match[1])[1] ?? $matiere;
-                            }
+                            preg_match('#\((.*?)\)#', $matiere, $match);
+                            $matiere = $match[1];
+                            $matiere = explode("-", $matiere)[1];
                             ?>
                             <input type="checkbox" name="checkboxAbsence[]" value="<?= $abs['id'] ?>" id="checkboxAbsence_<?= $abs['id'] ?>" checked>
                             <label for="checkboxAbsence_<?= $abs['id'] ?>">
@@ -65,7 +65,6 @@ if (empty($groupes)) {
                         <label for="toggle3_<?= $id ?>" class="label-demander"></label>
 
                         <br><br>
-                        <!-- Zones de texte conditionnelles -->
                         <div class="texte-accepter">
                             <select name="motifs">
                                 <option value="transport">Transport</option>
@@ -90,3 +89,4 @@ if (empty($groupes)) {
         </div>
     <?php endforeach;
 } ?>
+
