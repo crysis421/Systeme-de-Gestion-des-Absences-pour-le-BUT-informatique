@@ -4,13 +4,26 @@
     font-size: 16px;
 }
 
-@media (min-width:760px) {
-    .container{
-        flex-direction: row;
-        font-size: 20px;
+@media (max-width: 900px) {
+    #haut {
+        flex-direction: column;  /* Blocs empilés verticalement */
+        align-items: center;     /* Centre horizontalement */
+    }
+
+    #profil, #donnees, #graphe {
+        width: 90%;    /* Blocs plus larges mais restent dans le rectangle */
+        margin-bottom: 15px;
+    }
+
+    #profil input,
+    #donnees input,
+    #graphe input,
+    #profil textarea,
+    #donnees textarea,
+    #graphe textarea {
+        font-size: 14px; /* Réduit un peu les textes pour tenir dans l'écran */
     }
 }
-
 /* === Structure de base pour coller le footer en bas === */
 html, body {
     height: 100%; /* Le document occupe toute la hauteur de la fenêtre */
@@ -45,22 +58,28 @@ h1 {
     justify-content: space-between; /* Crée un espace égal entre les éléments */
     align-items: flex-start; /* Aligne les éléments en haut du conteneur */
     background-color: #f1eeee; /* Couleur d’arrière-plan */
-    padding: 20px; /* Espace intérieur du conteneur */
+
     border: 1px solid #00aa00; /* Bordure verte */
     border-radius: 6px; /* Coins arrondis */
-    width: 80%; /* Largeur limitée à 90% de la page */
-    margin: 0 auto 30px auto; /* Centre horizontalement + espace en bas */
-    box-sizing: border-box; /* Inclut les bordures/paddings dans la largeur totale */
+
     height: auto;
+
+    width: 90%;        /* ou max-width: 800px pour limite max */
+    max-width: 100%;   /* pour éviter que ça dépasse sur mobile */
+    margin: 0 auto;    /* centrer horizontalement */
+    padding: 1rem;     /* espace intérieur */
+    box-sizing: border-box; /* inclut padding et border dans width */
+    overflow: hidden;
+
 }
 
 /* === Styles communs aux 3 blocs : profil, données, graphe === */
 #profil, #donnees, #graphe {
-    padding: 20px; /* Espace intérieur */
-    border: 1px solid #00aa00; /* Bordure verte */
-    border-radius: 6px; /* Coins arrondis */
-    box-sizing: border-box; /* Évite que le padding agrandisse la largeur */
-    margin-bottom: 20px; /* Espace entre les blocs (utile pour le responsive) */
+    box-sizing: border-box;
+    min-width: 200px;     /* Ne devient pas trop petit */
+    max-width: 100%;      /* Ne dépasse jamais le conteneur */
+    padding: 1rem;
+    margin-bottom: 20px;
 }
 
 #pourcentage{
@@ -90,6 +109,8 @@ ol{
     box-sizing: unset;
     padding-left: 26%;
     padding-right: 26%;
+    width: 100%;
+    text-align: center;
 }
 
 #stat{
@@ -172,6 +193,11 @@ details p, details img, details button {
     margin: 10px 0; /* Espacement vertical entre les éléments */
 }
 
+details p {
+    margin: 0.5rem 0;
+    word-wrap: break-word;
+}
+
 /* Effet visuel lorsque la section <details> est ouverte */
 details[open] summary {
     background-color: rgba(0,0,0,0.1); /* Fond légèrement vert */
@@ -201,6 +227,10 @@ details[open] summary {
         width: 90%; /* Plus large sur petit écran */
         margin-bottom: 15px; /* Espacement entre les blocs */
     }
+}
+
+#profil, #donnees {
+    width: 49%; /* presque moitié du rectangle */
 }
 
 input[type="email"],
@@ -338,4 +368,18 @@ div.alertes{
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
     transform: translateY(5px);
+}
+
+#profil input,
+#profil select,
+#profil textarea,
+#donnees input,
+#donnees select,
+#donnees textarea,
+#graphe input,
+#graphe select,
+#graphe textarea {
+    width: 100%;       /* Remplit le bloc */
+    max-width: 100%;   /* Ne dépasse jamais */
+    box-sizing: border-box; /* Inclut padding et border */
 }

@@ -167,6 +167,8 @@ label {
 
 #formFiltre{
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 /* Bouton de filtrage tout en bas */
@@ -181,8 +183,8 @@ label {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-left: -100%;
-    display: flex;
+    margin-left: 0;
+    display: block;
     margin-top: 23%;
 }
 
@@ -420,7 +422,8 @@ input[id^="zoom"]:checked ~ .fondu-noir {
 }
 
 select {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     padding: 10px 40px 10px 12px;
     font-size: 14px;
     font-family: inherit;
