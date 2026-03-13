@@ -6,13 +6,18 @@
 
 @media (max-width: 900px) {
     #haut {
+        display: none;
         flex-direction: column;  /* Blocs empilés verticalement */
-        align-items: center;     /* Centre horizontalement */
+        align-items: start;   /* Centre horizontalement */
     }
 
     #profil, #donnees, #graphe {
-        width: 90%;    /* Blocs plus larges mais restent dans le rectangle */
+        width: 50%;    /* Blocs plus larges mais restent dans le rectangle */
         margin-bottom: 15px;
+        box-sizing: unset;
+        min-width: 100px;     /* Ne devient pas trop petit */
+        max-width: 100%;      /* Ne dépasse jamais le conteneur */
+        padding: 0.5rem;
     }
 
     #profil input,
@@ -21,9 +26,10 @@
     #profil textarea,
     #donnees textarea,
     #graphe textarea {
-        font-size: 14px; /* Réduit un peu les textes pour tenir dans l'écran */
+        font-size: 2px; /* Réduit un peu les textes pour tenir dans l'écran */
     }
 }
+
 /* === Structure de base pour coller le footer en bas === */
 html, body {
     height: 100%; /* Le document occupe toute la hauteur de la fenêtre */
@@ -212,21 +218,6 @@ details[open] summary {
     width: 100%; /* S’étend sur toute la largeur de la page */
     color: black; /* Couleur du texte */
     box-sizing: border-box; /* Inclus bordure/padding dans la largeur */
-}
-
-/* === Mise en page responsive (pour tablette et mobile) === */
-@media (max-width: 900px) {
-    /* Le conteneur principal passe en colonne sur petit écran */
-    #haut {
-        flex-direction: column; /* Les blocs se superposent verticalement */
-        align-items: center; /* Centrage horizontal */
-    }
-
-    /* Chaque bloc occupe presque toute la largeur */
-    #profil, #donnees, #graphe {
-        width: 90%; /* Plus large sur petit écran */
-        margin-bottom: 15px; /* Espacement entre les blocs */
-    }
 }
 
 #profil, #donnees {
