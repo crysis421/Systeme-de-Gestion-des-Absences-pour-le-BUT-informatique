@@ -4,9 +4,7 @@ $numero = $_GET['numero'];
 $user = new AbsenceModel();
 
 $result = $user->getEmailbyUser($numero);
-if ($result) {
-    echo "ce numéro correspond  à " . $result;
-}else{
+if (!$result) {
     echo "ce ne numéro n'est pas attribué";
 }
 
