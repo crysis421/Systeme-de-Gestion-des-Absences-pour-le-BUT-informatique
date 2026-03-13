@@ -60,7 +60,7 @@ foreach ($justificatifs as $justif) {
             $nombreAbs++;
         }
 
-        $groupes[$id]['description'] = $nombreAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
+        $groupes[$id]['description'] = $nbAbs . " absence" . ($nbAbs > 1 ? "s" : "") . ", du $dStart au $dEnd";
     }
 }
 
