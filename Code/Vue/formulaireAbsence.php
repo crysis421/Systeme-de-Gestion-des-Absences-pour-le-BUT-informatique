@@ -134,9 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div id="infoAbsence">
             <br>
-            <label for="id">Numéro d'étudiant :
-                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
-            </label><br><br>
+            <label for="id">Numéro d'étudiant :   <p id="autre"  style="color:#09572b ;font-size: 80%"></p><br>
+                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" onkeyup="verifierEtudiant()" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
+            </label><br>
 
             <label for="">Du : <p style="color: red;display: none" id="erreur1">Veuillez d'abord remplir ce champ</p>
                 <input type="date" id="debut" name="datedebut" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-3].$_GET['date'][-4]."-".$_GET['date'][-7].$_GET['date'][-9]);} else{echo htmlspecialchars($datedebut);} ?>" required>
