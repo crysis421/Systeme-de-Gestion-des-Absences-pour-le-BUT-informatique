@@ -14,7 +14,7 @@ require_once '../Presentation/lesInfoEtu.php';
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../CSS/compte.css">
     <title>compte secretaire</title>
