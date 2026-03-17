@@ -137,7 +137,8 @@ foreach ($groupes as $justif):
                     </div>
 
                     <div class="texte-demander">
-                        Motif de la demande : <textarea name="motif_demande"></textarea>
+                        <a>Motif de la demande :</a>
+                        <textarea name="motif_demande"></textarea>
                         <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                     </div>
                     <div class="ligne2"></div>

@@ -18,10 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
 } else {
     $justificatifs = $model->getJustificatifsAttente();
 }
-
 $justificatifsDemande = $model->getJustificatifsDemande();
 
-echo count($justificatifs);
+
 $groupes = [];
 foreach ($justificatifs as $justif) {
     $id = $justif['idjustificatif'];
