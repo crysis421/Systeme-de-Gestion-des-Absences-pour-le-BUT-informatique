@@ -690,21 +690,6 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getNombreAJustifier()
-    {
-        $sql = "SELECT COUNT(*) AS totalJustifs 
-            FROM justificatif";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        echo $result["totalJustifs"];
-
-        return $result ? (int)$result['totalJustifs'] : 0;
-    }
-
 }
 $modelAbsence = new AbsenceModel();
 $modelAbsence->getEmailAttendu();
