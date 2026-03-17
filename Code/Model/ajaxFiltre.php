@@ -17,8 +17,7 @@ if ($dateDebut || $dateFin || $matiere || $prenom || $nom) {
 $groupes = [];
 foreach ($justificatifs as $justif) {
     $id = $justif['idjustificatif'];
-    $commentaire = $justif['commentaire'];
-    $absences = $justif['absences'];
+
     if (!isset($groupes[$id])) {
         $groupes[$id] = [
             'id' => $id,
@@ -63,6 +62,8 @@ if (empty($groupes)) {
 
 foreach ($groupes as $justif):
     $id = $justif['id'];
+    $commentaire = $justif['commentaire'];
+    $absences = $justif['absences'];
     ?>
     <div class="element">
         <details>
