@@ -87,8 +87,8 @@ require_once '../Presentation/lesInfoEtu.php';
                         <input id="valider" type="submit" value="valider">
                     </form>
                 </details>
-
             </details>
+
         </div>
 
         <div id="donnees">

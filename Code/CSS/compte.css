@@ -1,4 +1,4 @@
-.container{
+container{
     display: flex;
     flex-direction: column;
     font-size: 16px;
@@ -12,11 +12,11 @@
     }
 
     #profil, #donnees, #graphe {
-        width: 50%;    /* Blocs plus larges mais restent dans le rectangle */
+        width: 100%; /* Blocs plus larges mais restent dans le rectangle */
         margin-bottom: 15px;
         box-sizing: unset;
-        min-width: 100px;     /* Ne devient pas trop petit */
-        max-width: 100%;      /* Ne dépasse jamais le conteneur */
+        min-width: 100px; /* Ne devient pas trop petit */
+        max-width: 100%; /* Ne dépasse jamais le conteneur */
         padding: 0.5rem;
     }
 
@@ -27,6 +27,15 @@
     #donnees textarea,
     #graphe textarea {
         font-size: 2px; /* Réduit un peu les textes pour tenir dans l'écran */
+    }
+
+    summary {
+        width: 200%; /* Blocs plus larges mais restent dans le rectangle */
+        margin-bottom: 15px;
+        box-sizing: unset;
+        min-width: 100px; /* Ne devient pas trop petit */
+        max-width: 200%; /* Ne dépasse jamais le conteneur */
+        padding: 0.5rem;
     }
 }
 
@@ -76,7 +85,6 @@ h1 {
     padding: 1rem;     /* espace intérieur */
     box-sizing: border-box; /* inclut padding et border dans width */
     overflow: hidden;
-
 }
 
 /* === Styles communs aux 3 blocs : profil, données, graphe === */
@@ -325,6 +333,7 @@ div.alertes{
     color: black;
     text-shadow: 4px 4px 10px rgba(0,0,0,0.9);
 }
+
 
 #Rappeljustification{
     background-color:#c7d685;

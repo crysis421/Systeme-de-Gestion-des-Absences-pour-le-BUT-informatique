@@ -32,14 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
                 <b>entrer votre Code secret reçu dans votre boite mail  :</b> <br>
                 <br>
-                <input type="number"  name="code"  style="width :300px" required>
+                <input type="number" name="code" style="width :300px" required>
             </label><br>
             <br>
             <div >
                 <input type="submit" value="valider" >
             </div>
         </form>
-        <div >
+        <div>
             <a href="MDPoublierEtudiant.php"><button>retour</button></a>
         </div>
 
