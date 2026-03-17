@@ -296,7 +296,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-        WHERE t.attente = TRUE
+        WHERE t.attente = TRUE AND a.verrouille = FALSE
         ";
 
         $params = [];
@@ -688,21 +688,6 @@ class AbsenceModel
         $stmt->bindParam(":p", $prof);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getNombreAJustifier()
-    {
-        $sql = "SELECT COUNT(*) AS totalJustifs 
-            FROM justificatif";
-
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        echo $result["totalJustifs"];
-
-        return $result ? (int)$result['totalJustifs'] : 0;
     }
 
 }

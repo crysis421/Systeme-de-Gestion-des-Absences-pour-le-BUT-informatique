@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["boutonFiltre"])) {
 
 $justificatifsDemande = $model->getJustificatifsDemande();
 
+echo count($justificatifs);
 $groupes = [];
 foreach ($justificatifs as $justif) {
     $id = $justif['idjustificatif'];
