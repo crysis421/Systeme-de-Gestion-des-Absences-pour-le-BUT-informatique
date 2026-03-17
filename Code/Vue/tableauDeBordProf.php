@@ -24,15 +24,15 @@ $nomDesMois = [ "January" => "Janvier",
     "November" => "Novembre",
     "December" => "Décembre"];
 
-if (!isset($_POST['mois'])) {
+if (!isset($_POST['moismoi'])) {
     $M = date("m");
     $Y = date("Y");
 } else {
-    $M = $_POST['mois'];
+    $M = $_POST['moismoi'];
     $_SESSION['mois'] = $M;
-    if ($_POST['mois'] < 8 and date('m') >= 8) {
+    if ($_POST['moismoi'] < 8 and date('m') >= 8) {
         $Y = date("Y") + 1;
-    } elseif ($_POST['mois'] >= 8 and date('m') < 8) {
+    } elseif ($_POST['moismoi'] >= 8 and date('m') < 8) {
         $Y = $Y - 1;
     }
     $_SESSION['year'] = $Y;
@@ -71,7 +71,7 @@ require "../Presentation/getAbsenceDunControle.php";
 
     <form action="tableauDeBordProf.php" method="post">
         <label>
-            Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
+            Choix du mois : <input type="number" min="1" max="12" name="moismoi" id="moismoi" required>
         </label>
         <input type="submit" value="OK" name="jour">
     </form>
