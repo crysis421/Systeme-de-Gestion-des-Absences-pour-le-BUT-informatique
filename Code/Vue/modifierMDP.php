@@ -7,7 +7,6 @@
 <body>
 <h1>Réinitialiser votre Mot de passe</h1>
 
-
 <?php
 session_start();
 if (isset($_SESSION['erreur'])) {

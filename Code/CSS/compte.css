@@ -4,40 +4,7 @@ container{
     font-size: 16px;
 }
 
-@media (max-width: 900px) {
-    #haut {
-        display: none;
-        flex-direction: column;  /* Blocs empilés verticalement */
-        align-items: start;   /* Centre horizontalement */
-    }
 
-    #profil, #donnees, #graphe {
-        width: 100%; /* Blocs plus larges mais restent dans le rectangle */
-        margin-bottom: 15px;
-        box-sizing: unset;
-        min-width: 100px; /* Ne devient pas trop petit */
-        max-width: 100%; /* Ne dépasse jamais le conteneur */
-        padding: 0.5rem;
-    }
-
-    #profil input,
-    #donnees input,
-    #graphe input,
-    #profil textarea,
-    #donnees textarea,
-    #graphe textarea {
-        font-size: 2px; /* Réduit un peu les textes pour tenir dans l'écran */
-    }
-
-    summary {
-        width: 200%; /* Blocs plus larges mais restent dans le rectangle */
-        margin-bottom: 15px;
-        box-sizing: unset;
-        min-width: 100px; /* Ne devient pas trop petit */
-        max-width: 200%; /* Ne dépasse jamais le conteneur */
-        padding: 0.5rem;
-    }
-}
 
 /* === Structure de base pour coller le footer en bas === */
 html, body {
@@ -98,6 +65,8 @@ h1 {
 
 #pourcentage{
     margin-left: auto;
+    flex-wrap: wrap;
+    text-align: left;
 }
 
 #li:hover + #test{
@@ -382,4 +351,151 @@ div.alertes{
     width: 100%;       /* Remplit le bloc */
     max-width: 100%;   /* Ne dépasse jamais */
     box-sizing: border-box; /* Inclut padding et border */
+}
+
+#camembert {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ✅ centre tout */
+    text-align: center;
+    width: 100%;
+}
+
+/* 🔥 titre */
+#camembert h4 {
+    margin-bottom: 10px;
+}
+
+/* 🔥 SVG centré */
+#camembert svg {
+    display: block;
+    margin: 10px auto;
+}
+
+/* 🔥 texte sous le graphe */
+#camembert #pourcentage {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* 🔥 liste */
+#camembert ol {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 300px; /* optionnel */
+}
+
+/* 🔥 chaque ligne */
+#camembert li {
+    display: flex;
+    justify-content: space-between; /* texte gauche / valeur droite */
+    align-items: center;
+    width: 100%;
+    margin: 5px 0;
+}
+
+/* 🔥 enlève styles parasites */
+#li {
+    display: flex;
+}
+
+ol {
+    display: block; /* ❌ enlève inline-grid */
+}
+
+
+@media (max-width: 768px) {
+
+
+    #profil,
+    #donnees,
+    #graphe {
+        width: 95%; /* 🔥 évite d’être collé aux bords */
+        margin: 10px auto; /* 🔥 centre horizontalement */
+        padding: 1rem;
+        min-width: unset;
+        text-align: left;
+    }
+
+    /* 🔥 taille titres */
+    summary h1 {
+        font-size: 1.2rem;
+    }
+
+    /* 🔥 image profil adaptée */
+    #profil img {
+        width: 60px;
+        height: 60px;
+    }
+
+    #graphe {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px auto;
+        padding: 1rem;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    #stat {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    #graphe details {
+        display: block; /* enlève comportement bizarre */
+        width: 100%;
+        text-align: center;
+    }
+
+    #graphe * {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    #haut {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* 🔥 blocs plus larges ET centrés */
+    #profil,
+    #donnees {
+        width: 95%;
+        margin: 10px auto;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* 🔥 corrige le formulaire (TRÈS IMPORTANT) */
+    #profil form {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 🔥 empêche les inputs de déborder */
+    #profil input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 🔥 bouton "modifier" */
+    #modifier summary {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        min-height: 45px;
+        line-height: 1.4;
+    }
+
+    /* 🔥 évite que le texte soit coupé */
+    h1, p, summary {
+        overflow-wrap: break-word;
+    }
+
 }
