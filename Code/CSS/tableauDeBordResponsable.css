@@ -3,12 +3,6 @@
     flex-direction: column;
 }
 
-@media (min-width:760px) {
-
-    .container{
-        flex-direction: row;
-    }
-}
 
 div {
     font-size: 20px;
@@ -84,7 +78,6 @@ summary.filtrer {
 .credits {
     background-color: #007aa5;
     font-size: 14px;
-    transition: background-color 0.5s ease-out;
     transition: font-size 0.5s ease-out;
 }
 
@@ -104,22 +97,11 @@ summary.filtrer:hover .Filtre {
     opacity: 1;
 }
 
-/* Conteneur principal des filtres */
-div.filtrage {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1em;
-    margin-top: 1em;
-    border-top: 1px solid #ccc;
-    padding-top: 1em;
-}
 
-/* Chaque bloc de filtre (date, matière, élève) */
 div.dateFiltre,
 div.matiereFiltre,
 div.eleveFiltre {
-    flex: 1;
+
     min-width: 250px;
     background: white;
     border: 1px solid #ddd;
@@ -129,16 +111,15 @@ div.eleveFiltre {
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
-/* Titres internes */
-div.filtrage h3 {
+
+.filtrage h3 {
     margin: 0.5em 0 0.3em;
     font-size: 14px;
     color: #444;
 }
 
-/* Champs de texte et date */
-div.filtrage input[type="text"],
-div.filtrage input[type="date"] {
+.filtrage input[type="text"],
+.filtrage input[type="date"] {
     width: 100%;
     padding: 0.4em;
     border: 1px solid #bbb;
@@ -148,13 +129,12 @@ div.filtrage input[type="date"] {
     transition: border-color 0.2s ease;
 }
 
-div.filtrage input[type="text"]:focus,
-div.filtrage input[type="date"]:focus {
+.filtrage input[type="text"]:focus,
+.filtrage input[type="date"]:focus {
     border-color: #0078d7;
     outline: none;
 }
 
-/* Cases à cocher et labels */
 input[type="checkbox"] {
     accent-color: #0078d7;
     margin-right: 6px;
@@ -166,26 +146,30 @@ label {
 }
 
 #formFiltre{
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
-/* Bouton de filtrage tout en bas */
 .bouton-filtrage {
     width: 100%;
     background: #0078d7;
+    flex-wrap: wrap-reverse;
     color: white;
     font-size: 15px;
     font-weight: 600;
     padding: 0.8em 0;
     border: none;
     border-radius: 6px;
+    margin-top: 10px;
     cursor: pointer;
     transition: background 0.3s ease;
     margin-left: 0;
     display: block;
-    margin-top: 23%;
 }
 
 .bouton-filtrage:hover {
@@ -199,7 +183,7 @@ li {
     outline-color: black;
     border-start-start-radius: 15px;
     border-start-end-radius: 15px;
-    font-family: "Latin Modern Math";
+    font-family: "Latin Modern Math", serif;
     font-size: 1.2rem;
 }
 
@@ -278,8 +262,9 @@ a:link {
     border-color: black;
     border-style: solid;
     border-width: 2px;
+    min-width: 220px;
     width: 50%;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     height: auto;
     left: 25%;
     border-radius: 10px;
@@ -295,7 +280,7 @@ a:link {
     border-style: solid;
     border-width: 2px;
     width: 50%;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     height: auto;
     left: 25%;
     border-radius: 10px;
@@ -440,9 +425,13 @@ select {
 
 textarea {
     border: none;
+    display: block;
     padding: 1rem;
     border-radius: 1rem;
     background: #e8e8e8;
+    resize: none;
+    width: 350px;
+    height: 75px;
     transition: 0.3s;
 }
 
@@ -570,7 +559,7 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     box-sizing: border-box;
     color: white;
     cursor: pointer;
-    display: inline-flex;
+    display: block;
     height: 48px;
     justify-content: center;
     line-height: 1;
@@ -592,6 +581,7 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     margin-top: 10px;
 }
 
+
 .bouton-envoye:focus {
     box-shadow: #d6d6e7 0 0 0 1.5px inset,
     rgba(45, 35, 66, 0.4) 0 2px 4px,
@@ -612,7 +602,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 }
 
 .filtrage {
-    max-width: 300px;
     margin: 20px;
     padding: 5px;
 }
@@ -633,18 +622,7 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     background: #3730a3;
 }
 
-@media (max-width: 768px) {
-    .filtrage {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-    ul {
-        font-size: 1.1rem;
-    }
-    li {
-        font-size: 1.3rem;
-    }
-}
+
 
 details[open] .details,
 details[open] .filtrage {
@@ -659,4 +637,199 @@ details[open] .filtrage {
     100% {
         opacity: 1;
     }
+}
+
+
+
+@media (max-width: 840px) {
+
+    li {
+        display: inline-block;
+        padding: 10px;
+        outline-style: groove;
+        outline-color: black;
+        border-start-start-radius: 0px;
+        border-start-end-radius: 0px;
+        border-end-start-radius: 0px;
+        border-end-end-radius: 0px;
+        font-family: "Latin Modern Math", serif;
+        font-size: 1.5rem;
+        margin-top: 3px;
+    }
+
+    ul {
+        text-align: left;
+        padding-bottom: 3px;
+        border-bottom-style: solid;
+        border-bottom-width: 4px;
+        padding-left: 3px;
+        border-color: #c6a04d;
+        margin-bottom: 100px;
+    }
+
+    select {
+        display: flex;
+        position: relative;
+        width: calc(100% - 50px);
+    }
+
+    textarea {
+        width: calc(100% - 80px);
+    }
+
+    .bouton-envoye {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        appearance: none;
+        background-color: #0078d7;
+        border-radius: 4px;
+        border-width: 0;
+        width: calc(100% - 50px);
+        box-shadow: rgba(0, 35, 66, 0.2) 0 2px 4px,
+        rgba(0, 35, 66, 0.15) 0 7px 13px -3px,
+        #013965 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        height: 48px;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-decoration: none;
+        transition: box-shadow 0.15s,
+        transform 0.15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow, transform;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+}
+
+@media (max-width: 720px) {
+    #formFiltre{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-self: center;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) {
+
+
+    h1 {
+        font-size: 20px;
+    }
+
+
+    a {
+        font-size: 16px;
+    }
+
+    small {
+        font-size: 14px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+
+    #details {
+        width: 80%;
+        align-self: center;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        background: #f4f6f8;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 1em;
+        font-family: "Segoe UI", Roboto, sans-serif;
+        color: #333;
+        margin: 1em auto;
+        transition: all 0.3s ease;
+    }
+
+
+    #formFiltre{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+
+    .bouton-filtrage {
+        width: 100%;
+        background: #0078d7;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 0.8em 0;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        margin-left: 0;
+        position: relative;
+        display: flex;
+    }
+
+    .liste-absence {
+        position: relative;
+        background-color: white;
+        box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+        rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+        #d6d6e7 0 -3px 0 inset;
+        border-color: black;
+        border-style: solid;
+        border-width: 2px;
+        width: 88%;
+        padding-bottom: 0;
+        height: auto;
+        left: 5%;
+        border-radius: 10px;
+    }
+
+    .zoom-button {
+        display: inline-block;
+        width: 175px;
+        height: 200px;
+        background-image: url("/Image/justificatif.jpg");
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+    }
+
+    .liste-absence-demandes {
+        position: relative;
+        background-color: white;
+        box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,
+        rgba(45, 35, 66, 0.15) 0 7px 13px -3px,
+        #d6d6e7 0 -3px 0 inset;
+        border-color: black;
+        border-style: solid;
+        border-width: 2px;
+        width: 88%;
+        padding-bottom: 0;
+        height: auto;
+        left: 5%;
+        border-radius: 10px;
+    }
+
 }
