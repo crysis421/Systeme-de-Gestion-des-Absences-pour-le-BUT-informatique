@@ -76,6 +76,7 @@ require_once("../Presentation/responHist.php");
                 <div class="description-element">
                     <small><?= htmlspecialchars($justif['description']) ?></small><br>
                     <small>Soumis le <?= htmlspecialchars($justif['datesoumission']) ?></small>
+                    <a>
                     <?php if ($justif['reponse']=='accepte') {
                                                 $imageClass="histo-accepter";
                                                 $img = "/Image/justificatif.jpg";
@@ -90,6 +91,7 @@ require_once("../Presentation/responHist.php");
 
                                                 //echo "<img class=$imageClass src=$img><br/><br/>";
                                             } ?>
+                    </a>
                 </div>
 
                 <div class="ligne"></div>
