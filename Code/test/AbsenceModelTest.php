@@ -7,7 +7,6 @@ require "../Model/AbsenceModel.php";
 use AbsenceModel;
 use PHPUnit\Framework\TestCase;
 
-
 class AbsenceModelTest extends TestCase
 {
     private AbsenceModel $model; //Cette variable va contenir l'instance de la classe AbsenceModel
