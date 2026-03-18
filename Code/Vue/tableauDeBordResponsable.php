@@ -52,16 +52,16 @@ EOL;
                 <input type="date" id="endDate" name="dateFin" value="<?= date("Y-m-d") ?>">
             </div>
 
-            <div class="matiereFiltre">
-                <h3>Nom de la matière</h3>
-                <input type="text" id="inputMatiere" name="Matière">
-            </div>
-
             <div class="eleveFiltre">
                 <h3>Prénom</h3>
                 <input type="text" id="inputPrenom" name="PrenomInput">
                 <h3>Nom</h3>
                 <input type="text" id="inputNom" name="NomInput">
+            </div>
+
+            <div class="matiereFiltre">
+                <h3>Nom de la matière</h3>
+                <input type="text" id="inputMatiere" name="Matière">
             </div>
 
             <input class='bouton-filtrage' type="submit" value="Filtrer">
