@@ -43,9 +43,6 @@ class send
             echo "Erreur lors de l'envoi : HTTP $httpcode - $response";
         }
         */
-
         return ['httpcode' => $httpcode, 'response' => $response];
     }
-
-
 }

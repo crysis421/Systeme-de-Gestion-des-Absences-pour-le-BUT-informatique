@@ -44,17 +44,17 @@ ul {
 }
 
 .histo-accepter {
-    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background: url('/Image/AccepterSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .histo-refuser {
-    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background: url('/Image/RefuserSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .histo-demander {
-    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background: url('/Image/DemanderSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
@@ -336,7 +336,7 @@ summary::-webkit-details-marker {
     display: inline-block;
     width: 350px;
     height: 400px;
-    background-image: url("/Image/justificatif.jpg");
+    background-image: url("/Image/justificatif.webp");
     background-size: cover;
     background-position: center;
     cursor: pointer;
@@ -464,17 +464,17 @@ input[id^="toggle3_"]:checked + .label-demander {
 }
 
 .label-accepter {
-    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background: url('/Image/AccepterSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .label-refuser {
-    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background: url('/Image/RefuserSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .label-demander {
-    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background: url('/Image/DemanderSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
@@ -808,7 +808,7 @@ details[open] .filtrage {
         display: inline-block;
         width: 175px;
         height: 200px;
-        background-image: url("/Image/justificatif.jpg");
+        background-image: url("/Image/justificatif.webp");
         background-size: cover;
         background-position: center;
         cursor: pointer;

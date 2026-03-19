@@ -47,7 +47,7 @@ foreach ($groupes as $justif):
     <div class="element">
         <details>
             <summary class="top-layer">
-                <img src="/Image/profil_default.png" class="image-utilisateur" height="24">
+                <img src="/Image/profil_default.webp" class="image-utilisateur" height="24">
 
                 <a class="nom">
                     <b><?= htmlspecialchars($justif['nom']) ?> <?= htmlspecialchars($justif['prenom']) ?></b>

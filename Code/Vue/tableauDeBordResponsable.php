@@ -39,7 +39,7 @@ EOL;
 <!-- Filtrage ici ! -->
 <details id="details">
     <summary class="filtrer">
-        <img src="/Image/filter.png" alt="Filtre" class="Filtre" height="24">
+        <img src="/Image/filter.webp" alt="Filtre" class="Filtre" height="24">
         <a class="filtre-titre"><b>Filtrer</b></a><br>
     </summary>
 
@@ -91,7 +91,7 @@ EOL;
         <div class="element">
             <details>
                 <summary class="top-layer">
-                    <img src="/Image/profil_default.png" alt="avatar" class="image-utilisateur" height="24">
+                    <img src="/Image/profil_default.webp" alt="avatar" class="image-utilisateur" height="24">
                     <a class="nom"><b><?= htmlspecialchars($justif['nom']) ?> <?= htmlspecialchars($justif['prenom']) ?></b></a><br>
                     <div class="description-element">
                         <small><?= htmlspecialchars($justif['description']) ?></small>
@@ -105,20 +105,20 @@ EOL;
                         <details>
                             <summary>
                                 <a class="justificatif-texte">Justificatif</a>
-                                <img class="oeil" src="/Image/oeil.png" alt="Voir le justificatif">
+                                <img class="oeil" src="/Image/oeil.webp" alt="Voir le justificatif">
                             </summary>
 
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
-                                <img src="/Image/close.png" alt="Fermer le justificatif">
+                                <img src="/Image/close.webp" alt="Fermer le justificatif">
                             </label>
 
                             <br>
 
                             <div class="fondu-noir"></div>
-                            <img class="justificatif-image-big" src="/Image/justificatif.jpg" alt="Justificatif">
+                            <img class="justificatif-image-big" src="/Image/justificatif.webp" alt="Justificatif">
                         </details>
                         <?php foreach ($absences as $abs):
 

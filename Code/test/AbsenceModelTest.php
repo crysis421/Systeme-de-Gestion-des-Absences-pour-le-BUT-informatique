@@ -33,6 +33,4 @@ class AbsenceModelTest extends TestCase
     public function testgetAllMatiere(){
         $this->assertTrue(sizeof($this->model->getMatieres())>1);
     }
-
-
 }

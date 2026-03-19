@@ -37,7 +37,7 @@ require_once '../Presentation/lesInfoEtu.php';
         <div id="profil">
             <details>
                 <summary style="background-color: #bce6f6">
-                    <img src="/Image/profil-removebg-preview.png" alt="Photo de profil">
+                    <img src="/Image/profil-removebg-preview.webp" alt="Photo de profil">
                     <h1>Profil</h1>
                 </summary>
                 <p><b>Profil :</b> <?php echo htmlspecialchars($role); ?></p>
