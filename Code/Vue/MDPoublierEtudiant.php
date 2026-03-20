@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../test/send.php';
+require_once __DIR__ . '/../test/send.php';
 use test\send;
 $nombre = random_int(1, 10000); // génère un entier entre 1 et 100
 

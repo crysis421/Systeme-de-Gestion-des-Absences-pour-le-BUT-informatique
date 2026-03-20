@@ -3,13 +3,13 @@ session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
-require_once '../Model/AbsenceModel.php';
+require_once __DIR__ . '/../../Model/AbsenceModel.php';
 
 
 $model = new AbsenceModel();
 
 
-require_once '../Presentation/lesInfoEtu.php';
+require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,7 +23,7 @@ require_once '../Presentation/lesInfoEtu.php';
 
 <body>
 <header>
-    <?php require 'menuHorizontaleSecretaire.html'; ?>
+    <?php require __DIR__ . '/menuHorizontaleSecretaire.html'; ?>
 </header>
 <div style="display: flex; gap: 50%">
     <h1 class="secretaireTexte" style="margin-left: 1%">Compte secretaire</h1>

@@ -1,9 +1,9 @@
 <?php
 use Vue\Camembert;
-require_once "../Model/AbsenceModel.php";
-require_once '../test/send.php';
+require_once __DIR__ . "/../../Model/AbsenceModel.php";
+require_once __DIR__ . '/../../test/send.php';
 use test\send;
-require('Camembert.php');
+require __DIR__ . '/../Camembert.php';
 session_start();
 
 if (!isset($_SESSION["user"])) {
@@ -31,7 +31,7 @@ if(!isset($_POST['SemestreR'])){
     $_SESSION['semestreR']  = $_POST['SemestreR'];
     $semestreR = $_SESSION['semestreR'];
 }
-require_once("../Presentation/lesInfoResp.php");
+require_once __DIR__ . "/../../Presentation/lesInfoResp.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     $model = new AbsenceModel();

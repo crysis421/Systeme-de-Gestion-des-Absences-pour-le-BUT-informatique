@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Model/insertDataVT.php';
+require_once __DIR__ . '/../Model/insertDataVT.php';
 
 use Model\insertDataVT;
 

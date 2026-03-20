@@ -1,6 +1,6 @@
 <?php
-require_once "../Model/AbsenceModel.php";
-require_once '../test/send.php';
+require_once __DIR__ . "/../Model/AbsenceModel.php";
+require_once __DIR__ . '/../test/send.php';
 use test\send;
 
 

@@ -5,7 +5,7 @@ namespace Model;
 //Traitement des données d'une table CSV, en particulier celle de VT.
 //Elle transfère toutes les données sur la base
 
-require_once "Database.php";
+require_once __DIR__ . "/Database.php";
 
 use Model\Database;
 use mysql_xdevapi\Exception;

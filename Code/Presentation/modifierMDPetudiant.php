@@ -1,6 +1,6 @@
 <?php
 session_start(); // Démarrer la session
-require_once '../Model/AbsenceModel.php';
+require_once __DIR__ . '/../Model/AbsenceModel.php';
 
 // Vérifier quel formulaire a été soumis
 if (!isset($_POST['formulaire'])) {
@@ -62,7 +62,7 @@ switch ($_POST['formulaire']) {
     case 'formulaire3': // Formulaire sur modifierMDP.php
         if (!isset($_POST['email3'], $_POST['motDePasse3'], $_POST['confirmationMotDePasse3'])) {
             $_SESSION['erreur'] = "Données manquantes.";
-            header("Location: ../Vue/compteSecretaire.php");
+            header("Location: ../Vue/Secretaire/compteSecretaire.php");
             exit();
         }
 
@@ -72,7 +72,7 @@ switch ($_POST['formulaire']) {
 
         if ($motDePasse !== $confirmation) {
             $_SESSION['erreur'] = "Les mots de passe ne correspondent pas.";
-            header("Location: ../Vue/compteSecretaire.php");
+            header("Location: ../Vue/Secretaire/compteSecretaire.php");
             exit();
         }
 

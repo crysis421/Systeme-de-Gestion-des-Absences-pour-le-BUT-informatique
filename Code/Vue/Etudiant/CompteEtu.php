@@ -1,13 +1,13 @@
 <?php
 use Vue\Camembert;
-require('Camembert.php');
+require __DIR__ . '/../Camembert.php';
 
 session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
 
-require_once '../Presentation/lesInfoEtu.php';
+require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

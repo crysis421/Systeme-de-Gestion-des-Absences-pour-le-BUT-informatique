@@ -1,5 +1,5 @@
 <?php
-require_once("../Presentation/responHist.php");
+require_once __DIR__ . "/../../Presentation/responHist.php";
 ?>
 
 <!DOCTYPE html>

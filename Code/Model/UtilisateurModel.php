@@ -1,6 +1,6 @@
 <?php
 
-require_once "Database.php";
+require_once __DIR__ . "/Database.php";
 ///la classe trop nulle xdddd personne s'en sert :tete de mort: xddd
 class UtilisateurModel
 {

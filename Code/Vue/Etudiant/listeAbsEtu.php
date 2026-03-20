@@ -23,7 +23,7 @@ if (empty($result) ) {
 
     <main><br><br></main>
     <?php if($peuxCliquer){ ?>
-    <form action="../formulaireAbsence.php" method="GET">
+    <form action="formulaireAbsence.php" method="GET">
         <input type="submit"
                value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT).'/0'.$_SESSION['mois'].'/2024' ?>"
                id="jourbutton" name="date">

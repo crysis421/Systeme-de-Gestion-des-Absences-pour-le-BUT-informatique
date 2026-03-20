@@ -5,7 +5,7 @@ namespace Model;
 use PDO;
 use PDOException;
 
-require_once "Database.php";
+require_once __DIR__ . "/Database.php";
 
 class NewJustificatif
 {

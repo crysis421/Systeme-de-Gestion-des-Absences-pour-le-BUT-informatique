@@ -2,11 +2,11 @@
 <html lang="fr">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../CSS/connect.css">
+<link rel="stylesheet" href="../../CSS/connect.css">
 
 <body>
 <header>
-    <?php require_once("menuHorizontaleSecretaire.html"); ?>
+    <?php require_once __DIR__ . "/menuHorizontaleSecretaire.html" ?>
 </header>
 <main>
     <h1>Création de compte</h1>

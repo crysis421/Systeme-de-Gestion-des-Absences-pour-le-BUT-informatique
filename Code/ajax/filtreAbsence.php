@@ -1,5 +1,5 @@
 <?php
-require_once "../Model/AbsenceModel.php";
+require_once __DIR__ . "/../Model/AbsenceModel.php";
 
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;

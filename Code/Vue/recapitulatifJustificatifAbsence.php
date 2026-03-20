@@ -1,6 +1,6 @@
 <?php
-require_once '../Model/AbsenceModel.php';
-require_once '../Presentation/recapJustificatif.php';
+require_once __DIR__ . '/../Model/AbsenceModel.php';
+require_once __DIR__ . '/../Presentation/recapJustificatif.php';
 
 // Suppression d'un fichier si formulaire soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
     </div>
     <br>
     <div id="but">
-        <form action="formulaireAbsence.php" method="get">
+        <form action="Etudiant/formulaireAbsence.php" method="get">
             <button style="    background-color:red;
     color: white;
     border-style: solid;

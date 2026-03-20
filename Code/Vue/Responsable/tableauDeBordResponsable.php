@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION["user"])){
     header('Location: ../Vue/Connexion.php');
 }
-require_once "../Presentation/responTB.php"
+require_once __DIR__ . "/../../Presentation/responTB.php";
 ?>
 
 <!DOCTYPE html>

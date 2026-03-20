@@ -28,7 +28,7 @@ if(!isset($_POST['SemestreR'])){
     $_SESSION['semestreR']  = $_POST['SemestreR'];
     $semestreR = $_SESSION['semestreR'];
 }
-require_once("../Presentation/lesInfoProf.php");
+require_once __DIR__ . "/../../Presentation/lesInfoProf.php";
 
 
 ?>

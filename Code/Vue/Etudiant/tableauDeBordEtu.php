@@ -6,7 +6,7 @@ session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
-require "menuHorizontalEtu.html";
+require __DIR__ . "/menuHorizontalEtu.html";
 
 echo '<link rel="stylesheet" href="../../CSS/calendrier.css" />';
 
@@ -47,7 +47,7 @@ if (isset($_SESSION['mois'])) {
 $_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
 $mois = date_format($_SESSION['date'], "m");
 
-require "../Presentation/getAbsenceDuMois.php";
+require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
 
 ?>
 
@@ -166,7 +166,7 @@ require "../Presentation/getAbsenceDuMois.php";
 </table>
 <div id="res">
     <?php
-    require 'listeAbsEtu.php'; ?>
+    require __DIR__ . '/listeAbsEtu.php'; ?>
 </div>
 
 

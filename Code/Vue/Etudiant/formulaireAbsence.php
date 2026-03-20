@@ -108,12 +108,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/formulaire.css" />
+    <link rel="stylesheet" href="../../CSS/formulaire.css" />
     <title>Formulaire d'absence</title>
 </head>
 <body>
 <header>
-    <?php require 'menuHorizontalEtu.html'; ?>
+    <?php require __DIR__ . '/menuHorizontalEtu.html'; ?>
 </header>
 <main>
     <div id="titre">
@@ -236,7 +236,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer id="footer">
     <a style="color: black" href="https://www.uphf.fr/">&copy; 2025 Université polytechnique Haut de France/ IUT de Maubeuge.</a>
 </footer>
-<script src="../ajax/ajaxFormulaire.js"></script>
+<script src="../../ajax/ajaxFormulaire.js"></script>
 </body>
 </html>
 

@@ -1,5 +1,5 @@
 <?php
-require_once '../Model/AbsenceModel.php';
+require_once __DIR__ . '/../Model/AbsenceModel.php';
 session_start();
 
 //si on ne peut recuperer les infos on redirige vers le formulaire

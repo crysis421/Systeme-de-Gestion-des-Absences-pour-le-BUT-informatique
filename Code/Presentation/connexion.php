@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../Model/ComptesModel.php";
+require_once __DIR__ . "/../Model/ComptesModel.php";
 
 $erreur = "";
 
