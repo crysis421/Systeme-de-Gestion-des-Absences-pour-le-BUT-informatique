@@ -16,7 +16,7 @@ require_once '../Presentation/lesInfoEtu.php';
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/compte.css">
+    <link rel="stylesheet" href="../../CSS/compte.css">
     <title>Compte Secretaire</title>
 </head>
 
@@ -27,7 +27,7 @@ require_once '../Presentation/lesInfoEtu.php';
 </header>
 <div style="display: flex; gap: 50%">
     <h1 class="secretaireTexte" style="margin-left: 1%">Compte secretaire</h1>
-    <form style="margin-top: 1%" action="Connexion.php">
+    <form style="margin-top: 1%" action="../Connexion.php">
         <input type="submit" id="deconnexion" value="Deconnection">
     </form>
 </div>
@@ -59,7 +59,7 @@ require_once '../Presentation/lesInfoEtu.php';
                     <b id="annule">Modifier votre mot de passe</b>
                 </summary>
                 <h1></h1>
-                <form action="../Presentation/modifierMDPetudiant.php" method="post" >
+                <form action="../../Presentation/modifierMDPetudiant.php" method="post" >
                     <input type="hidden" name="formulaire" value="formulaire3">
                     <?php
                     if (isset($_SESSION['erreur'])) {

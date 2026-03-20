@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/formulaireVT.css">
+    <link rel="stylesheet" href="../../CSS/formulaireVT.css">
     <title>Ajout d'un FichierVT</title>
 </head>
 
@@ -16,7 +16,7 @@
 </header>
 <h1>Ajout d'un fichier VT</h1>
 
-<form action="../Presentation/upload.php" method="post" enctype="multipart/form-data">
+<form action="../../Presentation/upload.php" method="post" enctype="multipart/form-data">
     <label for="VT">
         FichierVT <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv" required >
     </label> <br>

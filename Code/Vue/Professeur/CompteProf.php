@@ -39,7 +39,7 @@ require_once("../Presentation/lesInfoProf.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/compte.css"/>
+    <link rel="stylesheet" href="../../CSS/compte.css"/>
     <title>Gestionnaire d'absence</title>
 </head>
 <body>
@@ -103,7 +103,7 @@ require_once("../Presentation/lesInfoProf.php");
         </details>
     </div>
 
-    <form action="Connexion.php" name="Deconnexion">
+    <form action="../Connexion.php" name="Deconnexion">
         <input id="deconnexion" type="submit" value="Déconnexion" style=" position:absolute; margin-left:50%;margin-right: 50%">
     </form>
 

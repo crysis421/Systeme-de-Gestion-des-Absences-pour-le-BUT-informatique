@@ -85,7 +85,7 @@ try {
 
             unset($_SESSION['formData']);
             ?>
-        <form action="../Vue/tableauDeBordEtu.php">
+        <form action="../Vue/Etudiant/tableauDeBordEtu.php">
             <input type="submit" value="OK">
         </form>
         <?php
@@ -93,7 +93,7 @@ try {
         } else {
             echo "Erreur lors de la création du justificatif (littéralement)";
             ?>
-            <form action="../Vue/tableauDeBordEtu.php">
+            <form action="../Vue/Etudiant/tableauDeBordEtu.php">
                 <input type="submit" value="OK">
             </form>
         <?php

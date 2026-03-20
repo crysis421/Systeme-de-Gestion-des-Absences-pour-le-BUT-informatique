@@ -15,7 +15,7 @@ require_once '../Presentation/lesInfoEtu.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/compte.css"/>
+    <link rel="stylesheet" href="../../CSS/compte.css"/>
     <title>Mon compte</title>
 </head>
 
@@ -27,7 +27,7 @@ require_once '../Presentation/lesInfoEtu.php';
 <main>
     <div style="display: flex">
         <h1 style=" width: 90%">Bonjour <?php echo htmlspecialchars($prenom); ?> ! 👋</h1>
-        <form style="width: 10%" id="form" action="Connexion.php" method="post">
+        <form style="width: 10%" id="form" action="../Connexion.php" method="post">
             <input id="deconnexion" type="submit" value="Déconnexion">
         </form>
     </div>
@@ -54,7 +54,7 @@ require_once '../Presentation/lesInfoEtu.php';
                         <b id="annuler">Modifier votre mot de passe</b>
                     </summary>
                     <h1></h1>
-                    <form id="form" action="../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
+                    <form id="form" action="../../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
                     <input type="hidden" name="formulaire" value="formulaire2">
                     <?php
                     if (isset($_SESSION['erreur'])) {

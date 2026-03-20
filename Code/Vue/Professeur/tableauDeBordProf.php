@@ -6,7 +6,7 @@ if(!isset($_SESSION["user"])){
 
 require('menuHorizontalProf.html');
 
-echo '<link rel="stylesheet" href="../CSS/calendrier.css" />';
+echo '<link rel="stylesheet" href="../../CSS/calendrier.css" />';
 
 $Y = date("Y");//On ne peut voir que notre année scolaire
 

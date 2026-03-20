@@ -17,19 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //endroit pour rediriger en fonction du role du user
         // ----- SECRETAIRE -----
         if ($res['role'] == 'secretaire') {
-            header("Location: ../Vue/formulaireVT.php");
+            header("Location: ../Vue/Secretaire/formulaireVT.php");
             exit();
             // ----- ELEVE -----
         } else if ($res['role'] == 'eleve') {
-            header("Location: ../Vue/tableauDeBordEtu.php");
+            header("Location: ../Vue/Etudiant/tableauDeBordEtu.php");
             exit();
 
             // ----- RESPONSABLE -----
         } else if ($res['role'] == 'respon') {
-            header("Location: ../Vue/tableauDeBordResponsable.php");
+            header("Location: ../Vue/Responsable/tableauDeBordResponsable.php");
             exit();
         }else if ($res['role'] == 'prof') {
-            header("Location: ../Vue/tableauDeBordProf.php");
+            header("Location: ../Vue/Professeur/tableauDeBordProf.php");
         }
     } else {
         $_SESSION["erreur"] = "Mot de passe incorrect";

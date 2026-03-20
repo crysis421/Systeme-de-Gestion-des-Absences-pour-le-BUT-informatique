@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 //Ce fichier est là pour le Tableau De Bord de l'étudiant
-echo '<link rel="stylesheet" href="../CSS/tableauDeBordResponsable.css">';
+echo '<link rel="stylesheet" href="../../CSS/tableauDeBordResponsable.css">';
 if(isset($_POST["result"])){
     $result = json_decode($_POST["result"],true);
     $_SESSION["jour"]=$_POST["jour"];
@@ -23,7 +23,7 @@ if (empty($result) ) {
 
     <main><br><br></main>
     <?php if($peuxCliquer){ ?>
-    <form action="formulaireAbsence.php" method="GET">
+    <form action="../formulaireAbsence.php" method="GET">
         <input type="submit"
                value="Justifier les absences du <?php echo str_pad(str_ireplace(' ','',$_SESSION['jour']),2,'0',STR_PAD_LEFT).'/0'.$_SESSION['mois'].'/2024' ?>"
                id="jourbutton" name="date">
@@ -48,7 +48,7 @@ if (empty($result) ) {
                 <summary class="top-layer">
                     <ol id="maListe">
                         <li class="elementDeListe" id="prof">
-                        <img src="../Image/profil_default.webp" alt="avatar"
+                        <img src="../../Image/profil_default.webp" alt="avatar"
                              class="image-utilisateur" height="24">
                         <a class="nom"><b><?= htmlspecialchars($absence['prof']);
                             if ($absence['estretard']) {

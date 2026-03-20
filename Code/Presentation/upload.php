@@ -59,14 +59,14 @@ if (isset($_POST["submit"]) and $_FILES["fileToUpload"]["type"] == 'text/csv') {
     echo $row . " Absences ont été téléchargées avec succès dans la base de données.<br> Dont " . $nbUtilisateur . " nouveaux utilisateurs et " . $nbCour . " nouveaux cours.";
 
     ?>
-    <form action="../Vue/formulaireVT.php" method="post" enctype="multipart/form-data">>
+    <form action="../Vue/Secretaire/formulaireVT.php" method="post" enctype="multipart/form-data">>
         <input type="submit" value="OK" name="OK">
     </form>
     <?php
 } else {
     echo "Aucun fichier n’a été téléchargé ou le type de fichier n’est pas pris en charge.";
     ?>
-    <form action="../Vue/formulaireVT.php" method="post" enctype="multipart/form-data">>
+    <form action="../Vue/Secretaire/formulaireVT.php" method="post" enctype="multipart/form-data">>
         <input type="submit" value="OK" name="OK">
     </form>
     <?php
