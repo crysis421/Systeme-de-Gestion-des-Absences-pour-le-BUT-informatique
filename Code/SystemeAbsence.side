@@ -1,0 +1,1166 @@
+{
+  "id": "c424af30-ef58-46ce-9e3d-a51e18ada41c",
+  "version": "2.0",
+  "name": "SystemeAbsence",
+  "url": "http://localhost:63342/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+  "tests": [{
+    "id": "5f2bccb6-4059-4b12-912d-59d2a3f1e078",
+    "name": "envoi justificatif correct",
+    "commands": [{
+      "id": "529f61ed-66de-4c81-b839-0205e6cb3140",
+      "comment": "",
+      "command": "open",
+      "target": "/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "896333be-e299-4d58-ad49-029c12097cf8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "602x1063",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2a665d26-e771-42aa-9832-249569e07bd2",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "55c00297-88b4-4d44-9a8a-03c0fed0694e",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "kilian.stievenard2@uphf.fr"
+    }, {
+      "id": "7ba21309-4c02-44c8-a349-5c19520d9ab2",
+      "comment": "",
+      "command": "click",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8abe3dc5-4f97-44c2-9bb4-b51ecaca4d52",
+      "comment": "",
+      "command": "type",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "72d3d7a2-23ee-4495-9d4f-8daa4b05f0ec",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(10)",
+      "targets": [
+        ["css=input:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='Connexion']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ac9a14f-86fe-42a9-be04-1c1e944ac12a",
+      "comment": "",
+      "command": "click",
+      "target": "id=mois",
+      "targets": [
+        ["id=mois", "id"],
+        ["name=mois", "name"],
+        ["css=#mois", "css:finder"],
+        ["xpath=//input[@id='mois']", "xpath:attributes"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86fdb700-ddb9-4bb9-a5c9-0e68e1758eb3",
+      "comment": "",
+      "command": "type",
+      "target": "id=mois",
+      "targets": [
+        ["id=mois", "id"],
+        ["name=mois", "name"],
+        ["css=#mois", "css:finder"],
+        ["xpath=//input[@id='mois']", "xpath:attributes"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "a1217702-2248-43a0-81a5-c2d72113f6bd",
+      "comment": "",
+      "command": "click",
+      "target": "name=jour",
+      "targets": [
+        ["name=jour", "name"],
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='jour']", "xpath:attributes"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1bbfea7-28a6-4f6f-9055-1789def43d58",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) > td:nth-child(5) #jour",
+      "targets": [
+        ["css=tr:nth-child(3) > td:nth-child(5) #jour", "css:finder"],
+        ["xpath=(//input[@id='jour'])[6]", "xpath:attributes"],
+        ["xpath=//td[5]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "41df5c76-0f72-448f-887a-3c1caaeb9c7e",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,11)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c3e78bf7-68b4-4da9-b67a-98bff987565e",
+      "comment": "",
+      "command": "click",
+      "target": "id=jourbutton",
+      "targets": [
+        ["id=jourbutton", "id"],
+        ["name=date", "name"],
+        ["css=#jourbutton", "css:finder"],
+        ["xpath=//input[@id='jourbutton']", "xpath:attributes"],
+        ["xpath=//div[@id='res']/form/input", "xpath:idRelative"],
+        ["xpath=//div/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca8c6e10-567e-46e0-951e-794d7132d0a1",
+      "comment": "",
+      "command": "click",
+      "target": "name=commentaire",
+      "targets": [
+        ["name=commentaire", "name"],
+        ["css=textarea", "css:finder"],
+        ["xpath=//textarea[@name='commentaire']", "xpath:attributes"],
+        ["xpath=//div[@id='infoAbsence']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d102189-2978-4bf1-8677-ac487e955c9e",
+      "comment": "",
+      "command": "type",
+      "target": "name=commentaire",
+      "targets": [
+        ["name=commentaire", "name"],
+        ["css=textarea", "css:finder"],
+        ["xpath=//textarea[@name='commentaire']", "xpath:attributes"],
+        ["xpath=//div[@id='infoAbsence']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "ok"
+    }, {
+      "id": "718bd146-b1e6-4290-b274-96fdfb255b2b",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit",
+      "targets": [
+        ["id=submit", "id"],
+        ["css=#submit", "css:finder"],
+        ["xpath=//input[@id='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='signature']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0236d4cb-fa81-49d5-9009-d99e8b5f9433",
+    "name": "testConnexion",
+    "commands": [{
+      "id": "890ccd01-fbb6-4c8d-bd20-be1f8508486d",
+      "comment": "",
+      "command": "open",
+      "target": "/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "82db99c1-3799-49b3-9c16-518cfd9f79cf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "702x1063",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0fea6450-1020-4fe7-b606-ce4282c1b4a7",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fbf63efc-c16d-4a5e-a96b-195dd357e089",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "kilian.stievenard2@uphf.fr"
+    }, {
+      "id": "dafca472-dd96-4d96-8625-5a4d191fbac6",
+      "comment": "",
+      "command": "click",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b7e52de-15d0-427e-96c0-c856c01573ec",
+      "comment": "",
+      "command": "type",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "c9178fd7-7fc5-44a0-945b-6ccdb8afe875",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(10)",
+      "targets": [
+        ["css=input:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='Connexion']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b38ec59a-5301-48a8-b969-2cb71443b02c",
+      "comment": "Presence d'un message d'erreur",
+      "command": "click",
+      "target": "id=erreur",
+      "targets": [
+        ["id=erreur", "id"],
+        ["css=#erreur", "css:finder"],
+        ["xpath=//p[@id='erreur']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[3]/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Mot de passe incorrect')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4cce2dc8-2011-4308-9e2f-56ccb2f181fe",
+    "name": "envoi justificatif incorrect",
+    "commands": [{
+      "id": "a7bc3821-74ae-4ec8-bcc4-65d466af729b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:63342/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "41261428-fba2-4a2d-9c9d-3e93becb5629",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "702x1063",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0eec6767-ad93-4dc6-874c-393ea7ac5556",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a1d16bf5-3f07-498a-ba11-a2331fded05b",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "kilian.stievenard2@uphf.fr"
+    }, {
+      "id": "8ae673cc-7f67-42b2-8680-9c7139efe992",
+      "comment": "",
+      "command": "click",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e5e9109-6e0c-4be3-8af6-5107ee94fd92",
+      "comment": "",
+      "command": "type",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "bd8d3938-915d-4088-be72-be1451daea88",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(10)",
+      "targets": [
+        ["css=input:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='Connexion']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a72445bd-3874-4fa6-8df5-e34d6b0fb3df",
+      "comment": "",
+      "command": "click",
+      "target": "id=mois",
+      "targets": [
+        ["id=mois", "id"],
+        ["name=mois", "name"],
+        ["css=#mois", "css:finder"],
+        ["xpath=//input[@id='mois']", "xpath:attributes"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8576ef39-d53d-46a8-870a-9995988d8680",
+      "comment": "",
+      "command": "type",
+      "target": "id=mois",
+      "targets": [
+        ["id=mois", "id"],
+        ["name=mois", "name"],
+        ["css=#mois", "css:finder"],
+        ["xpath=//input[@id='mois']", "xpath:attributes"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "a5e12002-d339-40dc-99d4-3aa17ff01831",
+      "comment": "",
+      "command": "click",
+      "target": "name=jour",
+      "targets": [
+        ["name=jour", "name"],
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='jour']", "xpath:attributes"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "20808043-a5be-4cc1-beb2-af16f9c60827",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) > td:nth-child(5) #jour",
+      "targets": [
+        ["css=tr:nth-child(3) > td:nth-child(5) #jour", "css:finder"],
+        ["xpath=(//input[@id='jour'])[6]", "xpath:attributes"],
+        ["xpath=//td[5]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6fdea26b-06ec-4148-a65c-638c816d8e55",
+      "comment": "",
+      "command": "click",
+      "target": "id=jourbutton",
+      "targets": [
+        ["id=jourbutton", "id"],
+        ["name=date", "name"],
+        ["css=#jourbutton", "css:finder"],
+        ["xpath=//input[@id='jourbutton']", "xpath:attributes"],
+        ["xpath=//div[@id='res']/form/input", "xpath:idRelative"],
+        ["xpath=//div/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2451f7cf-3eab-4cb3-be61-840814153f57",
+      "comment": "",
+      "command": "type",
+      "target": "id=fin",
+      "targets": [
+        ["id=fin", "id"],
+        ["name=fin", "name"],
+        ["css=#fin", "css:finder"],
+        ["xpath=//input[@id='fin']", "xpath:attributes"],
+        ["xpath=//div[@id='infoAbsence']/label[3]/input", "xpath:idRelative"],
+        ["xpath=//label[3]/input", "xpath:position"]
+      ],
+      "value": "2024-02-05"
+    }, {
+      "id": "814968e0-a369-46a0-83e9-9215f21f1ffa",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit",
+      "targets": [
+        ["id=submit", "id"],
+        ["css=#submit", "css:finder"],
+        ["xpath=//input[@id='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='signature']/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "61f76ab7-ddd2-4c9e-af3e-f93745afeed0",
+      "comment": "",
+      "command": "click",
+      "target": "id=erreur",
+      "targets": [
+        ["id=erreur", "id"],
+        ["css=#erreur", "css:finder"],
+        ["xpath=//p[@id='erreur']", "xpath:attributes"],
+        ["xpath=//main/p", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4e1a19b6-824f-4340-8af6-2b6f3acc3eb8",
+    "name": "Acceptation d'un justificatif",
+    "commands": [{
+      "id": "2d94c943-c113-428b-a6a2-a7878f826ef4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:63342/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d9de0910-117b-4628-aacb-8eebd6507696",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "702x1063",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "233260cf-b910-4ec7-b526-99e7df5d6d82",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7aa6ec6-0ce7-4701-8605-d872a5f50a95",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "respon@uphf.fr"
+    }, {
+      "id": "3cdd651d-49cd-4ae3-9a98-f6fe29f26d4f",
+      "comment": "",
+      "command": "click",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "40015dec-7989-4ad5-a69b-16344fb7739c",
+      "comment": "",
+      "command": "type",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "2ac3845c-67b2-4813-8067-1a16d1166134",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(10)",
+      "targets": [
+        ["css=input:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='Connexion']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5874d343-25ed-4f94-bc77-fcb8181a8f3b",
+      "comment": "",
+      "command": "click",
+      "target": "css=#conteneurAbsences .description-element",
+      "targets": [
+        ["css=#conteneurAbsences .description-element", "css:finder"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/summary/div", "xpath:idRelative"],
+        ["xpath=//summary/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f3508b8-6f67-42e5-88f4-8e3f362c71a4",
+      "comment": "",
+      "command": "click",
+      "target": "css=#conteneurAbsences .oeil",
+      "targets": [
+        ["css=#conteneurAbsences .oeil", "css:finder"],
+        ["xpath=//img[@alt='Voir le justificatif']", "xpath:img"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/div/details/summary/img", "xpath:idRelative"],
+        ["xpath=//details/div/div/details/summary/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e19c134-08bb-4080-949c-884f7dfa635b",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(6) > b",
+      "targets": [
+        ["css=a:nth-child(6) > b", "css:finder"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/div/details/a/b", "xpath:idRelative"],
+        ["xpath=//details/a/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Commentaire :')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "19233721-869d-441f-a3d5-04bbadba5aba",
+      "comment": "",
+      "command": "click",
+      "target": "id=checkboxAbsence_10736",
+      "targets": [
+        ["id=checkboxAbsence_10736", "id"],
+        ["css=#checkboxAbsence_10736", "css:finder"],
+        ["xpath=//input[@id='checkboxAbsence_10736']", "xpath:attributes"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d650a05-1dfe-4002-ac24-5c9e358d5266",
+      "comment": "",
+      "command": "click",
+      "target": "id=checkboxAbsence_10735",
+      "targets": [
+        ["id=checkboxAbsence_10735", "id"],
+        ["name=checkboxAbsence[]", "name"],
+        ["css=#checkboxAbsence_10735", "css:finder"],
+        ["xpath=//input[@id='checkboxAbsence_10735']", "xpath:attributes"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "994807ca-de4b-425b-9af8-ebd9b4cda534",
+      "comment": "",
+      "command": "click",
+      "target": "id=checkboxAbsence_10735",
+      "targets": [
+        ["id=checkboxAbsence_10735", "id"],
+        ["name=checkboxAbsence[]", "name"],
+        ["css=#checkboxAbsence_10735", "css:finder"],
+        ["xpath=//input[@id='checkboxAbsence_10735']", "xpath:attributes"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c35e8651-fba8-42ed-8126-9a4a7d073006",
+      "comment": "",
+      "command": "click",
+      "target": "id=checkboxAbsence_10736",
+      "targets": [
+        ["id=checkboxAbsence_10736", "id"],
+        ["css=#checkboxAbsence_10736", "css:finder"],
+        ["xpath=//input[@id='checkboxAbsence_10736']", "xpath:attributes"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d361cd4-4d6c-4f0a-9dc1-e9e7d3ab3708",
+      "comment": "",
+      "command": "click",
+      "target": "css=.label-accepter",
+      "targets": [
+        ["css=.label-accepter", "css:finder"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/label[3]", "xpath:idRelative"],
+        ["xpath=//label[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6c44bfeb-e138-4ae3-9441-47ffa0db69ee",
+      "comment": "",
+      "command": "click",
+      "target": "name=motifs",
+      "targets": [
+        ["name=motifs", "name"],
+        ["css=select", "css:finder"],
+        ["xpath=//select[@name='motifs']", "xpath:attributes"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "90a92d66-5510-4d96-b486-5633ecf13258",
+      "comment": "",
+      "command": "select",
+      "target": "name=motifs",
+      "targets": [],
+      "value": "label=Malade"
+    }, {
+      "id": "88c004c0-3a9b-41a5-a8c7-702b51e3fdc8",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(2)",
+      "targets": [
+        ["css=option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='malade']", "xpath:attributes"],
+        ["xpath=//div[@id='conteneurAbsences']/div/details/div/form/div/select/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Malade')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d50edbf0-7a23-4d1a-8130-a94a99446e91",
+    "name": "Creation Compte",
+    "commands": [{
+      "id": "80f2ce79-b391-4918-a1f0-f893d75a2861",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:63342/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "19b7d700-18bb-4645-8dd9-1946cc6cec62",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "702x1063",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3845727c-4bbe-46f3-b4c7-d71dd1b5ef1c",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "71f499c3-d04c-4a71-a4dc-938e73907bd0",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "delphine@uphf.fr"
+    }, {
+      "id": "1be19c74-7059-473f-bc64-f67a1a228421",
+      "comment": "",
+      "command": "click",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f87538a-fd18-4d8a-9229-487a885cd498",
+      "comment": "",
+      "command": "type",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "54e0cd00-9450-4fbc-9e67-c5b4375eb01e",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(10)",
+      "targets": [
+        ["css=input:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='Connexion']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "91b724e8-96bd-418a-abd9-79a25da916b9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.pages:nth-child(2) > li",
+      "targets": [
+        ["css=.pages:nth-child(2) > li", "css:finder"],
+        ["xpath=//ul[@id='ListeMenu']/a[2]/li", "xpath:idRelative"],
+        ["xpath=//a[2]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Création de compte')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "41ce9538-827c-45fd-a4a6-5512932417c2",
+      "comment": "",
+      "command": "click",
+      "target": "name=nom",
+      "targets": [
+        ["name=nom", "name"],
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='nom']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5e52f00-afbe-45c6-b781-d305caa0144e",
+      "comment": "",
+      "command": "type",
+      "target": "name=nom",
+      "targets": [
+        ["name=nom", "name"],
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='nom']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Moi"
+    }, {
+      "id": "a652df86-5f82-4bbe-936c-24f3904d20c7",
+      "comment": "",
+      "command": "click",
+      "target": "name=prenom",
+      "targets": [
+        ["name=prenom", "name"],
+        ["css=label:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@name='prenom']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ac4e9cf-b2f3-4930-bf2e-0bc020e21162",
+      "comment": "",
+      "command": "type",
+      "target": "name=prenom",
+      "targets": [
+        ["name=prenom", "name"],
+        ["css=label:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@name='prenom']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Moi"
+    }, {
+      "id": "8bde0a36-6bfa-4ef9-a247-fc44117c29ed",
+      "comment": "",
+      "command": "click",
+      "target": "name=prenom2",
+      "targets": [
+        ["name=prenom2", "name"],
+        ["css=label:nth-child(9) > input", "css:finder"],
+        ["xpath=//input[@name='prenom2']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[3]/input", "xpath:idRelative"],
+        ["xpath=//label[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b320c88-66a3-457d-b09f-2c13e2d96253",
+      "comment": "",
+      "command": "type",
+      "target": "name=prenom2",
+      "targets": [
+        ["name=prenom2", "name"],
+        ["css=label:nth-child(9) > input", "css:finder"],
+        ["xpath=//input[@name='prenom2']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[3]/input", "xpath:idRelative"],
+        ["xpath=//label[3]/input", "xpath:position"]
+      ],
+      "value": "Pas"
+    }, {
+      "id": "da60728a-e795-4cff-a258-466aa5c3d81b",
+      "comment": "",
+      "command": "click",
+      "target": "name=datedenaissance",
+      "targets": [
+        ["name=datedenaissance", "name"],
+        ["css=label:nth-child(11) > input", "css:finder"],
+        ["xpath=//input[@name='datedenaissance']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[4]/input", "xpath:idRelative"],
+        ["xpath=//label[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "091ece05-5d7f-4a89-8a1b-9dcbb468abd2",
+      "comment": "",
+      "command": "type",
+      "target": "name=datedenaissance",
+      "targets": [
+        ["name=datedenaissance", "name"],
+        ["css=label:nth-child(11) > input", "css:finder"],
+        ["xpath=//input[@name='datedenaissance']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[4]/input", "xpath:idRelative"],
+        ["xpath=//label[4]/input", "xpath:position"]
+      ],
+      "value": "2006-11-16"
+    }, {
+      "id": "906f4145-a1c8-46fe-be0a-00cb7eba8137",
+      "comment": "",
+      "command": "click",
+      "target": "id=role",
+      "targets": [
+        ["id=role", "id"],
+        ["name=role", "name"],
+        ["css=#role", "css:finder"],
+        ["xpath=//select[@id='role']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1706ab01-51db-48ad-8d0a-b46fdad2e59e",
+      "comment": "",
+      "command": "select",
+      "target": "id=role",
+      "targets": [],
+      "value": "label=Responsable pédagogique"
+    }, {
+      "id": "356004bc-503a-45c5-9da9-f96decb74d23",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(5)",
+      "targets": [
+        ["css=option:nth-child(5)", "css:finder"],
+        ["xpath=//option[@value='respon']", "xpath:attributes"],
+        ["xpath=//select[@id='role']/option[5]", "xpath:idRelative"],
+        ["xpath=//option[5]", "xpath:position"],
+        ["xpath=//option[contains(.,'Responsable pédagogique')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "076aa640-b19e-4103-b9d7-5e13274e4112",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(23) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[6]/input", "xpath:idRelative"],
+        ["xpath=//label[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c0c99ac-d754-4352-9c9a-df62a15f915f",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(23) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[6]/input", "xpath:idRelative"],
+        ["xpath=//label[6]/input", "xpath:position"]
+      ],
+      "value": "Moi@uphf.fr"
+    }, {
+      "id": "074d8272-c9c7-400a-b57c-71f481624d5f",
+      "comment": "",
+      "command": "click",
+      "target": "name=motdepasse",
+      "targets": [
+        ["name=motdepasse", "name"],
+        ["css=label:nth-child(26) > input", "css:finder"],
+        ["xpath=//input[@name='motdepasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[7]/input", "xpath:idRelative"],
+        ["xpath=//label[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "17597321-52f1-4e45-9a78-381540a2270d",
+      "comment": "",
+      "command": "type",
+      "target": "name=motdepasse",
+      "targets": [
+        ["name=motdepasse", "name"],
+        ["css=label:nth-child(26) > input", "css:finder"],
+        ["xpath=//input[@name='motdepasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[7]/input", "xpath:idRelative"],
+        ["xpath=//label[7]/input", "xpath:position"]
+      ],
+      "value": "1234"
+    }]
+  }, {
+    "id": "03228d68-02fb-4767-b7cc-e1b779978be4",
+    "name": "Verif les etudiant absent",
+    "commands": [{
+      "id": "d913d592-c0e9-42fd-8527-3f93774e7f24",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:63342/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "54adbb65-b5df-4a8d-90ad-88e32456c0a8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "702x1063",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "776e2fa0-fa04-4279-acd1-939133d8e601",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22505df3-a6a3-4671-bb86-736d2ed96b97",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "GUEUDET.CAROLE@uphf.fr"
+    }, {
+      "id": "74d8118b-d3f6-4a20-984f-bac73b6acb70",
+      "comment": "",
+      "command": "click",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e05c3c03-f3c0-4097-9ed3-f110cc03a916",
+      "comment": "",
+      "command": "type",
+      "target": "name=motDePasse",
+      "targets": [
+        ["name=motDePasse", "name"],
+        ["css=label:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='motDePasse']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "unMDP"
+    }, {
+      "id": "ce7816c3-69b5-4117-84b0-d715353f0fa4",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(10)",
+      "targets": [
+        ["css=input:nth-child(10)", "css:finder"],
+        ["xpath=//input[@value='Connexion']", "xpath:attributes"],
+        ["xpath=//form[@id='form']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff9eb0df-0d8a-4d2f-8246-19487c010ecb",
+      "comment": "",
+      "command": "click",
+      "target": "id=moismoi",
+      "targets": [
+        ["id=moismoi", "id"],
+        ["name=moismoi", "name"],
+        ["css=#moismoi", "css:finder"],
+        ["xpath=//input[@id='moismoi']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d322c69-81c2-463c-a3ae-306bcf8229ea",
+      "comment": "",
+      "command": "type",
+      "target": "id=moismoi",
+      "targets": [
+        ["id=moismoi", "id"],
+        ["name=moismoi", "name"],
+        ["css=#moismoi", "css:finder"],
+        ["xpath=//input[@id='moismoi']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "56263061-4a82-4b29-afec-700f2822b065",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=moismoi",
+      "targets": [
+        ["id=moismoi", "id"],
+        ["name=moismoi", "name"],
+        ["css=#moismoi", "css:finder"],
+        ["xpath=//input[@id='moismoi']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "922e1249-931a-40ec-b973-52d33e7ad34b",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(4) > td:nth-child(4) #jour",
+      "targets": [
+        ["css=tr:nth-child(4) > td:nth-child(4) #jour", "css:finder"],
+        ["xpath=(//input[@id='jour'])[12]", "xpath:attributes"],
+        ["xpath=//tr[4]/td[4]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc5b1a2a-2088-4b55-a4c0-cb2fce035c8c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.element:nth-child(3) .nom > b",
+      "targets": [
+        ["css=.element:nth-child(3) .nom > b", "css:finder"],
+        ["xpath=//ol[@id='maListe']/a/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'INFFIS2-COMMUNICATION TECHNIQUE (T3BUTINFFI-R2.13)-TD-2 à 08:00:00')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e96102fe-4900-4508-b2a0-531856315183",
+      "comment": "",
+      "command": "click",
+      "target": "css=b:nth-child(4) > .element .nom > b",
+      "targets": [
+        ["css=b:nth-child(4) > .element .nom > b", "css:finder"],
+        ["xpath=(//ol[@id='maListe']/a/b)[2]", "xpath:idRelative"],
+        ["xpath=//b/div/details/summary/ol/a/b", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e9400db-5d6d-4a0e-93bd-f665dd826da9",
+      "comment": "",
+      "command": "click",
+      "target": "css=b:nth-child(2) .nom > b",
+      "targets": [
+        ["css=b:nth-child(2) .nom > b", "css:finder"],
+        ["xpath=(//ol[@id='maListe']/a/b)[3]", "xpath:idRelative"],
+        ["xpath=//b/b/div/details/summary/ol/a/b", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b0934ff-0655-49c1-a6e6-caa502786dbb",
+      "comment": "",
+      "command": "click",
+      "target": "id=i",
+      "targets": [
+        ["id=i", "id"],
+        ["css=#i", "css:finder"],
+        ["xpath=//p[@id='i']", "xpath:attributes"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'ⓘ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "b5edba02-aa7b-41f7-bcfb-4feca5eb3b8f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["5f2bccb6-4059-4b12-912d-59d2a3f1e078"]
+  }],
+  "urls": ["http://localhost:63342/", "http://localhost:63342/Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/Connexion.php"],
+  "plugins": []
+}
