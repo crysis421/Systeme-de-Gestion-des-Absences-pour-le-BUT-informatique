@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </label><br>
             <br>
             <div >
-                <input type="submit" value="recevoir un mot de passe par mail" id="bt">
+                <input type="submit" value="Recevoir un mot de passe par mail" id="bt">
             </div>
             <br>
             <?php if (!empty($_SESSION['erreur'])): ?>

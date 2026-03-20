@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../CSS/compte.css"/>
+    <link rel="stylesheet" href="../../CSS/compte.css"/>
     <title>Gestionnaire d'absence</title>
 </head>
 <body>
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
         </details>
     </div>
     <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:30px;">
-        <form style="width: 20%" action="Connexion.php" name="Deconnexion" ">
+        <form style="width: 20%" action="../Connexion.php" name="Deconnexion" ">
             <input type="submit" id="deconnexionTemp" value="Déconnexion">
         </form>
 
