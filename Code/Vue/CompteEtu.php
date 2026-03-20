@@ -63,12 +63,12 @@ require_once '../Presentation/lesInfoEtu.php';
                     }
                     ?>
                         <label for="Email">
-                            Entrer votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail"
+                            Entrez votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail"
                                                                 required>
                         </label> <br>
                         <br>
                         <label for="Mot de passe">
-                            Entrer votre mot de passe :* <input type="password" name="motDePasse1"
+                            Entrez votre mot de passe :* <input type="password" name="motDePasse1"
                                                                 placeholder="mot de passe" required>
                         </label> <br>
                         <br>

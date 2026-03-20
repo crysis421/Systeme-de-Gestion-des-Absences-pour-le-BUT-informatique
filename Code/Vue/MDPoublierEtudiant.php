@@ -46,9 +46,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div id="container">
         <form id="form" action="" method="post">
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
-                <b>entrer votre adresse mail:</b> <br>
+                <b>Entrez votre adresse mail:</b> <br>
                 <br>
-                <input type="email" id="mail" name="mail" placeholder="entrer votre adresse mail" style="width :300px" required>
+                <input type="email" id="mail" name="mail" placeholder="Entrez votre adresse mail..." style="width :300px" required>
             </label><br>
             <br>
             <div >
