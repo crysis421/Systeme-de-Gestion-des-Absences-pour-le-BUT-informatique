@@ -17,7 +17,7 @@ require_once '../Presentation/lesInfoEtu.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../CSS/compte.css">
-    <title>compte secretaire</title>
+    <title>Compte Secretaire</title>
 </head>
 
 
@@ -26,7 +26,7 @@ require_once '../Presentation/lesInfoEtu.php';
     <?php require 'menuHorizontaleSecretaire.html'; ?>
 </header>
 <div style="display: flex; gap: 50%">
-    <h1 style="margin-left: 1%">Compte secretaire</h1>
+    <h1 class="secretaireTexte" style="margin-left: 1%">Compte secretaire</h1>
     <form style="margin-top: 1%" action="Connexion.php">
         <input type="submit" id="deconnexion" value="Deconnection">
     </form>
@@ -42,7 +42,7 @@ require_once '../Presentation/lesInfoEtu.php';
                 <img src="/Image/profil-removebg-preview.webp" alt="Photo de profil">
                 <h1>Profil</h1>
             </summary>
-            <div style="display: flex; gap: 50%">
+            <div class="conteneurInfo" style="display: flex; gap: 50%">
                 <div>
                     <p><b>Profil :</b> <?php echo htmlspecialchars($role); ?></p>
                     <p><b>Date de Naissance :</b> <?php echo htmlspecialchars($dateNaissance); ?></p>
@@ -70,17 +70,17 @@ require_once '../Presentation/lesInfoEtu.php';
 
 
                     <label for="Email">
-                        Entrer votre adresse mail :* <input type="email" name="email3" placeholder="adresse mail"
+                        Entrez votre adresse mail :* <input type="email" name="email3" placeholder="adresse mail"
                                                             required>
                     </label> <br>
                     <br>
                     <label for="Mot de passe">
-                        Entrer votre mot de passe :* <input type="password" name="motDePasse3"
+                        Entrez votre mot de passe :* <input type="password" name="motDePasse3"
                                                             placeholder="mot de passe" required>
                     </label> <br>
                     <br>
                     <label for="confirmation">
-                        Confirmer votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse3" placeholder="Confirmer votre mot de passe" required onpaste="return false" ><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
+                        Confirmez votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse3" placeholder="Confirmer votre mot de passe" required onpaste="return false" ><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
                     </label> <br>
                     <a style="font-family: Arial; color: red; font-size: 11px;">Tous les champs marqués avec * sont
                         obligatoires.</a><br>

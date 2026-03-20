@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
                     if(array_key_last($nbFoisSemestre) == 0){
                         echo "Pas d'absence ce semestre";
                     }else{
-                        Camembert::afficher($grapheSemestre,$nbFoisSemestre,"Absence de ce semestre");} ?>
+                        Camembert::afficher($grapheSemestre,$nbFoisSemestre,"Absence(s) de ce semestre");} ?>
                 </li>
                 <li class="lesGraphes">
                     <form action="CompteResp.php" method="post">
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
                     <?php
                     if(array_key_last($nbFoisSemestreR) == 0){
                         echo "Pas d'absence ce semestre";
-                    }else{ Camembert::afficher($grapheSemestreR,$nbFoisSemestreR,"Absence de ce semestre");} ?>
+                    }else{ Camembert::afficher($grapheSemestreR,$nbFoisSemestreR,"Absence(s) de ce semestre");} ?>
                 </li>
             </ol>
 
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     </div>
     <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:30px;">
         <form style="width: 20%" action="Connexion.php" name="Deconnexion" ">
-            <input type="submit" id="deconnexion" value="Déconnexion">
+            <input type="submit" id="deconnexionTemp" value="Déconnexion">
         </form>
 
         <div style="width: 60%" class="alertes" id="alertes">

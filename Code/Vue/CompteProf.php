@@ -78,7 +78,7 @@ require_once("../Presentation/lesInfoProf.php");
                     if(array_key_last($nbFoisSemestre) == 0){
                         echo "Pas d'absence ce semestre";
                     }else{
-                    Camembert::afficher($grapheSemestre,$nbFoisSemestre,"Absence de ce semestre");} ?>
+                    Camembert::afficher($grapheSemestre,$nbFoisSemestre,"Absence(s) de ce semestre");} ?>
                 </li>
                 <li class="lesGraphes">
                     <form action="CompteProf.php" method="post">
@@ -96,7 +96,7 @@ require_once("../Presentation/lesInfoProf.php");
                     <?php
                     if(array_key_last($nbFoisSemestreR) == 0){
                         echo "Pas d'absence ce semestre";
-                    }else{ Camembert::afficher($grapheSemestreR,$nbFoisSemestreR,"Absence de ce semestre");} ?>
+                    }else{ Camembert::afficher($grapheSemestreR,$nbFoisSemestreR,"Absence(s) de ce semestre");} ?>
                 </li>
             </ol>
 

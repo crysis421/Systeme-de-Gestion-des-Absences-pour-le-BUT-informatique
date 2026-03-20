@@ -643,6 +643,8 @@ details[open] .filtrage {
 
 @media (max-width: 840px) {
 
+
+
     li {
         display: inline-block;
         padding: 10px;
@@ -729,6 +731,14 @@ details[open] .filtrage {
 @media (max-width: 1000px) {
 
 
+    .secretaireTexte {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
+    }
     h1 {
         font-size: 20px;
     }

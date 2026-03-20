@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="infoAbsence">
             <br>
             <label for="id">Numéro d'étudiant :   <p id="autre"  style="color:#09572b ;font-size: 80%"></p><br>
-                <input type="number" name="id" id="id" placeholder="Entrer votre Numero d'étudiant" onkeyup="verifierEtudiant()" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
+                <input type="number" name="id" id="id" placeholder="Entrez votre Numero d'étudiant" onkeyup="verifierEtudiant()" value="<?php echo htmlspecialchars($_SESSION['user']); ?>" required>
             </label><br>
 
             <label for="">Du : <p style="color: red;display: none" id="erreur1">Veuillez d'abord remplir ce champ</p>
@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                 </select>
             </label><br><br>
-            <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifier que les dates d'absences rentrer sont correctes et coherentes</p>
+            <p id="erreur4" style="color:red; font-weight:bold;display: none">Verifiez que les dates d'absences entrées sont correctes/cohérentes</p>
 
             <label>Au :  <p style="color: red;display: none" id="erreur3">   Veuillez d'abord remplir ce champ</p>
                 <input type="date" id="fin" name="fin" value="<?php if(isset($_GET['date'])){echo htmlspecialchars("20".$_GET['date'][-2].$_GET['date'][-1]."-".$_GET['date'][-7].$_GET['date'][-6]."-".$_GET['date'][-10].$_GET['date'][-9]);} else{ echo htmlspecialchars($fin);} ?>" required>

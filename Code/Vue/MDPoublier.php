@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="container">
         <form id="form" action="" method="post">
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
-                <b>entrer votre Code secret reçu dans votre boite mail  :</b> <br>
+                <b>Entrez votre Code Secret reçu dans votre boite mail  :</b> <br>
                 <br>
                 <input type="number" name="code" style="width :300px" required>
             </label><br>
