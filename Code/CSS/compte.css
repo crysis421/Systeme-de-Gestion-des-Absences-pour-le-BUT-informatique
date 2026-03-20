@@ -404,7 +404,9 @@ ol {
     display: block; /* ❌ enlève inline-grid */
 }
 
-
+#rappel {
+    margin-left: 0;
+}
 @media (max-width: 768px) {
 
 
@@ -492,14 +494,28 @@ ol {
     }
 
     #modif{
-        display: block; /* Force le bloc pour centrer plus facilement */
-        margin: 15px auto 0 auto; /* Centre horizontalement et ajoute un espace au-dessus */
-        background-color: #007BFF; /* Bleu primaire */
-        color: white; /* Texte en blanc */
-        border: none; /* Supprime la bordure par défaut */
-        border-radius: 6px; /* Coins arrondis */
-        cursor: pointer; /* Curseur "main" au survol */
+        display: block;
+        margin: 15px auto 0 auto;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
         width: auto;
         font-size: 18px;
+    }
+
+    #rappel {
+        margin-left: -100px;
+    }
+
+    .lesGraphes {
+
+    }
+
+    .graphe {
+        item-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
     }
 }
