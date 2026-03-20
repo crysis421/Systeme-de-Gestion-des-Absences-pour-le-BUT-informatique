@@ -48,7 +48,7 @@ if (empty($result) ) {
                 <summary class="top-layer">
                     <ol id="maListe">
                         <li class="elementDeListe" id="prof">
-                        <img src="../Image/profil_default.png" alt="avatar"
+                        <img src="../Image/profil_default.webp" alt="avatar"
                              class="image-utilisateur" height="24">
                         <a class="nom"><b><?= htmlspecialchars($absence['prof']);
                             if ($absence['estretard']) {

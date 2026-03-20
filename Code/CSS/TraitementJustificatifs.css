@@ -142,7 +142,7 @@ si fondu noir hover alors croix visible sinon non
     display: inline-block;
     width: 350px;
     height: 400px;
-    background-image: url("../Image/justificatif.jpg");
+    background-image: url("../Image/justificatif.webp");
     background-size: cover;
     background-position: center;
     cursor: pointer;
@@ -310,17 +310,17 @@ textarea {
 }
 
 #label_accepter {
-    background: url('../Image/AccepterSymbole.png') no-repeat center center;
+    background: url('../Image/AccepterSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 #label_refuser {
-    background: url('../Image/RefuserSymbole.png') no-repeat center center;
+    background: url('../Image/RefuserSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 #label_demander {
-    background: url('../Image/DemanderSymbole.png') no-repeat center center;
+    background: url('../Image/DemanderSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 

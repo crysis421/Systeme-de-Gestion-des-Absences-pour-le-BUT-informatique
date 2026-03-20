@@ -1,96 +1,16 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
+p, li {
+    font-size: 1em;
 }
 
-@media (min-width:760px) {
-    .container{
-        flex-direction: row;
-        font-size: 20px;
-    }
-}
-
-/* Style pour simuler une liste non ordonnée (ul) */
-.list-container {
-    padding-left: 20px; /* Indentation pour la "liste" */
-    margin-bottom: 1em;
-}
-
-/* Style pour simuler un élément de liste (li) */
-.list-item {
-    position: relative;
-    padding-left: 25px; /* Espace pour la puce */
-    margin-bottom: 0.5em;
-}
-
-/* Création de la puce (le point) */
-.list-item::before {
-    content: '•'; /* Caractère de la puce */
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 1.2em;
-    line-height: 1;
-    color: #333;
-}
-
-/* Style pour une liste imbriquée */
-.nested-list {
-    padding-left: 20px;
-    margin-top: 0.5em;
-}
-
-/* Puces différentes pour les listes imbriquées (facultatif) */
-.nested-list .list-item::before {
-    content: '◦'; /* Puce en forme de cercle vide */
-}
-
-.nested-list .nested-list .list-item::before {
-    content: '▪'; /* Puce en forme de carré */
-}
-
-
-/* Style pour simuler une liste ordonnée (ol) */
-.ordered-list-container {
-    padding-left: 20px;
-    margin-bottom: 1em;
-    counter-reset: ordered-list-counter; /* Initialise un compteur */
-}
-
-/* Style pour simuler un élément de liste ordonnée (li) */
-.ordered-list-item {
-    position: relative;
-    padding-left: 30px; /* Espace pour le numéro */
-    margin-bottom: 0.5em;
-}
-
-/* Création du numéro */
-.ordered-list-item::before {
-    counter-increment: ordered-list-counter; /* Incrémente le compteur */
-    content: counter(ordered-list-counter) ". "; /* Affiche le compteur suivi d'un point */
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Styles généraux que vous aviez probablement déjà */
-body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    margin: 20px;
+h2 {
+    font-size: 1.4em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 1.5em;
 }
 
 article {
     margin-bottom: 2em;
-}
-
-h2 {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-    margin-top: 1.5em;
 }
 
 .note {
@@ -104,4 +24,59 @@ blockquote.serment {
     padding-left: 20px;
     margin-left: 20px;
     font-style: italic;
+}
+
+/* ===== LISTES ===== */
+.list-container {
+    padding-left: 20px;
+    margin-bottom: 1em;
+}
+
+.list-item {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 0.5em;
+}
+
+.list-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+}
+
+.nested-list {
+    padding-left: 20px;
+    margin-top: 0.5em;
+}
+
+.nested-list .list-item::before {
+    content: '◦';
+}
+
+.nested-list .nested-list .list-item::before {
+    content: '▪';
+}
+
+/* ===== LISTE ORDONNÉE ===== */
+.ordered-list-container {
+    padding-left: 20px;
+    margin-bottom: 1em;
+    counter-reset: ordered-list-counter;
+}
+
+.ordered-list-item {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 0.5em;
+}
+
+.ordered-list-item::before {
+    counter-increment: ordered-list-counter;
+    content: counter(ordered-list-counter) ". ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
 }

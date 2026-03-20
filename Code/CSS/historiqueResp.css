@@ -84,23 +84,23 @@ a:link {
 }
 
 .histo-accepter {
-    background: url('/Image/AccepterSymbole.png') no-repeat center center;
+    background: url('/Image/AccepterSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .histo-refuser {
-    background: url('/Image/RefuserSymbole.png') no-repeat center center;
+    background: url('/Image/RefuserSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .histo-demander {
-    background: url('/Image/DemanderSymbole.png') no-repeat center center;
+    background: url('/Image/DemanderSymbole.webp') no-repeat center center;
     background-size: contain;
 }
 
 .oeil {
     cursor: pointer;
-    background-image: url("/Image/oeil.png");
+    background-image: url("/Image/oeil.webp");
     position: relative;
     transition: transform 0.25s ease;
     width: 30px;
@@ -185,7 +185,7 @@ summary::-webkit-details-marker {
     height: 400px;
     background-size: cover;
     background-position: center;
-    background-image:url("/Image/justificatif.jpg");
+    background-image:url("/Image/justificatif.webp");
     cursor: pointer;
     border-radius: 8px;
     transition: transform 0.2s ease;

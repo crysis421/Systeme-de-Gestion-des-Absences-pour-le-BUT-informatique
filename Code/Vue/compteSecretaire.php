@@ -39,7 +39,7 @@ require_once '../Presentation/lesInfoEtu.php';
             <summary style="background-color: #bce6f6">
 
 
-                <img src="/Image/profil-removebg-preview.png" alt="Photo de profil">
+                <img src="/Image/profil-removebg-preview.webp" alt="Photo de profil">
                 <h1>Profil</h1>
             </summary>
             <div style="display: flex; gap: 50%">

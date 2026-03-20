@@ -26,7 +26,6 @@ class Notification
          */
     }
 
-
     // en fonction du temps
     public function shouldExist():bool
     {
@@ -38,5 +37,4 @@ class Notification
     {
         return 10;
     }
-
 }

@@ -404,26 +404,26 @@ ol {
     display: block; /* ❌ enlève inline-grid */
 }
 
-
+#rappel {
+    margin-left: 0;
+}
 @media (max-width: 768px) {
 
 
     #profil,
     #donnees,
     #graphe {
-        width: 95%; /* 🔥 évite d’être collé aux bords */
-        margin: 10px auto; /* 🔥 centre horizontalement */
+        width: 95%;
+        margin: 10px auto;
         padding: 1rem;
         min-width: unset;
         text-align: left;
     }
 
-    /* 🔥 taille titres */
     summary h1 {
         font-size: 1.2rem;
     }
 
-    /* 🔥 image profil adaptée */
     #profil img {
         width: 60px;
         height: 60px;
@@ -445,7 +445,7 @@ ol {
     }
 
     #graphe details {
-        display: block; /* enlève comportement bizarre */
+        display: block;
         width: 100%;
         text-align: center;
     }
@@ -462,7 +462,6 @@ ol {
         width: 100%;
     }
 
-    /* 🔥 blocs plus larges ET centrés */
     #profil,
     #donnees {
         width: 95%;
@@ -471,20 +470,17 @@ ol {
         box-sizing: border-box;
     }
 
-    /* 🔥 corrige le formulaire (TRÈS IMPORTANT) */
     #profil form {
         width: 100%;
         box-sizing: border-box;
     }
 
-    /* 🔥 empêche les inputs de déborder */
     #profil input {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
     }
 
-    /* 🔥 bouton "modifier" */
     #modifier summary {
         display: block;
         width: 100%;
@@ -493,9 +489,33 @@ ol {
         line-height: 1.4;
     }
 
-    /* 🔥 évite que le texte soit coupé */
     h1, p, summary {
         overflow-wrap: break-word;
     }
 
+    #modif{
+        display: block;
+        margin: 15px auto 0 auto;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        width: auto;
+        font-size: 18px;
+    }
+
+    #rappel {
+        margin-left: -100px;
+    }
+
+    .lesGraphes {
+
+    }
+
+    .graphe {
+        item-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+    }
 }

@@ -32,19 +32,15 @@ require_once '../Presentation/lesInfoEtu.php';
         </form>
     </div>
 
-
     <!-- Section du haut : Profil à gauche / Données à droite -->
     <div id="haut">
-
         <div id="profil">
             <details>
                 <summary style="background-color: #bce6f6">
-
-                    <img src="/Image/profil-removebg-preview.png" alt="Photo de profil">
+                    <img src="/Image/profil-removebg-preview.webp" alt="Photo de profil">
                     <h1>Profil</h1>
                 </summary>
                 <p><b>Profil :</b> <?php echo htmlspecialchars($role); ?></p>
-
                 <p><b>Nom :</b> <?php echo htmlspecialchars($nom); ?></p>
                 <p><b>Prénom :</b> <?php echo htmlspecialchars($prenom); ?></p>
                 <p><b>Deuxième Prénom :</b> <?php echo htmlspecialchars($prenom2); ?></p>
@@ -53,7 +49,6 @@ require_once '../Presentation/lesInfoEtu.php';
                 <p><b>Email :</b> <?php echo htmlspecialchars($email); ?></p>
                 <p><b>Formation :</b> <?php echo htmlspecialchars($diplome); ?> </p>
                 <p><b>Groupe :</b> <?php echo htmlspecialchars($groupe); ?></p>
-
                 <details id="modifier">
                     <summary onclick="annuler()" id="modif" style="height: 20px; width: auto; text-align: center">
                         <b id="annuler">Modifier votre mot de passe</b>
@@ -67,14 +62,13 @@ require_once '../Presentation/lesInfoEtu.php';
                         unset($_SESSION['erreur']);
                     }
                     ?>
-
                         <label for="Email">
-                            Entrer votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail"
+                            Entrez votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail"
                                                                 required>
                         </label> <br>
                         <br>
                         <label for="Mot de passe">
-                            Entrer votre mot de passe :* <input type="password" name="motDePasse1"
+                            Entrez votre mot de passe :* <input type="password" name="motDePasse1"
                                                                 placeholder="mot de passe" required>
                         </label> <br>
                         <br>
@@ -88,7 +82,6 @@ require_once '../Presentation/lesInfoEtu.php';
                     </form>
                 </details>
             </details>
-
         </div>
 
         <div id="donnees">
@@ -102,6 +95,7 @@ require_once '../Presentation/lesInfoEtu.php';
                 <p><b>En attente de confirmation 🔔:</b> .............<?php echo htmlspecialchars($autre); ?></p>
             </details>
         </div>
+
         <!-- Section du bas, centrée -->
         <div id="graphe">
             <details id="stat">
@@ -111,7 +105,6 @@ require_once '../Presentation/lesInfoEtu.php';
                 <?php Camembert::afficher($graphe,$nbFois,"Nombre D'absence"); ?>
             </details>
         </div>
-
     </div>
 </main>
 <footer id="footer">
@@ -132,7 +125,6 @@ require_once '../Presentation/lesInfoEtu.php';
             element.innerHTML = "Modifier votre mot de passe"
         }
     }
-
 </script>
 
 
