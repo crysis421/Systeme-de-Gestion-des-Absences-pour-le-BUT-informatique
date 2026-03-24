@@ -3,7 +3,7 @@
 
 use Model\AbsenceEtuTB;
 
-require '../Model/AbsenceEtuTB.php';
+require __DIR__ . '/../Model/AbsenceEtuTB.php';
 
 if (isset($_POST['jour']) and $_POST['jour'][1] != 'K') {
     $_SESSION['jour'] = $_POST['jour'][0] . $_POST['jour'][1];

@@ -13,7 +13,7 @@
 <body>
 
 <!-- TABBAR -->
-<?php require("menuHorizontalEtu.html"); ?>
+<?php require __DIR__ . "/menuHorizontalEtu.html"; ?>
 
 <!-- Texte prit du site de l'uphf ici ! -->
 <div class="text-container">

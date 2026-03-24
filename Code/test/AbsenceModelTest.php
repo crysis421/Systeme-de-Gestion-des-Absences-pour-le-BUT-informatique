@@ -2,7 +2,7 @@
 
 namespace test;
 
-require "../Model/AbsenceModel.php";
+require __DIR__ . "/../Model/AbsenceModel.php";
 
 use AbsenceModel;
 use PHPUnit\Framework\TestCase;

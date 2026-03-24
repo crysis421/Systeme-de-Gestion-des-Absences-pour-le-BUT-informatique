@@ -4,7 +4,7 @@ if(!isset($_SESSION["user"])){
     header('Location: ../Vue/Connexion.php');
 }
 
-require('menuHorizontalProf.html');
+require __DIR__ . '/menuHorizontalProf.html';
 
 echo '<link rel="stylesheet" href="../../CSS/calendrier.css" />';
 
@@ -193,7 +193,7 @@ require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
                 v = bouton.getAttribute("Value")
                 v = v[1] + v[2]
                 console.log("Event :  jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
-                ajax.open('POST', '../Presentation/getAbsenceDunControle.php', true)
+                ajax.open('POST', '../../Presentation/getAbsenceDunControle.php', true)
                 ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 ajax.send("jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
             })
