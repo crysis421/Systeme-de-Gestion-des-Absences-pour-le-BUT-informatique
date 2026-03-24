@@ -214,7 +214,7 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
             v = bouton.getAttribute("Value")
             v = v[1] + v[2]
             console.log("Event :  jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
-            ajax.open('POST', '../Presentation/getAbsenceDunJour.php', true)
+            ajax.open('POST', '../../Presentation/getAbsenceDunJour.php', true)
             ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             ajax.send("jour=" + v + "&mois=" + mois + "&year=" + year+"&user="+user)
         })

@@ -9,6 +9,7 @@ if (isset($_POST['jour']) and $_POST['jour'][1] != 'K') {
 }else {
     $_SESSION['jour'] = date('d');
 }
+$post = false;
 if(isset($_POST['mois'])) {
     $_SESSION['mois'] = $_POST['mois'];
     $_SESSION['year'] = $_POST['year'];
