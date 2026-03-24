@@ -1,6 +1,6 @@
 <?php
 use Vue\Camembert;
-require('Camembert.php');
+require __DIR__ . '/../Camembert.php';
 session_start();
 
 if (!isset($_SESSION["user"])) {

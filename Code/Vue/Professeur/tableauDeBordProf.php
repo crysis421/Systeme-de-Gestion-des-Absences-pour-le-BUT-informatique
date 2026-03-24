@@ -44,7 +44,7 @@ if (isset($_SESSION['mois'])) {
 $_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
 $mois = date_format($_SESSION['date'], "m");
 
-require "../Presentation/getAbsenceDunControle.php";
+require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
 
 ?>
 
