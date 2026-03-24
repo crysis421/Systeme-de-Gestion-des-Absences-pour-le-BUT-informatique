@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 
 <body>
 <header>
-    <?php require 'menuHorizontalEtu.html'; ?>
+    <?php require __DIR__ . '/menuHorizontalEtu.html'; ?>
 </header>
 
 <main>

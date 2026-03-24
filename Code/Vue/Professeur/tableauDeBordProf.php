@@ -4,7 +4,7 @@ if(!isset($_SESSION["user"])){
     header('Location: ../Vue/Connexion.php');
 }
 
-require('menuHorizontalProf.html');
+require __DIR__ . '/menuHorizontalProf.html';
 
 echo '<link rel="stylesheet" href="../../CSS/calendrier.css" />';
 

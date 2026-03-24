@@ -38,5 +38,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 else {
-        require '../Vue/Connexion.php';
+        require __DIR__ . '/../Vue/Connexion.php';
     }
