@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/RecapJustificatif.css" />
+    <link rel="stylesheet" href="../../CSS/RecapJustificatif.css" />
     <title>Récapitulatif des absences</title>
 </head>
 <body>
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
     </div>
     <br>
     <div id="but">
-        <form action="Etudiant/formulaireAbsence.php" method="get">
+        <form action="formulaireAbsence.php" method="get">
             <button style="    background-color:red;
     color: white;
     border-style: solid;
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
     margin-bottom: 20px;" type="submit">⬅️ Retour</button>
         </form>
 
-        <form action="../Presentation/SoumettreJustificatif.php" method="post">
+        <form action="../../Presentation/SoumettreJustificatif.php" method="post">
             <button style="    background-color:green;
     color: white;
     border-style: solid;
