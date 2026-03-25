@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const formData = new FormData(form);
 
-        fetch('../Model/ajaxFiltre.php', {
+        fetch('../../Model/ajaxFiltre.php', {
             method: 'POST',
             body: formData
         })
