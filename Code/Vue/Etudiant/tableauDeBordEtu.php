@@ -89,6 +89,9 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
 
 </details>
 
+<a href="ReglementInterieur.php">
+    <input class='boutonReglementTemp' type="submit" name="bouton4" value="Consulter le réglement intérieur">
+</a>
 
 <form action="tableauDeBordEtu.php" method="post">
     <label>
