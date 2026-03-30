@@ -108,6 +108,7 @@ fileInput.addEventListener("change", function () {
 //affichage du message en si on trouve le nom de l'étudiant
 
 function verifierEtudiant(){
+    console.log("je suis là")
     if(document.getElementById("id").value === ""){
         document.getElementById("autre").textContent = "";
     }else{
@@ -118,8 +119,10 @@ function verifierEtudiant(){
                 document.getElementById("autre").textContent = this.responseText;
             }
         };
-        xhr.open("GET", "../Presentation/verifierEtudiant.php?numero=" + numero, true);
+        xhr.open("GET", "../../Presentation/verifierEtudiant.php?numero=" + numero, true);
         xhr.send();
     }
 
 }
+
+
