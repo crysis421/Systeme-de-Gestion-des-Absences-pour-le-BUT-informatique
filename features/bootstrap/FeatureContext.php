@@ -7,6 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 /**
  * Defines application features from the specific context.
  */
+//Pas utilisé
 class FeatureContext implements Context
 {
     /**
