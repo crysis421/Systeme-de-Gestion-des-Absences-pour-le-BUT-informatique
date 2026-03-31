@@ -63,7 +63,7 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
 
-<details>
+<details class="detailI">
 
     <summary>
         <p id="i" style="cursor: pointer; ">ⓘ</p>
@@ -86,6 +86,9 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <p class="i" id="texteInfoValide">Justifiée ⚠:Interrogation</p>
 
 </details>
+<div class="white-box"> </div>
+
+
 
 <a href="ReglementInterieur.php">
     <input class='boutonReglementTemp' type="submit" name="bouton4" value="Consulter le réglement intérieur">

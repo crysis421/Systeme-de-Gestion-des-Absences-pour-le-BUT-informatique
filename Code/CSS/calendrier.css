@@ -333,6 +333,10 @@ ol{
     display: inline-grid;
 }
 
+.white-box{
+    display: none;
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -354,9 +358,13 @@ ol{
     }
 
     .boutonReglement {
-        top:350px;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
+        top:300px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90%;
+        text-align: center;
+        white-space: normal;
     }
 
     #i {
@@ -369,43 +377,46 @@ ol{
     }
 
     #barreInfoRefus{
-        margin-top: 10px;
-        top: 260px;
-        margin-bottom: 10px;
+        top:445px;
     }
 
     #texteInfoRefus{
-        margin-top: 10px;
-        top: 260px;
-        left: 15px;
-        margin-bottom: 10px;
-
+        top: 440px;
     }
 
     #barreInfoAttente{
-        top: 280px;
+        top: 475px;
     }
 
     #texteInfoAttente{
-        top: 280px;
+        top: 470px;
         left: 15px;
     }
 
     #barreInfoAJustif{
-        top: 300px;
+        top: 505px;
     }
 
     #texteInfoAJustif{
-        top:300px;
+        top:500px;
         left: 15px;
     }
 
     #barreInfoValide{
-        top: 350px;
+        top: 535px;
     }
 
     #texteInfoValide{
-        top: 350px;
+        top: 570px;
         left: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .detailI[open] ~ .white-box {
+        display: block;
+        position: relative;
+        height: 180px;
+        flex-shrink: 0;
     }
 }
