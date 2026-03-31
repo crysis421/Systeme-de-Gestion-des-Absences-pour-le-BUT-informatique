@@ -729,8 +729,6 @@ details[open] .filtrage {
 }
 
 @media (max-width: 1000px) {
-
-
     .secretaireTexte {
         display: grid;
         justify-content: center;
@@ -739,10 +737,10 @@ details[open] .filtrage {
         text-align: center;
         width: 100%;
     }
+
     h1 {
         font-size: 20px;
     }
-
 
     a {
         font-size: 16px;
@@ -755,7 +753,6 @@ details[open] .filtrage {
     label {
         font-size: 16px;
     }
-
 
     #details {
         width: 80%;
@@ -774,13 +771,11 @@ details[open] .filtrage {
         transition: all 0.3s ease;
     }
 
-
     #formFiltre{
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
     }
-
 
     .bouton-filtrage {
         width: 100%;
@@ -841,5 +836,4 @@ details[open] .filtrage {
         left: 5%;
         border-radius: 10px;
     }
-
 }

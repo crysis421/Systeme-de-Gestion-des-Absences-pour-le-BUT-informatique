@@ -78,6 +78,7 @@ input[type="submit"]:hover {
     color: #333;
     margin: 0;
 }
+
 main {
     flex-grow: 1; /* Occupe tout l'espace disponible */
 }
