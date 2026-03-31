@@ -39,7 +39,7 @@ $idAbsence = $idAbsManager->getIdAbsenceParSeance($data['datedebut'], $data['heu
 if (empty($idAbsence)) {
     $idAbsence = null;
     $_SESSION['aEssayer'] = true;
-    header('Location: ../Vue/formulaireAbsence.php');
+    header('Location: ../Vue/Etudiant/formulaireAbsence.php');
 }
 //Initialisation du gestionnaire
 

@@ -170,6 +170,7 @@ class AbsenceModel
         return $liste;
     }
 
+    //Pas utilisé
     public function getByUser($idUtilisateur)
     {
         $sql = "
@@ -427,6 +428,7 @@ class AbsenceModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Pas utilisé
     public function getJustificatifsValides($dateDebut, $dateFin, $matiere, $nom, $prenom)
     {
         $sql = "
@@ -542,6 +544,8 @@ class AbsenceModel
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
+
+    //Pas utilisé
     public function getImageJustificatifs($nom, $prenom, $matiere, $date, $heure)
     {
         $sql = "SELECT fj.pathjustificatif FROM fichierjustificatif AS fj

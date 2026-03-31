@@ -28,7 +28,7 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 <div style="display: flex; gap: 50%">
     <h1 class="secretaireTexte" style="margin-left: 1%">Compte secretaire</h1>
     <form style="margin-top: 1%" action="../Connexion.php">
-        <input type="submit" id="deconnexion" value="Deconnection">
+        <input type="submit" id="deconnexion" value="Déconnexion">
     </form>
 </div>
 

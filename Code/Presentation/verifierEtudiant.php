@@ -7,5 +7,4 @@ $result = $user->getEmailbyUser($numero);
 if (!$result) {
     echo "ce ne numéro n'est pas attribué";
 }
-
 ?>

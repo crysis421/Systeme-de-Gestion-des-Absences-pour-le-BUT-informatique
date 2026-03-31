@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../Model/AbsenceModel.php';
-require_once __DIR__ . '/../Presentation/recapJustificatif.php';
+require_once __DIR__ . '/../../Model/AbsenceModel.php';
+require_once __DIR__ . '/../../Presentation/recapJustificatif.php';
 
 // Suppression d'un fichier si formulaire soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {

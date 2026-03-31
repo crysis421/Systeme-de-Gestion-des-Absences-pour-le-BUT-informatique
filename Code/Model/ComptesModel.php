@@ -47,6 +47,7 @@ class ComptesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    //Pas utilisé
     public function modifieCompte()
     {
         $sql = "UPDATE utilisateur SET motdepasse = :motdepasse WHERE email = :email";
@@ -56,6 +57,7 @@ class ComptesModel
         $stmt->execute();
     }
 
+    //Pas utilisé
     public function supprimeCompte()
     {
         $sql = "DELETE FROM utilisateur WHERE email = :email";

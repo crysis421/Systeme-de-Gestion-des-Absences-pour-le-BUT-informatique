@@ -104,7 +104,7 @@ require_once __DIR__ . "/../../Presentation/lesInfoProf.php";
     </div>
 
     <form action="../Connexion.php" name="Deconnexion">
-        <input id="deconnexion" type="submit" value="Déconnexion" style=" position:absolute; margin-left:50%;margin-right: 50%">
+        <input id="deconnexionTemp" type="submit" value="Déconnexion" style=" position:absolute; margin-left:50%;margin-right: 50%">
     </form>
 
 </body>
