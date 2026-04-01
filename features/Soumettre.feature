@@ -1,14 +1,25 @@
-Feature:
-  En tant qu'etudiant
-  Je souhaite soumettre un justificatif avec accuse de reception
+Feature: Soumission de justificatif d'absence
+  En tant qu'étudiant
+  Je souhaite soumettre un justificatif avec accusé de réception
   Afin de justifier mon absence
 
-  Scenario: soumettre le justificatif
-  Given je suis un etudiant
-  When je soumets un justificatif avec tous les champs requis etant remplis
-  Then le systeme va l’ajouter dans la liste des absences avec justificatifs en attente et me notifie de la reception
+  Scenario Outline: echec de soumission du justificatif
+    Given je suis un etudiant avec un id
+    When je soumets un justificatif avec tous les champs requis etant remplis invalides "<dateDebut>" "<HeureDebut>" "<DateFin>" "<HeureFin>"
+    Then le systeme me signale que je n'ai pas d'absence entre ces dates
+    And le systeme ne m'envoie pas de mail de confirmation
 
-  Scenario: Recevoir mail de confirmation
-  Given je suis un etudiant
-  When je soumets un justificatif sans tous les champs requis etant remplis
-  Then le systeme va m’envoyer un message d’erreur en me disant de preciser les champs requise et me notifie de la reception
+    Examples:
+      | dateDebut  | HeureDebut | DateFin    | HeureFin |
+      | 2023-10-01 | 08:00      | 2023-10-01 | 12:00    |
+
+
+  Scenario Outline: soumettre le justificatif
+    Given je suis un etudiant avec un id
+    When je soumets un justificatif avec tous les champs requis etant remplis invalides "<dateDebut>" "<HeureDebut>" "<DateFin>" "<HeureFin>"
+    Then le systeme m'envoie un mail de confirmation de dêpot
+
+
+    Examples:
+      | dateDebut  | HeureDebut | DateFin    | HeureFin |
+      | 2023-10-01 | 08:00      | 2023-10-01 | 12:00    |
