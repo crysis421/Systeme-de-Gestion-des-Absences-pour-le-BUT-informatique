@@ -8,8 +8,6 @@ if (!isset($_SESSION["user"])) {
 }
 require __DIR__ . "/menuHorizontalEtu.html";
 
-echo '<link rel="stylesheet" href="../../CSS/calendrier.css" />';
-
 $Y = date("Y");//On ne peut voir que notre année scolaire
 
 //Dictionnaire pour transformer les dates originalement anglais en francais
@@ -56,7 +54,7 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="../../CSS/calendrier.css">
     <title>Mon compte</title>
 
 </head>
@@ -65,7 +63,7 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
 
-<details>
+<details class="detailI">
 
     <summary>
         <p id="i" style="cursor: pointer; ">ⓘ</p>
@@ -88,6 +86,9 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <p class="i" id="texteInfoValide">Justifiée ⚠:Interrogation</p>
 
 </details>
+<div class="white-box"> </div>
+
+
 
 <a href="ReglementInterieur.php">
     <input class='boutonReglementTemp' type="submit" name="bouton4" value="Consulter le réglement intérieur">

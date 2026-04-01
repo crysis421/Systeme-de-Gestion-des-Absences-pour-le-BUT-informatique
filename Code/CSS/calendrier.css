@@ -1,65 +1,3 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-}
-
-@media (min-width:760px) {
-
-    .container{
-        flex-direction: row;
-        font-size: 20px;
-    }
-
-    #jour, #jourbutton, #jourbuttonDisabled {
-        font-size: 1.2rem;
-    }
-
-    .elementDeListe {
-        font-size: 1rem;
-    }
-
-
-}
-
-.boutonReglementTemp {
-    display: none;
-}
-@media (max-width: 760px) {
-
-    .boutonReglementTemp {
-        display: flex;
-        background-color: #007aa5;
-        color: white;
-        border: none;
-        position:relative;
-        right: 10px;
-        top:10px;
-        border-radius: 6px;
-        padding: 6px 12px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition-property: background-color, transform;
-        transition-duration: 0.2s;
-    }
-
-    .boutonReglement {
-        display: none;
-        background-color: #007aa5;
-        color: white;
-        border: none;
-        position:absolute;
-        right: 10px;
-        top:100px;
-        border-radius: 6px;
-        padding: 6px 12px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition-property: background-color, transform;
-        transition-duration: 0.2s;
-    }
-}
-
 /* Style global */
 html, body {
     height: 100%;
@@ -69,6 +7,7 @@ html, body {
     background-color: #ffffff;
     color: #333;
 }
+
 body{
     display: flex;
     flex-direction: column;
@@ -376,8 +315,6 @@ td {
 
 #i{
     margin-top: 50px;
-    top: 130px;
-    position: absolute;
     font-size: 50px; /* plus grande taille pour être visible */
     margin-left: 10px; /* relative pour éviter les problèmes de top */
     color: #007BFF; /* couleur bleue attractive */
@@ -394,4 +331,92 @@ td {
 
 ol{
     display: inline-grid;
+}
+
+.white-box{
+    display: none;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+@media (max-width:760px) {
+    .container{
+        flex-direction: row;
+        font-size: 20px;
+    }
+
+    #jour, #jourbutton, #jourbuttonDisabled {
+        font-size: 1.2rem;
+    }
+
+    .elementDeListe {
+        font-size: 1rem;
+    }
+
+    .boutonReglement {
+        position: absolute;
+        top:300px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90%;
+        text-align: center;
+        white-space: normal;
+    }
+
+    #i {
+        margin-top: 20px;
+        top:-20px;
+    }
+
+    .i {
+        top:-20px;
+    }
+
+    #barreInfoRefus{
+        top:445px;
+    }
+
+    #texteInfoRefus{
+        top: 440px;
+    }
+
+    #barreInfoAttente{
+        top: 475px;
+    }
+
+    #texteInfoAttente{
+        top: 470px;
+        left: 15px;
+    }
+
+    #barreInfoAJustif{
+        top: 505px;
+    }
+
+    #texteInfoAJustif{
+        top:500px;
+        left: 15px;
+    }
+
+    #barreInfoValide{
+        top: 535px;
+    }
+
+    #texteInfoValide{
+        top: 570px;
+        left: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .detailI[open] ~ .white-box {
+        display: block;
+        position: relative;
+        height: 180px;
+        flex-shrink: 0;
+    }
 }

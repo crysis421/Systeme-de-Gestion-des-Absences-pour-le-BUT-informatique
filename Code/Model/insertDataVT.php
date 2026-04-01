@@ -7,7 +7,6 @@ namespace Model;
 
 require_once __DIR__ . "/Database.php";
 
-use Model\Database;
 use mysql_xdevapi\Exception;
 use PDO;
 use PDOException;
@@ -97,6 +96,7 @@ class insertDataVT
     }
 
     //La fonction principale pour ajout de toutes les autres données
+    //Pas utilisé larg $motif et $commentaire
     public function addDataVT($identifiant, $date, $heure, $duree, $type, $idMatiere, $enseignement, $justification, $motif, $salle, $prof, $controle, $retard, $commentaire): void
     {
         try {
