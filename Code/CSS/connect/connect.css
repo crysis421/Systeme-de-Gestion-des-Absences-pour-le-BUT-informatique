@@ -22,7 +22,6 @@
 }
 
 #form {
-    background-color: #2781a8;
     padding: 20px;
     border-radius: 10px;
     max-width: 600px;
@@ -42,7 +41,6 @@ h1 {
 }
 
 input[type="submit"]{
-    background-color:goldenrod;
     color: black;
     border: none;
     padding: 12px 30px;
@@ -54,7 +52,6 @@ input[type="submit"]{
 }
 
 button{
-    background-color:goldenrod;
     color: black;
     border: none;
     padding: 10px 20px;
@@ -90,7 +87,6 @@ body {
 }
 
 #footer {
-    background-color: #2781a8;
     text-align: center;
     padding: 15px;
     width: 100%;
@@ -113,7 +109,7 @@ main {
     flex: 1;
     margin: 0;
     padding: 0;
-    background-image: url("../Image/iut.webp");
+    background-image: url("../../Image/iut.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -133,7 +129,6 @@ main {
 
 @media (max-width:760px) {
     input[type="submit"]{
-        background-color:goldenrod;
         color: black;
         border: none;
         padding: 12px 30px;

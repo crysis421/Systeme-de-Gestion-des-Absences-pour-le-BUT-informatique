@@ -1,0 +1,34 @@
+body {
+    color: #5d4037;
+}
+
+h1 {
+    color: #5d4037;
+}
+
+form {
+    border: 2px solid #795548;
+    box-shadow: 0 0 10px rgba(121, 85, 72, 0.5);
+}
+
+label {
+    color: #5d4037;
+}
+
+input[type="file"] {
+    color: #5d4037;
+    border: 1px solid #DAA520;
+}
+
+input[type="submit"] {
+    background-color: #DAA520;
+    color: #795548;
+}
+
+input[type="submit"]:hover {
+    background-color: #DAA520;
+}
+
+#footer {
+    background-color: #795548;
+}

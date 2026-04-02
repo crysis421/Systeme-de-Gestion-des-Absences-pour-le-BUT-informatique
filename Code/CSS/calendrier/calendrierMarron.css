@@ -1,0 +1,77 @@
+.boutonReglement {
+    background-color: #795548;
+}
+
+.boutonReglement:hover {
+    background-color: #8d6e63;
+}
+
+/* Titres et texte */
+p {
+    color: #5d4037;
+}
+
+form input[type="number"] {
+    border: 2px solid #d7ccc8;
+}
+
+form input[type="submit"] {
+    background-color: #795548;
+}
+
+form input[type="submit"]:hover {
+    background-color: #8d6e63;
+}
+
+th {
+    background-color: #8d6e63;
+}
+
+#jourbutton {
+    background-color: rgba(121, 85, 72, 0.15);
+}
+
+#jourbuttonDisabled {
+    background-color: rgba(141, 110, 99, 0.15);
+}
+
+#jour:hover {
+    color: #795548;
+}
+
+#jourbutton:hover {
+    color: #795548;
+}
+
+/* État du jour actuel */
+#adj {
+    border: 2px solid #795548;
+    box-shadow: inset 0 0 5px rgba(121, 85, 72, 0.4);
+}
+
+/* Pied de page */
+#footer {
+    background-color: #795548;
+}
+
+#i {
+    color: #8d6e63;
+}
+
+#i:hover {
+    color: #ff8c00;
+}
+
+@media (max-width:760px) {
+    th {
+        background-color: #8d6e63;
+    }
+
+    #jourbutton {
+        background-color: rgba(121, 85, 72, 0.15);
+    }
+
+    #jourbuttonDisabled {
+        background-color: rgba(141, 110, 99, 0.15);
+    }
+}

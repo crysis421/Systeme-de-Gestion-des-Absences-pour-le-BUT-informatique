@@ -14,7 +14,6 @@ body{
 }
 
 .boutonReglement {
-    background-color: #007aa5;
     color: white;
     border: none;
     position:absolute;
@@ -28,9 +27,6 @@ body{
     transition-duration: 0.2s;
 }
 
-.boutonReglement:hover {
-    background-color: #0098d1;
-}
 
 .boutonReglement:active {
     box-shadow: #d6d6e7 0 3px 7px inset;
@@ -43,7 +39,6 @@ p {
     font-size: 2rem;
     font-weight: 600;
     margin-top: 20px;
-    color: #005b83;
 }
 
 /* Formulaire */
@@ -59,13 +54,12 @@ form input[type="number"] {
     width: 80px;
     padding: 6px;
     font-size: 1rem;
-    border: 2px solid #a6cbe3;
     border-radius: 6px;
     text-align: center;
 }
 
 form input[type="submit"] {
-    background-color: #007aa5;
+
     color: white;
     border: none;
     border-radius: 6px;
@@ -74,10 +68,6 @@ form input[type="submit"] {
     font-size: 1rem;
     transition-property: background-color, transform;
     transition-duration: 0.2s;
-}
-
-form input[type="submit"]:hover {
-    background-color: #0098d1;
 }
 
 form input[type="submit"]:active {
@@ -96,7 +86,6 @@ table {
 }
 
 th {
-    background-color: #0098d1;
     color: white;
     padding: 12px 0;
     font-size: 1.1rem;
@@ -127,7 +116,6 @@ td {
 #jourbutton {
     width: 100%;
     height: 150%;
-    background-color: rgba(0, 255, 227, 0.15);
     font-size: 1.5rem;
     font-weight: 500;
     color: #333;
@@ -139,7 +127,6 @@ td {
 #jourbuttonDisabled {
     width: 100%;
     height: 150%;
-    background-color: rgba(13, 154, 139, 0.15);
     font-size: 1.5rem;
     font-weight: 500;
     color: #333;
@@ -150,20 +137,12 @@ td {
 
 #jour:hover {
     background-color: #e6f4f8;
-    color: #007aa5;
     border-radius: 4px;
 }
 
 #jourbutton:hover {
     background-color: #e6f4f8;
-    color: #007aa5;
     border-radius: 4px;
-}
-
-/* État du jour actuel */
-#adj {
-    border: 2px solid #007aa5;
-    box-shadow: inset 0 0 5px rgba(0,122,165,0.4);
 }
 
 /* État des jours selon statut */
@@ -227,7 +206,6 @@ td {
 
 /* Pied de page */
 #footer {
-    background-color: #007aa5;
     text-align: center;
     padding: 15px;
     color: #fff;
@@ -315,14 +293,12 @@ td {
     margin-top: 50px;
     font-size: 50px; /* plus grande taille pour être visible */
     margin-left: 10px; /* relative pour éviter les problèmes de top */
-    color: #007BFF; /* couleur bleue attractive */
     text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* légère ombre pour se détacher */
     transition: all 0.3s ease; /* transition fluide */
 }
 
 #i:hover {
     font-size: 60px; /* grossit au survol */
-    color: #FF4500; /* change de couleur pour attirer l’œil */
     transform: rotate(5deg); /* petit mouvement pour plus d’effet */
     text-shadow: 4px 4px 10px rgba(0,0,0,0.5); /* ombre renforcée */
 }
@@ -434,7 +410,6 @@ ol{
     }
 
     th {
-        background-color: #0098d1;
         color: white;
         padding: 5px 0;
         font-size: 0.6rem;
@@ -467,7 +442,6 @@ ol{
     #jourbutton {
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 255, 227, 0.15);
         font-size: 0.6rem;
         font-weight: 500;
         color: #333;
@@ -479,7 +453,6 @@ ol{
     #jourbuttonDisabled {
         width: 100%;
         height: 100%;
-        background-color: rgba(13, 154, 139, 0.15);
         font-size: 0.6rem;
         font-weight: 500;
         color: #333;
