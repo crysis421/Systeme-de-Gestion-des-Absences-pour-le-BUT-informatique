@@ -15,29 +15,23 @@ if (isset($_SESSION['erreur'])) {
 }
 ?>
 
-<form id="form" action="../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px" >
+<form id="form" action="../Presentation/modifierMDPetudiant.php" method="post" style="background-color: #efefef; border: 1px solid #849584; border-radius: 6px; padding: 20px">
     <input type="hidden" name="formulaire" value="formulaire1">
-
     <label for="Email">
         Entrez votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail" required>
-    </label> <br>
-    <br>
+    </label> <br><br>
     <label for="Mot de passe">
         Entrez votre nouveau mot de passe :* <input type="password" name="motDePasse" placeholder="mot de passe" required>
-    </label> <br>
-    <br>
+    </label> <br><br>
     <label for="confirmation">
-        Confirmez votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse" placeholder="Confirmer votre mot de passe" required onpaste="return false" ><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
+        Confirmez votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse" placeholder="Confirmer votre mot de passe" required onpaste="return false"><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
     </label> <br>
-    <a style="font-family: Arial; color: red; font-size: 11px;">Tous les champs marqués avec * sont obligatoires.</a><br>
-    <br>
-    <input   type="submit" value="valider" style=" background-color:#007BFF;cursor: pointer; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; border-radius: 10px;">
+    <a style="font-family: Arial; color: red; font-size: 11px;">Tous les champs marqués avec * sont obligatoires.</a><br><br>
+    <input type="submit" value="valider" style=" background-color:#007BFF;cursor: pointer; color: black; border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 15px; border-radius: 10px;">
 </form>
-<br>
-<br>
-<div >
+<br><br>
+<div>
     <a style=" color:#90a2b5;cursor: pointer;  border-color: #00aa00; border: 2px; border-style: solid;font-size: 20px; padding: 7px 10px; border-radius: 5px;" href="MDPoublierEtudiant.php"><button>retour</button></a>
 </div>
 </body>
 </html>
-

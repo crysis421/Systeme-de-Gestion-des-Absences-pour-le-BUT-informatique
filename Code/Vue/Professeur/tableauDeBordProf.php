@@ -3,13 +3,9 @@ session_start();
 if(!isset($_SESSION["user"])){
     header('Location: ../Vue/Connexion.php');
 }
-
 require __DIR__ . '/menuHorizontalProf.html';
-
 echo '<link rel="stylesheet" href="../../CSS/calendrier.css" />';
-
 $Y = date("Y");//On ne peut voir que notre année scolaire
-
 //Dictionnaire pour transformer les dates originalement anglais en francais
 $nomDesMois = [ "January" => "Janvier",
     "February" => "Février",
@@ -23,7 +19,6 @@ $nomDesMois = [ "January" => "Janvier",
     "October" => "Octobre",
     "November" => "Novembre",
     "December" => "Décembre"];
-
 if (!isset($_POST['moismoi'])) {
     $M = date("m");
     $Y = date("Y");
@@ -43,19 +38,15 @@ if (isset($_SESSION['mois'])) {
 }
 $_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
 $mois = date_format($_SESSION['date'], "m");
-
 require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
-
+<body>
     <details>
         <summary>
             <p id="i" style="cursor: pointer; ">ⓘ</p>
@@ -66,16 +57,13 @@ require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
         <p> </p>
         <p> </p>
         <p class="i" id="ir">   ⚠:Rattrapage_à_effectuer</p>
-
     </details>
-
     <form action="tableauDeBordProf.php" method="post">
         <label>
             Choix du mois : <input type="number" min="1" max="12" name="moismoi" id="moismoi" required>
         </label>
         <input type="submit" value="OK" name="jour">
     </form>
-
     <h1>
         <?php echo '<p> ' . $nomDesMois[$_SESSION['date']->format("F")] . $_SESSION['date']->format(" - Y") . ' </p>' ?>
     </h1>
@@ -115,8 +103,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
                     echo '<td>  </td>';
                 }
             }
-
-
             while ($mois == $M) {
                 if ($date->format('D') == 'Sun') {//Passer a la ligne suivante car changement de semaine
                     echo "</tr><tr>";
@@ -135,18 +121,14 @@ require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
                     </td>
                     <?php
                 }
-
                 $mois = $date->format('m');//Voir le mois pour ne pas faire le mois d'apres
             }
             ?>
     </table>
-
     <div id="res">
         <?php
-        require 'listeAbsProf.php'; ?>
+        require 'listeAbsProf.php';?>
     </div>
-
-
     <script>
         let ajax = new XMLHttpRequest();
         let container = document.querySelector("#res")
@@ -165,26 +147,20 @@ require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
                 ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 ajax.send("result="+res+"&jour=" + v + "&mois=" + mois)
             }
-
-
         }
-
         function mettreInfo(){
             if (ajax.readyState === 4 && ajax.status === 200) {
                 ajax.onreadystatechange = recupInfo
                 container.innerHTML = ajax.responseText
             }
         }
-
         ajax.onreadystatechange = recupInfo
-
         function reset() {
             let longueur = container.children.length
             for (let i = 0; i < longueur; i++) {
                 container.removeChild(container.children[0]);
             }
         }
-
         let boutons = document.querySelectorAll("#jour")
         for (let bouton of boutons) {
             bouton.addEventListener("click", (e) => {
@@ -199,3 +175,5 @@ require __DIR__ . "/../../Presentation/getAbsenceDunControle.php";
             })
         }
     </script>
+</body>
+</html>

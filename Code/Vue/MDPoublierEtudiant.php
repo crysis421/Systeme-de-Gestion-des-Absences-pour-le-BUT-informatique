@@ -3,14 +3,11 @@ session_start();
 require_once __DIR__ . '/../test/send.php';
 use test\send;
 $nombre = random_int(1, 10000); // génère un entier entre 1 et 100
-
 $mail = $_POST['mail'];
-
 $contenu = "<h3>Réinitialiser votre mot de passe</h3>
                 <p>Voici votre code secret : $nombre </p>";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
     $mailer = new send();
     $result = $mailer->envoyerMailSendGrid($mail,'Mot de passe oublié',$contenu);
     $_SESSION['mdp'] = [
@@ -18,16 +15,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             'nombre' => $nombre,
             'result' => $result,
     ];
-
     if ($result['httpcode'] == 202) {
         header('Location: ../Vue/MDPoublier.php');
         exit();
     }else{
         $_SESSION['erreur'] = 'erreur lors de l\'envoi du mail';
     }
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +33,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>mot de passe oublié</title>
 </head>
 <body>
-
 <main style="background-color: white">
     <h1 style="text-align: center;">Réinitialiser votre mot de passe</h1>
-
     <div id="container">
         <form id="form" action="" method="post">
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
@@ -51,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="email" id="mail" name="mail" placeholder="Entrez votre adresse mail..." style="width :300px" required>
             </label><br>
             <br>
-            <div >
+            <div>
                 <input type="submit" value="Recevoir un mot de passe par mail" id="bt">
             </div>
             <br>
@@ -60,10 +52,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <?php unset($_SESSION['erreur']); ?>
             <?php endif; ?>
         </form>
-        <div >
+        <div>
             <a href="Connexion.php"><button>retour</button></a>
         </div>
-
     </div>
 </main>
 <footer id="footer">

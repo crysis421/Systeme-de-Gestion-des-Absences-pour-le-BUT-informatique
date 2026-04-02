@@ -18,7 +18,6 @@ if (empty($groupes)) {
                     </div>
                     <div class="ligne"></div>
                 </summary>
-
                 <div class="details">
                     <div class="justificatif-viewer">
                         <details>
@@ -36,12 +35,9 @@ if (empty($groupes)) {
                             <img class="justificatif-image-big" src="/Image/justificatif.webp" alt="Justificatif">
                         </details>
                     </div>
-
                     <form method="post">
-                        <input type="hidden" name="IDElement" value="<?= $id ?>" >
-
+                        <input type="hidden" name="IDElement" value="<?= $id ?>">
                         <?php foreach ($absences as $abs):
-
                             $matiere = $abs['matiere'];
                             preg_match('#\((.*?)\)#', $matiere, $match);
                             $matiere = $match[1];
@@ -52,18 +48,14 @@ if (empty($groupes)) {
                                 <?= htmlspecialchars($abs['date'])?> <?= htmlspecialchars(substr($abs['heure'],0,5))?> <?= htmlspecialchars($matiere)?>
                             </label> <br>
                         <?php endforeach; ?>
-
                         <a class="decision-finale">Décision finale</a>
                         <!-- Boutons radios de décision -->
                         <input type="radio" id="toggle1_<?= $id ?>" name="toggle" value="accepte" style="display: none;">
                         <label for="toggle1_<?= $id ?>" class="label-accepter"></label>
-
                         <input type="radio" id="toggle2_<?= $id ?>" name="toggle" value="refuse" style="display: none;">
                         <label for="toggle2_<?= $id ?>" class="label-refuser"></label>
-
                         <input type="radio" id="toggle3_<?= $id ?>" name="toggle" value="demande" style="display: none;">
                         <label for="toggle3_<?= $id ?>" class="label-demander"></label>
-
                         <br><br>
                         <div class="texte-accepter">
                             <select name="motifs">
@@ -72,13 +64,11 @@ if (empty($groupes)) {
                             </select>
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                         </div>
-
                         <div class="texte-refuser">
                             <a>Motif du refus :</a>
                             <textarea class="motifRefus" name="motif_refus"></textarea>
                             <input class='bouton-envoye' type="submit" name="bouton4" value="Envoyer">
                         </div>
-
                         <div class="texte-demander">
                             <a>Motif de la demande :</a>
                             <textarea name="motif_demande"></textarea>
@@ -91,4 +81,3 @@ if (empty($groupes)) {
         </div>
     <?php endforeach;
 } ?>
-

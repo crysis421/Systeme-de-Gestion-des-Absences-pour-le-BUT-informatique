@@ -4,26 +4,19 @@ if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
 require_once __DIR__ . '/../../Model/AbsenceModel.php';
-
-
 $model = new AbsenceModel();
-
-
 require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../CSS/compte.css">
     <title>Compte Secretaire</title>
 </head>
-
-
 <body>
 <header>
-    <?php require __DIR__ . '/menuHorizontaleSecretaire.html'; ?>
+    <?php require __DIR__ . '/menuHorizontaleSecretaire.html';?>
 </header>
 <div style="display: flex; gap: 50%">
     <h1 class="secretaireTexte" style="margin-left: 1%">Compte secretaire</h1>
@@ -31,27 +24,23 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
         <input type="submit" id="deconnexion" value="Déconnexion">
     </form>
 </div>
-
-
 <div style="display: flex; margin-left: 10%;margin-right: 10%">
     <div id="profil" style="width: 100%">
         <details>
             <summary style="background-color: #bce6f6">
-
-
                 <img src="/Image/profil-removebg-preview.webp" alt="Photo de profil">
                 <h1>Profil</h1>
             </summary>
             <div class="conteneurInfo" style="display: flex; gap: 50%">
                 <div>
-                    <p><b>Profil :</b> <?php echo htmlspecialchars($role); ?></p>
-                    <p><b>Date de Naissance :</b> <?php echo htmlspecialchars($dateNaissance); ?></p>
-                    <p><b>Email :</b> <?php echo htmlspecialchars($email); ?></p>
+                    <p><b>Profil :</b> <?php echo htmlspecialchars($role);?></p>
+                    <p><b>Date de Naissance :</b> <?php echo htmlspecialchars($dateNaissance);?></p>
+                    <p><b>Email :</b> <?php echo htmlspecialchars($email);?></p>
                 </div>
                 <div>
-                    <p><b>Nom :</b> <?php echo htmlspecialchars($nom); ?></p>
-                    <p><b>Prénom :</b> <?php echo htmlspecialchars($prenom); ?></p>
-                    <p><b>Deuxième Prénom :</b> <?php echo htmlspecialchars($prenom2); ?></p>
+                    <p><b>Nom :</b> <?php echo htmlspecialchars($nom);?></p>
+                    <p><b>Prénom :</b> <?php echo htmlspecialchars($prenom);?></p>
+                    <p><b>Deuxième Prénom :</b> <?php echo htmlspecialchars($prenom2);?></p>
                 </div>
             </div>
             <details >
@@ -67,20 +56,14 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
                         unset($_SESSION['erreur']);
                     }
                     ?>
-
-
                     <label for="Email">
-                        Entrez votre adresse mail :* <input type="email" name="email3" placeholder="adresse mail"
-                                                            required>
-                    </label> <br>
-                    <br>
+                        Entrez votre adresse mail :* <input type="email" name="email3" placeholder="adresse mail" required>
+                    </label> <br><br>
                     <label for="Mot de passe">
-                        Entrez votre mot de passe :* <input type="password" name="motDePasse3"
-                                                            placeholder="mot de passe" required>
-                    </label> <br>
-                    <br>
+                        Entrez votre mot de passe :* <input type="password" name="motDePasse3" placeholder="mot de passe" required>
+                    </label> <br><br>
                     <label for="confirmation">
-                        Confirmez votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse3" placeholder="Confirmer votre mot de passe" required onpaste="return false" ><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
+                        Confirmez votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse3" placeholder="Confirmer votre mot de passe" required onpaste="return false"><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
                     </label> <br>
                     <a style="font-family: Arial; color: red; font-size: 11px;">Tous les champs marqués avec * sont
                         obligatoires.</a><br>
@@ -91,8 +74,6 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
         </details>
     </div>
 </div>
-
-
 </body>
 </html>
 <script>
@@ -105,5 +86,4 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
             element.innerHTML = "Modifier votre mot de passe"
         }
     }
-
 </script>
