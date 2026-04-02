@@ -23,26 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>mot de passe oublié</title>
 </head>
 <body>
-
 <main style="background-color: white">
     <h1 style="text-align: center;">Réinitialiser votre mot de passe</h1>
-
     <div id="container">
         <form id="form" action="" method="post">
             <label style="display: block; text-align: center; font-size: 20px" for="mail">
-                <b>Entrez votre Code Secret reçu dans votre boite mail  :</b> <br>
-                <br>
+                <b>Entrez votre Code Secret reçu dans votre boite mail :</b> <br><br>
                 <input type="number" name="code" style="width :300px" required>
-            </label><br>
-            <br>
-            <div >
-                <input type="submit" value="valider" >
+            </label><br><br>
+            <div>
+                <input type="submit" value="valider">
             </div>
         </form>
         <div>
             <a href="MDPoublierEtudiant.php"><button>retour</button></a>
         </div>
-
     </div>
 </main>
 <footer id="footer">

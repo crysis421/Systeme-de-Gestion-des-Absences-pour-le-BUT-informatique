@@ -5,7 +5,6 @@ if(!isset($_SESSION["user"])){
 }
 require_once __DIR__ . "/../../Presentation/responTB.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,10 +16,8 @@ require_once __DIR__ . "/../../Presentation/responTB.php";
     <title>Tableau de bord absence</title>
 </head>
 <body>
-
 <!-- TabBar ici ! -->
 <?php require('menuHorizontalResp.html'); ?>
-
 <!-- Notification ici ! -->
 <?php
 if ($titre != "" && $description != "") {
@@ -32,17 +29,14 @@ if ($titre != "" && $description != "") {
 EOL;
 }
 ?>
-
 <!-- Titre -->
 <h1><u>Liste des absences à traiter : </u></h1>
-
 <!-- Filtrage ici ! -->
 <details id="details">
     <summary class="filtrer">
         <img src="/Image/filter.webp" alt="Filtre" class="Filtre" height="24">
         <a class="filtre-titre"><b>Filtrer</b></a><br>
     </summary>
-
     <div class="filtrage">
         <form id="formFiltre">
             <div class="dateFiltre">
@@ -51,35 +45,26 @@ EOL;
                 <h3>Date de fin</h3>
                 <input type="date" id="endDate" name="dateFin" value="<?= date("Y-m-d") ?>">
             </div>
-
             <div class="eleveFiltre">
                 <h3>Prénom</h3>
                 <input type="text" id="inputPrenom" name="PrenomInput">
                 <h3>Nom</h3>
                 <input type="text" id="inputNom" name="NomInput">
             </div>
-
             <div class="matiereFiltre">
                 <h3>Nom de la matière</h3>
                 <input type="text" id="inputMatiere" name="Matière">
             </div>
-
             <input class='bouton-filtrage' type="submit" value="Filtrer">
         </form>
-
-
         <br>
     </div>
 </details>
-
-
 <!-- Liste des absences ici ! -->
 <div class="liste-absence" id="conteneurAbsences">
     <?php include "liste_absences_partielle.php";?>
 </div>
 <br><br>
-
-
 <h1><u>Justificatifs redemandés :</u></h1>
 <!-- Liste des absences ici ! -->
 <div class="liste-absence-demandes">
@@ -96,10 +81,8 @@ EOL;
                     <div class="description-element">
                         <small><?= htmlspecialchars($justif['description']) ?></small>
                     </div>
-
                     <div class="ligne"></div>
                 </summary>
-
                 <div class="details">
                     <div class="justificatif-viewer">
                         <details>
@@ -107,21 +90,17 @@ EOL;
                                 <a class="justificatif-texte">Justificatif</a>
                                 <img class="oeil" src="/Image/oeil.webp" alt="Voir le justificatif">
                             </summary>
-
                             <input type="checkbox" id="zoom<?= $id ?>" name="zoom" style="display: none;">
                             <label for="zoom<?= $id ?>" class="zoom-button"></label>
 
                             <label for="zoom<?= $id ?>" class="justificatif-close">
                                 <img src="/Image/close.webp" alt="Fermer le justificatif">
                             </label>
-
                             <br>
-
                             <div class="fondu-noir"></div>
                             <img class="justificatif-image-big" src="/Image/justificatif.webp" alt="Justificatif">
                         </details>
                         <?php foreach ($absences as $abs):
-
                             $matiere = $abs['matiere'];
                             preg_match('#\((.*?)\)#', $matiere, $match);
                             $matiere = $match[1];
@@ -140,7 +119,5 @@ EOL;
         </div>
     <?php endforeach; ?>
 </div>
-
-
 </body>
 </html>

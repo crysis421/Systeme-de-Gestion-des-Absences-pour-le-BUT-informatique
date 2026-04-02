@@ -5,11 +5,9 @@ require_once __DIR__ . '/../../test/send.php';
 use test\send;
 require __DIR__ . '/../Camembert.php';
 session_start();
-
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
-
 if(!isset($_POST['Semestre'])){
     if(!isset($_SESSION['semestre'])){
         $semestre = 1;
@@ -20,7 +18,6 @@ if(!isset($_POST['Semestre'])){
     $_SESSION['semestre']  = $_POST['Semestre'];
     $semestre = $_SESSION['semestre'];
 }
-
 if(!isset($_POST['SemestreR'])){
     if(!isset($_SESSION['semestreR'])){
         $semestreR = 1;
@@ -32,7 +29,6 @@ if(!isset($_POST['SemestreR'])){
     $semestreR = $_SESSION['semestreR'];
 }
 require_once __DIR__ . "/../../Presentation/lesInfoResp.php";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     $model = new AbsenceModel();
     $mailer = new send();
@@ -48,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
 //    }else{
 //        $_SESSION['alerte'] = "Erreur lors de l'envoi des rappels!!!!!!!!!";
 //    }
-
     if (sizeof($resultat)>0){
         foreach ($resultat as $result) {
             $email = $result['email'];
@@ -70,11 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     }else{
         $_SESSION['alerte'] = "Aucun justificatif n'est attendu!!!!!!!!!";
     }
-
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,11 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     <title>Gestionnaire d'absence</title>
 </head>
 <body>
-
 <?php require('menuHorizontalResp.html'); ?>
 <main>
     <h1>Compte</h1>
-
     <div id="graphe">
         <details id="stat">
             <summary style="background-color: #bce6f6">
@@ -99,9 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
             <ol class="graphe">
                 <li class="lesGraphes">
                     <?php
-                    if(array_key_last($nbFoisAnnee) == 0){
+                    if(array_key_last($nbFoisAnnee)==0){
                         echo "Pas d'absence cette année";
-                    }else{Camembert::afficher($grapheAnnee,$nbFoisAnnee,"Absence de cette année");} ?>
+                    }else{Camembert::afficher($grapheAnnee,$nbFoisAnnee,"Absence de cette année");}?>
                 </li>
                 <li class="lesGraphes">
                 <form action="CompteResp.php" method="post">
@@ -120,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
                     if(array_key_last($nbFoisSemestre) == 0){
                         echo "Pas d'absence ce semestre";
                     }else{
-                        Camembert::afficher($grapheSemestre,$nbFoisSemestre,"Absence(s) de ce semestre");} ?>
+                        Camembert::afficher($grapheSemestre,$nbFoisSemestre,"Absence(s) de ce semestre");}?>
                 </li>
                 <li class="lesGraphes">
                     <form action="CompteResp.php" method="post">
@@ -138,26 +128,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
                     <?php
                     if(array_key_last($nbFoisSemestreR) == 0){
                         echo "Pas d'absence ce semestre";
-                    }else{ Camembert::afficher($grapheSemestreR,$nbFoisSemestreR,"Absence(s) de ce semestre");} ?>
+                    }else{ Camembert::afficher($grapheSemestreR,$nbFoisSemestreR,"Absence(s) de ce semestre");}?>
                 </li>
             </ol>
-
         </details>
     </div>
     <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:30px;">
         <form style="width: 20%" action="../Connexion.php" name="Deconnexion" ">
             <input type="submit" id="deconnexionTemp" value="Déconnexion">
         </form>
-
         <div style="width: 60%" class="alertes" id="alertes">
             <br><br>
             <?php foreach ($alerteM as $f):
                 echo $f;
-            endforeach; ?>
+            endforeach;?>
             <br/>
             <?php foreach ($alerteC as $f):
                 echo $f;
-            endforeach; ?>
+            endforeach;?>
             <br/>
         </div>
         <div style="width:20%; text-align:center;">
@@ -172,27 +160,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
                     <p style="color:#5c1e1e; font-weight:bold; margin-top:15px;">
                         <?= htmlspecialchars($_SESSION['alerte']) ?>
                     </p>
-
-                    <form style="width:100%" action="CompteResp.php" method="post" >
+                    <form style="width:100%" action="CompteResp.php" method="post">
                         <input type="submit" value="OK" style="width:20%;background-color: gray;color: #3a2323; font-size: 80%;cursor:pointer;">
                     </form>
                     <?php
                     unset($_SESSION['alerte']);
                 }
                 ?>
-
             </form>
         </div>
     </div>
     <script>
         const bouton = document.getElementById("Rappeljustification");
         let message = document.getElementById("messageHover");
-
         bouton.addEventListener("mouseenter", () => {
             message.style.opacity = "1";
             message.style.transform = "translateY(0)";
         });
-
         bouton.addEventListener("mouseleave", () => {
             message.style.opacity = "0";
             message.style.transform = "translateY(5px)";
@@ -202,7 +186,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
             message.style.top  = e.pageY + 12 + "px";
         });
     </script>
-
 </main>
 </body>
 </html>
