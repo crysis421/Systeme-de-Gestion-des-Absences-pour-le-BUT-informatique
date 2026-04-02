@@ -88,12 +88,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
 </details>
 <div class="white-box"> </div>
 
-
-
-<a href="ReglementInterieur.php">
-    <input class='boutonReglementTemp' type="submit" name="bouton4" value="Consulter le réglement intérieur">
-</a>
-
 <form action="tableauDeBordEtu.php" method="post">
     <label>
         Choix du mois : <input type="number" min="1" max="12" name="mois" id="mois" required>
