@@ -9,7 +9,7 @@ require_once __DIR__ . "/Database.php";
 
 class NewJustificatif
 {
-    private PDO $conn;
+    private ?\PDO $conn;
 
     public function __construct()
     {

@@ -15,8 +15,12 @@ class Test {
 
     public function __construct() {
         $this->model = new ComptesModel();
-        $this->email = "moimoiTEST@test.fr";
+        $this->email = "stievenardkilian@gmail.com";
         $this->mailer = new send();
+    }
+
+    public function connexion($email){
+        return $this->model->connectCompte($this->email);
     }
 
 
