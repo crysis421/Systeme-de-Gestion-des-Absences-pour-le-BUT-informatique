@@ -11,15 +11,20 @@ Feature: Soumission de justificatif d'absence
 
     Examples:
       | dateDebut  | HeureDebut | DateFin    | HeureFin |
-      | 2023-10-01 | 08:00      | 2024-10-01 | 12:00    |
+      | 2023-10-01 | 08:00      | 2023-10-01 | 12:00    |
+      | 2025-10-01 | 08:00      | 2025-10-01 | 12:00    |
+      | 2024-10-01 | 08:00      | 2024-10-01 | 12:00    |
+      | 2024-02-23 | 08:01      | 2024-10-01 | 12:00    |
 
 
   Scenario Outline: soumettre le justificatif
     Given je suis un etudiant avec un id
-    When je soumets un justificatif avec tous les champs requis etant remplis invalides "<dateDebut>" "<HeureDebut>" "<DateFin>" "<HeureFin>"
+    When je soumets un justificatif avec tous les champs requis etant remplis valides "<dateDebut>" "<HeureDebut>" "<DateFin>" "<HeureFin>"
     Then le systeme m'envoie un mail de confirmation de dêpot
 
 
     Examples:
       | dateDebut  | HeureDebut | DateFin    | HeureFin |
       | 2023-10-01 | 08:00      | 2024-10-01 | 12:00    |
+      | 2024-02-22 | 08:00      | 2024-02-23 | 12:00    |
+      | 2024-02-23 | 08:00      | 2024-02-23 | 09:30    |
