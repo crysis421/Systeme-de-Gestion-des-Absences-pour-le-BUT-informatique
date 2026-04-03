@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 } else {
-    require __DIR__ . '/../Vue/Etudiant/menuHorizontalEtu.html';
+    require __DIR__ . '/../Vue/Etudiant/menuHorizontalEtu.php';
 }
 ?>
 

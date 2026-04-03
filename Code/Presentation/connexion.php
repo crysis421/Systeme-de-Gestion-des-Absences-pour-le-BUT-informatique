@@ -17,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (password_verify($motdepasse, $res['motdepasse'])) {
         $_SESSION["user"] = $res['idutilisateur'];
+        $_SESSION["couleur"] = $res['couleur'];
+        $_SESSION["role"] = $res['role'];
 //endroit pour rediriger en fonction du role du user
         // ----- SECRETAIRE -----
         if ($res['role'] == 'secretaire') {

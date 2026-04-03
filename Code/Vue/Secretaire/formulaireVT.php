@@ -1,17 +1,17 @@
-<?php ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../../CSS/formulaireVT/formulaireVT.css">
-    <link rel="stylesheet" href="../../CSS/formulaireVT/formulaireVTMarron.css">
+    <link rel="stylesheet" href="../../CSS/formulaireVT/formulaireVT<?=$_SESSION['couleur']?>.css">
     <title>Ajout d'un FichierVT</title>
 </head>
 
 <body>
 <header>
-    <?php require 'menuHorizontaleSecretaire.html'; ?>
+    <?php require 'menuHorizontaleSecretaire.php'; ?>
 </header>
 <h1>Ajout d'un fichier VT</h1>
 

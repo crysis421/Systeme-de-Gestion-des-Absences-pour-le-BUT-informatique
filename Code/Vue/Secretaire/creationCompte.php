@@ -1,13 +1,14 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../../CSS/connect/connect.css">
-<link rel="stylesheet" href="../../CSS/connect/connectViolet.css">
+<link rel="stylesheet" href="../../CSS/connect/connect<?=$_SESSION['couleur']?>.css">
 
 <body>
 <header>
-    <?php require_once __DIR__ . "/menuHorizontaleSecretaire.html"?>
+    <?php require_once __DIR__ . "/menuHorizontaleSecretaire.php" ?>
 </header>
 <main>
     <h1>Création de compte</h1>

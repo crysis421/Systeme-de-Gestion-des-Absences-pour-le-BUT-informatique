@@ -20,7 +20,6 @@
     background-color: #ede9e9;
     border-radius: 10px;
     max-width: 800px;
-    border: 10px solid #093057;
     box-sizing: border-box;
     margin-bottom: 100px;
 }
@@ -32,10 +31,7 @@
 }
 
 body {
-    background-image: url('../Image/bleu1.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat-inline;
     margin: 0;
 }
 
@@ -63,7 +59,6 @@ p{
     color: white;
     border-style: solid;
     border-radius: 10px;
-    border-color: #093057;
     padding: 5px 10px;
     font-size: 20px;
     margin-bottom: 20px;
@@ -78,7 +73,6 @@ b{
     color: white;
     border-style: solid;
     border-radius: 10px;
-    border-color: #093057;
     padding: 5px 10px;
     font-size: 20px;
     margin-bottom: 20px;

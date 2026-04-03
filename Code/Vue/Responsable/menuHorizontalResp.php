@@ -1,8 +1,10 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../CSS/tableauDeBordResponsable.css"/>
+    <link rel="stylesheet" href="../../CSS/tableauDeBordResponsable/tableauDeBordResponsable.css"/>
+    <link rel="stylesheet" href="../../CSS/tableauDeBordResponsable/tableauDeBordResponsable<?=$_SESSION['couleur']?>.css"/>
     <title>Gestionnaire d'absence resp</title>
 </head>
 <body>

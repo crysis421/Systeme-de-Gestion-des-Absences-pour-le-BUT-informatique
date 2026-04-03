@@ -42,7 +42,7 @@ class ComptesModel
     //pour se connecter au compte en utilisant son email on va chercher son mdp et si il est bon on regarde son role et on afficher les pages correspondantes, eleve,responsable,prof,secretaire.
     public function connectCompte($email)
     {
-        $stmt = $this->conn->prepare("SELECT idUtilisateur,motdepasse,role FROM utilisateur WHERE email=:email");
+        $stmt = $this->conn->prepare("SELECT idUtilisateur,motdepasse,role,couleur FROM utilisateur WHERE email=:email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -64,6 +64,14 @@ class ComptesModel
         $sql = "DELETE FROM utilisateur WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':email', $_POST['email']);
+        $stmt->execute();
+    }
+
+    public function modifCouleur($couleur,$id){
+        $sql = "update Utilisateur set couleur = :c where idUtilisateur = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':c', $couleur);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
 }

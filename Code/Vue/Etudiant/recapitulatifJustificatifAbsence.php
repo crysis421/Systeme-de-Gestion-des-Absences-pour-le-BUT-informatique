@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../../Model/AbsenceModel.php';
 require_once __DIR__ . '/../../Presentation/recapJustificatif.php';
 
@@ -21,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../CSS/RecapJustificatif.css" />
+    <link rel="stylesheet" href="../../CSS/RecapJustificatif/RecapJustificatif.css" />
+    <link rel="stylesheet" href="../../CSS/RecapJustificatif/RecapJustificatif<?=$_SESSION['couleur']?>.css" />
     <title>Récapitulatif des absences</title>
 </head>
 <body>

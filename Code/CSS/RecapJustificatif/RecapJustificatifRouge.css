@@ -1,0 +1,15 @@
+#main {
+    border: 10px solid #c85a00;
+}
+
+body {
+    background: linear-gradient(91deg, #f16e00 -10%, #ffffff 120%);
+}
+
+#send{
+    border-color: #c85a00;
+}
+
+#back{
+    border-color: #c85a00;
+}

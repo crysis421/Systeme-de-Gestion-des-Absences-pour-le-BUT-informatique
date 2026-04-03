@@ -9,7 +9,7 @@ require_once __DIR__ . "/../../Presentation/responHist.php";
 </head>
 <body>
 <!-- TabBar ici ! -->
-<?php require('menuHorizontalResp.html');?>
+<?php require('menuHorizontalResp.php');?>
 <!-- Titre -->
 <h1><u>Historique des absences : </u></h1>
 <!-- Filtrage ici ! -->

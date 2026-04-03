@@ -74,11 +74,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../../CSS/compte/compte.css"/>
-    <link rel="stylesheet" href="../../CSS/compte/compteMarron.css"/>
+    <link rel="stylesheet" href="../../CSS/compte/compte<?=$_SESSION['couleur']?>.css"/>
     <title>Gestionnaire d'absence</title>
 </head>
 <body>
-<?php require('menuHorizontalResp.html'); ?>
+<?php require('menuHorizontalResp.php'); ?>
 <main>
     <h1>Compte</h1>
     <div id="graphe">
@@ -186,6 +186,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
             message.style.top  = e.pageY + 12 + "px";
         });
     </script>
+    <h2>Choisissez un thème</h2>
+    <form action="../../Presentation/choixCouleur.php" method="post">
+        <label for="couleur">Couleur :</label>
+        <select name="couleur" id="couleur" required>
+            <option value="Bleu">Bleu</option>
+            <option value="Marron">Marron</option>
+            <option value="Vert">Vert</option>
+            <option value="Violet">Violet</option>
+            <option value="Orange">Orange</option>
+        </select>
+        <br><br>
+        <button type="submit">Valider</button>
+    </form>
 </main>
 </body>
 </html>
