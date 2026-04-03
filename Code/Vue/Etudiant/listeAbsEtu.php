@@ -8,7 +8,6 @@ if(isset($_POST["result"])){
     $_SESSION["jour"]=$_POST["jour"];
     $_SESSION["mois"]=$_POST["mois"];
 }
-
 if (empty($result) ) {
     echo "<p>Aucune absence n’a été enregistrée à votre nom pour la journée </p>";
 } else {
@@ -17,10 +16,7 @@ if (empty($result) ) {
         if(!$absence['verrouille'])
             $peuxCliquer = true;
     }
-
-    ?>
-
-
+?>
     <main><br><br></main>
     <?php if($peuxCliquer){ ?>
     <form action="formulaireAbsence.php" method="GET">

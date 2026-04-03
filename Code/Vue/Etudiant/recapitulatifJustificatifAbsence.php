@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../../Model/AbsenceModel.php';
 require_once __DIR__ . '/../../Presentation/recapJustificatif.php';
-
 // Suppression d'un fichier si formulaire soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
     $index = (int)$_POST['supprimer_index'];
@@ -14,9 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
         $justificatifs = $_SESSION['formData']['justificatifs'];
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -28,16 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
 <h1 style="text-align: center">
     Récapitulatif du justificatif d'absence de <?php echo htmlspecialchars($prenom); ?> <?php echo htmlspecialchars($nom); ?>
 </h1>
-
 <div id="main" >
     <div id="info">
         <p><b id="gras">Période d'absence :</b> du <?php echo htmlspecialchars($data['datedebut']); ?> à <?php echo htmlspecialchars($data['heuredebut']); ?>
             au <?php echo htmlspecialchars($data['fin']); ?> à <?php echo htmlspecialchars($data['heurefin1']); ?></p>
-
         <p><b id="gras">Motif :</b> <?php echo htmlspecialchars($data['motif']); ?></p>
         <p><b id="gras">Commentaires :</b> <?php echo nl2br(htmlspecialchars($data['commentaire'])); ?></p>
-
-
         <p><b id="gras">Justificatifs :</b></p>
         <?php if (!empty($justificatifs)): ?>
             <ul>
@@ -54,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
         <?php else: ?>
             <p>Aucun justificatif fourni.</p>
         <?php endif; ?>
-
     </div>
     <br>
     <div id="but">
@@ -68,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
     font-size: 20px;
     margin-bottom: 20px;" type="submit">⬅️ Retour</button>
         </form>
-
         <form action="../../Presentation/SoumettreJustificatif.php" method="post">
             <button style="    background-color:green;
     color: white;
@@ -83,21 +74,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer_index'])) {
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

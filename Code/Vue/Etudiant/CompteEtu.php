@@ -1,12 +1,10 @@
 <?php
 use Vue\Camembert;
 require __DIR__ . '/../Camembert.php';
-
 session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
-
 require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 ?>
 <!DOCTYPE html>
@@ -14,17 +12,14 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../CSS/compte/compte.css"/>
     <link rel="stylesheet" href="../../CSS/compte/compteMarron.css"/>
     <title>Mon compte</title>
 </head>
-
 <body>
 <header>
     <?php require __DIR__ . '/menuHorizontalEtu.html'; ?>
 </header>
-
 <main>
     <div style="display: flex">
         <h1 style=" width: 90%">Bonjour <?php echo htmlspecialchars($prenom); ?> ! 👋</h1>
@@ -32,7 +27,6 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
             <input id="deconnexion" type="submit" value="Déconnexion">
         </form>
     </div>
-
     <!-- Section du haut : Profil à gauche / Données à droite -->
     <div id="haut">
         <div id="profil">
@@ -66,13 +60,11 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
                         <label for="Email">
                             Entrez votre adresse mail :* <input type="email" name="email1" placeholder="adresse mail"
                                                                 required>
-                        </label> <br>
-                        <br>
+                        </label> <br><br>
                         <label for="Mot de passe">
                             Entrez votre mot de passe :* <input type="password" name="motDePasse1"
                                                                 placeholder="mot de passe" required>
-                        </label> <br>
-                        <br>
+                        </label> <br><br>
                         <label for="confirmation">
                             Confirmer votre nouveau mot de passe :* <input type="password" name="confirmationMotDePasse1" placeholder="Confirmer votre mot de passe" required onpaste="return false" ><!-- on peut ajouter oncopy="return false" oncut="return false" pour bloquer la copie et la coupure -->
                         </label> <br>
@@ -84,7 +76,6 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
                 </details>
             </details>
         </div>
-
         <div id="donnees">
             <details>
                 <summary style="background-color: #bce6f6">
@@ -96,7 +87,6 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
                 <p><b>En attente de confirmation 🔔:</b> .............<?php echo htmlspecialchars($autre); ?></p>
             </details>
         </div>
-
         <!-- Section du bas, centrée -->
         <div id="graphe">
             <details id="stat">
@@ -115,7 +105,6 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 </footer>
 </body>
 </html>
-
 <script>
     // Fonction d'affichage/masquage
     function annuler() {
@@ -127,5 +116,3 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
         }
     }
 </script>
-
-

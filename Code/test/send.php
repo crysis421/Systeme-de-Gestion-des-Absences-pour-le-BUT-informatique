@@ -1,13 +1,10 @@
 <?php
-
 namespace test;
-
 class send
 {
     public function __construct()
     {
     }
-
     function envoyerMailSendGrid($destinataire,$subject, $contentHtml)
     {
         $data = [
@@ -21,7 +18,6 @@ class send
                 "value" => $contentHtml
             ]]
         ];
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://api.sendgrid.com/v3/mail/send");
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -31,11 +27,9 @@ class send
             "Content-Type: application/json"
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
         $response = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-
         /*
         if ($httpcode == 202) {
             echo "Message envoyé avec succès !";
