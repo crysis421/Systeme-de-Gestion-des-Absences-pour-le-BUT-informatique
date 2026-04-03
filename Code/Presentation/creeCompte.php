@@ -1,4 +1,7 @@
 <?php
+
+use Model\ComptesModel;
+
 require_once __DIR__ . "/../Model/ComptesModel.php";
 session_start();
 
