@@ -295,7 +295,7 @@ class AbsenceModel
         JOIN seance s ON a.idSeance = s.idSeance
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
-        WHERE t.attente = TRUE AND a.verrouille = FALSE
+        WHERE t.attente = TRUE AND a.verrouille = FALSE AND t.reponse IS NULL 
         ";
 
         $params = [];
