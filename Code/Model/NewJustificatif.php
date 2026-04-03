@@ -1,10 +1,7 @@
 <?php
-
 namespace Model;
-
 use PDO;
 use PDOException;
-
 require_once __DIR__ . "/Database.php";
 
 class NewJustificatif
@@ -31,9 +28,6 @@ class NewJustificatif
             $stmtJustificatif = $this->conn->prepare($sqlJustificatif);
             $stmtJustificatif->execute();
 
-
-
-
             // Récupérer l'ID du justificatif qui vient d'être créé
             $idJustificatif = (int)$this->conn->lastInsertId();
 
@@ -42,7 +36,6 @@ class NewJustificatif
                 exit;
             }
 
-
             //  Lier l'absence et le justificatif
             foreach($idAbsence as $i){
                 $sqlAbsenceEtJustificatif = "INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif)";
@@ -50,10 +43,7 @@ class NewJustificatif
                 $stmtAbsenceEtJustificatif->bindValue(':idabsence', $i['idabsence'], PDO::PARAM_INT);
                 $stmtAbsenceEtJustificatif->bindValue(':idjustificatif', $idJustificatif, PDO::PARAM_INT);
                 $stmtAbsenceEtJustificatif->execute();
-
-
                 $this->changeStatut($i['idabsence'],$commentaire);
-
             }
 
             // Créer l'entrée initiale dans traitementjustificatif
@@ -79,19 +69,15 @@ class NewJustificatif
             }
 
             return $idJustificatif;
-
         } catch (PDOException $e) {
             echo "Erreur SQL : " . $e->getMessage(); // 👈 temporaire pour debug
             return false;
         }
     }
 
-
-
     ///cette fonction pour prendre seulement les absences qui nous interessent (seance par seance)
     public function getIdAbsenceParSeance($datedebut, $heuredebut,$datefin,$heurefin, $idEtudiant) {
         $sql = "select idAbsence,verrouille from Absence join Seance using(idSeance) where statut='refus' and :dateDebut <= date and :dateFin >= date and :heureDebut <= heureDebut and :heureFin-duree >= heureDebut and idEtudiant=:idEtu and (verrouille isnull or verrouille=false);";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":idEtu", $idEtudiant);
         $stmt->bindParam(":dateDebut", $datedebut);
@@ -99,10 +85,8 @@ class NewJustificatif
         $stmt->bindParam(":dateFin", $datefin);
         $stmt->bindParam(":heureFin", $heurefin);
         $stmt->execute();
-
         return $stmt->fetchAll();
     }
-
 
     ///changer le statut... litterallement le nom de la fonction breffffff
     public function changeStatut($idAbsence,$commentaire) {
@@ -114,14 +98,12 @@ class NewJustificatif
         $stmt->execute();
     }
 
-
     public function getEmailbyUser($id)
     {
         $sql = "SELECT email FROM utilisateur WHERE idUtilisateur = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['email'] : null; // retourne l'émail ou null si non trouvé
     }
@@ -132,7 +114,6 @@ class NewJustificatif
     //    $ftp_pass = $pwd;
     //    $local_file = $lFile;
     //    $distant_file = $dFile;
-
     //    $conn_id = ftp_connect($ftp_host);
     //    // on se connecte en tant qu'utilisateur
     //    $login_result = ftp_login($conn_id, $ftp_user, $ftp_pass);
@@ -155,5 +136,4 @@ class NewJustificatif
     //    int $offset = 0
     //): int
     //}
-
 }

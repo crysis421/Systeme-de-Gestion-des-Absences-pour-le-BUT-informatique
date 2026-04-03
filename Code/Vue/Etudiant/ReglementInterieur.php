@@ -1,17 +1,14 @@
 <?php
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../../CSS/ReglementInterieur.css">
     <title>Tableau de bord absence</title>
 </head>
 <body>
-
 <!-- TABBAR -->
 <?php require __DIR__ . "/menuHorizontalEtu.php"; ?>
 
@@ -21,11 +18,9 @@
         Réglement intérieur
     </h1>
 </div>
-
 <header>
     <p class="center-text">Adopté en Conseil de l’Ecole Doctorale du 30 janvier 2025</p>
 </header>
-
 <main>
     <section>
         <div class="list-container">
@@ -47,7 +42,6 @@
             </div>
         </div>
     </section>
-
     <article id="organisation">
         <h2>Article 1 – Organisation de l’École Doctorale PHF</h2>
         <div class="list-container">
@@ -63,12 +57,10 @@
             </div>
         </div>
     </article>
-
     <article id="direction">
         <h2>Article 2 – Direction de l’École Doctorale PHF</h2>
         <p>La Direction sera assurée par un Directeur (DED) et un Directeur adjoint. Le Directeur adjoint assiste le DED dans ses fonctions et il pourra le représenter en cas d’absence. Le Directeur et le Directeur adjoint appartiennent chacun à un des deux pôles scientifiques de l’ED. Le DED est nommé par les Président(s) ou Directeur(s) des établissements co-accrédités et habilités à décerner le diplôme de doctorat, pour une durée de cinq ans, renouvelable au maximum une fois (conformément à l’Article 6 modifié par Décret n°2019-1108 du 30 octobre 2019 - art. 9). Un Responsable du pôle d’actions internationales fait également partie de la Direction. Le Directeur Adjoint et le Responsable du pôle d’actions internationales sont proposés par le Directeur de l’ED et nommés par le Président de l’UPHF.</p>
     </article>
-
     <article id="conseil">
         <h2>Article 3 – Conseil de l'École Doctorale PHF</h2>
         <div class="list-container">
@@ -90,12 +82,10 @@
             <div class="list-item">Le directeur de l’ED peut inviter, selon l’ordre du jour, une personne extérieure à assister au conseil.</div>
         </div>
     </article>
-
     <article id="bureau">
         <h2>Article 4 – Bureau de l’École Doctorale PHF</h2>
         <p>Le Bureau de l’École Doctorale PHF est composé du Directeur et du Directeur Adjoint de l’ED, le Responsable du pôle international de l’ED et des 2 Directeurs et Directeurs Adjoints des 2 pôles scientifiques de l’ED.</p>
     </article>
-
     <article id="poles-scientifiques">
         <h2>Article 5 – Pôles scientifiques de l’ED</h2>
         <div class="list-container">
@@ -126,7 +116,6 @@
             <div class="list-item">Au cas où le doctorant choisit, en accord avec l’ED et son DT, d’avoir une Discipline (Spécialité) majeure et une Discipline (Spécialité) mineure, c’est la Discipline (Spécialité) majeure qui déterminera son appartenance au pôle SH ou au pôle ST.</div>
             <div class="list-item">La double spécialité fait l’objet d’une demande motivée par le DT. Cette demande est examinée par le Bureau de l’ED et par le DED pour acceptation.</div>
         </div>
-
         <h3>Article 5.1 – Bureaux de pôle scientifique</h3>
         <div class="list-container">
             <div class="list-item">Chaque pôle scientifique est constitué d’un Bureau de pôle.</div>
@@ -142,7 +131,6 @@
             </div>
             <div class="list-item">Les membres du Bureau de pôle assistent le DP dans l’organisation des CSI de thèse et établissent les comptes rendus de ces derniers. Ils peuvent présider les CSI.</div>
         </div>
-
         <h3>Article 5.2 – Directeurs de pôle et Directeurs adjoints de pôle</h3>
         <div class="list-container">
             <div class="list-item">Au sein de chaque pôle, un Directeur de pôle (DP) et un Directeur adjoint de pôle sont élus au sein du Bureau de pôle après appel à candidature et sont proposés au Conseil de l’ED. Le DP et le Directeur adjoint de pôle ne font pas partie du même laboratoire.</div>
@@ -159,7 +147,6 @@
         <p class="note"><span>(A)</span> : Chaque pôle aura, en particulier, pour mission de vérifier la qualité des dossiers des candidats postulant pour réaliser une thèse. L’ensemble des membres du pôle permet d’avoir des spécialistes sur l’ensemble des domaines de recherche.</p>
         <p class="note"><span>(B)</span> : Le DP donne un avis sur chacune des candidatures (sélectionnées par le DT et le DL) pour réaliser une thèse, à la fois via un compte rendu (CR) envoyer à l’ED et via un avis donné sur la plateforme ADUM.</p>
     </article>
-
     <article id="inscription-doctorat">
         <h2>Article 6 – Procédure d’inscription en doctorat</h2>
         <div class="list-container">
@@ -167,7 +154,6 @@
             <div class="list-item">La sélection des doctorants est un élément clé de la politique de qualité de l’ED. Il appartient à tous, DT, DL, DP, membres des Bureaux de pôle, etc., de veiller à ne recruter que des étudiants ayant obtenu d’excellents résultats dans leur cursus universitaire.</div>
             <div class="list-item">Sauf cas particulier, les réinscriptions doivent être finalisées avant la fin de l’année civile.</div>
         </div>
-
         <h3>Article 6.1 – 1<sup>ère</sup> inscription</h3>
         <div class="list-container">
             <div class="list-item">Les conditions d’admission sont basées sur :
@@ -184,7 +170,6 @@
         <div class="list-container">
             <div class="list-item">Les formalités et les procédures à accomplir pour une inscription en 1<sup>ère</sup> année de thèse sont données sur le site web de l’ED PHF.</div>
         </div>
-
         <h3>Article 6.2 – Réinscriptions en 2<sup>ème</sup> ou 3<sup>ème</sup> année de thèse</h3>
         <div class="list-container">
             <div class="list-item">Les réinscriptions en 2<sup>ème</sup> année et 3<sup>ème</sup> année de thèse sont sujettes à un contrôle de la qualité scientifique et de l’avancement du travail de thèse.</div>
@@ -197,7 +182,6 @@
             </div>
             <div class="list-item">Les formalités et les procédures à accomplir pour une inscription en 2<sup>ème</sup> année ou 3<sup>ème</sup> année de thèse sont données sur le site web de l’ED PHF.</div>
         </div>
-
         <h3>Article 6.3 – Réinscription en 4<sup>ème</sup> année</h3>
         <div class="list-container">
             <div class="list-item">Il est rappelé que cette réinscription constitue en soi une dérogation à la durée normale de la thèse (3 ans) et doit donc être dûment justifiée.</div>
@@ -208,14 +192,12 @@
             <div class="list-item">Le cas des doctorants salariés (hors CIFRE, ATER et vacataires) sera examiné séparément. Ils seront considérés comme préparant leur doctorat à mi-temps. C’est une réinscription en 7<sup>ème</sup> année qui constitue alors une année dérogatoire<em>.</em></div>
             <div class="list-item">Les formalités et les procédures à accomplir pour une inscription en 4<sup>ème</sup> année de thèse sont données sur le site web de l’ED PHF. Un certain nombre d’éléments sont à déposer par le doctorant sur l’espace ADUM (lettre de motivation justifiant la demande, avis du DT, planning de finalisation de la thèse, bilan des crédits de formation, etc.).</div>
         </div>
-
         <h3>Article 6.4 – Réinscription en 5<sup>ème</sup> année et plus</h3>
         <div class="list-container">
             <div class="list-item">Pour les thèses réalisées à temps plein, en dehors de cas particuliers (arrêt maladie de plusieurs mois, maternité, césure, etc.), la réinscription en 5<sup>ème</sup> année (2<sup>ème</sup> année dérogatoire) et la réinscription en 6<sup>ème</sup> année (3<sup>ème</sup> année dérogatoire) seront accordées exceptionnellement et feront l’objet d’une étude spécifique par l’ED. Dans tous les cas, une thèse doit avoir une durée de 3 ans équivalent temps plein et ne peut excéder 6 ans (cf. arrêté du 26 août 2022 modifiant l’arrêté du 25 mai 2016). Dans certains cas, une inscription au moment de la procédure de soutenance sera proposée. Aucune inscription en 7<sup>ème</sup> année ne pourra être accordée par l’ED.</div>
             <div class="list-item">Pour les thèses réalisées à mi-temps, la réinscription en 7<sup>ème</sup> année (1<sup>ère</sup> année dérogatoire) pourra être accordée mais le doctorant s’engagera à soutenir au cours de sa 7<sup>ème</sup> année de thèse sachant qu’une 8<sup>ème</sup> inscription ne pourra être accordée par l’ED.</div>
         </div>
     </article>
-
     <article id="direction-these">
         <h2>Article 7 – Direction de thèse</h2>
         <div class="list-container">
@@ -232,7 +214,6 @@
             </div>
         </div>
     </article>
-
     <article id="autorisation-direction-non-hdr">
         <h2>Article 8 – Autorisation de direction de thèse par un titulaire d’un doctorat (non HDR)</h2>
         <div class="list-container">
@@ -255,7 +236,6 @@
             </div>
         </div>
     </article>
-
     <article id="formations-doctorales">
         <h2>Article 9 – Modules de Formations Doctorales et Crédits de Formations Doctorales</h2>
         <div class="list-container">
@@ -291,7 +271,6 @@
             <div class="list-item">Des précisions et conditions supplémentaires peuvent être données sur le site web de l’ED PHF.</div>
         </div>
     </article>
-
     <article id="csi">
         <h2>Article 10 – Comité de Suivi Individuel (CSI)</h2>
         <div class="list-container">
@@ -321,12 +300,10 @@
             <div class="list-item">En cas de difficulté rencontrée au cours de la thèse (conflit, discrimination, harcèlement, etc.), à la demande du doctorant ou du DT, après concertation avec le DED, un CSI exceptionnel peut être organisé (l’organisation de ces CSI spécifiques sera adaptée au cas par cas).</div>
         </div>
     </article>
-
     <article id="duree-these">
         <h2>Article 11 – Durée de la thèse</h2>
         <p>La préparation du doctorat s'effectue en trois ans en équivalent temps plein consacré à la recherche (article 14 de l’arrêté du 25 mai 2016, modifié par l’article 12 de l’arrêté du 26 août 2022). Si le doctorant est salarié, chaque année est comptée pour une demi-année et dans ce cas la durée de sa thèse peut être de six ans. Toutefois, en conformité avec l’arrêté de 2016, la durée de préparation du doctorat peut être au plus de six ans sauf cas particulier (maladie, congé maternité, etc.).</p>
     </article>
-
     <article id="jury-these">
         <h2>Article 12 – Composition des jurys de thèse</h2>
         <p>La composition d’un jury de thèse de doctorat doit impérativement respecter les dispositions prévues par l’arrêté du 25 Mai 2016 (articles 18 et 19) et les règles de l’ED PHF :</p>
@@ -348,7 +325,6 @@
         </div>
         <p class="note"><u>Remarque 1</u> : pour être membre examinateur d’un jury de thèse de doctorat, il faut être titulaire du Doctorat. Si ce n’est pas le cas, il conviendra de demander une autorisation auprès de la commission recherche de l’UPHF pour que la personnalité soit membre examinateur. Si la qualité d’examinateur ne peut être obtenue, il est également possible de faire participer la personnalité pressentie comme membre « invité ». Un membre invité siège lors de la soutenance mais n’a pas voix délibérative et ne signe pas les documents relatifs à la soutenance. Il n’est pas comptabilisé comme membre examinateur. Dans un jury, le nombre d’invités est limité à 2.</p>
         <p class="note"><u>Remarque 2</u> : il convient de veiller à la conformité de la constitution du jury lors de la soutenance, i.e. que les membres siégeant en jury sont bien ceux officiellement désignés préalablement à la soutenance par le chef d’établissement délivrant le diplôme afin d’éviter tout recours administratif qui mettrait en péril, in fine, la délivrance du diplôme.</p>
-
         <h3>Précisions dans la composition des jurys de thèse en cotutelle</h3>
         <div class="list-container">
             <div class="list-item">Selon l’article 21 de l’arrêté du 25 mai 2016, les principes régissant la constitution du jury doivent être précisés par la convention de cotutelle entre un établissement français et un établissement partenaire. Le principe de base est le respect d’une proportion équilibrée de membres désignés conjointement par les établissements contractants.</div>
@@ -357,7 +333,6 @@
             <div class="list-item">En l’absence de précision explicite dans la convention de cotutelle, l’ED appliquera l’esprit de l’arrêté du 25 mai 2016 relatif à la formation doctorale sur la moitié du jury désignée par l’établissement français. Ce "<em>demi jur</em>y" comportera alors de 2 à 4 membres (au moins 50% de professeurs ou assimilés, au moins 50% de membres extérieurs à l’ED PHF, à l'UPHF, à l’INSA HdF et à l’ICL et à l’établissement partenaire et au moins un membre de chaque genre).</div>
         </div>
     </article>
-
     <article id="soutenance">
         <h2>Article 13 – Procédure pour la soutenance de thèses</h2>
         <div class="list-container">
@@ -366,12 +341,10 @@
             <div class="list-item">Toutes les formalités à accomplir avant, pendant et après la soutenance sont présentes et actualisées sur le site web de l’ED PHF.</div>
         </div>
     </article>
-
     <article id="integrite-scientifique">
         <h2>Article 14 – Intégrité scientifique</h2>
         <p>L’Université polytechnique Hauts-de-France promeut la réalisation des travaux de recherche des doctorants dans le respect des exigences de l’intégrité scientifique et de l’éthique de la recherche. Les doctorants ont accès à une formation aux principes et exigences de l’éthique de la recherche et de l’intégrité scientifique. Ils s’engagent à les respecter pendant toute la durée de leur doctorat. L’Université polytechnique Hauts-de-France, les directeurs de thèse, directeurs de laboratoire et toutes les personnes encadrant ou participant au travail d’un doctorant s’engagent à favoriser et à accompagner cet engagement. A l’issue de la soutenance et après délivrance du titre, le docteur prête serment en s’engageant à respecter les principes et les exigences de l’intégrité scientifique dans la suite de sa carrière professionnelle, quel qu’en soit le secteur ou le domaine d’activité.</p>
     </article>
-
     <article id="serment">
         <h2>Article 15 – Serment</h2>
         <p>A l’issue de la soutenance et en cas d’admission, le docteur prête serment, individuellement, en s’engageant à respecter les principes et exigences de l’intégrité scientifique dans la suite de sa carrière professionnelle, quel qu’en soit le secteur ou le domaine d’activité.</p>

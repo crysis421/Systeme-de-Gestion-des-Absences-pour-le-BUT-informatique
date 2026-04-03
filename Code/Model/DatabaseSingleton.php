@@ -1,7 +1,5 @@
 <?php
-
 namespace Model;
-
 use PDO;
 use PDOException;
 ///pareil que pour database mais cette classe est en pattern singleton pour n'avoir qu'une seule instance

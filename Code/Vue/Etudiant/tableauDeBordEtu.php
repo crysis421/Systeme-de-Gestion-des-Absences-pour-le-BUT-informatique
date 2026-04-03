@@ -1,5 +1,4 @@
 <?php
-
 //Ce fichier est là pour le Tableau De Bord de l'étudiant avec un calendrier
 global $couleurDuMois, $interrogationDuMois;
 session_start();
@@ -9,7 +8,6 @@ if (!isset($_SESSION["user"])) {
 require __DIR__ . "/menuHorizontalEtu.php";
 
 $Y = date("Y");//On ne peut voir que notre année scolaire
-
 //Dictionnaire pour transformer les dates originalement anglais en francais
 $nomDesMois = ["January" => "Janvier",
         "February" => "Février",
@@ -23,7 +21,6 @@ $nomDesMois = ["January" => "Janvier",
         "October" => "Octobre",
         "November" => "Novembre",
         "December" => "Décembre"];
-
 if (!isset($_POST['mois'])) {
     $M = date("m");
     $Y = date("Y");
@@ -44,11 +41,8 @@ if (isset($_SESSION['mois'])) {
 }
 $_SESSION['date'] = date_create(date($Y . "-" . $M . "-01"));
 $mois = date_format($_SESSION['date'], "m");
-
 require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -57,15 +51,11 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <link rel="stylesheet" href="../../CSS/calendrier/calendrier.css">
     <link rel="stylesheet" href="../../CSS/calendrier/calendrier<?=$_SESSION['couleur']?>.css">
     <title>Mon compte</title>
-
 </head>
-
 <a href="ReglementInterieur.php">
     <input class='boutonReglement' type="submit" name="bouton4" value="Consulter le réglement intérieur">
 </a>
-
 <details class="detailI">
-
     <summary>
         <p id="i" style="cursor: pointer; ">ⓘ</p>
     </summary>
@@ -95,7 +85,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     </label>
     <input type="submit" value="OK" name="jour">
 </form>
-
 <h1>
     <?php echo '<p> ' . $nomDesMois[$_SESSION['date']->format("F")] . $_SESSION['date']->format(" - Y") . ' </p>' ?>
 </h1>
@@ -136,8 +125,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
                 echo '<td>  </td>';
             }
         }
-
-
         while ($mois == $M) {
             if ($date->format('D') == 'Sun') {//Passer a la ligne suivante car changement de semaine
                 echo "</tr><tr>";
@@ -158,7 +145,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
                 </td>
                 <?php
             }
-
             $mois = $date->format('m'); //Voir le mois pour ne pas faire le mois d'apres
         }
         ?>
@@ -167,8 +153,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <?php
     require __DIR__ . '/listeAbsEtu.php'; ?>
 </div>
-
-
 <script>
     let ajax = new XMLHttpRequest();
     let container = document.querySelector("#res")
@@ -177,7 +161,6 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     let user = <?php echo $_SESSION['user'] ?>;
     var v = 1;
     var res;
-
     function recupInfo(){
             if (ajax.readyState === 4 && ajax.status === 200) {
                 res = ajax.responseText;
@@ -188,23 +171,19 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
                 ajax.send("result="+res+"&jour=" + v + "&mois=" + mois)
             }
     }
-
     function mettreInfo(){
         if (ajax.readyState === 4 && ajax.status === 200) {
             ajax.onreadystatechange = recupInfo
             container.innerHTML = ajax.responseText
         }
     }
-
     ajax.onreadystatechange = recupInfo
-
     function reset() {
         let longueur = container.children.length
         for (let i = 0; i < longueur; i++) {
             container.removeChild(container.children[0]);
         }
     }
-
     let boutons = document.querySelectorAll("#jour")
     for (let bouton of boutons) {
         bouton.addEventListener("click", (e) => {
@@ -219,4 +198,3 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
         })
     }
 </script>
-

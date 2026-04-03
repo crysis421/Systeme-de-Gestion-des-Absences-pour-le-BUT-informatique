@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["rappel"])){
             $email = $result['email'];
             $contenu = "<h1>Notification de rappel concernant vos Justificatifs</h1>
                     <p>Vous avez plusieurs absences non justifiées ou non-validées qui sont en attente de justification.</p>
-                    <p>Veuillez-vous contecter à votre de compte de gestion d'absence pour en savoir plus...</p>";
+                    <p>Veuillez-vous connecter à votre de compte de gestion d'absence pour en savoir plus...</p>";
             $result = $mailer->envoyerMailSendGrid($email,'Rappel justificatif absence',$contenu);
             if ($result['httpcode'] == 202) {
                 $res += 1;
