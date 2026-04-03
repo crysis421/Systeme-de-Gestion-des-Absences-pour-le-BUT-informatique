@@ -1,12 +1,8 @@
 <?php
-
 namespace Model;
-
 //Traitement des données d'une table CSV, en particulier celle de VT.
 //Elle transfère toutes les données sur la base
-
 require_once __DIR__ . "/Database.php";
-
 use mysql_xdevapi\Exception;
 use PDO;
 use PDOException;
@@ -165,12 +161,8 @@ class insertDataVT
             $req2->bindParam(":retard", $retard);
             $req2->execute();
             $req2 = null;
-
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
-
-
 }

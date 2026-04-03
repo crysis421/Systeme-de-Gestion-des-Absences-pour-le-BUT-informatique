@@ -233,8 +233,6 @@ textarea{
     width: auto;
 }
 
-
-
 div.alertes{
     color:red;
 }
@@ -311,7 +309,6 @@ div.alertes{
     color: black;
     text-shadow: 4px 4px 10px rgba(0,0,0,0.9);
 }
-
 
 #Rappeljustification{
     background-color:#c7d685;
@@ -416,9 +413,8 @@ ol {
 #rappel {
     margin-left: 0;
 }
+
 @media (max-width: 768px) {
-
-
     #profil,
     #donnees,
     #graphe {
@@ -550,6 +546,4 @@ ol {
                 text-shadow 0.4s ease,
                 box-shadow 0.4s ease;
     }
-
-
 }

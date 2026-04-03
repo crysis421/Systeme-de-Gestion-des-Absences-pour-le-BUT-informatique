@@ -1,7 +1,6 @@
 <?php
 namespace Model;
 use PDO;
-
 require_once __DIR__ . "/DatabaseSingleton.php";
 //Classe pour la récupération de données pour le Tableau de bord de l'étudiant
 class AbsenceEtuTB

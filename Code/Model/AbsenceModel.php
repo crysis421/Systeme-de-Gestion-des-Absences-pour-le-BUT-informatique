@@ -1,7 +1,5 @@
 <?php
-
 use Model\Database;
-
 require_once __DIR__ . "/Database.php";
 
 class AbsenceModel
@@ -326,7 +324,6 @@ class AbsenceModel
         }
 
         $sql .= " ORDER BY j.dateSoumission DESC";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -422,7 +419,6 @@ class AbsenceModel
         }
 
         $sql .= " ORDER BY j.dateSoumission DESC";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -465,7 +461,6 @@ class AbsenceModel
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['nom'] : null; // retourne juste le nom ou null si non trouvé
     }
@@ -476,7 +471,6 @@ class AbsenceModel
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result['prenom'] : null; // retourne juste le prénom ou null si non trouvé
     }
@@ -485,14 +479,11 @@ class AbsenceModel
     {
         // Hash du mot de passe
         $hashedMdp = password_hash($mdp, PASSWORD_DEFAULT);
-
         $sql = "UPDATE Utilisateur SET motDePasse = :mdp WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":mdp", $hashedMdp, PDO::PARAM_STR);
         $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-
         $stmt->execute();
-
         return "Le mot de passe a bien été modifié";
     }
 
@@ -502,13 +493,10 @@ class AbsenceModel
             FROM Absence 
             WHERE idEtudiant = :idEtudiant 
               AND statut = 'valide'";  // absences justifiées
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
         $stmt->execute();
-
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
@@ -518,13 +506,10 @@ class AbsenceModel
             FROM Absence 
             WHERE idEtudiant = :idEtudiant 
               AND statut = 'refus'";  // ou le statut que tu considères comme absence
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
         $stmt->execute();
-
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
@@ -534,13 +519,10 @@ class AbsenceModel
             FROM Absence 
             WHERE idEtudiant = :idEtudiant 
               AND statut = 'report'";  // ou le statut que tu considères comme absence
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEtudiant', $idEtudiant, PDO::PARAM_INT);
         $stmt->execute();
-
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $result ? (int)$result['totalabsences'] : 0;
     }
 
@@ -556,7 +538,6 @@ class AbsenceModel
         JOIN cours c ON s.idCours = c.idCours
         LEFT JOIN traitementjustificatif t ON j.idJustificatif = t.idJustificatif
         WHERE t.attente = FALSE u.nom = :nom AND u.prenom = :prenom AND c.matiere = :matiere AND s.date = :date AND s.heure = :heure";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":nom", $nom);
         $stmt->bindParam(":prenom", $prenom);
@@ -581,7 +562,6 @@ class AbsenceModel
         JOIN seance s ON s.idSeance = a.idSeance
         JOIN cours c ON c.idCours = s.idCours
         WHERE c.matiere = :matiere";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":matiere", $matiere);
         $stmt->execute();
@@ -601,7 +581,6 @@ class AbsenceModel
         $sql = "SELECT count(a.idEtudiant) FROM absence AS a
         JOIN utilisateur u ON u.idUtilisateur = a.idEtudiant
         WHERE u.nom = :nom AND u.prenom = :prenom";
-
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":nom", $nom);
         $stmt->bindParam(":prenom", $prenom);
@@ -693,7 +672,6 @@ class AbsenceModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 }
 $modelAbsence = new AbsenceModel();
 $modelAbsence->getEmailAttendu();

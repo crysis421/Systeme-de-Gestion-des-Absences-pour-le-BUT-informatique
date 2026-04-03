@@ -1,11 +1,9 @@
 ##########           LIQUIBASE FLOW FILE               ##########
 ##########  learn more http://docs.liquibase.com/flow  ##########
-
 ## NOTE: This is an advanced example flowfile, compared to the other sample at examples/liquibase.flowfile.yaml
 #### HOW TO USE THIS FILE:
 #### example for CLI: liquibase flow --flow-file=liquibase.advanced.flowfile.yaml
 #### example for ENV Var: LIQUIBASE_FLOW_FLOW_FILE=liquibase.advanced.flowfile.yaml
-
 ## Advanced options show in this file include:
 #### non-default name of 'liquibase.advanced.flowfile.yaml' (use by setting flowfile property to this name)
 #### use of 'include' to inject namespaced yaml files of key: val variables
@@ -23,51 +21,34 @@
 ######  DATETIME STAMP
 ######## In this file, you could replace ${FLOWVARS.THISDATE} with an env var, such as ${LIQUIBASE_THISDATE} set via .bash_profile
 ######## for example 'export LIQUIBASE_THISDATE=$( date +'%Y-%m-%dT%H-%M-%S' )'
-
-
 ## Bring in and namespace an external file with yaml 'key: val' pairs for use in this file
 ## The variables will be used as ${namespace.variablename}, seen in this example as ${FLOWVARS.PROJNAME}
 include:
   FLOWVARS: liquibase.flowvariables.yaml
-
-
-
 ## Set up some global variables for property substitution in ANY stage
 globalVariables:
   DIRNAME: "./${FLOWVARS.PROJNAME}_${FLOWVARS.THISDATE}"
   STATUSFILE: "status.txt"
   UPDATELOG: "update.log"
   HISTORYFILE: "history.txt"
-
-
 ## Start of the stages.
 stages:
-
   ## A prep stage. There can be more than one stage if desired.
   stage-prep:
-
     actions:
-
       - type: shell
         command: bash -c "mkdir -p ${DIRNAME}"
-
-
   ## Another stage.
   stage-dowork:
-
     ## set up vars for property substitution in THIS stage only
     stageVariables:
-
       VERBOSESTATE: TRUE
-
-
     actions:
       #
       # Do a validate command
       #
       - type: liquibase
         command: validate
-
       #
       # Tell me what is pending a deployment
       #
@@ -81,64 +62,46 @@ stages:
           #    outputfile: "${DIRNAME}/${STATUSFILE}"
           #    showbanner: false
           #  cmdArgs: {verbose: "${VERBOSESTATE}"
-
-
-
-
       #
       # And then save a version in detail, if env var LIQUIBASE_FILE_OUTPUT == 1
       #
       - type: shell
         command: bash -c "echo 'LIQUIBASE_ env vars ' && env | grep 'LIQUIBASE_' "
-
       - type: liquibase
         ## if this var LIQUIBASE_CURRENT_TARGET is "dev", then the updatesql will run
         if: "${LIQUIBASE_CURRENT_TARGET} == dev"
         command: updatesql
         globalArgs: {outputfile: "${DIRNAME}/${UPDATELOG}"}
-
       - type: shell
         ## if this var LIQUIBASE_CURRENT_TARGET is not "dev", then the message will be displayed
         if: "${LIQUIBASE_CURRENT_TARGET} != dev"
         command: echo "No output files created. Set env var LIQUIBASE_CURRENT_TARGET to dev to trigger file creation."
-
-
-
       #
       # Policy Checks for changelog
       #
       - type: liquibase
         command: checks run
         cmdArgs: {checks-scope: changelog}
-
       #
       # Run update
       #
       - type: liquibase
         command: update
-
-
       #
       # Policy Checks for database
       #
       - type: liquibase
         command: checks run
         cmdArgs: {checks-scope: database}
-
-
       #
       # Create a history file
       #
       - type: liquibase
         command: history
         globalArgs: {outputfile: "${DIRNAME}/${HISTORYFILE}"}
-
-
-
 ## The endStage ALWAYS RUNS.
 ## So put actions here which you desire to perform whether previous stages' actions succeed or fail.
 ## If you do not want any actions to ALWAYS RUN, simply delete the endStage from your flow file.
-
 endStage:
   actions:
     - type: liquibase
