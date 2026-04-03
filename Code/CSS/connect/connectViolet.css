@@ -1,0 +1,21 @@
+#form {
+    background-color: #a885d8;
+}
+
+input[type="submit"]{
+    background-color: #800080;
+}
+
+button{
+    background-color: #800080;
+}
+
+#footer {
+    background-color: #a885d8;
+}
+
+@media (max-width:760px) {
+    input[type="submit"]{
+        background-color: #800080;
+    }
+}

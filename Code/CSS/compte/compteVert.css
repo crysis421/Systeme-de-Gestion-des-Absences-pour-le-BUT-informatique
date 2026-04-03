@@ -1,0 +1,46 @@
+#haut {
+    border: 1px solid #008000;
+}
+
+#li:hover + #test{
+    fill: #90ee90;
+}
+
+#graphe {
+    border: 1px solid #2e8b57;
+}
+
+#footer {
+    background-color: #008000;
+}
+
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select {
+    border-color: #2e8b57;
+}
+
+textarea{
+    border-color: #2e8b57;
+}
+
+#modif{
+    background-color: #008000;
+}
+
+#modif button:hover {
+    background-color: #2e8b57;
+}
+
+#valider{
+    background-color: #008000;
+    border-color: #006400;
+    border: 2px;
+}
+
+@media (max-width: 768px) {
+    #modif{
+        background-color: #008000;
+    }
+}

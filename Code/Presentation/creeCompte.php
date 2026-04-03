@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
 
-    <form action="../Systeme-de-Gestion-des-Absences-pour-le-BUT-informatique/Vue/creationCompte.php" method="post">
+    <form action="../Vue/Secretaire/creationCompte.php" method="post">
         <input type="submit" value="OK" name="OK">
     </form>
 

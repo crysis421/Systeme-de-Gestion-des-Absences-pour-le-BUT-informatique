@@ -39,7 +39,6 @@ h1 {
     align-items: flex-start; /* Aligne les éléments en haut du conteneur */
     background-color: #f1eeee; /* Couleur d’arrière-plan */
 
-    border: 1px solid #00aa00; /* Bordure verte */
     border-radius: 6px; /* Coins arrondis */
 
     height: auto;
@@ -65,10 +64,6 @@ h1 {
     margin-left: auto;
     flex-wrap: wrap;
     text-align: left;
-}
-
-#li:hover + #test{
-    fill: aquamarine;
 }
 
 #li{
@@ -123,7 +118,6 @@ ol{
 #graphe {
     margin: 2%;
     background-color: white; /* Couleur gris-bleu clair */
-    border: 1px solid #00aa00; /* Bordure verte */
     border-radius: 6px; /* Coins arrondis */
     width: 45%; /* Prend toute la largeur sous les deux autres blocs */
     text-align: center; /* Centre le texte et les images */
@@ -187,7 +181,6 @@ details[open] summary {
 
 /* === Pied de page === */
 #footer {
-    background-color: #2781a8; /* Fond bleu */
     text-align: center; /* Centre le texte */
     padding: 15px; /* Espace intérieur */
     width: 100%; /* S’étend sur toute la largeur de la page */
@@ -209,7 +202,7 @@ select {
     margin-bottom: 15px;
     border-radius: 5px;
     border: 2px solid #ede9e9;
-    border-color: #00aa00;
+
     box-sizing: border-box;
 }
 
@@ -220,7 +213,7 @@ textarea{
     margin-bottom: 15px;
     border-radius: 5px;
     border: 2px solid #ede9e9;
-    border-color: #00aa00;
+
     box-sizing: border-box;
 }
 
@@ -232,7 +225,7 @@ textarea{
 #modif{
     display: block; /* Force le bloc pour centrer plus facilement */
     margin: 15px auto 0 auto; /* Centre horizontalement et ajoute un espace au-dessus */
-    background-color: #007BFF; /* Bleu primaire */
+
     color: white; /* Texte en blanc */
     border: none; /* Supprime la bordure par défaut */
     border-radius: 6px; /* Coins arrondis */
@@ -240,10 +233,7 @@ textarea{
     width: auto;
 }
 
-/* Effet au survol du bouton */
-#modif button:hover {
-    background-color: #0056b3; /* Change la couleur du bouton au survol */
-}
+
 
 div.alertes{
     color:red;
@@ -306,10 +296,8 @@ div.alertes{
 }
 
 #valider{
-    background-color:#007BFF;
     cursor: pointer;
     color: black;
-    border-color: #00aa00; border: 2px;
     border-style: solid;
     font-size: 20px;
     padding: 7px 15px;
@@ -517,7 +505,6 @@ ol {
     #modif{
         display: block;
         margin: 15px auto 0 auto;
-        background-color: #007BFF;
         color: white;
         border: none;
         border-radius: 6px;

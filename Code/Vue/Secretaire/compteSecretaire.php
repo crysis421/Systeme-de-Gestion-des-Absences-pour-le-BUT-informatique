@@ -11,7 +11,9 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
 <html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/compte.css">
+
+    <link rel="stylesheet" href="../../CSS/compte/compte.css">
+    <link rel="stylesheet" href="../../CSS/compte/compteMarron.css"/>
     <title>Compte Secretaire</title>
 </head>
 <body>

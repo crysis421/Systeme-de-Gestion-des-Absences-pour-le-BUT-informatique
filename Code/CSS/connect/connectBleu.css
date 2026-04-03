@@ -1,0 +1,22 @@
+#form {
+    background-color: #2781a8;
+}
+
+input[type="submit"]{
+    background-color:goldenrod;
+}
+
+button{
+    background-color:goldenrod;
+}
+
+#footer {
+    background-color: #2781a8;
+}
+
+
+@media (max-width:760px) {
+    input[type="submit"]{
+        background-color:goldenrod;
+    }
+}

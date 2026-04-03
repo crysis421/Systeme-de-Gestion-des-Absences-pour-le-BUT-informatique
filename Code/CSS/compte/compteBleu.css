@@ -1,0 +1,53 @@
+#haut {
+
+    border: 1px solid #003baa; /* Bordure  */
+}
+
+#li:hover + #test{
+    fill: aquamarine;
+}
+
+#graphe {
+
+    border: 1px solid #0055aa; /* Bordure  */
+}
+#footer {
+    background-color: #2781a8; /* Fond bleu */
+}
+
+
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select {
+    border-color: #004faa;
+}
+
+textarea{
+    border-color: #004faa;
+}
+
+#modif{
+    background-color: #007BFF; /* Bleu primaire */
+}
+
+/* Effet au survol du bouton */
+#modif button:hover {
+    background-color: #0056b3; /* Change la couleur du bouton au survol */
+}
+
+
+#valider{
+    background-color:#007BFF;
+    border-color: #001caa; border: 2px;
+}
+
+@media (max-width: 768px) {
+
+
+    #modif{
+
+        background-color: #007BFF;
+    }
+
+}

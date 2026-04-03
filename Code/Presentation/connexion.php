@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else if ($res['role'] == 'respon') {
             header("Location: ../Vue/Responsable/tableauDeBordResponsable.php");
             exit();
-        }else if ($res['role'] == 'prof') {
+        } else if ($res['role'] == 'prof') {
             header("Location: ../Vue/Professeur/tableauDeBordProf.php");
         }
     } else {
@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../Vue/Connexion.php");
         exit();
     }
+} else {
+    require __DIR__ . '/../Vue/Connexion.php';
 }
-else {
-        require __DIR__ . '/../Vue/Connexion.php';
-    }

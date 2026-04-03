@@ -1,0 +1,36 @@
+
+body {
+    color: #0280af;
+}
+
+h1 {
+    color: #0280af;
+}
+
+form {
+    border: 2px solid #0280af;
+    box-shadow: 0 0 10px rgba(2, 128, 175, 0.5);
+}
+
+label {
+    color: #0280af;
+}
+
+input[type="file"] {
+
+    color: #0280af;
+    border: 1px solid #c49f4c;
+}
+
+input[type="submit"] {
+    background-color: #c49f4c;
+    color: #0280c3;
+}
+
+input[type="submit"]:hover {
+    background-color: goldenrod;
+}
+
+#footer {
+    background-color: #2781a8;
+}
