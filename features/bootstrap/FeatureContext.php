@@ -84,6 +84,30 @@ class FeatureContext implements Context
     }
 
     /**
+     * @When je soumets un justificatif avec tous les champs requis etant remplis valides :dateD :heureD :dateF :heureF
+     */
+    public function jeSoumetsLeJustificatifValide($dateD, $heureD, $dateF, $heureF)
+    {
+        $this->justificatif = new \Model\NewJustificatif();
+
+        // IMPORTANT : on utilise $this->idEtudiant (stocké à l'étape Given)
+        // Vérifie bien que l'ordre des paramètres dans ton modèle est celui-ci !
+        $this->resultatAbsences = $this->justificatif->getIdAbsenceParSeance(
+            $dateD,
+            $heureD,
+            $dateF,
+            $heureF,
+            $this->idEtudiant
+        );
+
+
+        if (!empty($this->resultatAbsences)) {
+            $testService = new \Model\Test();
+            $this->resultatMail = $testService->envoieMailConfirmation($this->email);
+        }
+    }
+
+    /**
      * @Then le systeme m'envoie un mail de confirmation de dêpot
      */
     public function leSystemeEnvoieMailSucces()
