@@ -112,7 +112,7 @@ class FeatureContext implements Context
      */
     public function jeSuisUnResponsableConnecte(): void
     {
-        $model  = new \Model\ComptesModel();
+        $model = new \Model\ComptesModel();
         $compte = $model->connectCompte($this->emailResponsable);
 
         if (!$compte) {
@@ -135,8 +135,11 @@ class FeatureContext implements Context
     {
         $this->idJustificatif = (int) $idJustificatif;
 
-        $model     = new AbsenceModel();
-        $justifs   = $model->getJustificatifsAttente();
+        $model = new AbsenceModel();
+        $justificatifClasse = new \Model\NewJustificatif();
+        $leNouveauJustif = $justificatifClasse->creerJustificatif($this->idJustificatif, 0, '','', []);
+        $model->justifierAbsence($this->idJustificatif, 'refus',false,'');
+        $justifs = $model->getJustificatifsAttente();
 
         if (empty($justifs)) {
             throw new \Exception(
@@ -162,7 +165,7 @@ class FeatureContext implements Context
 
         $model = new AbsenceModel();
 
-        $absences   = $model->getAbsencesNonJustifiees($this->idJustificatif);
+        $absences = $model->getAbsencesNonJustifiees($this->idJustificatif);
         $absenceIds = array_column($absences, 'idabsence');
 
         if (empty($absenceIds)) {
@@ -215,8 +218,8 @@ class FeatureContext implements Context
             return;
         }
 
-        $model      = new AbsenceModel();
-        $absences   = $model->getAbsencesNonJustifiees($this->idJustificatif);
+        $model = new AbsenceModel();
+        $absences = $model->getAbsencesNonJustifiees($this->idJustificatif);
         $absenceIds = array_column($absences, 'idabsence');
 
         if (empty($absenceIds)) {
@@ -237,8 +240,8 @@ class FeatureContext implements Context
             return;
         }
 
-        $model      = new AbsenceModel();
-        $absences   = $model->getAbsencesNonJustifiees($this->idJustificatif);
+        $model = new AbsenceModel();
+        $absences = $model->getAbsencesNonJustifiees($this->idJustificatif);
         $absenceIds = array_column($absences, 'idabsence');
 
         if (empty($absenceIds)) {
