@@ -137,7 +137,13 @@ class FeatureContext implements Context
 
         $model = new AbsenceModel();
         $justificatifClasse = new \Model\NewJustificatif();
-        $leNouveauJustif = $justificatifClasse->creerJustificatif($this->idJustificatif, 0, '','', []);
+        $listeAbsence = [
+            [
+                "idabsence" => $this->idJustificatif,
+                "verrouille" => false
+            ]
+        ];
+        $justificatifClasse->creerJustificatif($listeAbsence, 0, '','', []);
         $model->justifierAbsence($this->idJustificatif, 'refus',false,'');
         $justifs = $model->getJustificatifsAttente();
 
