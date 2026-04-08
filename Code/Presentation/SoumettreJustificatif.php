@@ -1,13 +1,9 @@
 <?php
-
 use Model\NewJustificatif;
-
 require_once __DIR__ . '/../Model/NewJustificatif.php';
 require_once __DIR__ . '/../test/send.php';
 require_once __DIR__ . '/../Model/AbsenceModel.php';
-
 use test\send;
-
 session_start();
 
 // Vérifie que les données de session existent
@@ -100,8 +96,6 @@ try {
         }
         ?>
 
-
     </div>
-
 </main>
 </body>

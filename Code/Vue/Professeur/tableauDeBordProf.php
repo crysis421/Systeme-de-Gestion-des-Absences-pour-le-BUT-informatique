@@ -4,10 +4,8 @@ if(!isset($_SESSION["user"])){
     header('Location: ../Vue/Connexion.php');
 }
 require __DIR__ . '/menuHorizontalProf.html';
-
-echo '<link rel="stylesheet" href="../../CSS/calendrier/calendrier.css" />';
-echo '<link rel="stylesheet" href="../../CSS/calendrier/calendrierRouge.css" />';
-
+echo '<link rel="stylesheet" href="../../CSS/calendrier/calendrier.css?v=1" />';
+echo '<link rel="stylesheet" href="../../CSS/calendrier/calendrierRouge.css?v=1" />';
 $Y = date("Y");//On ne peut voir que notre année scolaire
 //Dictionnaire pour transformer les dates originalement anglais en francais
 $nomDesMois = [ "January" => "Janvier",

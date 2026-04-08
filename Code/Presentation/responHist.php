@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . "/../Model/AbsenceModel.php";
-
 $model = new AbsenceModel();
-
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;
 $matiere = $_POST['Matière'] ?? null;
@@ -64,5 +62,4 @@ foreach($justificatifs as $justif) {
 }
 
 $justificatifs = array_slice($justificatifs, 0, 10);
-
 ?>

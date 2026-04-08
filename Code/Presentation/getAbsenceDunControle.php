@@ -1,7 +1,6 @@
 <?php
 
 use Model\AbsenceEtuTB;
-
 require __DIR__ . '/../Model/AbsenceEtuTB.php';
 
 if (isset($_POST['jour']) and $_POST['jour'][1] != 'K') {

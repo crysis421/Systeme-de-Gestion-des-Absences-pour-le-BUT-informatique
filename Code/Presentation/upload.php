@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../Model/insertDataVT.php';
-
 use Model\insertDataVT;
 
 //On vérifie le bon envoie du fichier et le type du fichier
@@ -71,7 +70,3 @@ if (isset($_POST["submit"]) and $_FILES["fileToUpload"]["type"] == 'text/csv') {
     </form>
     <?php
 }
-
-
-
-

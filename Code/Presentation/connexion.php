@@ -1,7 +1,5 @@
 <?php
 
-
-
 session_start();
 require_once __DIR__ . "/../Model/ComptesModel.php";
 use Model\ComptesModel;
@@ -10,9 +8,7 @@ $erreur = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $motdepasse = $_POST['motDePasse'];
-
     $bdd = new ComptesModel();
-
     $res = $bdd->connectCompte($email);
 
     if (password_verify($motdepasse, $res['motdepasse'])) {

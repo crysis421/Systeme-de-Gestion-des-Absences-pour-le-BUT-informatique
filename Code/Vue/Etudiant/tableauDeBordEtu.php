@@ -47,8 +47,8 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/calendrier/calendrier.css">
-    <link rel="stylesheet" href="../../CSS/calendrier/calendrierMarron.css">
+    <link rel="stylesheet" href="../../CSS/calendrier/calendrier.css?v=1">
+    <link rel="stylesheet" href="../../CSS/calendrier/calendrierMarron.css?v=1">
     <title>Mon compte</title>
 </head>
 <a href="ReglementInterieur.php">

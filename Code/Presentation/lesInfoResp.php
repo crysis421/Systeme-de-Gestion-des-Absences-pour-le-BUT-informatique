@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../Model/AbsenceModel.php";
-
 $model = new AbsenceModel();
 $matiere= $model -> getMatieres();
 $eleve = $model -> getEleves();

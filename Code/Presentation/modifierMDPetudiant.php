@@ -84,5 +84,3 @@ switch ($_POST['formulaire']) {
         exit();
 }
 ?>
-
-

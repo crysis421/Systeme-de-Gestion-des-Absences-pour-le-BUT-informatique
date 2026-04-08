@@ -2,8 +2,6 @@
 require_once __DIR__ . "/../Model/AbsenceModel.php";
 require_once __DIR__ . '/../test/send.php';
 use test\send;
-
-
 $dateDebut = $_POST['dateDebut'] ?? null;
 $dateFin = $_POST['dateFin'] ?? null;
 $matiere = $_POST['Matière'] ?? null;
@@ -116,9 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['bouton4'])) {
     } else {
 
         $idUser = $model->getIdUserByIdJustificatif($IDElement);
-
         $mail = $model->getEmailbyUser($idUser);
-
 
         $contenu = "<h1>Notification de traitement de votre Justificatif</h1>
                 <p>Votre Justificatif N° $IDElement a bien été traité par le responsable.</p>

@@ -7,7 +7,7 @@ if(isset($_POST["result"])){
     $_SESSION["jour"]=$_POST["jour"];
     $_SESSION["mois"]=$_POST["mois"];
 }
-echo '<link rel="stylesheet" href="../../CSS/tableauDeBordResponsable.css">';
+echo '<link rel="stylesheet" href="../../CSS/tableauDeBordResponsable.css?v=1">';
 if (empty($resultatJour)) {
     echo "<p>Aucun étudiant n’a besoin de rattraper une évaluation.</p>";
 } else {
