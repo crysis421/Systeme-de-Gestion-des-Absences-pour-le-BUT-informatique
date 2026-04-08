@@ -62,7 +62,7 @@ try {
 </head>
 <body>
 <header>
-    <?php require __DIR__ . '/../Vue/Etudiant/menuHorizontalEtu.html'; ?>
+    <?php require __DIR__ . '/../Vue/Etudiant/menuHorizontalEtu.php'; ?>
 </header>
 <main>
     <div id="titre">

@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 //Ce fichier est là pour le Tableau De Bord de l'étudiant
-echo '<link rel="stylesheet" href="../../CSS/tableauDeBordResponsable.css">';
 if(isset($_POST["result"])){
     $result = json_decode($_POST["result"],true);
     $_SESSION["jour"]=$_POST["jour"];

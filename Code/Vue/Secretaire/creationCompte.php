@@ -1,24 +1,25 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="../../CSS/connect/connect.css">
-<link rel="stylesheet" href="../../CSS/connect/connectViolet.css">
+<link rel="stylesheet" href="../../CSS/connect/connect<?=$_SESSION['couleur']?>.css">
 
 <body>
 <header>
-    <?php require_once __DIR__ . "/menuHorizontaleSecretaire.html"?>
+    <?php require_once __DIR__ . "/menuHorizontaleSecretaire.php" ?>
 </header>
 <main>
     <h1>Création de compte</h1>
     <div id="container">
-        <form id="form" action="/Presentation/creeDesComptes.php" method="post" enctype="multipart/form-data">
+        <form id="form" action="../../Presentation/creeDesComptes.php" method="post" enctype="multipart/form-data">
              <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv" required>
              <br>
             <input type="submit" value="Télécharger le CSV" name="submit" >
         </form>
         <br>
-        <form id="form" action="/Presentation/creeCompte.php" method="post">
+        <form id="form" action="../../Presentation/creeCompte.php" method="post">
             <a style="font-family: Arial; color: yellow; font-size: 21px;">
                 Tous les champs marqués avec * sont obligatoires.
             </a><br>

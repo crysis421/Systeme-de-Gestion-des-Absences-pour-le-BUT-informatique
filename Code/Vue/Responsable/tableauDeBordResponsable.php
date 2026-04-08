@@ -10,13 +10,14 @@ require_once __DIR__ . "/../../Presentation/responTB.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/tableauDeBordResponsable.css?v=1">
+    <link rel="stylesheet" href="../../CSS/tableauDeBordResponsable/tableauDeBordResponsable.css?v=1">
+    <link rel="stylesheet" href="../../CSS/tableauDeBordResponsable/tableauDeBordResponsable<?=$_SESSION['couleur']?>.css?v=1">
     <script src="../../ajax/ajaxFiltre.js"></script>
     <title>Tableau de bord absence</title>
 </head>
 <body>
 <!-- TabBar ici ! -->
-<?php require('menuHorizontalResp.html'); ?>
+<?php require('menuHorizontalResp.php'); ?>
 <!-- Notification ici ! -->
 <?php
 if ($titre != "" && $description != "") {

@@ -5,7 +5,8 @@ session_start();
 if (!isset($_SESSION["user"])) {
     header('Location: ../Vue/Connexion.php');
 }
-require __DIR__ . "/menuHorizontalEtu.html";
+require __DIR__ . "/menuHorizontalEtu.php";
+
 $Y = date("Y");//On ne peut voir que notre année scolaire
 //Dictionnaire pour transformer les dates originalement anglais en francais
 $nomDesMois = ["January" => "Janvier",
@@ -48,7 +49,7 @@ require __DIR__ . "/../../Presentation/getAbsenceDuMois.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/calendrier/calendrier.css?v=1">
-    <link rel="stylesheet" href="../../CSS/calendrier/calendrierMarron.css?v=1">
+    <link rel="stylesheet" href="../../CSS/calendrier/calendrier<?=$_SESSION['couleur']?>.css?v=1">
     <title>Mon compte</title>
 </head>
 <a href="ReglementInterieur.php">

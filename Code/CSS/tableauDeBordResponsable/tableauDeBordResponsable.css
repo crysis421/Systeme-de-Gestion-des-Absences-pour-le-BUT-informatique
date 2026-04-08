@@ -71,18 +71,12 @@ summary.filtrer {
 }
 
 .credits:hover {
-    background-color: #018cbd;
     font-size: 15px;
 }
 
 .credits {
-    background-color: #007aa5;
     font-size: 14px;
     transition: font-size 0.5s ease-out;
-}
-
-summary.filtrer:hover {
-    color: #0078d7;
 }
 
 .Filtre {
@@ -131,12 +125,10 @@ div.eleveFiltre {
 
 .filtrage input[type="text"]:focus,
 .filtrage input[type="date"]:focus {
-    border-color: #0078d7;
     outline: none;
 }
 
 input[type="checkbox"] {
-    accent-color: #0078d7;
     margin-right: 6px;
 }
 
@@ -157,7 +149,6 @@ label {
 
 .bouton-filtrage {
     width: 100%;
-    background: #0078d7;
     flex-wrap: wrap-reverse;
     color: white;
     font-size: 15px;
@@ -172,9 +163,7 @@ label {
     display: block;
 }
 
-.bouton-filtrage:hover {
-    background: #005fa3;
-}
+
 
 li {
     display: inline-block;
@@ -212,9 +201,6 @@ a:link {
     text-decoration-line: none;
 }
 
-.pages:hover {
-    color: #0280af;
-}
 
 .onglets {
     position: relative;
@@ -347,8 +333,6 @@ summary::-webkit-details-marker {
 input[id^="zoom"]:checked + label.zoom-button {
     transform: scale(1.05) translateY(20px);
     margin-bottom: 20px;
-    border: 2px solid #007BFF;
-
 }
 
 .justificatif-close {
@@ -550,12 +534,8 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 .bouton-envoye {
     align-items: center;
     appearance: none;
-    background-color: #0078d7;
     border-radius: 4px;
     border-width: 0;
-    box-shadow: rgba(0, 35, 66, 0.2) 0 2px 4px,
-    rgba(0, 35, 66, 0.15) 0 7px 13px -3px,
-    #013965 0 -3px 0 inset;
     box-sizing: border-box;
     color: white;
     cursor: pointer;
@@ -590,9 +570,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
 }
 
 .bouton-envoye:hover {
-    box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px,
-    rgba(45, 35, 66, 0.2) 0 7px 13px -3px,
-    #013965 0 -3px 0 inset;
     transform: translateY(-2px);
 }
 
@@ -611,15 +588,6 @@ input[id^="toggle3_"]:checked ~ .texte-demander {
     height: 18px;
     margin-right: 0.75rem;
     cursor: pointer;
-    accent-color: #2596be;
-}
-
-.bouton-filtrage:hover {
-    background: #4338ca;
-}
-
-.bouton-filtrage:active {
-    background: #3730a3;
 }
 
 
@@ -685,13 +653,9 @@ details[open] .filtrage {
         justify-content: center;
         text-align: center;
         appearance: none;
-        background-color: #0078d7;
         border-radius: 4px;
         border-width: 0;
         width: calc(100% - 50px);
-        box-shadow: rgba(0, 35, 66, 0.2) 0 2px 4px,
-        rgba(0, 35, 66, 0.15) 0 7px 13px -3px,
-        #013965 0 -3px 0 inset;
         box-sizing: border-box;
         color: white;
         cursor: pointer;
@@ -778,7 +742,6 @@ details[open] .filtrage {
 
     .bouton-filtrage {
         width: 100%;
-        background: #0078d7;
         color: white;
         font-size: 15px;
         font-weight: 600;

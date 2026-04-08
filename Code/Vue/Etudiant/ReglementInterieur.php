@@ -10,7 +10,8 @@
 </head>
 <body>
 <!-- TABBAR -->
-<?php require __DIR__ . "/menuHorizontalEtu.html"; ?>
+<?php require __DIR__ . "/menuHorizontalEtu.php"; ?>
+
 <!-- Texte prit du site de l'uphf ici ! -->
 <div class="text-container">
     <h1 class="gradient-rotate">

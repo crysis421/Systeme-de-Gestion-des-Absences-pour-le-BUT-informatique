@@ -1,0 +1,76 @@
+.credits:hover {
+    background-color: #c85a00;
+}
+
+.credits {
+    background-color: #f16e00;
+}
+
+summary.filtrer:hover {
+    color: #ff8c00;
+}
+
+.filtrage input[type="text"]:focus,
+.filtrage input[type="date"]:focus {
+    border-color: #ff8c00;
+}
+
+input[type="checkbox"] {
+    accent-color: #ff8c00;
+}
+
+.bouton-filtrage {
+    background: #ff8c00;
+}
+
+.bouton-filtrage:hover {
+    background: #c85a00;
+}
+
+.pages:hover {
+    color: #f16e00;
+}
+
+input[id^="zoom"]:checked + label.zoom-button {
+    border: 2px solid #f16e00;
+}
+
+.bouton-envoye {
+    background-color: #ff8c00;
+    box-shadow: rgba(200, 90, 0, 0.2) 0 2px 4px,
+    rgba(200, 90, 0, 0.15) 0 7px 13px -3px,
+    #c85a00 0 -3px 0 inset;
+}
+
+.bouton-envoye:hover {
+    box-shadow: rgba(200, 90, 0, 0.3) 0 4px 8px,
+    rgba(200, 90, 0, 0.2) 0 7px 13px -3px,
+    #c85a00 0 -3px 0 inset;
+}
+
+.filtrage input[type="checkbox"] {
+    accent-color: #f16e00;
+}
+
+.bouton-filtrage:hover {
+    background: #c85a00;
+}
+
+.bouton-filtrage:active {
+    background: #a64800;
+}
+
+@media (max-width: 840px) {
+    .bouton-envoye {
+        background-color: #ff8c00;
+        box-shadow: rgba(200, 90, 0, 0.2) 0 2px 4px,
+        rgba(200, 90, 0, 0.15) 0 7px 13px -3px,
+        #c85a00 0 -3px 0 inset;
+    }
+}
+
+@media (max-width: 1000px) {
+    .bouton-filtrage {
+        background: #ff8c00;
+    }
+}

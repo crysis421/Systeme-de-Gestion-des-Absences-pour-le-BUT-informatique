@@ -13,12 +13,12 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/compte/compte.css?v=1"/>
-    <link rel="stylesheet" href="../../CSS/compte/compteMarron.css"/>
+    <link rel="stylesheet" href="../../CSS/compte/compte<?=$_SESSION['couleur']?>.css?v=1"/>
     <title>Mon compte</title>
 </head>
 <body>
 <header>
-    <?php require __DIR__ . '/menuHorizontalEtu.html'; ?>
+    <?php require __DIR__ . '/menuHorizontalEtu.php'; ?>
 </header>
 <main>
     <div style="display: flex">
@@ -39,7 +39,7 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
                 <p><b>Nom :</b> <?php echo htmlspecialchars($nom); ?></p>
                 <p><b>Prénom :</b> <?php echo htmlspecialchars($prenom); ?></p>
                 <p><b>Deuxième Prénom :</b> <?php echo htmlspecialchars($prenom2); ?></p>
-                <p><b>Date de Naissance :</b> <?php echo htmlspecialchars($dateNaissance); ?></p>
+                <p><b>Date de Naissance :</b> <?php echo htmlspecialchars($datedenaissance); ?></p>
                 <p><b>Numéro d'étudiant :</b> <?php echo htmlspecialchars($id); ?></p>
                 <p><b>Email :</b> <?php echo htmlspecialchars($email); ?></p>
                 <p><b>Formation :</b> <?php echo htmlspecialchars($diplome); ?> </p>
@@ -97,6 +97,19 @@ require_once __DIR__ . '/../../Presentation/lesInfoEtu.php';
             </details>
         </div>
     </div>
+    <h2>Choisissez un thème</h2>
+    <form action="../../Presentation/choixCouleur.php" method="post">
+        <label for="couleur">Couleur :</label>
+        <select name="couleur" id="couleur" required>
+            <option value="Bleu">Bleu</option>
+            <option value="Marron">Marron</option>
+            <option value="Vert">Vert</option>
+            <option value="Violet">Violet</option>
+            <option value="Orange">Orange</option>
+        </select>
+        <br><br>
+        <button type="submit">Valider</button>
+    </form>
 </main>
 <footer id="footer">
     <a href="https://www.uphf.fr/" style="color: black; text-decoration: none;">

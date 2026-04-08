@@ -88,12 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/formulaire/formulaire.css?v=1"/>
-    <link rel="stylesheet" href="../../CSS/formulaire/formulaireViolet.css?v=1"/>
+    <link rel="stylesheet" href="../../CSS/formulaire/formulaire<?=$_SESSION['couleur']?>.css?v=1"/>
     <title>Formulaire d'absence</title>
 </head>
 <body>
 <header>
-    <?php require __DIR__ . '/menuHorizontalEtu.html'; ?>
+    <?php require __DIR__ . '/menuHorizontalEtu.php'; ?>
 </header>
 <main>
     <div id="titre">

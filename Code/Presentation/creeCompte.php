@@ -1,4 +1,7 @@
 <?php
+
+use Model\ComptesModel;
+
 require_once __DIR__ . "/../Model/ComptesModel.php";
 session_start();
 
@@ -48,6 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 } else {
-    require __DIR__ . '/../Vue/Etudiant/menuHorizontalEtu.html';
+    require __DIR__ . '/../Vue/Etudiant/menuHorizontalEtu.php';
 }
 ?>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/connect/connect.css?v=1">
-    <link rel="stylesheet" href="../CSS/connect/connectMarron.css?v=1">
+    <link rel="stylesheet" href="../CSS/connect/connectBleu.css?v=1">
     <title>connexion étudiant</title>
 </head>
 <body>

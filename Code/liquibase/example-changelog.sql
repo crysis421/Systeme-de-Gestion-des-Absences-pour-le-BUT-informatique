@@ -167,3 +167,7 @@ Alter table Justificatif drop column commentaire_absence;
 --changeset Kilian:22
 Alter table Absence add column commentaire_absence TEXT;
 --rollback Alter table Absence drop column verrouille;
+
+--changeset Kilian:23
+Alter table Utilisateur add column couleur TEXT not null default('Bleu');
+--rollback Alter table Utilisateur drop column couleur;
