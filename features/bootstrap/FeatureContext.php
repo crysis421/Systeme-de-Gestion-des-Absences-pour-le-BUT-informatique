@@ -14,7 +14,7 @@ class FeatureContext implements Context
     private ?array $resultatAbsences = null;
     private mixed  $resultatMail = null;
 
-    private string $emailResponsable = "responsable@test.com";
+    private string $emailResponsable = "respon@uphf.fr";
     private ?int   $idResponsable = null;
     private ?int   $idJustificatif = null;
     private mixed  $resultatTraitement = null;
@@ -119,7 +119,7 @@ class FeatureContext implements Context
             throw new \Exception("Aucun compte responsable trouvé pour l'email : " . $this->emailResponsable);
         }
 
-        if ($compte['role'] !== 'responsable' && $compte['role'] !== 'secretaire') {
+        if ($compte['role'] !== 'respon' && $compte['role'] !== 'secretaire') {
             throw new \Exception(
                 "Le compte trouvé n'est pas un responsable (rôle : " . $compte['role'] . ")."
             );
