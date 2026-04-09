@@ -127,24 +127,50 @@ class FeatureContext implements Context
 
         $this->idResponsable = (int) $compte['idutilisateur'];
     }
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     /**
      * @Given il existe un justificatif en attente avec l'id :idJustificatif
      */
     public function ilExisteUnJustificatifEnAttente(string $idJustificatif): void
     {
-        $this->idJustificatif = (int) $idJustificatif;
+        $database = new \Model\Database();
+        $conn = $database->getConnection();
+
+        $seance = $conn->query("SELECT idseance FROM seance LIMIT 1")->fetch(\PDO::FETCH_ASSOC);
+        if (!$seance) {
+            throw new \Exception("Aucune séance trouvée en base.");
+        }
+
+        $stmt = $conn->prepare("SELECT idutilisateur FROM utilisateur WHERE email = :email");
+        $stmt->execute([':email' => $this->email]);
+        $etudiant = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$etudiant) {
+            throw new \Exception("Aucun étudiant trouvé pour : " . $this->email);
+        }
+
+        $conn->prepare("INSERT INTO absence (idabsence, idseance, idetudiant, statut, estretard, verrouille, commentaire_absence) VALUES (default, :idseance, :idetudiant, 'refus', false, false, null) ON CONFLICT DO NOTHING")
+            ->execute([':idseance' => $seance['idseance'], ':idetudiant' => $etudiant['idutilisateur']]);
+
+        $stmt = $conn->prepare("SELECT idabsence FROM absence WHERE idseance = :idseance AND idetudiant = :idetudiant");
+        $stmt->execute([':idseance' => $seance['idseance'], ':idetudiant' => $etudiant['idutilisateur']]);
+        $idAbsenceTest = (int) $stmt->fetchColumn();
+
+        $stmt = $conn->prepare("INSERT INTO justificatif (idjustificatif, datesoumission) VALUES (default, NOW()) RETURNING idjustificatif");
+        $stmt->execute();
+        $idJustificatifCree = (int) $stmt->fetchColumn();
+
+        $conn->prepare("INSERT INTO absenceetjustificatif (idabsence, idjustificatif) VALUES (:idabsence, :idjustificatif) ON CONFLICT DO NOTHING")
+            ->execute([':idabsence' => $idAbsenceTest, ':idjustificatif' => $idJustificatifCree]);
+
+        $conn->prepare("UPDATE absence SET statut = 'report', verrouille = false WHERE idabsence = :id")
+            ->execute([':id' => $idAbsenceTest]);
+
+        $conn->prepare("INSERT INTO traitementjustificatif (idtraitement, attente, date, cause, idjustificatif, idutilisateur, reponse) VALUES (default, true, NOW(), '', :idjustificatif, :idutilisateur, null)")
+            ->execute([':idjustificatif' => $idJustificatifCree, ':idutilisateur' => $etudiant['idutilisateur']]);
+
+        $this->idJustificatif = $idJustificatifCree;
 
         $model = new AbsenceModel();
-        $justificatifClasse = new \Model\NewJustificatif();
-        $listeAbsence = [
-            [
-                "idabsence" => $this->idJustificatif,
-                "verrouille" => false
-            ]
-        ];
-        $justificatifClasse->creerJustificatif($listeAbsence, 0, '','', []);
-        $model->justifierAbsence($this->idJustificatif, 'refus',false,'');
         $justifs = $model->getJustificatifsAttente();
 
         if (empty($justifs)) {
